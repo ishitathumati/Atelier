@@ -18,5 +18,94 @@
 
 
 <ion-content padding>
+  <ion-card>
+    <div padding>
+      <ion-segment [(ngModel)]="Notifications">
+        <ion-segment-button value="Messages">
+          Messages
+        </ion-segment-button>
+        <ion-segment-button value="Comments">
+          Comments
+        </ion-segment-button>
+        <ion-segment-button value="Likes">
+          Likes
+        </ion-segment-button>
+      </ion-segment>
+    </div>
 
+    <div [ngSwitch]="Notifications">
+      <ion-list *ngSwitchCase="'Messages'">
+        <ion-item>
+          <ion-thumbnail item-start>
+            <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
+          </ion-thumbnail>
+          <h2>Jamaia</h2>
+          <p>Boy that last pic was ugly</p>
+        </ion-item>
+        <ion-item>
+            <ion-thumbnail item-start>
+              <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
+            </ion-thumbnail>
+            <h2>Jaquan</h2>
+            <p>You're trash</p>
+          </ion-item>
+          <ion-item>
+              <ion-thumbnail item-start>
+                <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
+              </ion-thumbnail>
+              <h2>Jaquan</h2>
+              <p>Aye that's lit</p>
+            </ion-item>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'Comments'">
+        <ion-item>
+          <ion-thumbnail item-start>
+            <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
+          </ion-thumbnail>
+          <h2>John</h2>
+        </ion-item>
+        <ion-item>
+            <ion-thumbnail item-start>
+              <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
+            </ion-thumbnail>
+            <h2>Jaquan</h2>
+          </ion-item>
+          <ion-item>
+              <ion-thumbnail item-start>
+                <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
+              </ion-thumbnail>
+              <h2>Jaquan</h2>
+            </ion-item>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'Likes'">
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
+            </ion-thumbnail>
+            <h2>Jaquan</h2>
+          </ion-item>
+          <ion-item>
+              <ion-thumbnail item-start>
+                <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
+              </ion-thumbnail>
+              <h2>Jaquan</h2>
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail item-start>
+                  <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
+                </ion-thumbnail>
+                <h2>Jaquan</h2>
+              </ion-item>
+              <ion-item>
+                  <ion-thumbnail item-start>
+                    <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
+                  </ion-thumbnail>
+                  <h2>Jaquan</h2>
+                </ion-item>
+      </ion-list>
+
+    </div>
+  </ion-card>
 </ion-content>
