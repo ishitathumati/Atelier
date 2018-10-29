@@ -1,7 +1,0 @@
-{
-  "name": "art",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
-}
