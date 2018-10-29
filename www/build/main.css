@@ -25674,6 +25674,18 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+page-explore ion-title {
+  text-align: center;
+}
+
 page-home ion-title {
+  text-align: center;
+}
+
+page-profile ion-title {
+  text-align: center;
+}
+
+page-user-uploads ion-title {
   text-align: center;
 }

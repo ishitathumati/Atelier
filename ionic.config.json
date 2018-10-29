@@ -1,5 +1,7 @@
 {
-  "name": "art",
-  "integrations": {},
+  "name": "SampleApp",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

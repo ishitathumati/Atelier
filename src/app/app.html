@@ -1,1 +1,46 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>User</ion-title>
+          </ion-toolbar>
+        </ion-header>
+
+        <ion-footer>
+         <ion-toolbar>
+            <ion-list>
+             <button ion-item (click)="LoadPage()">
+             <ion-icon name="settings"></ion-icon>
+               Settings
+             </button>
+             <button ion-item (click)="openPage(friendsPage)">
+             <ion-icon name="help-circle"></ion-icon>
+                Help and Support
+             </button>
+            </ion-list>
+             <button ion-button icon color="dark" clear (click)="closeMenu()">
+             <ion-icon name="exit"></ion-icon>
+                Log Out
+             </button>
+            
+        </ion-toolbar>
+        </ion-footer>
+        <ion-content>
+          <ion-list>
+            <button ion-item (click)="openPage(friendsPage)">
+                <ion-icon name="create"></ion-icon>
+                Edit Profile
+            </button>
+            <button ion-item (click)="openPage(friendsPage)">
+                <ion-icon name="clock"></ion-icon>
+                Activity
+            </button>
+            <button ion-item (click)="openPage(eventsPage)">
+                <ion-icon name="archive"></ion-icon>
+                Saved
+            </button>
+          </ion-list>
+        </ion-content>
+      </ion-menu>
+      
+      <ion-nav id="nav" #content [root]="rootPage"></ion-nav>
+      

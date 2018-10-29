@@ -3,39 +3,44 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
+import { UserUploadsPage } from '../pages/user-uploads/user-uploads';
 import { ExplorePage } from '../pages/explore/explore';
-import { NotificationPage } from '../pages/notification/notification';
+import { HomePage } from '../pages/home/home';
+import { ProfilePage } from '../pages/profile/profile';
+import { TabsPage } from '../pages/tabs/tabs';
+import { NotificationsPage } from '../pages/notifications/notifications';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { EditProfPage } from '../pages/edit-prof/edit-prof';
+
+
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
-    TabsPage,
+    NotificationsPage,
+    UserUploadsPage,
     ExplorePage,
-    NotificationPage
+    ProfilePage,
+    EditProfPage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
-    TabsPage,
+    NotificationsPage,
+    UserUploadsPage,
     ExplorePage,
-    NotificationPage
+    ProfilePage,
+    EditProfPage,
+    TabsPage
   ],
   providers: [
     StatusBar,
