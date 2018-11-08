@@ -25689,3 +25689,14 @@ page-profile ion-title {
 page-user-uploads ion-title {
   text-align: center;
 }
+
+page-user-uploads .box {
+  border: 2px solid #1f7a8c;
+  padding: 8px;
+  text-align: center;
+  color: #011627;
+}
+
+page-user-uploads p {
+  font-style: italic;
+}
