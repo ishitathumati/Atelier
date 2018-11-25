@@ -8,12 +8,7 @@ import { ExplorePage } from '../pages/explore/explore';
 import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
 import { TabsPage } from '../pages/tabs/tabs';
-<<<<<<< HEAD
 import { NotificationsPage } from '../pages/notifications/notifications';
-=======
-import { ExplorePage } from '../pages/explore/explore';
-import { NotificationsPage  } from '../pages/notifications/notifications';
->>>>>>> mbarigala
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,7 +19,6 @@ import { EditProfPage } from '../pages/edit-prof/edit-prof';
 @NgModule({
   declarations: [
     MyApp,
-<<<<<<< HEAD
     HomePage,
     NotificationsPage,
     UserUploadsPage,
@@ -32,14 +26,6 @@ import { EditProfPage } from '../pages/edit-prof/edit-prof';
     ProfilePage,
     EditProfPage,
     TabsPage
-=======
-    AboutPage,
-    ContactPage,
-    FeedPage,
-    TabsPage,
-    ExplorePage,
-    NotificationsPage
->>>>>>> mbarigala
   ],
   imports: [
     BrowserModule,
@@ -48,7 +34,6 @@ import { EditProfPage } from '../pages/edit-prof/edit-prof';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-<<<<<<< HEAD
     HomePage,
     NotificationsPage,
     UserUploadsPage,
@@ -56,15 +41,6 @@ import { EditProfPage } from '../pages/edit-prof/edit-prof';
     ProfilePage,
     EditProfPage,
     TabsPage
-=======
-    AboutPage,
-    ContactPage,
-    FeedPage,
-    TabsPage,
-    ExplorePage,
-    NotificationsPage
-
->>>>>>> mbarigala
   ],
   providers: [
     StatusBar,
