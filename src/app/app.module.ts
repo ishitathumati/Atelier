@@ -8,8 +8,7 @@ import { ExplorePage } from '../pages/explore/explore';
 import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
 import { TabsPage } from '../pages/tabs/tabs';
-import { NotificationsPage  } from '../pages/notifications/notifications';
-
+import { NotificationsPage } from '../pages/notifications/notifications';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { EditProfPage } from '../pages/edit-prof/edit-prof';

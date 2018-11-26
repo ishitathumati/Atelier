@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 
+
 import { HomePage } from '../home/home';
-import { NotificationsPage } from '../notifications/notifications';
-import { ExplorePage } from '../explore/explore';
-import { UserUploadsPage } from '../user-uploads/user-uploads';
 import { ProfilePage } from '../profile/profile';
+import { UserUploadsPage } from '../user-uploads/user-uploads';
+import { ExplorePage } from '../explore/explore';
+import { NotificationsPage } from '../notifications/notifications';
+
 
 @Component({
   templateUrl: 'tabs.html'
