@@ -22,4 +22,6 @@ export class UserUploadsPage {
     console.log('ionViewDidLoad UserUploadsPage');
   }
 
+  
+
 }
