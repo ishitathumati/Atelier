@@ -14,8 +14,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
+//settingsId = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    //this.settingsId = this.navParams.get('settingsId');
   }
 
   ionViewDidLoad() {
