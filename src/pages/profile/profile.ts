@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+//import { SettingsPage } from '../settings/settings';
 
 /**
  * Generated class for the ProfilePage page.
@@ -17,7 +18,7 @@ export class ProfilePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
   }

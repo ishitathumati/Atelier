@@ -12,8 +12,7 @@ import { NotificationsPage } from '../pages/notifications/notifications';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { EditProfPage } from '../pages/edit-prof/edit-prof';
-
-
+import { SettingsPage } from '../pages/settings/settings';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,8 @@ import { EditProfPage } from '../pages/edit-prof/edit-prof';
     TabsPage,
     ExplorePage,
     EditProfPage,
-    NotificationsPage
+    NotificationsPage,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
@@ -39,8 +39,8 @@ import { EditProfPage } from '../pages/edit-prof/edit-prof';
     EditProfPage,
     TabsPage,
     ExplorePage,
-    NotificationsPage
-
+    NotificationsPage,
+    SettingsPage
   ],
   providers: [
     StatusBar,

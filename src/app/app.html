@@ -8,9 +8,9 @@
         <ion-footer>
          <ion-toolbar>
             <ion-list>
-             <button ion-item (click)="LoadPage()">
+             <button ion-item *ngFor = "let p of pages"(click)="openPage(p)">
              <ion-icon name="settings"></ion-icon>
-               Settings
+               {{p.title}}
              </button>
              <button ion-item (click)="openPage(friendsPage)">
              <ion-icon name="help-circle"></ion-icon>
@@ -20,10 +20,10 @@
              <button ion-button icon color="dark" clear (click)="closeMenu()">
              <ion-icon name="exit"></ion-icon>
                 Log Out
-             </button>
-            
+             </button>  
         </ion-toolbar>
         </ion-footer>
+
         <ion-content>
           <ion-list>
             <button ion-item (click)="openPage(friendsPage)">
@@ -41,6 +41,6 @@
           </ion-list>
         </ion-content>
       </ion-menu>
-      
-      <ion-nav id="nav" #content [root]="rootPage"></ion-nav>
+
+      <ion-nav [root]="rootPage" #content swipeBackEnables="false"></ion-nav>
       
