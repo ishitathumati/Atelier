@@ -1,4 +1,4 @@
-<ion-menu [content]="content">
+<ion-menu [content]="contentview">
         <ion-header>
           <ion-toolbar>
             <ion-title>User</ion-title>
@@ -42,5 +42,5 @@
         </ion-content>
       </ion-menu>
       
-      <ion-nav id="nav" #content [root]="rootPage"></ion-nav>
+      <ion-nav [root]="rootPage" #contentview swipeBackEnabled="false" main></ion-nav>
       
