@@ -6,7 +6,9 @@
 
 <ion-content padding>
 
-    <ion-icon name="camera"></ion-icon> 
+    
+
+    
 
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
     <ion-list>
@@ -19,24 +21,33 @@
 
         <ion-item>
           <ion-avatar item-start>
-            <img src="assets/imgs/j.png">
+            <img src="assets/imgs/Jonathan.jpg">
           </ion-avatar>
-          <h2>Jonathan Chestnut</h2>
+          
+          <div><button ion-button color ="light" round (click) = "ProfilePageClick()">
+            Jonathan Chestnut
+          </button></div>
+          
         </ion-item>
       
-        <img src="assets/imgs/e.png">
+        <img src="assets/imgs/sahil_image_2.jpg">
       
         <ion-row>
           <ion-col>
             <button ion-button icon-start clear small>
               <ion-icon name="thumbs-up"></ion-icon>
-              <div>300 Likes</div>
+              <button ion-button icon-stat clear small (click)="handleLike()"> {{likeValue}}</button>
             </button>
           </ion-col>
           <ion-col>
             <button ion-button icon-start clear small>
               <ion-icon name="text"></ion-icon>
-              <div>6 Comments</div>
+              <!--</button (click)="goToPage()"></button>-->
+              <!--<button ion-button (click)="btnclicked()">Comments</button> -->
+              <div><button ion-button icon-stat clear small (click) = "btnclicked()">
+                Comments
+              </button></div> 
+
             </button>
           </ion-col>
           <ion-col center text-center>
@@ -56,14 +67,35 @@
 
           <ion-item>
             <ion-avatar item-start>
-              <img src="assets/imgs/r1.png">
+              <img src="assets/imgs/Raghav.jpg">
             </ion-avatar>
-            <h2>Raghav Lila</h2> <!--name dsds of the person 1!-->
-          </ion-item>
+
+           <div><button ion-button color ="light" round (click) = "ProfilePageClick()">
+            Raghav Lila
+          </button></div>
+        </ion-item>
         
-          <img src="assets/imgs/r2.png">
-        
+          <img src="assets/imgs/sahil_img_1.jpg">
+
           <ion-row>
+            <ion-col>
+              <button ion-button icon-start clear small>
+                <ion-icon name="thumbs-up"></ion-icon>
+                <button ion-button icon-stat clear small (click)="handleLike()"> {{likeValue}}</button>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button icon-start clear small>
+                <ion-icon name="text"></ion-icon>
+                <!--</button (click)="goToPage()"></button>-->
+                <!--<button ion-button (click)="btnclicked()">Comments</button> -->
+                <div><button ion-button icon-stat clear small (click) = "btnclicked()">
+                  Comments
+                </button></div> 
+              </button>
+              </ion-col> 
+        
+          <!--<ion-row>
             <ion-col>
               <button ion-button icon-start clear small>
                 <ion-icon name="thumbs-up"></ion-icon>
@@ -75,7 +107,8 @@
                 <ion-icon name="text"></ion-icon>
                 <div>4 Comments</div>
               </button>
-            </ion-col>
+            </ion-col> -->
+
             <ion-col center text-center>
               <ion-note>
                 11h ago
@@ -88,3 +121,17 @@
 
 
 </ion-content>
+
+<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDUn8OuO3b6wtnn1g78EqzRUUZJMPof8tU",
+    authDomain: "atelier-842ac.firebaseapp.com",
+    databaseURL: "https://atelier-842ac.firebaseio.com",
+    projectId: "atelier-842ac",
+    storageBucket: "atelier-842ac.appspot.com",
+    messagingSenderId: "781691867947"
+  };
+  firebase.initializeApp(config);
+</script>

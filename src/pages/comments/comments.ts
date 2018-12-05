@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AddArtPage } from '../add-art/add-art';
 
 /**
- * Generated class for the UserUploadsPage page.
+ * Generated class for the CommentsPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,21 +10,16 @@ import { AddArtPage } from '../add-art/add-art';
 
 @IonicPage()
 @Component({
-  selector: 'page-user-uploads',
-  templateUrl: 'user-uploads.html',
+  selector: 'page-comments',
+  templateUrl: 'comments.html',
 })
-export class UserUploadsPage {
+export class CommentsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UserUploadsPage');
-  }
-
-  openAdd()
-  {
-    this.navCtrl.push(AddArtPage);
+    console.log('ionViewDidLoad CommentsPage');
   }
 
 }
