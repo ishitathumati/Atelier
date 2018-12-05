@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+//import { ProfilePage } from '../profile/profile';
 
 /**
  * Generated class for the EditProfPage page.
@@ -22,4 +23,7 @@ export class EditProfPage {
     console.log('ionViewDidLoad EditProfPage');
   }
 
+  goBack(){
+    this.navCtrl.pop();
+  }
 }
