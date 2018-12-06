@@ -1,4 +1,4 @@
-<ion-menu [content]="content">
+<ion-menu [content]="contentview">
         <ion-header>
           <ion-toolbar>
             <ion-title>User</ion-title>
@@ -8,7 +8,7 @@
         <ion-footer>
          <ion-toolbar>
             <ion-list>
-             <button ion-item (click)="buttonClicked()">
+             <button ion-item (click)="openPage(SettingsPage)">
              <ion-icon name="settings"></ion-icon>
                Settings
              </button>
@@ -26,9 +26,9 @@
         </ion-footer>
         <ion-content>
           <ion-list>
-            <button ion-item (click)="openPage(friendsPage)">
+            <button ion-item *ngFor = "let p of pages" (click)="openPage(p)">
                 <ion-icon name="create"></ion-icon>
-                Edit Profile
+                {{p.title}}
             </button>
             <button ion-item (click)="openPage(friendsPage)">
                 <ion-icon name="clock"></ion-icon>
@@ -42,5 +42,5 @@
         </ion-content>
       </ion-menu>
       
-      <ion-nav id="nav" #content [root]="rootPage"></ion-nav>
+      <ion-nav [root]="rootPage" #contentview swipeBackEnabled="false" main></ion-nav>
       

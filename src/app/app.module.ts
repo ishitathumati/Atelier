@@ -15,7 +15,7 @@ import { EditProfPage } from '../pages/edit-prof/edit-prof';
 import { CommentsPage } from '../pages/comments/comments';
 import { LoginPage} from '../pages/login/login';
 import {RegisterPage} from '../pages/register/register';
-
+//import { MyApp } from '../app/app.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule} from 'angularfire2/auth';
 
