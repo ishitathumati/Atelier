@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ProfilePage } from '../profile/profile';
 
 /**
  * Generated class for the SavedPage page.
@@ -21,9 +20,5 @@ export class SavedPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SavedPage');
-  }
-
-  goBack(){
-    this.navCtrl.setRoot(ProfilePage);
   }
 }

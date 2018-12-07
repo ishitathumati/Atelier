@@ -4,6 +4,7 @@ import { ProfilePage } from '../profile/profile';
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import { storage, initializeApp} from 'firebase';
 import { FIREBASE_CONFIG } from '../../app/firebase.config';
+
 //import { ProfilePage } from '../profile/profile';
 
 /**
@@ -81,11 +82,8 @@ openGallery()
   });
 }
 
-goToUpload(){
+goToProfile(){
   this.navCtrl.push(ProfilePage);
-}
+} 
 
-goBack(){
-    this.navCtrl.setRoot(ProfilePage);
-  }
 }
