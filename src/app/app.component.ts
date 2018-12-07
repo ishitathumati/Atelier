@@ -42,7 +42,7 @@ openPage(page){
     this.nav.push(page.component);
 }
 
-DoLogOut(page: any){
+LogOut(page: any){
   this.nav.setRoot(LoginPage);
   this.menuCtrl.close();
 }
