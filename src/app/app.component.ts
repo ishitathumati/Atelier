@@ -8,14 +8,18 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { EditProfPage } from '../pages/edit-prof/edit-prof';
 //import { SettingsPage } from '../pages/settings/settings';
 
+import { SettingsPage } from '../pages/settings/settings';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav; Nav;
   rootPage:any = TabsPage;
-
   pages: Array<{title: string, component: any}>;
+
+
+  //pages: Array<{title: string, component: any}>;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen )
    {
