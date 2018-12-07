@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ProfilePage } from '../profile/profile';
 //import { ProfilePage } from '../profile/profile';
 
 /**
@@ -15,7 +16,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'edit-prof.html',
 })
 export class EditProfPage {
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -24,6 +24,6 @@ export class EditProfPage {
   }
 
   goBack(){
-    this.navCtrl.pop();
+    this.navCtrl.setRoot(ProfilePage);
   }
 }

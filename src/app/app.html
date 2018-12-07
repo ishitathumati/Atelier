@@ -16,6 +16,7 @@
                 <ion-toolbar>
                    <ion-list>
                     <button ion-item (click)="openPage(SettingsPage)">
+                      <!--FIX LATER: openPage nonfunctional for settings and help/support-->
                     <ion-icon name="settings"></ion-icon>
                       Settings
                     </button>
@@ -24,31 +25,13 @@
                        Help and Support
                     </button>
                    </ion-list>
-                    <button ion-button icon color="dark" clear (click)="closeMenu()">
+                    <button ion-button icon color="dark" clear (click)="DoLogOut()">
                     <ion-icon name="exit"></ion-icon>
                        Log Out
                     </button>   
                </ion-toolbar>
                </ion-footer>
           </ion-content>
-        <!--<ion-footer>
-         <ion-toolbar>
-            <ion-list>
-             <button ion-item (click)="openPage(SettingsPage)">
-             <ion-icon name="settings"></ion-icon>
-               Settings
-             </button>
-             <button ion-item (click)="openPage(friendsPage)">
-             <ion-icon name="help-circle"></ion-icon>
-                Help and Support
-             </button>
-            </ion-list>
-             <button ion-button icon color="dark" clear (click)="closeMenu()">
-             <ion-icon name="exit"></ion-icon>
-                Log Out
-             </button>   
-        </ion-toolbar>
-        </ion-footer>-->
       </ion-menu>
       
       <ion-nav [root]="rootPage" #contentview swipeBackEnabled="false" main></ion-nav>
