@@ -5,7 +5,33 @@
           </ion-toolbar>
         </ion-header>
 
-        <ion-footer>
+        <ion-content>
+            <ion-list>
+              <button menuClose ion-item *ngFor = "let p of pages" (click)="openPage(p)">
+                  <ion-icon name="{{p.icon}}"></ion-icon>
+                  {{p.title}}
+              </button>
+            </ion-list>
+            <ion-footer>
+                <ion-toolbar>
+                   <ion-list>
+                    <button ion-item (click)="openPage(SettingsPage)">
+                    <ion-icon name="settings"></ion-icon>
+                      Settings
+                    </button>
+                    <button ion-item (click)="openPage(friendsPage)">
+                    <ion-icon name="help-circle"></ion-icon>
+                       Help and Support
+                    </button>
+                   </ion-list>
+                    <button ion-button icon color="dark" clear (click)="closeMenu()">
+                    <ion-icon name="exit"></ion-icon>
+                       Log Out
+                    </button>   
+               </ion-toolbar>
+               </ion-footer>
+          </ion-content>
+        <!--<ion-footer>
          <ion-toolbar>
             <ion-list>
              <button ion-item (click)="openPage(SettingsPage)">
@@ -20,26 +46,9 @@
              <button ion-button icon color="dark" clear (click)="closeMenu()">
              <ion-icon name="exit"></ion-icon>
                 Log Out
-             </button>  
+             </button>   
         </ion-toolbar>
-        </ion-footer>
-
-        <ion-content>
-          <ion-list>
-            <button ion-item *ngFor = "let p of pages" (click)="openPage(p)">
-                <ion-icon name="create"></ion-icon>
-                {{p.title}}
-            </button>
-            <button ion-item (click)="openPage(friendsPage)">
-                <ion-icon name="clock"></ion-icon>
-                Activity
-            </button>
-            <button ion-item (click)="openPage(eventsPage)">
-                <ion-icon name="archive"></ion-icon>
-                Saved
-            </button>
-          </ion-list>
-        </ion-content>
+        </ion-footer>-->
       </ion-menu>
       
       <ion-nav [root]="rootPage" #contentview swipeBackEnabled="false" main></ion-nav>

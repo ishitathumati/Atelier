@@ -6,7 +6,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 //import { LoginPage } from '../pages/login/login';
 import { EditProfPage } from '../pages/edit-prof/edit-prof';
+import { ActivityPage } from '../pages/activity/activity';
+import { SavedPage } from '../pages/saved/saved';
 //import { SettingsPage } from '../pages/settings/settings';
+//import { HelpandSuppPage } from '../pages/helpand-supp/helpand-supp';
+//import { LogOutPage } from '../pages/log-out/log-out';
 
 import { SettingsPage } from '../pages/settings/settings';
 
@@ -16,7 +20,8 @@ import { SettingsPage } from '../pages/settings/settings';
 export class MyApp {
   @ViewChild(Nav) nav; Nav;
   rootPage:any = TabsPage;
-  pages: Array<{title: string, component: any}>;
+
+  pages: Array<{title: string, component: any, icon: string}>;
 
 
   //pages: Array<{title: string, component: any}>;
@@ -30,7 +35,12 @@ export class MyApp {
       splashScreen.hide();
     });
     this.pages = [
-      {title: 'Edit Profile', component: EditProfPage}
+      {title: 'Edit Profile', component: EditProfPage, icon: 'create'},
+      {title: 'Activity', component: ActivityPage, icon: 'clock'},
+      {title: 'Saved', component: SavedPage, icon: 'archive'}
+      //{title: 'Settings', component: SettingsPage, icon: 'settings'},
+      //{title: 'Help and Support', component: HelpandSuppPage, icon: 'help=circle'},
+      //{title: 'Log Out', component: LogOutPage, icon: 'exit'}
     ];
   }
 openPage(page){
