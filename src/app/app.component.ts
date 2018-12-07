@@ -12,7 +12,7 @@ import { SavedPage } from '../pages/saved/saved';
 //import { HelpandSuppPage } from '../pages/helpand-supp/helpand-supp';
 //import { LogOutPage } from '../pages/log-out/log-out';
 
-import { SettingsPage } from '../pages/settings/settings';
+//import { SettingsPage } from '../pages/settings/settings';
 
 @Component({
   templateUrl: 'app.html'
