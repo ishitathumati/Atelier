@@ -22,6 +22,8 @@ import { AngularFireAuthModule} from 'angularfire2/auth';
 import { Camera } from '@ionic-native/camera';
 
 import { AddArtPage } from '../pages/add-art/add-art';
+import { ActivityPage } from '../pages/activity/activity';
+import { SavedPage } from '../pages/saved/saved';
 
 
 
@@ -47,7 +49,9 @@ const firebaseAuth = {
     CommentsPage,
     LoginPage,
     RegisterPage,
-    AddArtPage
+    AddArtPage,
+    ActivityPage,
+    SavedPage
   ],
 
   imports: [
@@ -70,7 +74,9 @@ const firebaseAuth = {
     CommentsPage,
     LoginPage,
     RegisterPage,
-    AddArtPage
+    AddArtPage,
+    ActivityPage,
+    SavedPage
   ],
   providers: [
     StatusBar,

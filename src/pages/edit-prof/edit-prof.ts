@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
+import { Camera, CameraOptions } from '@ionic-native/camera'
+import { storage, initializeApp} from 'firebase';
+import { FIREBASE_CONFIG } from '../../app/firebase.config';
 //import { ProfilePage } from '../profile/profile';
 
 /**
@@ -16,14 +19,73 @@ import { ProfilePage } from '../profile/profile';
   templateUrl: 'edit-prof.html',
 })
 export class EditProfPage {
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  photo:any;
+
+  photo2:any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
+    initializeApp(FIREBASE_CONFIG);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditProfPage');
   }
+  async takePic(){
+    try{
+  	const options: CameraOptions = {
+  		quality: 70,
+	  	destinationType: this.camera.DestinationType.DATA_URL,
+	  	encodingType: this.camera.EncodingType.JPEG,
+  		mediaType: this.camera.MediaType.PICTURE
+  }
 
-  goBack(){
+  const result = await this.camera.getPicture(options);
+
+  const image =`data:image/jpeg;base64,${result}`;
+
+  const pictures = storage().ref('pictures');
+  pictures.putString(image, 'data_url');
+
+}
+catch (e){
+  console.error(e);
+}
+
+	/*this.camera.getPicture(options).then((imageData) => 
+	{
+ //imageData is either a base64 encoded string or a file URI
+ //If it's base64:
+ 		this.photo = 'data:image/jpeg;base64,' + imageData;
+	}, (err) => {
+ //Handle error
+	}); */
+}
+
+openGallery()
+{
+  const options: CameraOptions =
+  {
+    sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    quality: 70,
+    //saveToPhotoAlbum: false
+  }
+
+  this.camera.getPicture(options).then((imageData1) => 
+  {
+ //imageData is either a base64 encoded string or a file URI
+ //If it's base64:
+     this.photo2 = 'data:image/jpeg;base64,' + imageData1;
+  }, (err) => {
+ //Handle error
+  });
+}
+
+goToUpload(){
+  this.navCtrl.push(ProfilePage);
+}
+
+goBack(){
     this.navCtrl.setRoot(ProfilePage);
   }
 }

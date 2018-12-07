@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { ProfilePage } from '../profile/profile';
 /**
  * Generated class for the ActivityPage page.
  *
@@ -20,6 +20,10 @@ export class ActivityPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ActivityPage');
+  }
+
+  goBack(){
+    this.navCtrl.setRoot(ProfilePage);
   }
 
 }

@@ -19,5 +19,38 @@
 
 
 <ion-content padding>
+    <p>Upload Profile Picture</p>
+    <button ion-item (click) = "takePic()">
+      <ion-icon name="camera"></ion-icon>
+      Take Photo
+    </button> 
+    <button ion-item (click) = "openGallery()">
+    <ion-icon name="folder-open" (click) = "openGallery()"></ion-icon> 
+    Library
+   </button>
+
+    <p><img src = "{{image}}"> </p>
+    <p><img src = "{{photo2}}"> </p>
+
+    <ion-list>
+      <ion-item>
+        <ion-label inline>Studied at:</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label inline>Works at:</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label inline>Lives in:</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label inline>From city, state:</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <button ion-button (click)="goToUpload()" round>Save</button>
 
 </ion-content>
