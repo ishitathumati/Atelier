@@ -24,6 +24,7 @@ import { Camera } from '@ionic-native/camera';
 import { AddArtPage } from '../pages/add-art/add-art';
 import { ActivityPage } from '../pages/activity/activity';
 import { SavedPage } from '../pages/saved/saved';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 
 
@@ -59,6 +60,7 @@ const firebaseAuth = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseAuth),
     AngularFireAuthModule,
+    AngularFireDatabaseModule
     
   ],
   bootstrap: [IonicApp],

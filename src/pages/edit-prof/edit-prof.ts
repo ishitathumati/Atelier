@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
 import { Camera, CameraOptions } from '@ionic-native/camera'
-import { storage, initializeApp} from 'firebase';
-import { FIREBASE_CONFIG } from '../../app/firebase.config';
+import { storage } from 'firebase';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+//import { AngularFireModule } from 'angularfire2';
+//import { FIREBASE_CONFIG } from '../../app/firebase.config';
 
-//import { ProfilePage } from '../profile/profile';
 
 /**
  * Generated class for the EditProfPage page.
@@ -24,8 +25,12 @@ export class EditProfPage {
 
   photo2:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
-    initializeApp(FIREBASE_CONFIG);
+  peopleList : FirebaseListObservable<any>;
+
+
+  constructor(public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
+    //initializeApp(FIREBASE_CONFIG);
+    this.peopleList = db.list('/people');
   }
 
   ionViewDidLoad() {
@@ -60,6 +65,18 @@ catch (e){
 	}, (err) => {
  //Handle error
 	}); */
+}
+
+createProfile(name, study, work, lives, fromCity){
+this.peopleList.push({
+  name: name,
+  study: study,
+  work: work,
+  lives: lives,
+  fromCity: fromCity,
+}).then(newProfile => {
+  this.navCtrl.push(ProfilePage);
+}, error=>{console.log(error);});
 }
 
 openGallery()
