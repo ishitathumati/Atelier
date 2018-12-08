@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import { UserUploadsPage } from '../user-uploads/user-uploads';
 import { storage, initializeApp} from 'firebase';
@@ -23,7 +24,6 @@ import { FIREBASE_CONFIG } from '../../app/firebase.config';
 export class AddArtPage {
 
   photo:any;
-
   photo2:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
@@ -48,21 +48,22 @@ export class AddArtPage {
   const image =`data:image/jpeg;base64,${result}`;
 
   const pictures = storage().ref('pictures');
+
   pictures.putString(image, 'data_url');
 
-}
-catch (e){
-  console.error(e);
-}
-
-	/*this.camera.getPicture(options).then((imageData) => 
+  this.camera.getPicture(options).then((imageData) => 
 	{
  //imageData is either a base64 encoded string or a file URI
  //If it's base64:
  		this.photo = 'data:image/jpeg;base64,' + imageData;
 	}, (err) => {
  //Handle error
-	}); */
+	}); 
+
+}
+catch (e){
+  console.error(e);
+}	
 }
 
 openGallery()
