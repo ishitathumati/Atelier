@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../models/user';
 import { RegisterPage } from '../register/register';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { ProfilePage } from '../profile/profile';
 //import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
 
@@ -40,7 +41,7 @@ export class LoginPage {
       const result = this.aAuth.auth.signInWithEmailAndPassword(user.email, user.password);
       if(result)
       {
-        this.navCtrl.push(TabsPage);
+        this.navCtrl.push(ProfilePage);
       }
     }
     catch(e){

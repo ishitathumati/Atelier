@@ -27,9 +27,9 @@
   <ion-item *ngFor = "let p of persons | async">
   </ion-item>
   <h2>{{p?.name}}</h2>
-    <h2>Studied at: {{p?.study}}</h2>
-    <h2>Worked at: {{p?.work}}</h2>
-    <h2>Lives in: {{p?.lives}}</h2>
-    <h2>From City, State: {{p?.fromCity}}</h2>
+    <h4>Studied at: {{p?.study}}</h4>
+    <h4>Worked at: {{p?.work}}</h4>
+    <h4>Lives in: {{p?.lives}}</h4>
+    <h4>From City, State: {{p?.fromCity}}</h4>
 </ion-content>
 
