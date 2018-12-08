@@ -5,7 +5,6 @@
   Ionic pages and navigation.
 -->
 
-<!--header info-->
 <ion-header>
   <ion-navbar>
       <ion-buttons start>
@@ -23,5 +22,14 @@
 </ion-header>
 
 <ion-content padding>
-  <img width="100" height="150" src="assets/imgs/user-downloadfemale-user-icon.png" alt="Sarah Knight">
+ <img width="100" height="150" src="assets/imgs/user-downloadfemale-user-icon.png" alt="Sarah Knight">
+
+  <ion-item *ngFor = "let p of persons | async">
+  </ion-item>
+  <h2>{{p?.name}}</h2>
+    <h2>Studied at: {{p?.study}}</h2>
+    <h2>Worked at: {{p?.work}}</h2>
+    <h2>Lives in: {{p?.lives}}</h2>
+    <h2>From City, State: {{p?.fromCity}}</h2>
 </ion-content>
+

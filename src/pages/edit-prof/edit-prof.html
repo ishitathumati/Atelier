@@ -7,17 +7,50 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>EditProf</ion-title>
-   <!-- <ion-buttons start>
-      <button ion-button icon-only color="dark" (click) = "goBack()">
-        <ion-icon name="arrow-round-back"></ion-icon>
-      </button>
-    </ion-buttons>-->
+    <ion-title>Edit Profile</ion-title>
   </ion-navbar>
 
-</ion-header>
+</ion-header> 
 
 
 <ion-content padding>
+    <p style='font-size: 120%'><ion-icon name="add-circle"></ion-icon><i>Upload Profile Picture</i></p>
+    <button ion-button icon color ='primary' clear (click) = "takePic()">
+      <ion-icon name="camera"></ion-icon>
+      Take Photo
+    </button> 
+    <button ion-button icon color='primary' clear (click) = "openGallery()">
+      <ion-icon name="folder-open" (click) = "openGallery()"></ion-icon> 
+     Library
+   </button>
+
+   <p><img src = "{{image}}"> </p> 
+    <p><img src = "{{photo2}}"> </p>
+
+    <p style='font-size: 125%'><ion-icon name="person"></ion-icon><i>About</i></p>
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Name:</ion-label>
+        <ion-input type="text" [(ngModel)]=name></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Studied at:</ion-label>
+        <ion-input type="text"[(ngModel)]=study></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Works at:</ion-label>
+        <ion-input type="text"[(ngModel)]=work></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Lives in:</ion-label>
+        <ion-input type="text"[(ngModel)]=lives></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>From city, state:</ion-label>
+        <ion-input type="text"[(ngModel)]=fromCity></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <button ion-button (click)="createProfile(name, study, work, lives, fromCity)" round>Save</button>
 
 </ion-content>

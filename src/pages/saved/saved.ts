@@ -21,5 +21,4 @@ export class SavedPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SavedPage');
   }
-
 }

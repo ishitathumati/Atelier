@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import { UserUploadsPage } from '../user-uploads/user-uploads';
-import { storage, initializeApp} from 'firebase';
-import { FIREBASE_CONFIG } from '../../app/firebase.config';
+import { storage } from 'firebase';
+//import { FIREBASE_CONFIG } from '../../app/firebase.config';
 //import { catchError } from 'rxjs/operators';
 
 
@@ -22,12 +22,12 @@ import { FIREBASE_CONFIG } from '../../app/firebase.config';
 })
 export class AddArtPage {
 
-  photo:any;
+  //pictures:any;
 
   photo2:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
-    initializeApp(FIREBASE_CONFIG);
+    //initializeApp(FIREBASE_CONFIG);
   }
 
   ionViewDidLoad() {
@@ -40,14 +40,15 @@ export class AddArtPage {
   		quality: 70,
 	  	destinationType: this.camera.DestinationType.DATA_URL,
 	  	encodingType: this.camera.EncodingType.JPEG,
-  		mediaType: this.camera.MediaType.PICTURE
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true
   }
 
   const result = await this.camera.getPicture(options);
 
   const image =`data:image/jpeg;base64,${result}`;
 
-  const pictures = storage().ref('pictures');
+  const pictures = storage().ref('pictures/myPhoto');
   pictures.putString(image, 'data_url');
 
 }

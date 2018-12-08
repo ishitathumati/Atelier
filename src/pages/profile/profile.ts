@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-//import { SettingsPage } from '../settings/settings';
-
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 /**
  * Generated class for the ProfilePage page.
  *
@@ -14,13 +13,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
-export class ProfilePage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+export class ProfilePage { 
   
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+  persons : FirebaseListObservable <any>;
+
+
+  constructor(public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
+  
+    this.persons = db.list('/people');
+  
   }
+  /*ionViewDidLoad() {
+    console.log('ionViewDidLoad ProfilePage');
+  }*/
 
 }
