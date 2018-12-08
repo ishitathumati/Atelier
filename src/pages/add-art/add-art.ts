@@ -3,8 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import { UserUploadsPage } from '../user-uploads/user-uploads';
-import { storage, initializeApp} from 'firebase';
-import { FIREBASE_CONFIG } from '../../app/firebase.config';
+import { storage } from 'firebase';
+//import { FIREBASE_CONFIG } from '../../app/firebase.config';
 //import { catchError } from 'rxjs/operators';
 
 
@@ -27,7 +27,7 @@ export class AddArtPage {
   photo2:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
-    initializeApp(FIREBASE_CONFIG);
+    //initializeApp(FIREBASE_CONFIG);
   }
 
   ionViewDidLoad() {
