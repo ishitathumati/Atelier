@@ -4,6 +4,9 @@ import { ProfilePage } from '../profile/profile';
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import { storage } from 'firebase';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { Profile } from '../../models/profile';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { HomePage } from '../home/home';
 //import { AngularFireModule } from 'angularfire2';
 //import { FIREBASE_CONFIG } from '../../app/firebase.config';
 
@@ -25,12 +28,14 @@ export class EditProfPage {
 
   photo2:any;
 
+  profile = {} as Profile;
+
   peopleList : FirebaseListObservable<any>;
 
 
-  constructor(public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
+  constructor(private aAuth: AngularFireAuth, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
     //initializeApp(FIREBASE_CONFIG);
-    this.peopleList = db.list('/people');
+    this.peopleList = db.list('/profiles');
   }
 
   ionViewDidLoad() {
@@ -78,6 +83,12 @@ this.peopleList.push({
   this.navCtrl.push(ProfilePage);
 }, error=>{console.log(error);});
 }
+
+/*createProfile(){
+  this.aAuth.authState.take(1).subscribe(auth=>{})
+  this.db.list(`profile/${auth.uid}`).push(this.profile)
+  .then(()=>this.navCtrl.push(ProfilePage))
+}*/
 
 openGallery()
 {
