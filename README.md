@@ -1,6 +1,7 @@
 # Atelier
 
 This is an app project which is a social media art app. It is being implemented through ionic.  
+
 # Setup
 1. Create an account on ionic by going to the following link
 https://ionicframework.com/getting-started
@@ -19,3 +20,21 @@ Visual Code Studio https://code.visualstudio.com/
 
        $ cd SampleApp 
        $ ionic serve
+       
+       
+# Unit Testing the App
+1. Clone the project in the terminal
+2. run the app using the following commands
+
+       $ cd SampleApp 
+       $ npm run test
+       
+
+# Behavior Testing the App
+1. Clone the project in the terminal
+2. run the app using the following commands
+
+       $ cucumber test/e2e/home/sample.feature
+
+3. Make sure to install all cucumber and selenium libraries
+       
