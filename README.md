@@ -18,7 +18,7 @@ Visual Code Studio https://code.visualstudio.com/
 1. Clone the project in the terminal
 2. run the app using the following commands
 
-       $ cd SampleApp 
+       $ cd Atelier 
        $ ionic serve
        
        
@@ -26,7 +26,7 @@ Visual Code Studio https://code.visualstudio.com/
 1. Clone the project in the terminal
 2. run the app using the following commands
 
-       $ cd SampleApp 
+       $ cd Atelier
        $ npm run test
        
 
