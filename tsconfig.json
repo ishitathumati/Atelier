@@ -25,5 +25,5 @@
   "atom": {
     "rewriteTsconfig": false
   },
-  "types": ["jasmine"],
+  "types": ["jasmine"]
 }
