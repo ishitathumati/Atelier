@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 /**
  * Generated class for the ProfilePage page.
@@ -16,7 +16,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 })
 export class ProfilePage { 
   
-  persons: FirebaseListObservable <any>;
+  persons: AngularFireList <any>;
 
 
   constructor(public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
