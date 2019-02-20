@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import { storage } from 'firebase';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Profile } from '../../models/profile';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HomePage } from '../home/home';
@@ -30,7 +30,7 @@ export class EditProfPage {
 
   profile = {} as Profile;
 
-  peopleList : AngularFireList<any>;
+  peopleList : FirebaseListObservable<any>;
 
 
   constructor(private aAuth: AngularFireAuth, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
