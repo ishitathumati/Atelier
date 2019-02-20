@@ -3,9 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AddArtPage } from '../add-art/add-art';
 
 import { Camera, CameraOptions } from '@ionic-native/camera'
-
-import { storage, initializeApp} from 'firebase';
-import { FIREBASE_CONFIG } from '../../app/firebase.config';
+import { storage } from 'firebase';
+//import { storage, initializeApp} from 'firebase';
+//import { FIREBASE_CONFIG } from '../../app/firebase.config';
 
 /**
  * Generated class for the UserUploadsPage page.
@@ -24,7 +24,7 @@ export class UserUploadsPage {
   photo:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
-    initializeApp(FIREBASE_CONFIG);
+    //initializeApp(FIREBASE_CONFIG);
   }
 
 

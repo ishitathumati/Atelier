@@ -41,7 +41,7 @@ export class LoginPage {
       const result = this.aAuth.auth.signInWithEmailAndPassword(user.email, user.password);
       if(result)
       {
-        this.navCtrl.push(ProfilePage);
+        this.navCtrl.push(TabsPage);
       }
     }
     catch(e){
