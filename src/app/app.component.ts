@@ -50,6 +50,3 @@ LogOut(page: any){
 }
 
 }
-
-
-
