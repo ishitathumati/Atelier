@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { SMS} from '@ionic-native/sms/ngx';
+import { SMS } from '@ionic-native/sms/ngx';
 
 /**
  * Generated class for the MessagesPage page.
