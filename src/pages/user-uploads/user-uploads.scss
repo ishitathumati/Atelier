@@ -1,19 +1,21 @@
 page-user-uploads {
-    ion-title {
+
+    ion-title{
         text-align: center;
+        //font-size: 10em;
     } 
 
 
-.box
-{
-    border: 2px solid #1f7a8c;
-    padding: 8px;
-    text-align: center;
-    color: #011627; 
-}
+    .box
+    {
+        border: 6px solid #3B7AE6;
+        padding: 8px;
+        text-align: center;
+        color: #011627; 
+    }
 
-p
-{
-    font-style: italic;
-}
+    p
+    {
+        font-style: italic;
+    }
 }

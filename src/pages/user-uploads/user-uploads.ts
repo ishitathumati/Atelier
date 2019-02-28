@@ -22,9 +22,11 @@ import { storage } from 'firebase';
 export class UserUploadsPage {
 
   photo:any;
+  loadimage: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
     //initializeApp(FIREBASE_CONFIG);
+    this.loadimage = this.navParams.get('image');
   }
 
 
@@ -68,5 +70,7 @@ catch (e){
   console.error(e);
 }	
 }
+
+
   
 }

@@ -7,20 +7,18 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>User Uploads</ion-title> <ion-icon name="add" (click)="openAdd()"></ion-icon>
-    <button ion-button (click) = "takePic()" >Take photo</button> 
+    <ion-title>User Uploads</ion-title> <button ion-icon name = "add" ion-button (click)="openAdd()">Add Art</button>
+   
   </ion-navbar>
 
 </ion-header>
-
-
 
 <ion-content padding>
    
 
 
-    <div class = "box">
-        JANE DOE 
+    <div class = "box"> 
+        <ion-title>JANE DOE</ion-title> 
         <p>Portfolio: Seasons</p>
       </div>
 
@@ -28,7 +26,7 @@
         <ion-row>
           <ion-col col-6>
               <ion-card>
-                  <img src = "{{photo}}"/>
+                  <img src = "{{loadimage}}"/>
                   <ion-card-content>
                     <ion-card-title>
                       Spring
@@ -41,7 +39,7 @@
           </ion-col>
           <ion-col col-6>
               <ion-card>
-                  <img src="assets/imgs/painting.png"/>
+                  
                   <ion-card-content>
                     <ion-card-title>
                       Autumn

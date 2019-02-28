@@ -26,7 +26,7 @@ export class AddArtPage {
   //pictures:any;
 
   photo2:any;
-  photo:any;
+  photo:any; 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
     //initializeApp(FIREBASE_CONFIG);
@@ -90,8 +90,9 @@ openGallery()
   });
 }
 
-goToUpload(){
-  this.navCtrl.push(UserUploadsPage);
+upload(){
+  let image = this.photo2;
+  this.navCtrl.push(UserUploadsPage, {image: image});
 }
 
 }

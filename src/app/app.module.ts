@@ -14,12 +14,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { EditProfPage } from '../pages/edit-prof/edit-prof';
 import { CommentsPage } from '../pages/comments/comments';
 import { LoginPage} from '../pages/login/login';
-import {RegisterPage} from '../pages/register/register';
+import { RegisterPage } from '../pages/register/register';
 //import { MyApp } from '../app/app.component'; 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule} from 'angularfire2/auth';
 
 import { Camera } from '@ionic-native/camera';
+//import { SMS } from '@ionic-native/sms/ngx';
 
 import { AddArtPage } from '../pages/add-art/add-art';
 import { ActivityPage } from '../pages/activity/activity';
@@ -61,7 +62,6 @@ const firebaseAuth = {
     AngularFireModule.initializeApp(firebaseAuth),
     AngularFireAuthModule,
     AngularFireDatabaseModule
-    
   ],
   bootstrap: [IonicApp],
   entryComponents: [

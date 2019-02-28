@@ -3,11 +3,11 @@ import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-//import { TabsPage } from '../pages/tabs/tabs';
+import { TabsPage } from '../pages/tabs/tabs';
 import { EditProfPage } from '../pages/edit-prof/edit-prof';
 import { ActivityPage } from '../pages/activity/activity';
 import { SavedPage } from '../pages/saved/saved';
-import { LoginPage } from '../pages/login/login';
+//import { LoginPage } from '../pages/login/login';
 //import { SettingsPage } from '../pages/settings/settings';
 //import { HelpandSuppPage } from '../pages/helpand-supp/helpand-supp';
 //import { LogOutPage } from '../pages/log-out/log-out';
@@ -19,7 +19,7 @@ import { LoginPage } from '../pages/login/login';
 })
 export class MyApp {
   @ViewChild(Nav) nav; Nav;
-  rootPage: any = LoginPage;
+  rootPage: any = TabsPage;
 
   pages: Array<{title: string, component: any, icon: string}>;
 
@@ -45,7 +45,7 @@ openPage(page){
 }
 
 LogOut(page: any){
-  this.nav.setRoot(LoginPage);
+  this.nav.setRoot(TabsPage);
   this.menuCtrl.close();
 }
 
