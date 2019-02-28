@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Comments</ion-title>
+    <ion-title>comments</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,4 +15,21 @@
 
 <ion-content padding>
 
+  <div id="chatComment">
+      <div class="comment" *ngFor="let comment of comments">
+          <div class = "innerComment"> </div>
+          <div class="comment">{{comment.comment}}</div>
+    </div>
+
+   </div>
 </ion-content>
+
+ <!-- makes it stick to comment keyboard-->
+
+ <ion-footer>
+    <ion-toolbar>
+      <ion-input type="text" [(ngModel)] = "comment"></ion-input>
+      <button ion-button icon-only (click)="sendComment()"><ion-icon name="send"></ion-icon></button>
+    </ion-toolbar>
+  </ion-footer>
+
