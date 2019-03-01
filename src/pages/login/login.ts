@@ -7,6 +7,7 @@ import { ProfilePage } from '../profile/profile';
 //import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
 import { CommentsPage } from '../comments/comments';
+import { AuthProvider } from '../../providers/auth/auth';
 
 
 
@@ -26,7 +27,7 @@ export class LoginPage {
 
   user = {} as User;
 
-  constructor(private aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public authservice: AuthProvider) {
   }
 
   ionViewDidLoad() {
@@ -39,6 +40,16 @@ export class LoginPage {
     //this.navCtrl.navigateRoot('/app/tabs/(home:home)')
 }*/
 
+  signin() {
+    this.authservice.login(this.user).then((res: any) => {
+      if (!res.code)
+        this.navCtrl.setRoot('TabsPage');
+      else 
+        alert(res);
+    }) 
+  }
+
+  
   async login(user: User){
     try{
       const result = this.aAuth.auth.signInWithEmailAndPassword(user.email, user.password);
