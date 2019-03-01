@@ -59,7 +59,7 @@
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "3.2.2",
+    "@ionic/app-scripts": "^3.2.2",
     "@types/jasmine": "^3.3.8",
     "@types/node": "^10.12.21",
     "angular-protractor-cucumber": "^0.1.28",
