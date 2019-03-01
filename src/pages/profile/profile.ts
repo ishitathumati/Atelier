@@ -18,10 +18,15 @@ export class ProfilePage {
   
   persons: FirebaseListObservable <any>;
 
-
+  personList:any;
   constructor(public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
   
-    this.db.list('/profiles');
+    this.persons =this.db.list('/profiles');
+    this.persons.subscribe((items)=>{
+       this.personList=items
+    } );
+  
+    
   
   }
   ionViewDidLoad() {

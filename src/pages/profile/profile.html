@@ -24,12 +24,13 @@
 <ion-content padding>
  <img width="100" height="150" src="assets/imgs/user-downloadfemale-user-icon.png" alt="Sarah Knight">
 
-  <ion-item *ngFor = "let p of persons | async">
-  </ion-item>
+  <ion-item *ngFor = "let p of personList">
   <h2>{{p?.name}}</h2>
     <h4>Studied at: {{p?.study}}</h4>
     <h4>Worked at: {{p?.work}}</h4>
     <h4>Lives in: {{p?.lives}}</h4>
     <h4>From City, State: {{p?.fromCity}}</h4>
+  </ion-item>
+
 </ion-content>
 
