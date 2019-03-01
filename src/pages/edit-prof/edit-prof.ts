@@ -82,7 +82,7 @@ catch (e){
 	}); */
 }
 
-createProfile(name, study, work, lives, fromCity){
+/*createProfile(name, study, work, lives, fromCity){
 this.peopleList.push({
   name: name,
   study: study,
@@ -92,13 +92,13 @@ this.peopleList.push({
 }).then(newProfile => {
   this.navCtrl.push(ProfilePage);
 }, error=>{console.log(error);});
-}
-
-/*createProfile(){
-  this.aAuth.authState.take(1).subscribe(auth=>{})
-  this.db.list(`profile/${auth.uid}`).push(this.profile)
-  .then(()=>this.navCtrl.push(ProfilePage))
 }*/
+
+createProfile(){
+  this.aAuth.authState.take(1).subscribe(auth=>{
+    this.db.object(`profile/${auth.uid}`).set(this.profile)
+      .then(()=>this.navCtrl.push(ProfilePage))})
+}
 
 openGallery()
 {
