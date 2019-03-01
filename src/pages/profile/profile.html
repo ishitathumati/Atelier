@@ -22,8 +22,8 @@
 </ion-header>
 
 <ion-content padding>
- <img width="100" height="150" src="assets/imgs/user-downloadfemale-user-icon.png" alt="Sarah Knight">
-
+ <!--<img width="100" height="150" src="assets/imgs/user-downloadfemale-user-icon.png" alt="Sarah Knight">-->
+     <img width="100" height="150" src = "{{photo}}"/>
   <ion-item *ngFor = "let p of personList">
   <h2>{{p?.name}}</h2>
     <h4>Studied at: {{p?.study}}</h4>
