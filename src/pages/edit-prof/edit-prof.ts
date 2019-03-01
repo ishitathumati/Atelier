@@ -47,15 +47,25 @@ export class EditProfPage {
   		quality: 70,
 	  	destinationType: this.camera.DestinationType.DATA_URL,
 	  	encodingType: this.camera.EncodingType.JPEG,
-  		mediaType: this.camera.MediaType.PICTURE
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true
   }
 
   const result = await this.camera.getPicture(options);
 
   const image =`data:image/jpeg;base64,${result}`;
 
-  const pictures = storage().ref('pictures');
+  const pictures = storage().ref('pictures/profilePic');
   pictures.putString(image, 'data_url');
+
+  this.camera.getPicture(options).then((imageData) => 
+	{
+ //imageData is either a base64 encoded string or a file URI
+ //If it's base64:
+ 		this.photo = 'data:image/jpeg;base64,' + imageData;
+	}, (err) => {
+ //Handle error
+}); 
 
 }
 catch (e){
