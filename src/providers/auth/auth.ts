@@ -8,7 +8,7 @@ import { User } from '../../models/user'
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
-@Injectable()
+@Injectable()                                       
 export class AuthProvider {
 
   constructor(public afireauth: AngularFireAuth) {

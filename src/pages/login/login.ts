@@ -18,7 +18,7 @@ import { AuthProvider } from '../../providers/auth/auth';
  * Ionic pages and navigation.
  */
 
-//@IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -39,7 +39,7 @@ export class LoginPage {
     this.route.navigateByUrl('/app/tabs/(home:home)');
     //this.navCtrl.navigateRoot('/app/tabs/(home:home)')
 }*/
-
+/**
   signin() {
     this.authservice.login(this.user).then((res: any) => {
       if (!res.code)
@@ -48,19 +48,24 @@ export class LoginPage {
         alert(res);
     }) 
   }
+*/
+  signup() {}
 
   
   async login(user: User){
-    try{
-      const result = this.aAuth.auth.signInWithEmailAndPassword(user.email, user.password);
-      if(result)
-      {
-        this.navCtrl.push(TabsPage, CommentsPage); 
+    this.authservice.login(this.user).then((res: any) => {
+      try{
+        const result = this.aAuth.auth.signInWithEmailAndPassword(user.email, user.password);
+        if(result)
+        {
+          this.navCtrl.push(TabsPage, CommentsPage); 
+        }
       }
-    }
-    catch(e){
-      console.error(e);
-    }
+      catch(e){
+        console.error(e);
+      }
+    })
+    
   }
 
   register(){
