@@ -26,35 +26,40 @@ export class ProfilePage {
   profileData: FirebaseObjectObservable <Profile>;
 
   personList:any;
-  loadImage:any;
-  imagesource;
-  profilepic;
+  //loadImage:any;
+  imagesource: any;
+  profilepic: any;
+
   constructor(private afAuth: AngularFireAuth, public db: AngularFireDatabase, public navCtrl: NavController, private toast: ToastController, public navParams: NavParams, private camera:Camera) {
-
-    this.imagesource = 'profilePic'
-    this.ProfilePicture();
-
+    //this.loadImage = this.navParams.get('image');
+    //this.imagesource = 'profilePic'
    /* this.persons =this.db.list('/profiles');
     this.persons.subscribe((items)=>{
        this.personList=items
     } );*/
+    this.ProfilePicture();
   
   }
 
   ProfilePicture(){
-    //let storageRef = firebase.storage().ref();
-    storage().ref().child('pictures/profilePic').getDownloadURL()
+  try{
+    let userid = this.afAuth.auth.currentUser.uid;
+    this.imagesource = storage().ref().child(`profilePics/${userid}/img`);
+    if(this.imagesource == null){
+      this.profilepic = 'https://firebasestorage.googleapis.com/v0/b/atelier-842ac.appspot.com/o/profilePics%2Fdefault.jpeg?alt=media&token=ba12bc14-ef9a-4893-947a-90b58c9850fb';
+    }
+    else{
+      storage().ref().child(`profilePics/${userid}/img`).getDownloadURL()
       .then((url)=>{
         this.profilepic = url
-    //let userID = this.afAuth.auth.currentUser.uid;
-      //storageRef.child(`profile/${userID}/img`).put(blob);
-     /* storageRef.child(`profile/${userID}/img`).getDownloadURL()
-      .then((url)=>{
-        let profilepic = url
-        return profilepic
-        }).then((profilepic)=>{
-          this.db.object(`profile/${userID}/`).update({photoURL: profilepic})*/
+        /*}).then((profilepic)=>{
+          this.db.object(`profile/${userid}/`).update({photo: profilepic})*/
     });
+  }
+}
+  catch (e){
+    console.error(e);
+    }
   }
 
   ionViewDidLoad() {
