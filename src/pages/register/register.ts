@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../login/login';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the RegisterPage page.
@@ -31,7 +32,7 @@ export class RegisterPage {
       const result = await this.aAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
       if(result)
       {
-        this.navCtrl.push(LoginPage);
+        this.navCtrl.push(TabsPage);
       }
     }
     catch(e){

@@ -30,12 +30,12 @@ export class EditProfPage {
 
   profile = {} as Profile;
 
-  peopleList : FirebaseListObservable<any>;
+  //peopleList : FirebaseListObservable<any>;
 
 
   constructor(private aAuth: AngularFireAuth, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
     //initializeApp(FIREBASE_CONFIG);
-    this.peopleList = db.list('/profiles');
+    //this.peopleList = db.list('/profiles');
   }
 
   ionViewDidLoad() {
@@ -92,13 +92,13 @@ this.peopleList.push({
 }).then(newProfile => {
   this.navCtrl.push(ProfilePage);
 }, error=>{console.log(error);});
-}*/
+}
 
 createProfile(){
   this.aAuth.authState.take(1).subscribe(auth=>{
     this.db.object(`profile/${auth.uid}`).set(this.profile)
       .then(()=>this.navCtrl.push(ProfilePage))})
-}
+}*/
 
 openGallery()
 {
@@ -116,12 +116,15 @@ openGallery()
  //If it's base64:
      this.photo2 = 'data:image/jpeg;base64,' + imageData1;
   }, (err) => {
- //Handle error
   });
 }
 
 goToProfile(){
-  this.navCtrl.push(ProfilePage);
+  //let image = this.photo2;
+  //this.navCtrl.push(ProfilePage, {image:image});
+  this.aAuth.authState.take(1).subscribe(auth=>{
+    this.db.object(`profile/${auth.uid}`).set(this.profile)
+      .then(()=>this.navCtrl.push(ProfilePage))})
 } 
 
 }
