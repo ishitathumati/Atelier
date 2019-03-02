@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { storage } from 'firebase';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { User } from '../../models/users';
+//import { User } from '../../models/users';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HomePage } from '../home/home';
 import { AngularFireModule } from 'angularfire2';
