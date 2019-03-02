@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import { storage } from 'firebase';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Profile } from '../../models/profile';
+
 /**
  * Generated class for the ProfilePage page.
  *
@@ -17,52 +20,59 @@ import { storage } from 'firebase';
 })
 export class ProfilePage { 
   
+  profile = {} as Profile;
   persons: FirebaseListObservable <any>;
 
+  profileData: FirebaseObjectObservable <Profile>;
+
   personList:any;
-  photo:any;
-  constructor(public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
-  
-    this.persons =this.db.list('/profiles');
+  loadImage:any;
+  imagesource;
+  profilepic;
+  constructor(private afAuth: AngularFireAuth, public db: AngularFireDatabase, public navCtrl: NavController, private toast: ToastController, public navParams: NavParams, private camera:Camera) {
+
+    this.imagesource = 'profilePic'
+    this.ProfilePicture();
+
+   /* this.persons =this.db.list('/profiles');
     this.persons.subscribe((items)=>{
        this.personList=items
-    } );
+    } );*/
   
   }
+
+  ProfilePicture(){
+    //let storageRef = firebase.storage().ref();
+    storage().ref().child('pictures/profilePic').getDownloadURL()
+      .then((url)=>{
+        this.profilepic = url
+    //let userID = this.afAuth.auth.currentUser.uid;
+      //storageRef.child(`profile/${userID}/img`).put(blob);
+     /* storageRef.child(`profile/${userID}/img`).getDownloadURL()
+      .then((url)=>{
+        let profilepic = url
+        return profilepic
+        }).then((profilepic)=>{
+          this.db.object(`profile/${userID}/`).update({photoURL: profilepic})*/
+    });
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
+    this.afAuth.authState.take(1).subscribe(data => {
+      if(data && data.email && data.uid) {
+        this.toast.create({
+          message: `Welcome to Atelier, ${data.email}`,
+          duration: 3000
+        }).present();
+      this.profileData = this.db.object(`profile/${data.uid}`)
   }
-
-  async takePic(){
-    try{
-  	const options: CameraOptions = {
-  		quality: 70,
-	  	destinationType: this.camera.DestinationType.DATA_URL,
-	  	encodingType: this.camera.EncodingType.JPEG,
-  		mediaType: this.camera.MediaType.PICTURE
-  }
-
-  const result = await this.camera.getPicture(options);
-
-  const image =`data:image/jpeg;base64,${result}`;
-
-  const pictures = storage().ref('pictures');
-
-  pictures.putString(image, 'data_url');
-
-  this.camera.getPicture(options).then((imageData) => 
-	{
- //imageData is either a base64 encoded string or a file URI
- //If it's base64:
- 		this.photo = 'data:image/jpeg;base64,' + imageData;
-	}, (err) => {
- //Handle error
-	}); 
-
+      else{
+        this.toast.create({
+          message: `Authentication details missing`,
+          duration: 3000
+        }).present();
+      }
+  })
 }
-catch (e){
-  console.error(e);
-}	
-}
-
 }

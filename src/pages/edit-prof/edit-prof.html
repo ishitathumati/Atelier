@@ -24,33 +24,33 @@
      Library
    </button>
 
-   <p><img src = "{{profilePic}}"> </p> 
+   <p><img src = "{{photo}}"> </p> 
     <p><img src = "{{photo2}}"> </p>
 
     <p style='font-size: 125%'><ion-icon name="person"></ion-icon><i>About</i></p>
     <ion-list>
       <ion-item>
         <ion-label stacked>Name:</ion-label>
-        <ion-input type="text" [(ngModel)]=name></ion-input>
+        <ion-input type="text" [(ngModel)]="profile.name"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label stacked>Studied at:</ion-label>
-        <ion-input type="text"[(ngModel)]=study></ion-input>
+        <ion-input type="text"[(ngModel)]="profile.study"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label stacked>Works at:</ion-label>
-        <ion-input type="text"[(ngModel)]=work></ion-input>
+        <ion-input type="text"[(ngModel)]="profile.work"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label stacked>Lives in:</ion-label>
-        <ion-input type="text"[(ngModel)]=lives></ion-input>
+        <ion-input type="text"[(ngModel)]="profile.lives"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label stacked>From city, state:</ion-label>
-        <ion-input type="text"[(ngModel)]=fromCity></ion-input>
+        <ion-input type="text"[(ngModel)]="profile.fromCity"></ion-input>
       </ion-item>
     </ion-list>
 
-    <button ion-button (click)="createProfile(name, study, work, lives, fromCity)" round>Save</button>
+    <button ion-button (click)="goToProfile();" round>Save</button>
 
 </ion-content>

@@ -3,5 +3,5 @@ export interface Profile {
     study: string;
     work: string;
     lives: string;
-    fromCity: string;
+    fromCity: string;    
 }
