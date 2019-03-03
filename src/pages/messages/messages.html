@@ -37,9 +37,15 @@
         </button>
         <button ion-button color="danger" (click)="ignore(item)">
           <ion-icon name="trash"></ion-icon>
-          NOPE
+          NO
         </button>
       </ion-item-options>
     </ion-item-sliding>
+    <ion-list-header>
+      Friends
+    </ion-list-header>
+    <ion-item *ngFor="let item of myfriends" (click)="friendchat(item)">
+      <h3>{{item.displayName}}</h3>
+    </ion-item>
   </ion-list>
 </ion-content>

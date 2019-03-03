@@ -56,7 +56,7 @@ export class FriendsPage {
     else {
       let successalert = this.alertCtrl.create({
         title: 'Request sent',
-        subTitle: 'Your request was sent to ' + recipient.displayName,
+        subTitle: 'Request sent to ' + recipient.displayName,
         buttons: ['ok']
       });
     

@@ -31,6 +31,7 @@ import { UserProvider } from '../providers/user/user';
 import { MessagesPage } from '../pages/messages/messages';
 import { FriendsPage } from '../pages/friends/friends';
 import { RequestsProvider } from '../providers/requests/requests';
+import { ChatProvider } from '../providers/chat/chat';
 
 
 
@@ -104,6 +105,7 @@ const firebaseAuth = {
     AngularFireAuth,
     UserProvider,
     RequestsProvider,
+    ChatProvider,
   ]
 })
 export class AppModule {}
