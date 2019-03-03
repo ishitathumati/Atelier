@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular'; 
 import { ProfilePage } from '../profile/profile';
 import { CommentsPage } from '../comments/comments';
+import { AngularFireDatabase } from 'angularfire2/database';
+
 
 
 
@@ -11,18 +13,21 @@ import { CommentsPage } from '../comments/comments';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
 export class HomePage {
 
-  likeValue: number;
-
   
-
- 
-  constructor(public navCtrl: NavController) {
-    this.likeValue = 0;
+  likes: object[] = [];
+  username: string = 'sahil\'sLike';
+  s;
+  constructor(public navCtrl: NavController, public db: AngularFireDatabase) {
+    this.s = this.db.list('/like').subscribe( data => {
+      this.likes = data;
+    });
+    
   }
 
- 
+
   btnclicked(){
     this.navCtrl.push(CommentsPage);
   }
@@ -31,14 +36,25 @@ export class HomePage {
     this.navCtrl.push(ProfilePage);
   }
 
+
   handleLike(){
-    this.likeValue++;
+    this.db.list('/like').push({
+      username: this.username
+    }).then(() => {
+
+      //comment is sent
+
+    }).catch(() => {
+
+      //firebase is unreachable
+
+    })
   }
 
+ 
+
+
   
-
-
-
 
 
 /*export class likes{
@@ -56,4 +72,7 @@ export class HomePage {
     handleDislike(){
       this.dislikeValue++;
     }*/
-}
+
+   
+
+  }

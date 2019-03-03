@@ -6,6 +6,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { ProfilePage } from '../profile/profile';
 //import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
+import { CommentsPage } from '../comments/comments';
+
+
 
 /**
  * Generated class for the LoginPage page.
@@ -14,7 +17,7 @@ import { TabsPage } from '../tabs/tabs';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -41,7 +44,7 @@ export class LoginPage {
       const result = this.aAuth.auth.signInWithEmailAndPassword(user.email, user.password);
       if(result)
       {
-        this.navCtrl.push(TabsPage);
+        this.navCtrl.push(TabsPage, CommentsPage); 
       }
     }
     catch(e){
