@@ -1,6 +1,40 @@
 page-profile {
-
-ion-title {
-    text-align: center;
-}   
-}
+    ion-title {
+        text-align: center;
+    }
+    
+    .container{
+     position: relative;
+     max-width: 50%;
+     width:50%;
+     margin-left: 33%;
+     margin-right: auto;
+    }
+    
+    img{
+        max-width: 70%;
+        max-height: 70%;
+        width:auto;
+        height:auto;
+    }
+    
+    h2{
+        text-align: center;
+    }
+    
+    .container .border{
+        position: relative;
+        border: 4px solid #1f7a8c;
+    }
+    
+    .container .buttonPos{
+        z-index: 2;
+        position: absolute;
+        right: 30%;
+        bottom: 5%;
+        margin: auto;
+        color: #f17300;
+    }
+    }
+    
+    
