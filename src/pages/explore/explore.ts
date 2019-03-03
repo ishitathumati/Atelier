@@ -95,6 +95,11 @@ export class ExplorePage {
 
 
   //HASH TAG STUFF
+
+  //pictures on explore page should be stored in firebase
+  //pictures should include captions with #
+  //hash tag bar shoudl be able to read/fileter hashtag through the pictures. 
+  
   
 
 
