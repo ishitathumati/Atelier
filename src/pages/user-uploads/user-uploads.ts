@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AddArtPage } from '../add-art/add-art';
 
-import { Camera, CameraOptions } from '@ionic-native/camera'
-import { storage } from 'firebase';
-//import { storage, initializeApp} from 'firebase';
-//import { FIREBASE_CONFIG } from '../../app/firebase.config';
+import * as firebase from 'firebase';
+//import { url } from 'inspector';
+//import { storage } from 'firebase';
+import { storage, initializeApp} from 'firebase';
+import { FIREBASE_CONFIG } from '../../app/firebase.config';
 
 /**
  * Generated class for the UserUploadsPage page.
@@ -21,12 +22,21 @@ import { storage } from 'firebase';
 })
 export class UserUploadsPage {
 
-  photo:any;
-  loadimage: any;
+  //photo:any;
+  galleryimage: any;
+  photoimage: any;
+  pics = ['flower.png', 'painting.png'];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
-    //initializeApp(FIREBASE_CONFIG);
-    this.loadimage = this.navParams.get('image');
+  imageSource; 
+  dbPhoto;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    initializeApp(FIREBASE_CONFIG);
+    this.galleryimage = this.navParams.get('image');
+    this.photoimage = this.navParams.get('image2');
+
+    this.imageSource = 'painting';
+    this.getPhotoURL();
   }
 
 
@@ -39,7 +49,21 @@ export class UserUploadsPage {
     this.navCtrl.push(AddArtPage);
   }
   
-  async takePic(){
+  getPhotoURL(){
+    firebase.storage().ref().child('pictures/'+this.imageSource+'.png').getDownloadURL().then((url)=>{
+      this.dbPhoto = url; 
+    })
+  }
+
+
+
+
+
+
+
+
+
+  /*async takePic(){
     try{
   	const options: CameraOptions = {
   		quality: 70,
@@ -69,7 +93,7 @@ export class UserUploadsPage {
 catch (e){
   console.error(e);
 }	
-}
+  }*/
 
 
   

@@ -21,6 +21,7 @@ import { AngularFireAuthModule} from 'angularfire2/auth';
 
 import { Camera } from '@ionic-native/camera';
 //import { SMS } from '@ionic-native/sms/ngx';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 import { AddArtPage } from '../pages/add-art/add-art';
 import { ActivityPage } from '../pages/activity/activity';
@@ -61,7 +62,8 @@ const firebaseAuth = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseAuth),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    IonicImageViewerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

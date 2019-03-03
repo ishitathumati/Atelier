@@ -3,18 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import { UserUploadsPage } from '../user-uploads/user-uploads';
-import { storage } from 'firebase';
-//import { FIREBASE_CONFIG } from '../../app/firebase.config';
+import { storage, initializeApp} from 'firebase';
+import { FIREBASE_CONFIG } from '../../app/firebase.config';
 //import { catchError } from 'rxjs/operators';
 
-
-
-/**
- * Generated class for the AddArtPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -29,7 +21,7 @@ export class AddArtPage {
   photo:any; 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
-    //initializeApp(FIREBASE_CONFIG);
+    initializeApp(FIREBASE_CONFIG);
   }
 
   ionViewDidLoad() {
@@ -50,18 +42,17 @@ export class AddArtPage {
 
   const image =`data:image/jpeg;base64,${result}`;
 
-  const pictures = storage().ref('pictures/myPhoto');
+  const pictures = storage().ref('pictures/cameraPhoto');
   pictures.putString(image, 'data_url');
 
-  pictures.putString(image, 'data_url');
+  //pictures.putString(image, 'data_url');
 
   this.camera.getPicture(options).then((imageData) => 
 	{
- //imageData is either a base64 encoded string or a file URI
- //If it's base64:
+
  		this.photo = 'data:image/jpeg;base64,' + imageData;
 	}, (err) => {
- //Handle error
+
 	}); 
 
 }
@@ -70,7 +61,7 @@ catch (e){
 }	
 }
 
-openGallery()
+async openGallery()
 {
   const options: CameraOptions =
   {
@@ -80,19 +71,27 @@ openGallery()
     //saveToPhotoAlbum: false
   }
 
+  const result2 = await this.camera.getPicture(options);
+
+  const image2 =`data:image/jpeg;base64,${result2}`;
+
+  const pics = storage().ref('pictures/galleryPhoto');
+  pics.putString(image2, 'data_url');
+
   this.camera.getPicture(options).then((imageData1) => 
   {
- //imageData is either a base64 encoded string or a file URI
- //If it's base64:
+ 
      this.photo2 = 'data:image/jpeg;base64,' + imageData1;
   }, (err) => {
- //Handle error
+
   });
 }
 
 upload(){
   let image = this.photo2;
   this.navCtrl.push(UserUploadsPage, {image: image});
+  let image2 = this.photo;
+  this.navCtrl.push(UserUploadsPage, {image: image2});
 }
 
 }
