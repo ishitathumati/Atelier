@@ -6,30 +6,62 @@
 -->
 
 <ion-header>
-  <ion-navbar>
-      <ion-buttons start>
-          <button ion-button icon-only color="dark" menuToggle>
-            <ion-icon name="menu"></ion-icon>
+    <ion-navbar>
+        <ion-buttons start>
+            <button ion-button icon-only color="dark" menuToggle>
+              <ion-icon name="menu"></ion-icon>
+            </button>
+          </ion-buttons>
+      <ion-title>Profile</ion-title>
+      <ion-buttons end>
+          <button ion-button icon-only color="dark">
+            <ion-icon name="mail"></ion-icon>
           </button>
         </ion-buttons>
-    <ion-title>Profile</ion-title>
-    <ion-buttons end>
-        <button ion-button icon-only color="dark">
-          <ion-icon name="mail"></ion-icon>
-        </button>
-      </ion-buttons>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
- <!--<img width="100" height="150" src="assets/imgs/user-downloadfemale-user-icon.png" alt="Sarah Knight">-->
-     <img src = "{{profilepic}}"/>
-  <ion-item>
-  <h2>{{(profileData | async)?.name}}</h2>
-    <h4>Studied at: {{(profileData | async)?.study}}</h4>
-    <h4>Worked at: {{(profileData | async)?.work}}</h4>
-    <h4>Lives in: {{(profileData | async)?.lives}}</h4>
-    <h4>From City, State: {{(profileData | async)?.fromCity}}</h4>
-  </ion-item>
-</ion-content>
-
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+  
+      <!--ion-card-->
+        
+        <div class="container">
+          <img class="border" src = "{{profilepic}}"/>
+          <button ion-button class="buttonPos" icon-only clear small (click)="editPhoto()">
+              <ion-icon name="brush"></ion-icon>
+          </button>
+        </div>
+      <!--/ion-card-->
+   <!--<img width="100" height="150" src="assets/imgs/user-downloadfemale-user-icon.png" alt="Sarah Knight">-->
+    <!--ion-item>
+    <h2>{{(profileData | async)?.name}}</h2>
+      <h4>Studied at: {{(profileData | async)?.study}}</h4>
+      <h4>Worked at: {{(profileData | async)?.work}}</h4>
+      <h4>Lives in: {{(profileData | async)?.lives}}</h4>
+      <h4>From City, State: {{(profileData | async)?.fromCity}}</h4>
+    </ion-item-->
+      <h2 style="font-family: Helvetica, sans-serif;">{{(profileData | async)?.name}}</h2>
+  
+      <ion-item lines="none">
+          <ion-icon name="school"></ion-icon>
+          Studied at {{(profileData | async)?.study}}
+      </ion-item>
+  
+      <ion-item lines="inset">
+          <ion-icon name="briefcase"></ion-icon>
+          Works at {{(profileData | async)?.work}}
+      </ion-item>
+  
+      <ion-item>
+          <ion-icon name="home"></ion-icon>
+          Lives in {{(profileData | async)?.lives}} 
+      </ion-item>
+  
+      <ion-item>
+        <ion-icon name="pin"></ion-icon>
+        From {{(profileData | async)?.fromCity}}
+      </ion-item>
+  </ion-content>
+  
+  
+  
