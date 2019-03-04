@@ -6,7 +6,7 @@ import * as firebase from 'firebase';
 //import { url } from 'inspector';
 //import { storage } from 'firebase';
 import { storage, initializeApp} from 'firebase';
-import { FIREBASE_CONFIG } from '../../app/firebase.config';
+//import { FIREBASE_CONFIG } from '../../app/firebase.config';
 
 /**
  * Generated class for the UserUploadsPage page.
@@ -31,7 +31,7 @@ export class UserUploadsPage {
   dbPhoto;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    initializeApp(FIREBASE_CONFIG);
+    //initializeApp(FIREBASE_CONFIG);
     this.galleryimage = this.navParams.get('image');
     this.photoimage = this.navParams.get('image2');
 
