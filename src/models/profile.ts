@@ -4,4 +4,5 @@ export interface Profile {
     work: string;
     lives: string;
     fromCity: string;
+    photo: string;
 }

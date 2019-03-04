@@ -26,7 +26,7 @@ export class RegisterPage {
   }
   
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private aAuth: AngularFireAuth, public userservice: UserProvider, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
+  constructor(private toast: ToastController, public navCtrl: NavController, public navParams: NavParams, private aAuth: AngularFireAuth, public userservice: UserProvider, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
   }
 
   async register(user: User) {
@@ -40,12 +40,24 @@ export class RegisterPage {
       const result = await this.aAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
       if(result)
       {
+        this.toast.create({
+          message: `Successfully registered! Please log in`,
+          duration: 3000
+        }).present();
         this.navCtrl.push(LoginPage);
       }
     }
     catch(e){
       console.error(e);
     }
+  }
+
+  ionViewDidLoad(){
+    console.log('ionViewDidLoad RegisterPage');
+        this.toast.create({
+          message: `Welcome to Atelier!`,
+          duration: 3000
+        }).present();
   }
 
 }

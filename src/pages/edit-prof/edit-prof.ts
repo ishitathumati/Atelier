@@ -7,6 +7,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { Profile } from '../../models/profile';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HomePage } from '../home/home';
+
 //import { AngularFireModule } from 'angularfire2';
 //import { FIREBASE_CONFIG } from '../../app/firebase.config';
 
@@ -25,17 +26,19 @@ import { HomePage } from '../home/home';
 })
 export class EditProfPage {
   photo:any;
-
+  uid: string;
   photo2:any;
 
   profile = {} as Profile;
 
-  peopleList : FirebaseListObservable<any>;
+
+  //peopleList : FirebaseListObservable<any>;
 
 
   constructor(private aAuth: AngularFireAuth, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
     //initializeApp(FIREBASE_CONFIG);
-    this.peopleList = db.list('/profiles');
+    //this.peopleList = db.list('/profiles');
+    this.uid = this.aAuth.auth.currentUser.uid;
   }
 
   ionViewDidLoad() {
@@ -43,36 +46,33 @@ export class EditProfPage {
   }
   async takePic(){
     try{
+    const userid = this.aAuth.auth.currentUser.uid;
   	const options: CameraOptions = {
   		quality: 70,
 	  	destinationType: this.camera.DestinationType.DATA_URL,
 	  	encodingType: this.camera.EncodingType.JPEG,
-  		mediaType: this.camera.MediaType.PICTURE
-  }
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true
+    }
 
-  const result = await this.camera.getPicture(options);
+    const result = await this.camera.getPicture(options);
 
-  const image =`data:image/jpeg;base64,${result}`;
+    const image =`data:image/jpeg;base64,${result}`;
+    const pictures = storage().ref();
+    pictures.child(`profilePics/${userid}/img`)
+            .putString(image, 'data_url');
 
-  const pictures = storage().ref('pictures');
-  pictures.putString(image, 'data_url');
-
+    this.camera.getPicture(options).then((imageData)=>{
+    this.photo = imageData;
+    this.uploadPhoto(userid);
+  }); 
 }
 catch (e){
   console.error(e);
 }
-
-	/*this.camera.getPicture(options).then((imageData) => 
-	{
- //imageData is either a base64 encoded string or a file URI
- //If it's base64:
- 		this.photo = 'data:image/jpeg;base64,' + imageData;
-	}, (err) => {
- //Handle error
-	}); */
 }
 
-createProfile(name, study, work, lives, fromCity){
+/*createProfile(name, study, work, lives, fromCity){
 this.peopleList.push({
   name: name,
   study: study,
@@ -82,36 +82,39 @@ this.peopleList.push({
 }).then(newProfile => {
   this.navCtrl.push(ProfilePage);
 }, error=>{console.log(error);});
-}
-
-/*createProfile(){
-  this.aAuth.authState.take(1).subscribe(auth=>{})
-  this.db.list(`profile/${auth.uid}`).push(this.profile)
-  .then(()=>this.navCtrl.push(ProfilePage))
 }*/
 
 openGallery()
 {
+  const userid = this.aAuth.auth.currentUser.uid;
   const options: CameraOptions =
   {
     sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
     destinationType: this.camera.DestinationType.DATA_URL,
     quality: 70,
-    //saveToPhotoAlbum: false
   }
-
-  this.camera.getPicture(options).then((imageData1) => 
+  this.camera.getPicture(options).then((imageData) => 
   {
- //imageData is either a base64 encoded string or a file URI
- //If it's base64:
-     this.photo2 = 'data:image/jpeg;base64,' + imageData1;
+     this.photo = imageData;
+     this.uploadPhoto(userid);
   }, (err) => {
- //Handle error
   });
 }
 
 goToProfile(){
-  this.navCtrl.push(ProfilePage);
+  this.aAuth.authState.take(1).subscribe(auth=>{
+    this.db.object(`profile/${auth.uid}`).set(this.profile)
+      .then(()=>this.navCtrl.push(ProfilePage))});
 } 
 
+private uploadPhoto(uid: string): void {
+  const pictures = storage().ref();
+  pictures.child(`profilePics/${uid}/img`)
+   //imageData is either a base64 encoded string or a file URI
+  .putString(this.photo, 'base64', {contentType: 'image/jpeg'})
+    .catch((err) => {
+      console.log(err);
+      console.log('Cant upload photo');
+    });
+}
 }
