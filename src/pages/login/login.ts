@@ -7,6 +7,7 @@ import { ProfilePage } from '../profile/profile';
 //import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
 import { CommentsPage } from '../comments/comments';
+import { AuthProvider } from '../../providers/auth/auth';
 
 
 
@@ -17,7 +18,7 @@ import { CommentsPage } from '../comments/comments';
  * Ionic pages and navigation.
  */
 
-//@IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -26,7 +27,7 @@ export class LoginPage {
 
   user = {} as User;
 
-  constructor(private aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public authservice: AuthProvider) {
   }
 
   ionViewDidLoad() {
@@ -38,18 +39,33 @@ export class LoginPage {
     this.route.navigateByUrl('/app/tabs/(home:home)');
     //this.navCtrl.navigateRoot('/app/tabs/(home:home)')
 }*/
+/**
+  signin() {
+    this.authservice.login(this.user).then((res: any) => {
+      if (!res.code)
+        this.navCtrl.setRoot('TabsPage');
+      else 
+        alert(res);
+    }) 
+  }
+*/
+  signup() {}
 
+  
   async login(user: User){
-    try{
-      const result = this.aAuth.auth.signInWithEmailAndPassword(user.email, user.password);
-      if(result)
-      {
-        this.navCtrl.push(TabsPage, CommentsPage); 
+    this.authservice.login(this.user).then((res: any) => {
+      try{
+        const result = this.aAuth.auth.signInWithEmailAndPassword(user.email, user.password);
+        if(result)
+        {
+          this.navCtrl.push(TabsPage, CommentsPage); 
+        }
       }
-    }
-    catch(e){
-      console.error(e);
-    }
+      catch(e){
+        console.error(e);
+      }
+    })
+    
   }
 
   register(){

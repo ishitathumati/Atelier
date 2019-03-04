@@ -2,7 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler, NavController } from 'ionic-angular';
 import { MyApp } from './app.component';
-
+import { FIREBASE_CONFIG } from './firebase.config';
 import { UserUploadsPage } from '../pages/user-uploads/user-uploads';
 import { ExplorePage } from '../pages/explore/explore';
 import { HomePage } from '../pages/home/home';
@@ -18,6 +18,7 @@ import { RegisterPage } from '../pages/register/register';
 //import { MyApp } from '../app/app.component'; 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule} from 'angularfire2/auth';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 import { Camera } from '@ionic-native/camera';
 //import { SMS } from '@ionic-native/sms/ngx';
@@ -27,6 +28,12 @@ import { AddArtPage } from '../pages/add-art/add-art';
 import { ActivityPage } from '../pages/activity/activity';
 import { SavedPage } from '../pages/saved/saved';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AuthProvider } from '../providers/auth/auth';
+import { UserProvider } from '../providers/user/user';
+import { MessagesPage } from '../pages/messages/messages';
+import { FriendsPage } from '../pages/friends/friends';
+import { RequestsProvider } from '../providers/requests/requests';
+import { ChatProvider } from '../providers/chat/chat';
 
 
 
@@ -56,13 +63,16 @@ const firebaseAuth = {
     RegisterPage,
     AddArtPage,
     ActivityPage,
-    SavedPage
+    SavedPage,
+    MessagesPage,
+    FriendsPage
   ],
 
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseAuth),
+    //AngularFireModule.initializeApp(firebaseAuth),
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     IonicImageViewerModule
@@ -82,13 +92,22 @@ const firebaseAuth = {
     RegisterPage,
     AddArtPage,
     ActivityPage,
-    SavedPage
+    SavedPage,
+    MessagesPage,
+    FriendsPage
+    
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Camera
+    Camera,
+    AuthProvider,
+    AngularFireAuthModule,
+    AngularFireAuth,
+    UserProvider,
+    RequestsProvider,
+    ChatProvider,
   ]
 })
 export class AppModule {}
