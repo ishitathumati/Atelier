@@ -4,8 +4,8 @@ import { AddArtPage } from '../add-art/add-art';
 
 import * as firebase from 'firebase';
 //import { url } from 'inspector';
-import { storage } from 'firebase';
-//import { initializeApp} from 'firebase';
+//import { storage } from 'firebase';
+import { storage, initializeApp} from 'firebase';
 //import { FIREBASE_CONFIG } from '../../app/firebase.config';
 
 /**
