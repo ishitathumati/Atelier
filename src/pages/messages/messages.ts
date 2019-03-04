@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events, AlertController } from 'ionic-angular';
 import { RequestsProvider } from '../../providers/requests/requests';
 import { FriendsPage } from '../friends/friends';
-import { threadId } from 'worker_threads';
+//import { threadId } from 'worker_threads';
 import { FriendchatPage } from '../friendchat/friendchat';
 import { ChatProvider } from '../../providers/chat/chat';
 
