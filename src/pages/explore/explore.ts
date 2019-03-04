@@ -6,9 +6,11 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HomePage } from '../home/home';
 import { AngularFireModule } from 'angularfire2';
-import { FIREBASE_CONFIG } from '../../app/firebase.config';
+//import { FIREBASE_CONFIG } from '../../app/firebase.config';
 //import { UserUploadsPage } from '../user-uploads/user-uploads';
-import firebase from 'firebase';
+import * as firebase from 'firebase';
+//import {storage, initializeApp} from 'firebase';
+//import {navCtrl, initializeApp} from firebase;
 
 /**
  * Generated class for the ExplorePage page.
@@ -28,6 +30,32 @@ export class ExplorePage {
   public loadedUserslist: Array<any>;
   public usersRef: firebase.database.Reference;
 
+  //galleryimage: any;
+
+  /*pics=['bluemount.png', 
+        'dusk.png',
+        'img1.png',
+        'img2.png',
+        'img3.png',
+        'img4.png',
+        'img5.png',
+        'img6.png',
+        'img7.png',
+        'img8.png',
+        'img9.png',
+        'img10.png',
+        'img11.png',
+        'img12.png',
+        'scream.png',
+        'starrynight.png'];*/
+
+    imageSource;
+    imageSource2;
+    imageSource3;
+    dbPhoto1;
+    dbPhoto2;
+    dbPhoto3;
+
   /*
   usersRef: Is for creating a database reference so we can pull the data from Firebase.
   userslist: Is to store the list of user names we’re pulling from Firebase.
@@ -42,6 +70,29 @@ export class ExplorePage {
   
   constructor (public aAuth: AngularFireAuth, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
     //initializeApp(FIREBASE_CONFIG);
+    //firebase.initializeApp(config);
+    /*this.imageSource = ['bluemount',
+                       'dusk',
+                       'img1',
+                       'img2',
+                       'img3',
+                       'img4',
+                       'img5',
+                       'img6',
+                       'img7',
+                       'img8',
+                       'img9',
+                       'img10',
+                       'img11',
+                       'img12',
+                       'scream',
+                       'starrynight'];*/
+
+
+      this.imageSource = 'bluemount';
+      this.imageSource2 = 'dusk';
+      this.imageSource3 = 'scream';
+      this.getPhotoURL();
     //this.userslist = db.list('/usernames');
 
     //this willl open a reference to our firebase data under the /users node
@@ -82,15 +133,31 @@ export class ExplorePage {
 
 
 
-  getuserslist() {
+  getuserslist() 
+  {
     return this.userslist;
   }
 
 
-  ionViewDidLoad() {
+  ionViewDidLoad() 
+  {
     console.log('ionViewDidLoad ExplorePage');
   }
 
+  getPhotoURL()
+  {
+    firebase.storage().ref().child('explorePics/' + this.imageSource+ '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto1=url;
+    })
+
+    firebase.storage().ref().child('explorePics/' + this.imageSource2 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto2=url;
+    })
+    firebase.storage().ref().child('explorePics/' + this.imageSource3 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto3=url;
+    })
+
+  }
 
 
 
