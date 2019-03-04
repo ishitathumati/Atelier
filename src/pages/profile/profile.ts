@@ -30,6 +30,7 @@ export class ProfilePage {
   imagesource: any;
   profilepic: any;
 
+
   constructor(private afAuth: AngularFireAuth, public db: AngularFireDatabase, public navCtrl: NavController, private toast: ToastController, public navParams: NavParams, private camera:Camera) {
     //this.loadImage = this.navParams.get('image');
     //this.imagesource = 'profilePic'
@@ -45,18 +46,18 @@ export class ProfilePage {
   try{
     let userid = this.afAuth.auth.currentUser.uid;
     this.imagesource = storage().ref().child(`profilePics/${userid}/img`);
-    if(this.imagesource == null){
-      this.profilepic = 'https://firebasestorage.googleapis.com/v0/b/atelier-842ac.appspot.com/o/profilePics%2Fdefault.jpeg?alt=media&token=ba12bc14-ef9a-4893-947a-90b58c9850fb';
-    }
-    else{
+    
       storage().ref().child(`profilePics/${userid}/img`).getDownloadURL()
       .then((url)=>{
+        console.log('profile pic url', url);
         this.profilepic = url
         /*}).then((profilepic)=>{
           this.db.object(`profile/${userid}/`).update({photo: profilepic})*/
+    }).catch(()=>{
+      this.profilepic = 'https://firebasestorage.googleapis.com/v0/b/atelier-842ac.appspot.com/o/profilePics%2Fdefault.jpeg?alt=media&token=ba12bc14-ef9a-4893-947a-90b58c9850fb';
     });
   }
-}
+
   catch (e){
     console.error(e);
     }
