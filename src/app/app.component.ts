@@ -46,7 +46,7 @@ openPage(page){
 }
 
 LogOut(page: any){
-  this.nav.setRoot(TabsPage);
+  this.nav.setRoot(LoginPage);
   this.menuCtrl.close();
 }
 
