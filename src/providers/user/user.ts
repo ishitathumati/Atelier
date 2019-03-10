@@ -11,7 +11,8 @@ import firebase from 'firebase';
 */
 @Injectable()
 export class UserProvider {
-  firedata = firebase.database().ref('/chatusers');
+  firedata = firebase.database().ref('/users');
+  
 
   constructor(public afireauth: AngularFireAuth) {
     
@@ -21,10 +22,10 @@ export class UserProvider {
     var promise = new Promise((resolve, reject) => {
       this.afireauth.auth.createUserWithEmailAndPassword(newuser.email, newuser.password).then(() => {
         this.afireauth.auth.currentUser.updateProfile({
-          displayName: newuser.displayName, 
+          displayName: newuser.displayName,
           photoURL: ''
       }).then(() => {
-          this.firedata.child(this.afireauth.auth.currentUser.uid).set({
+          this.firedata.child(this.afireauth.auth.currentUser.uid).child('details').set({
             uid: this.afireauth.auth.currentUser.uid,
             displayName: newuser.displayName,
             photoURL: ''

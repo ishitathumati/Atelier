@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import { storage } from 'firebase';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Profile } from '../../models/profile';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HomePage } from '../home/home';
@@ -103,7 +103,7 @@ openGallery()
 
 goToProfile(){
   this.aAuth.authState.take(1).subscribe(auth=>{
-    this.db.object(`profile/${auth.uid}`).set(this.profile)
+    this.db.object(`users/${auth.uid}/profile`).set(this.profile)
       .then(()=>this.navCtrl.push(ProfilePage))});
 } 
 

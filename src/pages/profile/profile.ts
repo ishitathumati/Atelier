@@ -5,6 +5,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera'
 import { storage } from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Profile } from '../../models/profile';
+import { UserProvider } from '../../providers/user/user';
 
 /**
  * Generated class for the ProfilePage page.
@@ -29,7 +30,7 @@ export class ProfilePage {
   //loadImage:any;
   imagesource: any;
   profilepic: any;
-
+  name: any;
 
   constructor(private afAuth: AngularFireAuth, public db: AngularFireDatabase, public navCtrl: NavController, private toast: ToastController, public navParams: NavParams, private camera:Camera) {
     //this.loadImage = this.navParams.get('image');
@@ -39,7 +40,21 @@ export class ProfilePage {
        this.personList=items
     } );*/
     this.ProfilePicture();
+    this.setName();
+
   
+  }
+
+  setName(){
+    let userid = this.afAuth.auth.currentUser.uid;
+    if(this.profile.name)
+    {
+      this.name = this.profile.name;
+    }
+    else
+    {
+      this.name = this.db.object(`users/${userid}/details/displayName`);
+    }
   }
 
   ProfilePicture(){
@@ -71,7 +86,7 @@ export class ProfilePage {
           message: `Welcome to Atelier, ${data.email}`,
           duration: 3000
         }).present();
-      this.profileData = this.db.object(`profile/${data.uid}`)
+      this.profileData = this.db.object(`users/${data.uid}/profile`)
   }
       else{
         this.toast.create({
