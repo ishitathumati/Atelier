@@ -27,15 +27,24 @@
    <p><img src = "{{photo}}"> </p> 
     <!--p><img src = "{{photo2}}"> </p-->
 
+    <p style='font-size: 120%'><ion-icon name="create"></ion-icon><i>Display Name </i></p>
+    <ion-item no-lines>
+      <ion-note>Simply tap on the name on your profile to change it</ion-note>
+    </ion-item>
+
     <p style='font-size: 125%'><ion-icon name="person"></ion-icon><i>About</i></p>
     <ion-list>
-      <ion-item>
+      <!--ion-item>
         <ion-label stacked>Name:</ion-label>
         <ion-input type="text" [(ngModel)]="profile.name"></ion-input>
-      </ion-item>
+      </ion-item-->
       <ion-item>
         <ion-label stacked>Studied at:</ion-label>
         <ion-input type="text"[(ngModel)]="profile.study"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Area of Study:</ion-label>
+        <ion-input type="text"[(ngModel)]="profile.areaofstudy"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label stacked>Works at:</ion-label>

@@ -40,11 +40,11 @@
       <h4>Lives in: {{(profileData | async)?.lives}}</h4>
       <h4>From City, State: {{(profileData | async)?.fromCity}}</h4>
     </ion-item-->
-      <h2 style="font-family: Helvetica, sans-serif;">{{(profileData | async)?.name}}</h2>
+      <h2 style="font-family: Helvetica, sans-serif;" (click)="editname()">{{displayName}}</h2>
   
       <ion-item lines="none">
           <ion-icon name="school"></ion-icon>
-          Studied at {{(profileData | async)?.study}}
+          Studied {{(profileData | async)?.areaofstudy}} at {{(profileData | async)?.study}}
       </ion-item>
   
       <ion-item lines="inset">

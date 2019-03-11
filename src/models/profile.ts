@@ -1,8 +1,9 @@
 export interface Profile {
-    name: string;
+    //name: string;
     study: string;
+    areaofstudy: string;
     work: string;
     lives: string;
     fromCity: string;
-    photo: string;
+    //photo: string;
 }
