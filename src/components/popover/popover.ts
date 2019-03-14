@@ -18,11 +18,9 @@ import { storage } from 'firebase';
 })
 export class PopoverComponent {
 
-  text: string;
 
   constructor(public viewCtrl: ViewController, public navCtrl: NavController, public alertCtrl: AlertController, public afAuth: AngularFireAuth) {
     console.log('PopoverComponent did load');
-    this.text = 'Hello World';
   }
 
   UpdateProfilePic(){
