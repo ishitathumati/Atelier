@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController, PopoverController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import { storage } from 'firebase';
@@ -7,6 +7,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Profile } from '../../models/profile';
 import { UserProvider } from '../../providers/user/user';
 import firebase from 'firebase';
+import { UpdateprofilepicPage } from '../updateprofilepic/updateprofilepic';
+import { PopoverComponent } from '../../components/popover/popover';
 
 /**
  * Generated class for the ProfilePage page.
@@ -36,14 +38,15 @@ export class ProfilePage {
   displayName: any;
   firedata = firebase.database().ref(`/users`);
 
-  constructor(private afAuth: AngularFireAuth, public zone: NgZone, public alertCtrl: AlertController, public db: AngularFireDatabase, public userservice: UserProvider, public navCtrl: NavController, private toast: ToastController, public navParams: NavParams, private camera:Camera) {
+  constructor(private afAuth: AngularFireAuth, public zone: NgZone, public alertCtrl: AlertController, public db: AngularFireDatabase, public userservice: UserProvider, public navCtrl: NavController, private toast: ToastController, public navParams: NavParams, private camera:Camera, public popoverCtrl: PopoverController) {
     //this.loadImage = this.navParams.get('image');
     //this.imagesource = 'profilePic'
    /* this.persons =this.db.list('/profiles');
     this.persons.subscribe((items)=>{
        this.personList=items
     } );*/
-    this.ProfilePicture();    
+    this.getProfilePicture();
+    this.loadName();    
   }
 
   loadName() {
@@ -127,7 +130,7 @@ export class ProfilePage {
     }
   }*/
 
-  ProfilePicture(){
+  getProfilePicture(){
   try{
     let userid = this.afAuth.auth.currentUser.uid;
     this.imagesource = storage().ref().child(`profilePics/${userid}/img`);
@@ -147,6 +150,13 @@ export class ProfilePage {
     console.error(e);
     }
   }
+
+presentPopover(myEvent) {
+  let popover = this.popoverCtrl.create(PopoverComponent);
+  popover.present({
+    ev: myEvent
+  });
+}
 
   ionViewDidLoad() {
     this.loadName();

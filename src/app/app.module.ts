@@ -34,9 +34,8 @@ import { MessagesPage } from '../pages/messages/messages';
 import { FriendsPage } from '../pages/friends/friends';
 import { RequestsProvider } from '../providers/requests/requests';
 import { ChatProvider } from '../providers/chat/chat';
-
-
-
+import { UpdateprofilepicPage } from '../pages/updateprofilepic/updateprofilepic';
+import { PopoverComponent } from '../components/popover/popover';
 
 
 const firebaseAuth = {
@@ -65,7 +64,9 @@ const firebaseAuth = {
     ActivityPage,
     SavedPage,
     MessagesPage,
-    FriendsPage
+    FriendsPage,
+    UpdateprofilepicPage,
+    PopoverComponent
   ],
 
   imports: [
@@ -94,7 +95,9 @@ const firebaseAuth = {
     ActivityPage,
     SavedPage,
     MessagesPage,
-    FriendsPage
+    FriendsPage,
+    UpdateprofilepicPage,
+    PopoverComponent
     
   ],
   providers: [

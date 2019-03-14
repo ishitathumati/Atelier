@@ -1,19 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { ProfilePage } from '../profile/profile';
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import { storage } from 'firebase';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { Profile } from '../../models/profile';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { HomePage } from '../home/home';
-
-//import { AngularFireModule } from 'angularfire2';
-//import { FIREBASE_CONFIG } from '../../app/firebase.config';
-
+import { AngularFireDatabase } from 'angularfire2/database';
 
 /**
- * Generated class for the EditProfPage page.
+ * Generated class for the UpdateprofilepicPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -21,31 +14,18 @@ import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
-  selector: 'page-edit-prof',
-  templateUrl: 'edit-prof.html',
+  selector: 'page-updateprofilepic',
+  templateUrl: 'updateprofilepic.html',
 })
-export class EditProfPage {
+export class UpdateprofilepicPage {
+
   photo:any;
-  uid: string;
-  photo2:any;
 
-  profile = {} as Profile;
-
-
-  //peopleList : FirebaseListObservable<any>;
-
-
-  constructor(private aAuth: AngularFireAuth, private toast:ToastController, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
-    //initializeApp(FIREBASE_CONFIG);
-    //this.peopleList = db.list('/profiles');
-    this.uid = this.aAuth.auth.currentUser.uid;
+  constructor(private aAuth: AngularFireAuth,private toast:ToastController, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EditProfPage');
-  }
-  async takePic(){
-    try{
+async UploadNew(){
+  try{
     const userid = this.aAuth.auth.currentUser.uid;
   	const options: CameraOptions = {
   		quality: 70,
@@ -72,20 +52,7 @@ catch (e){
 }
 }
 
-/*createProfile(name, study, work, lives, fromCity){
-this.peopleList.push({
-  name: name,
-  study: study,
-  work: work,
-  lives: lives,
-  fromCity: fromCity,
-}).then(newProfile => {
-  this.navCtrl.push(ProfilePage);
-}, error=>{console.log(error);});
-}*/
-
-openGallery()
-{
+ChooseNew(){
   const userid = this.aAuth.auth.currentUser.uid;
   const options: CameraOptions =
   {
@@ -101,20 +68,6 @@ openGallery()
   });
 }
 
-goToProfile(){
-  this.aAuth.authState.take(1).subscribe(auth=>{
-    this.db.object(`users/${auth.uid}/profile`).set(this.profile)
-      .then(()=>this.navCtrl.pop())});
-  this.toast.create({
-      message: `Successfully updated your Profile!`,
-      duration: 3000
-    }).present();
-} 
-
-cancel(){
-  this.navCtrl.pop();
-}
-
 private uploadPhoto(uid: string): void {
   const pictures = storage().ref();
   pictures.child(`profilePics/${uid}/img`)
@@ -126,11 +79,20 @@ private uploadPhoto(uid: string): void {
     });
 }
 
-/*ionViewDidLeave(){
+goToProfile(){
+  this.navCtrl.pop();
   this.toast.create({
-    message: `Successfully updated your Profile!`,
+    message: `Your profile picture has been changed!`,
     duration: 3000
   }).present();
-}*/
+}
+
+cancel(){
+  this.navCtrl.pop();
+}
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad UpdateprofilepicPage');
+  }
 
 }
