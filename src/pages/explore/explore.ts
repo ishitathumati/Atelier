@@ -19,6 +19,9 @@ import * as firebase from 'firebase';
  * Ionic pages and navigation.
  */
 
+ //hashtag function
+ //search bar accesses uid
+ //hash tag bar accesses post id 
 @IonicPage()
 @Component({
   selector: 'page-explore',
@@ -30,32 +33,33 @@ export class ExplorePage {
   public loadedUserslist: Array<any>;
   public usersRef: firebase.database.Reference;
 
-  //galleryimage: any;
 
-  /*pics=['bluemount.png', 
-        'dusk.png',
-        'img1.png',
-        'img2.png',
-        'img3.png',
-        'img4.png',
-        'img5.png',
-        'img6.png',
-        'img7.png',
-        'img8.png',
-        'img9.png',
-        'img10.png',
-        'img11.png',
-        'img12.png',
-        'scream.png',
-        'starrynight.png'];*/
 
-    imageSource;
+    imageSource; 
     imageSource2;
     imageSource3;
+    imageSource4;
+    imageSource5;
+    imageSource6;
+    imageSource7;
+    imageSource8;
+    imageSource9;
+    imageSource10;
+    imageSource11;
+    imageSource12;
+
     dbPhoto1;
     dbPhoto2;
     dbPhoto3;
-
+    dbPhoto4;
+    dbPhoto5;
+    dbPhoto6;
+    dbPhoto7;
+    dbPhoto8;
+    dbPhoto9;
+    dbPhoto10;
+    dbPhoto11;
+    dbPhoto12;
   /*
   usersRef: Is for creating a database reference so we can pull the data from Firebase.
   userslist: Is to store the list of user names we’re pulling from Firebase.
@@ -92,6 +96,17 @@ export class ExplorePage {
       this.imageSource = 'bluemount';
       this.imageSource2 = 'dusk';
       this.imageSource3 = 'scream';
+      this.imageSource4 = 'starrynight';
+      this.imageSource5 = 'img1';
+      this.imageSource6 = 'img10';
+      this.imageSource7 = 'img11';
+      this.imageSource8 = 'img12';
+      this.imageSource9 = 'img2';
+      this.imageSource10 = 'img3';
+      this.imageSource11 = 'img4';
+      this.imageSource12 = 'img5';
+
+
       this.getPhotoURL();
     //this.userslist = db.list('/usernames');
 
@@ -149,23 +164,50 @@ export class ExplorePage {
     firebase.storage().ref().child('explorePics/' + this.imageSource+ '.png').getDownloadURL().then((url)=>{
       this.dbPhoto1=url;
     })
-
     firebase.storage().ref().child('explorePics/' + this.imageSource2 + '.png').getDownloadURL().then((url)=>{
       this.dbPhoto2=url;
     })
     firebase.storage().ref().child('explorePics/' + this.imageSource3 + '.png').getDownloadURL().then((url)=>{
       this.dbPhoto3=url;
     })
+    firebase.storage().ref().child('explorePics/' + this.imageSource4 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto4=url;
+    })
+    firebase.storage().ref().child('explorePics/' + this.imageSource5 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto5=url;
+    })
+    firebase.storage().ref().child('explorePics/' + this.imageSource6 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto6=url;
+    })
+    firebase.storage().ref().child('explorePics/' + this.imageSource7 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto7=url;
+    })
+    firebase.storage().ref().child('explorePics/' + this.imageSource7 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto8=url;
+    })
+    firebase.storage().ref().child('explorePics/' + this.imageSource7 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto9=url;
+    })
+    firebase.storage().ref().child('explorePics/' + this.imageSource7 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto10=url;
+    })
+    firebase.storage().ref().child('explorePics/' + this.imageSource7 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto11=url;
+    })
+    firebase.storage().ref().child('explorePics/' + this.imageSource7 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto12=url;
+    })
+    
+    
 
   }
 
 
 
-  //HASH TAG STUFF
+  //HASH TAG STUFF:
+  /* Hashtag bar should display random pictures for the user to scroll through
 
-  //pictures on explore page should be stored in firebase
-  //pictures should include captions with #
-  //hash tag bar shoudl be able to read/fileter hashtag through the pictures. 
+  */
   
   
 
