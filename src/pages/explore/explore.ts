@@ -52,7 +52,8 @@ export class ExplorePage {
     imageSource15;
     imageSource16;
     imageSource17;
-   
+    imageSource18;
+    imageSource19;
 
 
     dbPhoto1;
@@ -72,6 +73,8 @@ export class ExplorePage {
     dbPhoto15;
     dbPhoto16;
     dbPhoto17;
+    dbPhoto18;
+    dbPhoto19;
   /*
   usersRef: Is for creating a database reference so we can pull the data from Firebase.
   userslist: Is to store the list of user names we’re pulling from Firebase.
@@ -122,6 +125,9 @@ export class ExplorePage {
       this.imageSource15= 'img8';
       this.imageSource16= 'img9';
       this.imageSource17= 'rabbi'
+      this.imageSource18= 'learning'
+      this.imageSource19= 'portrait';
+      
 
 
       this.getPhotoURL();
@@ -229,6 +235,12 @@ export class ExplorePage {
     })
     firebase.storage().ref().child('explorePics/' + this.imageSource7 + '.png').getDownloadURL().then((url)=>{
       this.dbPhoto17=url;
+    })
+    firebase.storage().ref().child('explorePics/' + this.imageSource7 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto18=url;
+    })
+    firebase.storage().ref().child('explorePics/' + this.imageSource7 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto19=url;
     })
     
 
