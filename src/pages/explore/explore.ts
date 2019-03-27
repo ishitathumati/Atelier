@@ -47,6 +47,12 @@ export class ExplorePage {
     imageSource10;
     imageSource11;
     imageSource12;
+    imageSource13;
+    imageSource14;
+    imageSource15;
+    imageSource16;
+    imageSource17;
+    
 
     dbPhoto1;
     dbPhoto2;
@@ -60,6 +66,11 @@ export class ExplorePage {
     dbPhoto10;
     dbPhoto11;
     dbPhoto12;
+    dbPhoto13;
+    dbPhoto14;
+    dbPhoto15;
+    dbPhoto16;
+    dbPhoto17;
   /*
   usersRef: Is for creating a database reference so we can pull the data from Firebase.
   userslist: Is to store the list of user names we’re pulling from Firebase.
@@ -105,6 +116,11 @@ export class ExplorePage {
       this.imageSource10 = 'img3';
       this.imageSource11 = 'img4';
       this.imageSource12 = 'img5';
+      this.imageSource13 = 'img6';
+      this.imageSource14= 'img7';
+      this.imageSource15= 'img8';
+      this.imageSource16= 'img9';
+      this.imageSource17= 'rabbi'
 
 
       this.getPhotoURL();
@@ -159,6 +175,7 @@ export class ExplorePage {
     console.log('ionViewDidLoad ExplorePage');
   }
 
+  //getting urls from firebase
   getPhotoURL()
   {
     firebase.storage().ref().child('explorePics/' + this.imageSource+ '.png').getDownloadURL().then((url)=>{
@@ -197,7 +214,21 @@ export class ExplorePage {
     firebase.storage().ref().child('explorePics/' + this.imageSource7 + '.png').getDownloadURL().then((url)=>{
       this.dbPhoto12=url;
     })
-    
+    firebase.storage().ref().child('explorePics/' + this.imageSource7 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto13=url;
+    })
+    firebase.storage().ref().child('explorePics/' + this.imageSource7 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto14=url;
+    })
+    firebase.storage().ref().child('explorePics/' + this.imageSource7 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto15=url;
+    })
+    firebase.storage().ref().child('explorePics/' + this.imageSource7 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto16=url;
+    })
+    firebase.storage().ref().child('explorePics/' + this.imageSource7 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto17=url;
+    })
     
 
   }
