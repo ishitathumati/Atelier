@@ -58,8 +58,8 @@ export class RequestsProvider {
 }  
 
 acceptrequest(friend) {
-  var myfriends = [];
   var promise = new Promise((resolve, reject) => {
+    this.myfriends = [];
     this.firefriends.child(firebase.auth().currentUser.uid).push({
       uid: friend.uid
     }).then(() => {

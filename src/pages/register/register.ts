@@ -22,8 +22,7 @@ export class RegisterPage {
   newuser = {
     email: '',
     password: '',
-    displayName: '',
-    photoURL: ''
+    displayName: ''
   }
   
 
