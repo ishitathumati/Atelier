@@ -18,7 +18,7 @@
 
 
     <div class = "box"> 
-        <ion-title>JANE DOE</ion-title> 
+        <ion-title>{{displayName}}</ion-title> 
         <p>Portfolio: Seasons</p>
       </div>
 
@@ -63,7 +63,7 @@
                       </p>
                       <ion-slides class="image-slider"> 
                         <ion-slide *ngFor="let pic of pics">
-                          <img src="assets/imgs/{{pic}}" class="image">
+                          <img src="assets/imgs/{{pic}}" class="image" imageViewer>
                         </ion-slide>
                       </ion-slides>
                     </ion-card-content>

@@ -22,7 +22,8 @@ export class RegisterPage {
   newuser = {
     email: '',
     password: '',
-    displayName: ''
+    displayName: '',
+    photoURL: ''
   }
   
 
@@ -34,24 +35,20 @@ export class RegisterPage {
     {
       this.userservice.adduser(this.newuser).then((res: any) => {
         if (res.success)
-        this.navCtrl.push(LoginPage);
-      })
-      
-      const result = await this.aAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
-      if(result)
-      {
+        {
         this.toast.create({
           message: `Successfully registered! Please log in`,
           duration: 3000
         }).present();
         this.navCtrl.push(LoginPage);
-      }
+        }
+      })
     }
     catch(e){
       console.error(e);
     }
   }
-
+     
   ionViewDidLoad(){
     console.log('ionViewDidLoad RegisterPage');
         this.toast.create({
@@ -61,3 +58,15 @@ export class RegisterPage {
   }
 
 }
+      /*const result = await this.aAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
+      if(result)
+      {
+        this.toast.create({
+          message: `Successfully registered! Please log in`,
+          duration: 3000
+        }).present();
+        this.navCtrl.push(LoginPage);
+      }*/
+    
+
+  

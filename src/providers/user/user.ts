@@ -11,7 +11,8 @@ import firebase from 'firebase';
 */
 @Injectable()
 export class UserProvider {
-  firedata = firebase.database().ref('/chatusers');
+  firedata = firebase.database().ref('/users');
+  
 
   constructor(public afireauth: AngularFireAuth) {
     
@@ -21,10 +22,10 @@ export class UserProvider {
     var promise = new Promise((resolve, reject) => {
       this.afireauth.auth.createUserWithEmailAndPassword(newuser.email, newuser.password).then(() => {
         this.afireauth.auth.currentUser.updateProfile({
-          displayName: newuser.displayName, 
+          displayName: newuser.displayName,
           photoURL: ''
       }).then(() => {
-          this.firedata.child(this.afireauth.auth.currentUser.uid).set({
+          this.firedata.child(this.afireauth.auth.currentUser.uid).child('details').set({
             uid: this.afireauth.auth.currentUser.uid,
             displayName: newuser.displayName,
             photoURL: ''
@@ -42,9 +43,10 @@ export class UserProvider {
     })
     return promise;
   }
+
   getuserdetails() {
     var promise = new Promise((resolve, reject) => {
-    this.firedata.child(firebase.auth().currentUser.uid).once('value', (snapshot) => {
+    this.firedata.child(firebase.auth().currentUser.uid).child('details').once('value', (snapshot) => {
       resolve(snapshot.val());
     }).catch((err) => {
       reject(err);
@@ -52,6 +54,17 @@ export class UserProvider {
     })
     return promise;
   }
+
+  /*getprofiledetails() {
+    var promise = new Promise((resolve, reject) => {
+    this.firedata.child(firebase.auth().currentUser.uid).child('profile').once('value', (snapshot) => {
+      resolve(snapshot.val());
+    }).catch((err) => {
+      reject(err);
+      })
+    })
+    return promise;
+  }*/
     
   getallusers() {
     var promise = new Promise((resolve, reject) => {
@@ -65,6 +78,28 @@ export class UserProvider {
       }).catch((err) => {
         reject(err);
       })
+    })
+    return promise;
+  }
+
+  updatedisplayname(newname) {
+    var promise = new Promise((resolve, reject) => {
+      this.afireauth.auth.currentUser.updateProfile({
+      displayName: newname,
+      photoURL: this.afireauth.auth.currentUser.photoURL
+    }).then(() => {
+      this.firedata.child(firebase.auth().currentUser.uid).child('details').update({
+        displayName: newname,
+        photoURL: this.afireauth.auth.currentUser.photoURL,
+        uid: this.afireauth.auth.currentUser.uid
+      }).then(() => {
+        resolve({ success: true });
+      }).catch((err) => {
+        reject(err);
+      })
+      }).catch((err) => {
+        reject(err);
+    })
     })
     return promise;
   }

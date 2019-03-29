@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AddArtPage } from '../add-art/add-art';
-
+import { UserProvider } from '../../providers/user/user';
 import * as firebase from 'firebase';
 //import { url } from 'inspector';
 //import { storage } from 'firebase';
@@ -26,22 +26,30 @@ export class UserUploadsPage {
   galleryimage: any;
   photoimage: any;
   pics = ['flower.png', 'painting.png'];
-
+  displayName :any;
   imageSource; 
   dbPhoto;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public userservice: UserProvider, public navCtrl: NavController, public navParams: NavParams) {
     //initializeApp(FIREBASE_CONFIG);
     this.galleryimage = this.navParams.get('image');
     this.photoimage = this.navParams.get('image2');
 
     this.imageSource = 'painting';
     this.getPhotoURL();
+    this.loadName(); 
   }
 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserUploadsPage');
+  }
+
+  loadName() {
+    this.userservice.getuserdetails().then((res: any) => {
+      this.displayName = res.displayName;
+    })
+    return this.displayName
   }
 
   openAdd()
