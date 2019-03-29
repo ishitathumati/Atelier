@@ -25,7 +25,7 @@ export class UserProvider {
           displayName: newuser.displayName,
           photoURL: ''
       }).then(() => {
-          this.firedata.child(this.afireauth.auth.currentUser.uid).child('details').set({
+          this.firedata.child(this.afireauth.auth.currentUser.uid).set({
             uid: this.afireauth.auth.currentUser.uid,
             displayName: newuser.displayName,
             photoURL: ''
@@ -46,7 +46,7 @@ export class UserProvider {
 
   getuserdetails() {
     var promise = new Promise((resolve, reject) => {
-    this.firedata.child(firebase.auth().currentUser.uid).child('details').once('value', (snapshot) => {
+    this.firedata.child(firebase.auth().currentUser.uid).once('value', (snapshot) => {
       resolve(snapshot.val());
     }).catch((err) => {
       reject(err);
@@ -88,7 +88,7 @@ export class UserProvider {
       displayName: newname,
       photoURL: this.afireauth.auth.currentUser.photoURL
     }).then(() => {
-      this.firedata.child(firebase.auth().currentUser.uid).child('details').update({
+      this.firedata.child(firebase.auth().currentUser.uid).update({
         displayName: newname,
         photoURL: this.afireauth.auth.currentUser.photoURL,
         uid: this.afireauth.auth.currentUser.uid
