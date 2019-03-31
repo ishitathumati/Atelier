@@ -177,10 +177,10 @@ export class ExplorePage {
   }
 
 
-  /*ionViewDidLoad() 
+  ionViewDidLoad() 
   {
     console.log('ionViewDidLoad ExplorePage');
-  }*/
+  }
 
   //getting urls from firebase
   getPhotoURL()
