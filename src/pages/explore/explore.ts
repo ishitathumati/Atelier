@@ -252,10 +252,9 @@ export class ExplorePage {
   /* Hashtag bar should display random pictures for the user to scroll through
 
   */
-  
-  
 
 
+  
 
 
 
