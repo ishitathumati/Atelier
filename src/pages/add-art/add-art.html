@@ -29,17 +29,17 @@
 
         <ion-item>
           <ion-label inline>Title</ion-label>
-          <ion-input type="text"></ion-input>
+          <ion-input type="text"[(ngModel)]="post.title"></ion-input>
         </ion-item>
       
         <ion-item>
           <ion-label inline>Description</ion-label>
-          <ion-input type="text"></ion-input>
+          <ion-input type="text"[(ngModel)]="post.description"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label inline>Price</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input type="text"[(ngModel)]="post.price"></ion-input>
           </ion-item>
       
       </ion-list>

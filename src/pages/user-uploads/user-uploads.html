@@ -29,10 +29,11 @@
                   <img src = "{{galleryimage}}"/>
                   <ion-card-content>
                     <ion-card-title>
-                      Spring
+                      {{(postData | async)?.title}}
                       </ion-card-title>
                     <p>
-                      $49 <ion-icon name="heart"></ion-icon>
+                      {{(postData | async)?.price}} <ion-icon name="heart"></ion-icon>
+                      {{(postData | async)?.description}}
                     </p>
                   </ion-card-content>
                 </ion-card>
@@ -56,7 +57,7 @@
                 <ion-card>
                     <ion-card-content>
                       <ion-card-title>
-                        Flower
+                       <!-- {{title}} -->
                         </ion-card-title>
                       <p>
                         $49  <ion-icon name="heart" color="#eca72c"></ion-icon>

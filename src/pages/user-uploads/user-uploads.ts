@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { AddArtPage } from '../add-art/add-art';
 import { UserProvider } from '../../providers/user/user';
 import * as firebase from 'firebase';
+import { Post } from '../../models/posts'
 //import { url } from 'inspector';
 //import { storage } from 'firebase';
 import { storage, initializeApp} from 'firebase';
@@ -14,7 +16,7 @@ import { storage, initializeApp} from 'firebase';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+ 
 @IonicPage()
 @Component({
   selector: 'page-user-uploads',
@@ -22,15 +24,20 @@ import { storage, initializeApp} from 'firebase';
 })
 export class UserUploadsPage {
 
+  post = {} as Post; 
+
   //photo:any;
+  postData: FirebaseObjectObservable <Post>;
   galleryimage: any;
-  photoimage: any;
+  photoimage: any; 
   pics = ['flower.png', 'painting.png'];
   displayName :any;
   imageSource; 
   dbPhoto;
 
-  constructor(public userservice: UserProvider, public navCtrl: NavController, public navParams: NavParams) {
+  
+
+  constructor(public userservice: UserProvider, public navCtrl: NavController, public navParams: NavParams,public db: AngularFireDatabase) {
     //initializeApp(FIREBASE_CONFIG);
     this.galleryimage = this.navParams.get('image');
     this.photoimage = this.navParams.get('image2');
@@ -43,6 +50,7 @@ export class UserUploadsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserUploadsPage');
+    //this.postData = this.db.object(`posts/${data.pid}/profile`);
   }
 
   loadName() {

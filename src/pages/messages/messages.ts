@@ -4,7 +4,7 @@ import { RequestsProvider } from '../../providers/requests/requests';
 import { FriendsPage } from '../friends/friends';
 //import { threadId } from 'worker_threads';
 import { FriendchatPage } from '../friendchat/friendchat';
-import { ChatProvider } from '../../providers/chat/chat';
+import { ChatProvider } from '../../providers/chat/chat'; 
 
 /**
  * Generated class for the MessagesPage page.

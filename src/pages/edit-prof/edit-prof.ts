@@ -5,7 +5,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera'
 import { storage } from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Profile } from '../../models/profile';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from 'angularfire2/auth'; 
 import { HomePage } from '../home/home';
 
 //import { AngularFireModule } from 'angularfire2';
