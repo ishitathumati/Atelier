@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
-import firebase from 'firebase';
+import firebase from 'firebase'; 
 /*
   Generated class for the UserProvider provider.
 

@@ -49,7 +49,7 @@ export class ProfilePage {
     this.loadName();    
   }
 
-  loadName() {
+  loadName() { 
     this.userservice.getuserdetails().then((res: any) => {
       this.displayName = res.displayName;
     })

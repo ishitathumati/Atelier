@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import { UserUploadsPage } from '../user-uploads/user-uploads';
 import { storage, initializeApp} from 'firebase';
+import firebase from 'firebase'; 
+import { Post } from '../../models/posts'
 //import { FIREBASE_CONFIG } from '../../app/firebase.config';
 //import { catchError } from 'rxjs/operators';
 
@@ -14,6 +16,9 @@ import { storage, initializeApp} from 'firebase';
   templateUrl: 'add-art.html',
 })
 export class AddArtPage {
+
+  post = {} as Post; 
+  firedata = firebase.database().ref('/posts'); //creates table for posts
 
   //pictures:any;
 
@@ -26,7 +31,7 @@ export class AddArtPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddArtPage');
-  }
+  } 
 
   async takePic(){
     try{
@@ -90,7 +95,7 @@ async openGallery()
 upload(){
   let image = this.photo2;
   this.navCtrl.push(UserUploadsPage, {image: image});
-  let image2 = this.photo;
+  let image2 = this.photo; 
   this.navCtrl.push(UserUploadsPage, {image: image2});
 }
 
