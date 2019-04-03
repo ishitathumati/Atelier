@@ -46,7 +46,7 @@ export class UserProvider {
 
   getuserdetails() {
     var promise = new Promise((resolve, reject) => {
-    this.firedata.child(firebase.auth().currentUser.uid).child('details').once('value', (snapshot) => {
+    this.firedata.child(firebase.auth().currentUser.uid).once('value', (snapshot) => {
       resolve(snapshot.val());
     }).catch((err) => {
       reject(err);
