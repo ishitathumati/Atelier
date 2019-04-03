@@ -25,7 +25,7 @@ export class UserProvider {
           displayName: newuser.displayName,
           photoURL: ''
       }).then(() => {
-          this.firedata.child(this.afireauth.auth.currentUser.uid).child('details').set({
+          this.firedata.child(this.afireauth.auth.currentUser.uid).set({
             uid: this.afireauth.auth.currentUser.uid,
             displayName: newuser.displayName,
             photoURL: ''
@@ -54,6 +54,7 @@ export class UserProvider {
     })
     return promise;
   }
+
 
   /*getprofiledetails() {
     var promise = new Promise((resolve, reject) => {

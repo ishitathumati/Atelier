@@ -63,7 +63,7 @@ export class UserUploadsPage {
     this.navCtrl.push(AddArtPage);
   }
   
-  getPhotoURL(){
+  /*getPhotoURL(){
     try{
     const userid = this.afAuth.auth.currentUser.uid;
     firebase.storage().ref().child(`posts/${userid}/${this.post.postid}`).getDownloadURL().then((url)=>{
@@ -75,10 +75,29 @@ export class UserUploadsPage {
   catch (e){
     console.error(e);
     }
-  }
+  }*/
+  
+ getPhotoURL(){
+   this.getpostdetails().then((res:any)=>{
+     this.dbPhoto = res.posturl;
+     console.log(this.dbPhoto); //currently returning undefined
+   })
+   return this.dbPhoto;
+   
+ }
 
-
-
+ //need to modify this to get list info... like iterate through list of posts and get them all to display
+ //need to use *ngFor in html
+ getpostdetails() {
+  var promise = new Promise((resolve, reject) => {
+  firebase.database().ref(`/users`).child(firebase.auth().currentUser.uid).child('posts').once('value', (snapshot) => {
+    resolve(snapshot.val());
+  }).catch((err) => {
+    reject(err);
+    })
+  })
+  return promise;
+}
 
 
 

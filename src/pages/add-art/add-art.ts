@@ -7,6 +7,7 @@ import { storage, initializeApp} from 'firebase';
 import {Post} from '../../models/post';
 import firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { updateDate } from 'ionic-angular/umd/util/datetime-util';
 
 //import { FIREBASE_CONFIG } from '../../app/firebase.config';
 //import { catchError } from 'rxjs/operators';
@@ -25,6 +26,10 @@ export class AddArtPage {
   //firedata = firebase.database().ref(`/users/${this.userid}/posts`);
   //photo2:any;
   photo:any; 
+  postURL: any;
+  rootref:any;
+  postref:any;
+  postkey:any;
 
   constructor(public db: AngularFireDatabase, private aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
     //initializeApp(FIREBASE_CONFIG);
@@ -54,7 +59,7 @@ export class AddArtPage {
   
       this.camera.getPicture(options).then((imageData)=>{
       this.photo = imageData;
-      this.uploadPhoto(userid);
+      this.uploadANDgetURL(userid);
     }); 
   }
   catch (e){
@@ -74,40 +79,51 @@ openGallery()
   this.camera.getPicture(options).then((imageData) => 
   {
      this.photo = imageData;
-     this.uploadPhoto(userid);
+     this.uploadANDgetURL(userid);
   }, (err) => {
   });
 }
 
-private uploadPhoto(uid: string): void {
+private uploadANDgetURL(uid:string): void {
   const pictures = storage().ref();
-  const postid = new Date().toISOString()+uid;
-  this.post.postid = postid;
-  //this.updatePostURL(postid);
-  pictures.child(`posts/${uid}/postid`)
+  const name = `${new Date().getTime()}-${uid}`;
+  const storageref = pictures.child(`posts/${uid}/${name}`);
    //imageData is either a base64 encoded string or a file URI
-  .putString(this.photo, 'base64', {contentType: 'image/jpeg'})
-    .catch((err) => {
-      console.log(err);
-      console.log('Cant upload photo');
-    });
+  storageref.putString(this.photo, 'base64', {contentType: 'image/jpeg'})
+  .catch((err) => {
+    console.log(err);
+    console.log('Cant upload photo');
+  }).then(()=>{
+    storageref.getDownloadURL().then((url)=>{this.postURL = url})
+  });
 }
+  
+  //const postid = new Date().toISOString()+uid;
+  //this.post.postid = postid;
+  //this.updatePostURL(postid);
 
 
 cancel(){
   this.navCtrl.pop();
 }
 
-upload(){
-  this.aAuth.authState.take(1).subscribe(auth=>{
-  this.db.list(`users/${auth.uid}/posts`).push(this.post)
-    .then(()=>this.navCtrl.pop())});
-  //let image = this.photo2;
-  //this.navCtrl.push(UserUploadsPage, {image: image});
-  let image2 = this.photo;
-  this.navCtrl.push(UserUploadsPage, {image: image2});
+updatePosts(){
+  this.aAuth.authState.take(1).subscribe(auth=>{ 
+    this.rootref = firebase.database().ref(`users/${auth.uid}`);
+    this.postref = this.rootref.child('posts').push(this.post);
+    this.postkey = this.postref.key;
+    this.postref.update({
+    postid: this.postkey,
+    posturl: this.postURL
+  }).then(()=>{this.navCtrl.pop()});
+})
 }
 
 }
 
+
+  
+  //this.db.list(`users/${auth.uid}/posts`).push(this.post)
+  //let image2 = this.photo;
+  //this.navCtrl.push(UserUploadsPage, {image: image2});
 

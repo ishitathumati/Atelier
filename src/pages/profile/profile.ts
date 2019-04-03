@@ -145,7 +145,6 @@ export class ProfilePage {
       this.profilepic = 'https://firebasestorage.googleapis.com/v0/b/atelier-842ac.appspot.com/o/profilePics%2Fdefault.jpeg?alt=media&token=ba12bc14-ef9a-4893-947a-90b58c9850fb';
     });
   }
-
   catch (e){
     console.error(e);
     }

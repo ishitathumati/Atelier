@@ -3,4 +3,5 @@ export interface Post{
     price:number;
     title:string;
     description:string;
+    posturl:string;
 }
