@@ -29,12 +29,12 @@
                   <img src = "{{galleryimage}}"/>
                   <ion-card-content>
                     <ion-card-title>
-                      {{(postData | async)?.title}}
+                      {{(postData|async)?.title}}
                       </ion-card-title>
                     <p>
-                      {{(postData | async)?.price}} <ion-icon name="heart"></ion-icon>
-                      {{(postData | async)?.description}}
+                      {{(postData|async)?.price}}<ion-icon name="heart"></ion-icon>
                     </p>
+                    {{(postData|async)?.description}}
                   </ion-card-content>
                 </ion-card>
           </ion-col>
@@ -75,10 +75,11 @@
                     <img src="{{dbPhoto}}"/>
                     <ion-card-content>
                       <ion-card-title>
-                        Summer
+                        {{(postData|async)?.title}}
                         </ion-card-title>
                       <p>
-                        $49 <ion-icon name="heart"></ion-icon>
+                        {{(postData|async)?.price}} <ion-icon name="heart"></ion-icon>
+                        {{(postData|async)?.description}}
                       </p>
                     </ion-card-content>
                   </ion-card>

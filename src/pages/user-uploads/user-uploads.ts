@@ -4,7 +4,9 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 import { AddArtPage } from '../add-art/add-art';
 import { UserProvider } from '../../providers/user/user';
 import * as firebase from 'firebase';
-import { Post } from '../../models/posts'
+import {Post} from '../../models/post';
+import { AngularFireAuth } from 'angularfire2/auth';
+
 //import { url } from 'inspector';
 //import { storage } from 'firebase';
 import { storage, initializeApp} from 'firebase';
@@ -27,17 +29,15 @@ export class UserUploadsPage {
   post = {} as Post; 
 
   //photo:any;
-  postData: FirebaseObjectObservable <Post>;
   galleryimage: any;
   photoimage: any; 
   pics = ['flower.png', 'painting.png'];
   displayName :any;
   imageSource; 
   dbPhoto;
+  postData: FirebaseObjectObservable<Post>;
 
-  
-
-  constructor(public userservice: UserProvider, public navCtrl: NavController, public navParams: NavParams,public db: AngularFireDatabase) {
+  constructor(private afAuth: AngularFireAuth, public userservice: UserProvider, public navCtrl: NavController, public navParams: NavParams) {
     //initializeApp(FIREBASE_CONFIG);
     this.galleryimage = this.navParams.get('image');
     this.photoimage = this.navParams.get('image2');
@@ -65,14 +65,41 @@ export class UserUploadsPage {
     this.navCtrl.push(AddArtPage);
   }
   
-  getPhotoURL(){
-    firebase.storage().ref().child('pictures/'+this.imageSource+'.png').getDownloadURL().then((url)=>{
+  /*getPhotoURL(){
+    try{
+    const userid = this.afAuth.auth.currentUser.uid;
+    firebase.storage().ref().child(`posts/${userid}/${this.post.postid}`).getDownloadURL().then((url)=>{
       this.dbPhoto = url; 
-    })
+    }).catch(()=>{
+      this.dbPhoto = 'https://firebasestorage.googleapis.com/v0/b/atelier-842ac.appspot.com/o/profilePics%2Fdefault.jpeg?alt=media&token=ba12bc14-ef9a-4893-947a-90b58c9850fb';
+    });
   }
+  catch (e){
+    console.error(e);
+    }
+  }*/
+  
+ getPhotoURL(){
+   this.getpostdetails().then((res:any)=>{
+     this.dbPhoto = res.posturl;
+     console.log(this.dbPhoto); //currently returning undefined
+   })
+   return this.dbPhoto;
+   
+ }
 
-
-
+ //need to modify this to get list info... like iterate through list of posts and get them all to display
+ //need to use *ngFor in html
+ getpostdetails() {
+  var promise = new Promise((resolve, reject) => {
+  firebase.database().ref(`/users`).child(firebase.auth().currentUser.uid).child('posts').once('value', (snapshot) => {
+    resolve(snapshot.val());
+  }).catch((err) => {
+    reject(err);
+    })
+  })
+  return promise;
+}
 
 
 
