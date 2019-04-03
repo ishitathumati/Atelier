@@ -1,5 +1,6 @@
-export interface User{
-    price:string;
+export interface Post{
+    postid:string;
+    price:number;
     title:string;
     description:string;
 }

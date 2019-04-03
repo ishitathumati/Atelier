@@ -2,7 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AddArtPage } from '../add-art/add-art';
 import { UserProvider } from '../../providers/user/user';
+import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 import * as firebase from 'firebase';
+import {Post} from '../../models/post';
+import { AngularFireAuth } from 'angularfire2/auth';
+
 //import { url } from 'inspector';
 //import { storage } from 'firebase';
 import { storage, initializeApp} from 'firebase';
@@ -29,8 +33,10 @@ export class UserUploadsPage {
   displayName :any;
   imageSource; 
   dbPhoto;
+  post={} as Post;
+  postData: FirebaseObjectObservable<Post>;
 
-  constructor(public userservice: UserProvider, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private afAuth: AngularFireAuth, public userservice: UserProvider, public navCtrl: NavController, public navParams: NavParams) {
     //initializeApp(FIREBASE_CONFIG);
     this.galleryimage = this.navParams.get('image');
     this.photoimage = this.navParams.get('image2');
@@ -58,9 +64,17 @@ export class UserUploadsPage {
   }
   
   getPhotoURL(){
-    firebase.storage().ref().child('pictures/'+this.imageSource+'.png').getDownloadURL().then((url)=>{
+    try{
+    const userid = this.afAuth.auth.currentUser.uid;
+    firebase.storage().ref().child(`posts/${userid}/${this.post.postid}`).getDownloadURL().then((url)=>{
       this.dbPhoto = url; 
-    })
+    }).catch(()=>{
+      this.dbPhoto = 'https://firebasestorage.googleapis.com/v0/b/atelier-842ac.appspot.com/o/profilePics%2Fdefault.jpeg?alt=media&token=ba12bc14-ef9a-4893-947a-90b58c9850fb';
+    });
+  }
+  catch (e){
+    console.error(e);
+    }
   }
 
 

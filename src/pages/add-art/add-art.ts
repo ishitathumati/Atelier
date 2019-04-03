@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import { UserUploadsPage } from '../user-uploads/user-uploads';
 import { storage, initializeApp} from 'firebase';
+import {Post} from '../../models/post';
+import firebase from 'firebase';
+import { AngularFireAuth } from 'angularfire2/auth';
+
 //import { FIREBASE_CONFIG } from '../../app/firebase.config';
 //import { catchError } from 'rxjs/operators';
 
@@ -16,11 +20,13 @@ import { storage, initializeApp} from 'firebase';
 export class AddArtPage {
 
   //pictures:any;
-
-  photo2:any;
+  post={} as Post;
+  //userid=this.aAuth.auth.currentUser.uid;
+  //firedata = firebase.database().ref(`/users/${this.userid}/posts`);
+  //photo2:any;
   photo:any; 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
+  constructor(public db: AngularFireDatabase, private aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
     //initializeApp(FIREBASE_CONFIG);
   }
 
@@ -30,66 +36,74 @@ export class AddArtPage {
 
   async takePic(){
     try{
-  	const options: CameraOptions = {
-  		quality: 70,
-	  	destinationType: this.camera.DestinationType.DATA_URL,
-	  	encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      correctOrientation: true
+      const userid = this.aAuth.auth.currentUser.uid;
+      const options: CameraOptions = {
+        quality: 70,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE,
+        correctOrientation: true
+      }
+  
+      const result = await this.camera.getPicture(options);
+  
+      const image =`data:image/jpeg;base64,${result}`;
+      const pictures = storage().ref();
+      pictures.child(`profilePics/${userid}/img`)
+              .putString(image, 'data_url');
+  
+      this.camera.getPicture(options).then((imageData)=>{
+      this.photo = imageData;
+      this.uploadPhoto(userid);
+    }); 
   }
-
-  const result = await this.camera.getPicture(options);
-
-  const image =`data:image/jpeg;base64,${result}`;
-
-  const pictures = storage().ref('pictures/cameraPhoto');
-  pictures.putString(image, 'data_url');
-
-  //pictures.putString(image, 'data_url');
-
-  this.camera.getPicture(options).then((imageData) => 
-	{
-
- 		this.photo = 'data:image/jpeg;base64,' + imageData;
-	}, (err) => {
-
-	}); 
-
-}
-catch (e){
-  console.error(e);
-}	
+  catch (e){
+    console.error(e);
+  }
 }
 
-async openGallery()
+openGallery()
 {
+  const userid = this.aAuth.auth.currentUser.uid;
   const options: CameraOptions =
   {
     sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
     destinationType: this.camera.DestinationType.DATA_URL,
     quality: 70,
-    //saveToPhotoAlbum: false
   }
-
-  const result2 = await this.camera.getPicture(options);
-
-  const image2 =`data:image/jpeg;base64,${result2}`;
-
-  const pics = storage().ref('pictures/galleryPhoto');
-  pics.putString(image2, 'data_url');
-
-  this.camera.getPicture(options).then((imageData1) => 
+  this.camera.getPicture(options).then((imageData) => 
   {
- 
-     this.photo2 = 'data:image/jpeg;base64,' + imageData1;
+     this.photo = imageData;
+     this.uploadPhoto(userid);
   }, (err) => {
-
   });
 }
 
+private uploadPhoto(uid: string): void {
+  const pictures = storage().ref();
+  const postid = new Date().toISOString()+uid;
+  this.post.postid = postid;
+  //this.updatePostURL(postid);
+  pictures.child(`posts/${uid}/postid`)
+   //imageData is either a base64 encoded string or a file URI
+  .putString(this.photo, 'base64', {contentType: 'image/jpeg'})
+    .catch((err) => {
+      console.log(err);
+      console.log('Cant upload photo');
+    });
+}
+
+
+cancel(){
+  this.navCtrl.pop();
+}
+
 upload(){
-  let image = this.photo2;
-  this.navCtrl.push(UserUploadsPage, {image: image});
+  this.aAuth.authState.take(1).subscribe(auth=>{
+  this.db.list(`users/${auth.uid}/posts`).push(this.post)
+    .then(()=>this.navCtrl.pop())});
+  //let image = this.photo2;
+  //this.navCtrl.push(UserUploadsPage, {image: image});
   let image2 = this.photo;
   this.navCtrl.push(UserUploadsPage, {image: image2});
 }
