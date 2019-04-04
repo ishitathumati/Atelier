@@ -8,6 +8,9 @@ import { Profile } from '../../models/profile';
 import { AngularFireAuth } from 'angularfire2/auth'; 
 import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
+import { ImghandlerProvider } from '../../providers/imghandler/imghandler';
+import {UserProvider} from '../../providers/user/user';
+
 
 //import { AngularFireModule } from 'angularfire2';
 //import { FIREBASE_CONFIG } from '../../app/firebase.config';
@@ -36,7 +39,7 @@ export class EditProfPage {
   //peopleList : FirebaseListObservable<any>;
 
 
-  constructor(private aAuth: AngularFireAuth, private toast:ToastController, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
+  constructor(public userservice:UserProvider, public imgservice:ImghandlerProvider, private aAuth: AngularFireAuth, private toast:ToastController, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
     //initializeApp(FIREBASE_CONFIG);
     //this.peopleList = db.list('/profiles');
     this.uid = this.aAuth.auth.currentUser.uid;
@@ -45,6 +48,19 @@ export class EditProfPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditProfPage');
   }
+
+  /*takePic(){
+    this.imgservice.takePic().then((url:any)=>{
+      this.profilepic = url;
+    })
+  }
+
+  openGallery(){
+    this.imgservice.choosefromGallery().then((url:any)=>{
+      this.profilepic = url;
+    })
+  }*/
+
   async takePic(){
     try{
     const userid = this.aAuth.auth.currentUser.uid;
@@ -55,14 +71,6 @@ export class EditProfPage {
       mediaType: this.camera.MediaType.PICTURE,
       correctOrientation: true
     }
-
-    const result = await this.camera.getPicture(options);
-
-    const image =`data:image/jpeg;base64,${result}`;
-    const pictures = storage().ref();
-    pictures.child(`profilePics/${userid}/img`)
-            .putString(image, 'data_url');
-
     this.camera.getPicture(options).then((imageData)=>{
     this.photo = imageData;
     this.uploadPhoto(userid);
@@ -70,9 +78,8 @@ export class EditProfPage {
 }
 catch (e){
   console.error(e);
+  }
 }
-}
-
 /*createProfile(name, study, work, lives, fromCity){
 this.peopleList.push({
   name: name,
@@ -105,16 +112,27 @@ openGallery()
 goToProfile(){
   this.aAuth.authState.take(1).subscribe(auth=>{
     this.db.object(`users/${auth.uid}/profile`).set(this.profile)
-      .then(()=>this.navCtrl.setRoot(TabsPage))});
+      .then(()=>{
+        this.userservice.updateimage(this.profilepic).then((res:any)=>{
+          if(res.success){
+            this.navCtrl.setRoot(TabsPage);
+          }
+          else{
+            alert(res);
+          }
+        })
+      })
       this.toast.create({
       message: `Successfully updated your Profile!`,
       duration: 3000
     }).present();
-} 
+}) 
+}
 
 cancel(){
   this.navCtrl.pop();
 }
+
 
 private uploadPhoto(uid: string): void {
   const pictures = storage().ref();
@@ -131,12 +149,12 @@ private uploadPhoto(uid: string): void {
       });
 }
 
+}
+
 /*ionViewDidLeave(){
   this.toast.create({
     message: `Successfully updated your Profile!`,
     duration: 3000
   }).present();
 }*/
-
-}
 

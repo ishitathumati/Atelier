@@ -36,6 +36,7 @@ import { RequestsProvider } from '../providers/requests/requests';
 import { ChatProvider } from '../providers/chat/chat';
 import { UpdateprofilepicPage } from '../pages/updateprofilepic/updateprofilepic';
 import { PopoverComponent } from '../components/popover/popover';
+import { ImghandlerProvider } from '../providers/imghandler/imghandler';
 
 
 const firebaseAuth = {
@@ -111,6 +112,7 @@ const firebaseAuth = {
     UserProvider,
     RequestsProvider,
     ChatProvider,
+    ImghandlerProvider,
   ]
 })
 export class AppModule {}

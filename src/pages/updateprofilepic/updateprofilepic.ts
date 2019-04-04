@@ -6,6 +6,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { ProfilePage } from '../profile/profile';
 import { TabsPage } from '../tabs/tabs';
+import {ImghandlerProvider} from '../../providers/imghandler/imghandler';
+import {UserProvider} from '../../providers/user/user';
 
 /**
  * Generated class for the UpdateprofilepicPage page.
@@ -25,9 +27,21 @@ export class UpdateprofilepicPage {
   status:any;
   profilepic:any;
 
-  constructor(public alertCtrl: AlertController, public events: Events, public viewCtrl:ViewController, private aAuth: AngularFireAuth,private toast:ToastController, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
+  constructor(public userservice:UserProvider, public imgservice:ImghandlerProvider,public alertCtrl: AlertController, public events: Events, public viewCtrl:ViewController, private aAuth: AngularFireAuth,private toast:ToastController, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
 
   }
+
+  /*UploadNew(){
+    this.imgservice.takePic().then((url:any)=>{
+      this.profilepic = url;
+    })
+  }
+
+  ChooseNew(){
+    this.imgservice.choosefromGallery().then((url:any)=>{
+      this.profilepic = url;
+    })
+  }*/
 
 async UploadNew(){
   try{
@@ -39,14 +53,6 @@ async UploadNew(){
       mediaType: this.camera.MediaType.PICTURE,
       correctOrientation: true
     }
-
-    const result = await this.camera.getPicture(options);
-
-    const image =`data:image/jpeg;base64,${result}`;
-    const pictures = storage().ref();
-    pictures.child(`profilePics/${userid}/img`)
-            .putString(image, 'data_url');
-
     this.camera.getPicture(options).then((imageData)=>{
     this.photo = imageData;
     this.uploadPhoto(userid);
@@ -78,30 +84,29 @@ private uploadPhoto(uid: string): void {
   pictures.child(`profilePics/${uid}/img`)
    //imageData is either a base64 encoded string or a file URI
   .putString(this.photo, 'base64', {contentType: 'image/jpeg'})
-  .then((url)=>{
+  .catch((err) => {
+    console.log(err);
+    console.log('Cant upload photo');
+  }).then((url)=>{
     this.profilepic = url;
   })
-    .catch((err) => {
-      console.log(err);
-      console.log('Cant upload photo');
-    });
-
-    this.status = true;
 }
 
-goToProfile(){
-  //let image = this.photo;
-  /*let alert = this.alertCtrl.create({
-    message: 'Successfully updated profile picture!',
-    buttons: ['Okay']});*/
-   //this.navCtrl.push(ProfilePage, {'profilepic': this.profilepic, 'status':this.status})
-  this.navCtrl.setRoot(TabsPage);
-  this.toast.create({
-    message: `Successfully updated profile picture!`,
-    duration: 3000
-  }).present();
-  //alert.present();
-}
+  goToProfile() {
+    this.userservice.updateimage(this.profilepic).then((res: any) => {
+      if (res.success) {
+        this.navCtrl.setRoot(TabsPage);
+      }
+      else {
+        alert(res);
+      }
+    })
+    this.toast.create({
+      message: `Successfully updated profile picture!`,
+      duration: 3000
+    }).present();
+    //alert.present();
+  }
 
 cancel(){
   this.navCtrl.pop();
