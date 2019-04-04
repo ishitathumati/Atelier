@@ -4,8 +4,11 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import { UserUploadsPage } from '../user-uploads/user-uploads';
 import { storage, initializeApp} from 'firebase';
-import firebase from 'firebase'; 
-import { Post } from '../../models/posts'
+import {Post} from '../../models/post';
+import firebase from 'firebase';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { updateDate } from 'ionic-angular/umd/util/datetime-util';
+
 //import { FIREBASE_CONFIG } from '../../app/firebase.config';
 //import { catchError } from 'rxjs/operators';
 
@@ -21,11 +24,16 @@ export class AddArtPage {
   firedata = firebase.database().ref('/posts'); //creates table for posts
 
   //pictures:any;
-
-  photo2:any;
+  //userid=this.aAuth.auth.currentUser.uid;
+  //firedata = firebase.database().ref(`/users/${this.userid}/posts`);
+  //photo2:any;
   photo:any; 
+  postURL: any;
+  rootref:any;
+  postref:any;
+  postkey:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
+  constructor(public db: AngularFireDatabase, private aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
     //initializeApp(FIREBASE_CONFIG);
   }
 
@@ -35,70 +43,89 @@ export class AddArtPage {
 
   async takePic(){
     try{
-  	const options: CameraOptions = {
-  		quality: 70,
-	  	destinationType: this.camera.DestinationType.DATA_URL,
-	  	encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      correctOrientation: true
+      const userid = this.aAuth.auth.currentUser.uid;
+      const options: CameraOptions = {
+        quality: 70,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE,
+        correctOrientation: true
+      }
+  
+      const result = await this.camera.getPicture(options);
+  
+      const image =`data:image/jpeg;base64,${result}`;
+      const pictures = storage().ref();
+      pictures.child(`profilePics/${userid}/img`)
+              .putString(image, 'data_url');
+  
+      this.camera.getPicture(options).then((imageData)=>{
+      this.photo = imageData;
+      this.uploadANDgetURL(userid);
+    }); 
   }
-
-  const result = await this.camera.getPicture(options);
-
-  const image =`data:image/jpeg;base64,${result}`;
-
-  const pictures = storage().ref('pictures/cameraPhoto');
-  pictures.putString(image, 'data_url');
-
-  //pictures.putString(image, 'data_url');
-
-  this.camera.getPicture(options).then((imageData) => 
-	{
-
- 		this.photo = 'data:image/jpeg;base64,' + imageData;
-	}, (err) => {
-
-	}); 
-
-}
-catch (e){
-  console.error(e);
-}	
+  catch (e){
+    console.error(e);
+  }
 }
 
-async openGallery()
+openGallery()
 {
+  const userid = this.aAuth.auth.currentUser.uid;
   const options: CameraOptions =
   {
     sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
     destinationType: this.camera.DestinationType.DATA_URL,
     quality: 70,
-    //saveToPhotoAlbum: false
   }
-
-  const result2 = await this.camera.getPicture(options);
-
-  const image2 =`data:image/jpeg;base64,${result2}`;
-
-  const pics = storage().ref('pictures/galleryPhoto');
-  pics.putString(image2, 'data_url');
-
-  this.camera.getPicture(options).then((imageData1) => 
+  this.camera.getPicture(options).then((imageData) => 
   {
- 
-     this.photo2 = 'data:image/jpeg;base64,' + imageData1;
+     this.photo = imageData;
+     this.uploadANDgetURL(userid);
   }, (err) => {
-
   });
 }
 
-upload(){
-  let image = this.photo2;
-  this.navCtrl.push(UserUploadsPage, {image: image});
-  let image2 = this.photo; 
-  this.navCtrl.push(UserUploadsPage, {image: image2});
+private uploadANDgetURL(uid:string): void {
+  const pictures = storage().ref();
+  const name = `${new Date().getTime()}-${uid}`;
+  const storageref = pictures.child(`posts/${uid}/${name}`);
+   //imageData is either a base64 encoded string or a file URI
+  storageref.putString(this.photo, 'base64', {contentType: 'image/jpeg'})
+  .catch((err) => {
+    console.log(err);
+    console.log('Cant upload photo');
+  }).then(()=>{
+    storageref.getDownloadURL().then((url)=>{this.postURL = url})
+  });
+}
+  
+  //const postid = new Date().toISOString()+uid;
+  //this.post.postid = postid;
+  //this.updatePostURL(postid);
+
+
+cancel(){
+  this.navCtrl.pop();
+}
+
+updatePosts(){
+  this.aAuth.authState.take(1).subscribe(auth=>{ 
+    this.rootref = firebase.database().ref(`users/${auth.uid}`);
+    this.postref = this.rootref.child('posts').push(this.post);
+    this.postkey = this.postref.key;
+    this.postref.update({
+    postid: this.postkey,
+    posturl: this.postURL
+  }).then(()=>{this.navCtrl.pop()});
+})
 }
 
 }
 
+
+  
+  //this.db.list(`users/${auth.uid}/posts`).push(this.post)
+  //let image2 = this.photo;
+  //this.navCtrl.push(UserUploadsPage, {image: image2});
 
