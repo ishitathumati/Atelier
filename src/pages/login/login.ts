@@ -25,8 +25,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 })
 export class LoginPage {
 
-  user = {password:"123456",
-email:"test101@gmail.com"} as User;
+  user = {} as User;
 
   constructor(private aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public authservice: AuthProvider) {
   }
