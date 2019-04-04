@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController, ViewController, Events} from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import { storage } from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { ProfilePage } from '../profile/profile';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the UpdateprofilepicPage page.
@@ -20,8 +22,11 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class UpdateprofilepicPage {
 
   photo:any;
+  status:any;
+  profilepic:any;
 
-  constructor(private aAuth: AngularFireAuth,private toast:ToastController, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
+  constructor(public alertCtrl: AlertController, public events: Events, public viewCtrl:ViewController, private aAuth: AngularFireAuth,private toast:ToastController, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
+
   }
 
 async UploadNew(){
@@ -73,18 +78,29 @@ private uploadPhoto(uid: string): void {
   pictures.child(`profilePics/${uid}/img`)
    //imageData is either a base64 encoded string or a file URI
   .putString(this.photo, 'base64', {contentType: 'image/jpeg'})
+  .then((url)=>{
+    this.profilepic = url;
+  })
     .catch((err) => {
       console.log(err);
       console.log('Cant upload photo');
     });
+
+    this.status = true;
 }
 
 goToProfile(){
-  this.navCtrl.pop();
+  //let image = this.photo;
+  /*let alert = this.alertCtrl.create({
+    message: 'Successfully updated profile picture!',
+    buttons: ['Okay']});*/
+   //this.navCtrl.push(ProfilePage, {'profilepic': this.profilepic, 'status':this.status})
+  this.navCtrl.setRoot(TabsPage);
   this.toast.create({
-    message: `Your profile picture has been changed!`,
+    message: `Successfully updated profile picture!`,
     duration: 3000
   }).present();
+  //alert.present();
 }
 
 cancel(){

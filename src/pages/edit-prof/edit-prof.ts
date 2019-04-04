@@ -7,6 +7,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Profile } from '../../models/profile';
 import { AngularFireAuth } from 'angularfire2/auth'; 
 import { HomePage } from '../home/home';
+import { TabsPage } from '../tabs/tabs';
 
 //import { AngularFireModule } from 'angularfire2';
 //import { FIREBASE_CONFIG } from '../../app/firebase.config';
@@ -28,7 +29,7 @@ export class EditProfPage {
   photo:any;
   uid: string;
   photo2:any;
-
+  profilepic:any
   profile = {} as Profile;
 
 
@@ -104,8 +105,8 @@ openGallery()
 goToProfile(){
   this.aAuth.authState.take(1).subscribe(auth=>{
     this.db.object(`users/${auth.uid}/profile`).set(this.profile)
-      .then(()=>this.navCtrl.pop())});
-  this.toast.create({
+      .then(()=>this.navCtrl.setRoot(TabsPage))});
+      this.toast.create({
       message: `Successfully updated your Profile!`,
       duration: 3000
     }).present();
@@ -117,13 +118,17 @@ cancel(){
 
 private uploadPhoto(uid: string): void {
   const pictures = storage().ref();
-  pictures.child(`profilePics/${uid}/img`)
+  const storageref = pictures.child(`profilePics/${uid}/img`);
    //imageData is either a base64 encoded string or a file URI
-  .putString(this.photo, 'base64', {contentType: 'image/jpeg'})
+  storageref.putString(this.photo, 'base64', {contentType: 'image/jpeg'})
     .catch((err) => {
       console.log(err);
       console.log('Cant upload photo');
-    });
+    }).then(()=>{storageref.getDownloadURL()
+      .then((url)=>{
+        this.profilepic = url;
+        })
+      });
 }
 
 /*ionViewDidLeave(){
