@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ViewController, ToastController } from 'ionic-angular';
 import { UpdateprofilepicPage } from '../../pages/updateprofilepic/updateprofilepic';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { storage } from 'firebase';
+import { ProfilePage } from '../../pages/profile/profile';
+import { TabsPage } from '../../pages/tabs/tabs';
 
 
 
@@ -18,8 +20,11 @@ import { storage } from 'firebase';
 })
 export class PopoverComponent {
 
+  imagesource: any;
+  profilepic:any;
+  status:any;
 
-  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public alertCtrl: AlertController, public afAuth: AngularFireAuth) {
+  constructor(public navParams:NavParams, public viewCtrl: ViewController, public navCtrl: NavController, public alertCtrl: AlertController, public afAuth: AngularFireAuth, public toast:ToastController) {
     console.log('PopoverComponent did load');
   }
 
@@ -44,11 +49,19 @@ export class PopoverComponent {
         let userid = this.afAuth.auth.currentUser.uid
         let pictureRef = storage().ref().child('profilePics').child(`${userid}/img`)
             pictureRef.delete().then(()=>{
+              this.status = true;
+              if(this.status){
+                this.toast.create({
+                  message: `Profile picture removed!`,
+                  duration: 3000
+                }).present();
+              }
+              this.navCtrl.setRoot(TabsPage);
               console.log('image deleted!')// File deleted successfully
             }).catch((e)=>{
               console.error(e);
               console.log('Cannot delete because nothing has been uploaded')
-            });   
+            });  
           }
                            
       }]

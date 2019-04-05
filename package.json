@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@angular/animations": "^5.2.11",
-    "@angular/cli": "^7.3.7",
+    "@angular/cli": "^7.3.8",
     "@angular/common": "^5.2.11",
     "@angular/compiler": "^5.2.11",
     "@angular/compiler-cli": "^5.2.11",
@@ -64,6 +64,7 @@
     "sw-toolbox": "^3.6.0",
     "threads": "^0.12.1",
     "typescript": "^3.4.1",
+    "whatwg-fetch": "^3.0.0",
     "zone.js": "^0.8.29"
   },
   "devDependencies": {
@@ -74,7 +75,7 @@
     "angular2-template-loader": "^0.6.2",
     "html-loader": "^0.5.5",
     "istanbul-instrumenter-loader": "^3.0.1",
-    "jasmine": "^3.3.1",
+    "jasmine": "^3.4.0",
     "jasmine-spec-reporter": "^4.2.1",
     "karma": "^4.0.1",
     "karma-chrome-launcher": "^2.2.0",
