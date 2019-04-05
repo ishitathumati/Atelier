@@ -55,6 +55,18 @@ export class UserProvider {
     return promise;
   }
 
+  getProfiledetails(){
+    var promise = new Promise((resolve, reject) => {
+      this.firedata.child(firebase.auth().currentUser.uid).child('profile').once('value', (snapshot) => {
+        resolve(snapshot.val());
+      }).catch((err) => {
+        reject(err);
+        })
+      })
+      return promise;
+  }
+  
+
 
   /*getprofiledetails() {
     var promise = new Promise((resolve, reject) => {
@@ -125,6 +137,19 @@ export class UserProvider {
            })  
     })
     return promise;
+}
+
+updatebio(x){
+  var promise = new Promise((resolve, reject)=>{ 
+      this.firedata.child(`${this.afireauth.auth.currentUser.uid}/profile`).update({
+        bio: x
+      }).then(()=>{
+        resolve({success: true});
+      }).catch((e)=>{
+        reject(e);
+      })
+  })
+  return promise
 }
 
 }

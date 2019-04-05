@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>NotificationsPage</ion-title>
+    <ion-title>Notifications Page</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -104,4 +104,29 @@
 
     </div>
   </ion-card>
+
+  <ion-list>
+      <ion-list-header>
+        Requests
+      </ion-list-header>
+      <ion-item-sliding *ngFor="let item of myrequests">
+        <ion-item>
+        <ion-avatar item-left>
+          <img src="">
+        </ion-avatar>
+        <h4>{{item.displayName}}</h4>
+        </ion-item>
+        <ion-item-options>
+          <button ion-button color="secondary" (click)="accept(item)">
+            <ion-icon name="checkmark"></ion-icon>
+            ADD
+          </button>
+          <button ion-button color="danger" (click)="ignore(item)">
+            <ion-icon name="trash"></ion-icon>
+            NO
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
 </ion-content>

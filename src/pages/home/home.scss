@@ -21,7 +21,15 @@ page-home {
         color: orange;
       }
     }
-  
+    
+    h4{
+      text-align: center;
+      font: 100 130px/0.8 'Great Vibes', Helvetica, sans-serif;
+      font-style: italic;
+      color: black;
+      text-shadow: 4px 4px 3px rgba(0,0,0,0.1); 
+    }
+
     .active.up {
         color: green;
       }

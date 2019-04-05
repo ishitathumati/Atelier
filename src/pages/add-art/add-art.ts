@@ -51,14 +51,7 @@ export class AddArtPage {
         mediaType: this.camera.MediaType.PICTURE,
         correctOrientation: true
       }
-  
-      const result = await this.camera.getPicture(options);
-  
-      const image =`data:image/jpeg;base64,${result}`;
-      const pictures = storage().ref();
-      pictures.child(`profilePics/${userid}/img`)
-              .putString(image, 'data_url');
-  
+      
       this.camera.getPicture(options).then((imageData)=>{
       this.photo = imageData;
       this.uploadANDgetURL(userid);

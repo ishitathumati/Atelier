@@ -37,6 +37,7 @@ import { ChatProvider } from '../providers/chat/chat';
 import { UpdateprofilepicPage } from '../pages/updateprofilepic/updateprofilepic';
 import { PopoverComponent } from '../components/popover/popover';
 import { ImghandlerProvider } from '../providers/imghandler/imghandler';
+import { MyfriendslistPage } from '../pages/myfriendslist/myfriendslist';
 
 
 const firebaseAuth = {
@@ -66,6 +67,7 @@ const firebaseAuth = {
     SavedPage,
     MessagesPage,
     FriendsPage,
+    MyfriendslistPage,
     UpdateprofilepicPage,
     PopoverComponent
   ],
@@ -96,6 +98,7 @@ const firebaseAuth = {
     ActivityPage,
     SavedPage,
     MessagesPage,
+    MyfriendslistPage,
     FriendsPage,
     UpdateprofilepicPage,
     PopoverComponent

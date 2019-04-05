@@ -19,8 +19,8 @@
  
  
 <ion-content padding>
-  <ion-list no-lines>
-    <ion-list-header>
+  <ion-list>
+    <!--ion-list-header>
       Requests
     </ion-list-header>
     <ion-item-sliding *ngFor="let item of myrequests">
@@ -43,7 +43,7 @@
     </ion-item-sliding>
     <ion-list-header>
       Friends
-    </ion-list-header>
+    </ion-list-header-->
     <ion-item *ngFor="let item of myfriends" (click)="friendchat(item)">
       <h3>{{item.displayName}}</h3>
     </ion-item>

@@ -5,5 +5,6 @@ export interface Profile {
     work: string;
     lives: string;
     fromCity: string;
+    bio:string;
     //photo: string;
 }
