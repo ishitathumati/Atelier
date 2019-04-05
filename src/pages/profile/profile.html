@@ -56,22 +56,22 @@
           </ion-row>
         </ion-grid>
       </div>
-      <ion-item lines="none">
-          <ion-icon name="school"></ion-icon>
-          Studied {{(profileData | async)?.areaofstudy}} at {{(profileData | async)?.study}}
-      </ion-item> 
-  
-      <ion-item lines="inset">
+      <div style="display: inline">
+          <ion-item no-lines>
+              <ion-icon name="school"></ion-icon>
+              Studied {{(profileData | async)?.areaofstudy}} at {{(profileData | async)?.study}}
+          </ion-item> 
+      </div>
+      <ion-item no-lines>
           <ion-icon name="briefcase"></ion-icon>
           Works at {{(profileData | async)?.work}}
       </ion-item>
   
-      <ion-item>
+      <ion-item no-lines>
           <ion-icon name="home"></ion-icon>
           Lives in {{(profileData | async)?.lives}} 
       </ion-item>
-  
-      <ion-item>
+      <ion-item no-lines>
         <ion-icon name="pin"></ion-icon>
         From {{(profileData | async)?.fromCity}} 
       </ion-item>

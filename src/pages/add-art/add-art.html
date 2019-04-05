@@ -16,8 +16,15 @@
 <ion-content padding>
 
   <p>Upload from</p>
-    <button ion-button (click) = "takePic()" >Take photo</button> 
-    <ion-icon name="folder-open" (click) = "openGallery()"></ion-icon> 
+    <!--button ion-button (click) = "takePic()">Take photo</button--> 
+    <button ion-button icon color ='primary' clear (click) = "takePic()">
+      <ion-icon name="camera"></ion-icon>
+      Take Photo
+    </button> 
+    <button ion-button icon color='primary' clear (click) = "openGallery()">
+      <ion-icon name="folder-open" (click) = "openGallery()"></ion-icon> 
+     Choose from Library
+   </button>
 
     <p><img src = "{{photo}}"> </p>
 
