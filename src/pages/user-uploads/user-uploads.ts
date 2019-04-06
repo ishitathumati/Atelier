@@ -35,6 +35,7 @@ export class UserUploadsPage {
   displayName :any;
   imageSource; 
   dbPhoto;
+  
   postData: FirebaseObjectObservable<Post>;
 
   constructor(private afAuth: AngularFireAuth, public userservice: UserProvider, public navCtrl: NavController, public navParams: NavParams) {
@@ -83,6 +84,8 @@ export class UserUploadsPage {
    this.getpostdetails().then((res:any)=>{
      this.dbPhoto = res.posturl;
      console.log(this.dbPhoto); //currently returning undefined
+   }).catch((e)=>{
+     
    })
    return this.dbPhoto;
    

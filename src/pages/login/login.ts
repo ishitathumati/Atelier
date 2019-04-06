@@ -3,12 +3,12 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { User } from '../../models/user';
 import { RegisterPage } from '../register/register';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { ProfilePage } from '../profile/profile';
 //import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
 import { CommentsPage } from '../comments/comments';
 import { AuthProvider } from '../../providers/auth/auth';
-
 
 
 /**
@@ -25,10 +25,9 @@ import { AuthProvider } from '../../providers/auth/auth';
 })
 export class LoginPage {
 
-  user = {password:"123456",
-email:"test101@gmail.com"} as User;
+  user = {} as User;
 
-  constructor(public toast:ToastController,private aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public authservice: AuthProvider) {
+  constructor(public db:AngularFireDatabase, public toast:ToastController,private aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public authservice: AuthProvider) {
   }
 
   ionViewDidLoad() {
@@ -79,7 +78,7 @@ email:"test101@gmail.com"} as User;
       if(data && data.email && data.uid){
     this.toast.create({
       message: `Welcome to Atelier, ${data.email}`,
-      duration: 3000
+      duration: 2000
     }).present();
   }
 })

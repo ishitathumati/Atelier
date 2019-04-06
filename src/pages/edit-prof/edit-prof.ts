@@ -114,7 +114,7 @@ openGallery()
 
 goToProfile(){
   this.aAuth.authState.take(1).subscribe(auth=>{
-    this.db.object(`users/${auth.uid}/profile`).set(this.profile)
+    this.db.object(`users/${auth.uid}/profile`).update(this.profile)
       .then(()=>{
         if(this.changed){
           this.userservice.updateimage(this.profilepic).then((res:any)=>{
@@ -132,7 +132,7 @@ goToProfile(){
       })
       this.toast.create({
       message: `Successfully updated your Profile!`,
-      duration: 3000
+      duration: 2000
     }).present();
 }) 
 }

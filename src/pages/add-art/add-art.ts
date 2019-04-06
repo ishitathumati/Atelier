@@ -26,7 +26,7 @@ export class AddArtPage {
   postkey:any;
 
   constructor(public db: AngularFireDatabase, private aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
-    //initializeApp(FIREBASE_CONFIG);
+    
   }
 
   ionViewDidLoad() {

@@ -59,7 +59,7 @@ export class ProfilePage {
 
   loadProfiledetails(){
     this.userservice.getProfiledetails().then((res:any)=>{
-      if(!res.bio){
+      if(!res.bio || res.bio == null){
         this.bio = "+ Add bio";
       }
       else{
