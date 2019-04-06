@@ -1,3 +1,55 @@
 page-friendchat {
+    .chat {
+        width: 320px;
+    }
+    
+    .bubble{
+        background-color: rgb(38, 117, 166);
+        border-radius: 6px;
+        box-shadow: 0 0 6px rgb(38, 117, 166);
+        display: inline-block;
+        padding: 13px 18px;
+        position: relative;
+        vertical-align: top;
+    }
+    
+    .bubble::before {
+        background-color: rgb(38, 117, 166);
+        content: "\00a0";
+        display: block;
+        height: 10px;
+        position: absolute;
+        top: 7px;
+        transform:             rotate( 29deg ) skew( -35deg );
+            -moz-transform:    rotate( 29deg ) skew( -35deg );
+            -ms-transform:     rotate( 29deg ) skew( -35deg );
+            -o-transform:      rotate( 29deg ) skew( -35deg );
+            -webkit-transform: rotate( 29deg ) skew( -35deg );
+        width:  20px;
+    }
+    
+ 
+    .me {
+        float: left;   
+        margin: 5px 45px 5px 20px;         
+    }
+    
+    .me::before {
+        box-shadow: -5px 5px -5px 0 rgba( 178, 178, 178, .4 );
+        left: -7px;           
+    }
 
+    .you {
+        float: right;    
+        margin: 5px 20px 5px 45px;         
+    }
+    
+    .you::before {
+        box-shadow: 5px 5px 5px 0   rgb(38, 117, 166);
+        right: -7px;    
+    }
+    
+    .chatwindow {
+        padding-bottom: px;
+    }
 }

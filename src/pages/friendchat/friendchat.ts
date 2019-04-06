@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Events, Content } from 'ionic-angu
 import { ChatProvider } from '../../providers/chat/chat';
 import  firebase from 'firebase';
 
+
 /**
  * Generated class for the FriendchatPage page.
  *
@@ -24,7 +25,7 @@ export class FriendchatPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public chatservice: ChatProvider, public events: Events, public zone: NgZone) {
     this.friend = this.chatservice.friend;
-    this.photoURL = firebase.auth().currentUser.photoURL;
+    this.photoURL = " ";
     this.scrollto();
     this.events.subscribe('newmessage', () => {
       this.allmessages = [];

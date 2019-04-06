@@ -5,7 +5,7 @@ import { storage } from 'firebase';
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import {UserProvider} from '../user/user';
 import { AngularFireAuth } from 'angularfire2/auth';
-import 'whatwg-fetch';
+
 
 
 /*

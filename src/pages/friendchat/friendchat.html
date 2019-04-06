@@ -22,13 +22,13 @@
         <img src="">
       </ion-avatar>
       <div class="bubble me" *ngIf="item.sentby === friend.uid">
-        <h3>{{item.message}}</h3>
+        <h3 style="color:white">{{item.message}}</h3>
       </div>
       <ion-avatar item-right *ngIf="item.sentby != friend.uid">
         <img src="">
       </ion-avatar>
       <div class="bubble you" *ngIf="item.sentby != friend.uid">
-        <h3>{{item.message}}</h3>
+        <h3 style="color:white">{{item.message}}</h3>
       </div>
     </ion-item>
   </ion-list>
