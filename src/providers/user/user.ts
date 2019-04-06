@@ -165,17 +165,15 @@ getpostdetails2() {
     firebase.database().ref(`/users`).child(firebase.auth().currentUser.uid).child('posts').once('value', (snapshot) => {
       this.postlist = [];
       temp = snapshot.val();
-      /*temp.forEach(ss => {
-        this.postlist.push(ss);
-     });
-      console.log('temp is printed', this.postlist)
-      resolve(this.postlist);*/
-        console.log('length',  temp.length)
+      if(temp){
         let x = Object.values(temp)
         console.log('x is printed', x)
         this.postlist=x;
         console.log('postlist is printed', this.postlist)
         resolve(this.postlist);
+      }
+    }).catch((e)=>{
+      reject(e);
     })
     
   });
