@@ -15,7 +15,7 @@
 
 <ion-content padding>
 
-<!--sssss-->
+<!--sssss--> 
  
 
   <ion-searchbar [(ngModel)]="searchstring" (input)="searchuser($event)" placeholder="Search"></ion-searchbar>
@@ -26,10 +26,10 @@
         <ion-avatar item-left>
           <img src=''>
         </ion-avatar>
-        <!--<h2>{{key.displayName}}</h2>-->
+        <h2>{{key.displayName}}</h2>
       </ion-item>
       <ion-item-options slide="left">
-        <button ion-button color="primary" (click)="sendreq(key)">
+        <button ion-button color="primary" (click)="goToProfile()">
           <ion-icon name="person-add"></ion-icon>
           Add
         </button>

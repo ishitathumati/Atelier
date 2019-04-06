@@ -11,6 +11,7 @@ import { AngularFireModule } from 'angularfire2';
 import * as firebase from 'firebase';
 import { UserProvider } from '../../providers/user/user';
 import { a } from '@angular/core/src/render3';
+import { ProfilePage } from '../profile/profile';
 //import {storage, initializeApp} from 'firebase';
 //import {navCtrl, initializeApp} from firebase;
 
@@ -358,7 +359,13 @@ export class ExplorePage {
   });
   
 
+
     
+  }
+
+
+  goToProfile(){
+    this.navCtrl.push(ProfilePage);
   }
   //HASH TAG STUFF:
   /* Hashtag bar should display random pictures for the user to scroll through

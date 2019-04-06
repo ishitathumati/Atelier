@@ -4,7 +4,7 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 import { AddArtPage } from '../add-art/add-art';
 import { UserProvider } from '../../providers/user/user';
 import * as firebase from 'firebase';
-import {Post} from '../../models/post';
+import { Post } from '../../models/post';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 //import { url } from 'inspector';
@@ -101,7 +101,7 @@ export class UserUploadsPage {
    }).catch((e)=>{
      
    })
-   return this.dbPhoto;
+   return this.dbPhoto; 
    
  }
 

@@ -11,8 +11,9 @@ import { PopoverComponent } from '../../components/popover/popover';
 import { MyfriendslistPage } from '../myfriendslist/myfriendslist';
 import { MessagesPage } from '../messages/messages';
 import { UserUploadsPage } from '../user-uploads/user-uploads';
+import { Post } from '../../models/post';
 
-/**
+/** 
  * Generated class for the ProfilePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
@@ -26,6 +27,7 @@ import { UserUploadsPage } from '../user-uploads/user-uploads';
 })
 export class ProfilePage { 
   
+  post = {} as Post; 
   profile = {} as Profile;
   persons: FirebaseListObservable <any>;
 
@@ -42,6 +44,8 @@ export class ProfilePage {
   firedata = firebase.database().ref(`/users`);
   status:any;
   disabled = false;
+  allposts;
+  postData: FirebaseObjectObservable<Post>;
 
   constructor(public events:Events, private afAuth: AngularFireAuth, public zone: NgZone, public alertCtrl: AlertController, public db: AngularFireDatabase, public userservice: UserProvider, public navCtrl: NavController, private toast: ToastController, public navParams: NavParams, private camera:Camera, public popoverCtrl: PopoverController) {
     //this.loadImage = this.navParams.get('image');
@@ -54,6 +58,14 @@ export class ProfilePage {
     this.getProfilePicture();
     this.loaduserdetails(); 
     this.loadProfiledetails(); 
+
+    this.userservice.getpostdetails2().then((list)=>{
+      //this.allposts = Object.values(list);
+      console.log('temp', list);
+      this.allposts = list;
+      console.log('inside new post subscribe,', this.allposts)
+
+    });
       
   }
 
@@ -90,6 +102,17 @@ export class ProfilePage {
   getItem(key: string): FirebaseObjectObservable<Profile> {
     this.item = this.db.object(`users/${this.afAuth.auth.currentUser.uid}/profile/${key}`)
     return this.item
+  }
+  
+  getpostdetails() {
+    var promise = new Promise((resolve, reject) => {
+    firebase.database().ref(`/users`).child(firebase.auth().currentUser.uid).child('posts').once('value', (snapshot) => {
+      resolve(snapshot.val());
+    }).catch((err) => {
+      reject(err);
+      })
+    })
+    return promise;
   }
 
   gotofriends(){
