@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, NgZone } from '@angular/core';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { AddArtPage } from '../add-art/add-art';
 import { UserProvider } from '../../providers/user/user';
@@ -35,10 +35,10 @@ export class UserUploadsPage {
   displayName :any;
   imageSource; 
   dbPhoto;
-  
+  allposts;
   postData: FirebaseObjectObservable<Post>;
 
-  constructor(private afAuth: AngularFireAuth, public userservice: UserProvider, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public zone: NgZone, public events: Events, private afAuth: AngularFireAuth, public userservice: UserProvider, public navCtrl: NavController, public navParams: NavParams) {
     //initializeApp(FIREBASE_CONFIG);
     this.galleryimage = this.navParams.get('image');
     this.photoimage = this.navParams.get('image2');
@@ -46,12 +46,26 @@ export class UserUploadsPage {
     this.imageSource = 'painting';
     this.getPhotoURL();
     this.loadName(); 
+     this.userservice.getpostdetails2().then((list)=>{
+      //this.allposts = Object.values(list);
+      console.log('temp', list);
+      this.allposts = list;
+      console.log('inside new post subscribe,', this.allposts)
+
+    });
+
   }
 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserUploadsPage');
+    //this.userservice.getpostdetails2();
+
     //this.postData = this.db.object(`posts/${data.pid}/profile`);
+  }
+
+  ionViewDidEnter() {
+    //this.userservice.getpostdetails2();
   }
 
   loadName() {
@@ -105,9 +119,11 @@ export class UserUploadsPage {
 }
 
 
-
-
-
+/*getpostdetails2(){
+  this.userservice.getPostDetailsFromDB().then((data)=>{
+    this.postlist
+  })
+}
 
   /*async takePic(){
     try{

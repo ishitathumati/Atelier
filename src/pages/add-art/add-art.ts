@@ -8,6 +8,7 @@ import {Post} from '../../models/post';
 import firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { TabsPage } from '../tabs/tabs';
+import {UserProvider} from '../../providers/user/user';
 
 
 @IonicPage()
@@ -21,17 +22,25 @@ export class AddArtPage {
   firedata = firebase.database().ref('/posts'); //creates table for posts
   photo:any; 
   postURL: any;
+  displayName :any;
   rootref:any;
   postref:any;
   postkey:any;
 
-  constructor(public db: AngularFireDatabase, private aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
+  constructor(public userservice:UserProvider ,public db: AngularFireDatabase, private aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
     
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddArtPage');
   } 
+
+  loadName() {
+    this.userservice.getuserdetails().then((res: any) => {
+      this.displayName = res.displayName;
+    })
+    return this.displayName
+  }
 
   //this function is taking a picture from the camera and uploading it to firebase 
   //using a helper function defined below uploadANDgetURL(uid:string)
@@ -103,9 +112,12 @@ updatePosts(){
     this.postkey = this.postref.key; //getting the auto generated post id of post firebase using '.key'
     //using built-in update function to store id that we got from above as postid in post table.
     this.postref.update({
+    username: auth.displayName,
     postid: this.postkey,
     posturl: this.postURL
-  }).then(()=>{this.navCtrl.setRoot(TabsPage)});
+  }).then(()=>{
+    this.navCtrl.push(UserUploadsPage)
+  });
 })
 }
 

@@ -22,70 +22,34 @@
         <p>Portfolio: Seasons</p>
       </div>
 
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6>
-              <ion-card>
-                  <img src = "{{galleryimage}}"/>
-                  <ion-card-content>
-                    <ion-card-title>
-                      {{(postData|async)?.title}}
-                      </ion-card-title>
-                    <p>
-                      {{(postData|async)?.price}}<ion-icon name="heart"></ion-icon>
-                    </p>
-                    {{(postData|async)?.description}}
-                  </ion-card-content>
-                </ion-card>
-          </ion-col>
-          <ion-col col-6>
-            <ion-card>
-              <img src = "{{photoimage}}"/>
-              <ion-card-content>
-                <ion-card-title>
-                  Autumn
-                  </ion-card-title>
-                <p>
-                  $49 <ion-icon name="heart"></ion-icon>
-                </p>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col col-6>
-                <ion-card>
-                    <ion-card-content>
-                      <ion-card-title>
-                       <!-- {{title}} -->
-                        </ion-card-title>
-                      <p>
-                        $49  <ion-icon name="heart" color="#eca72c"></ion-icon>
-                      </p>
-                      <ion-slides class="image-slider"> 
-                        <ion-slide *ngFor="let pic of pics">
-                          <img src="assets/imgs/{{pic}}" class="image" imageViewer>
-                        </ion-slide>
-                      </ion-slides>
-                    </ion-card-content>
-                  </ion-card>
+      <ion-list>
+        <ion-item *ngFor="let item of allposts;let i=index" style="width: 100%">
+          <div class="b">
+            <ion-row>
+                  <small class="user-name"><div class="a" style="color: #000; font-weight: bold; margin-top: 5px; margin-left: 1px">
+                    {{allposts[i].title}}<br>
+                  </div>
+                  </small>
+            </ion-row>
+          </div>
+          <ion-row>
+            <div style="width: 100% !important;">
+              <img  src="{{allposts[i].posturl}}"  maxlength="100%"/>
+            </div>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <button style="text-transform: none;" ion-button clear small >
+                <div> {{allposts[i].price}} </div>
+              </button>
             </ion-col>
-            <ion-col col-6>
-                <ion-card>
-                    <img src="{{dbPhoto}}"/>
-                    <ion-card-content>
-                      <ion-card-title>
-                        {{(postData|async)?.title}}
-                        </ion-card-title>
-                      <p>
-                        {{(postData|async)?.price}} <ion-icon name="heart"></ion-icon>
-                        {{(postData|async)?.description}}
-                      </p>
-                    </ion-card-content>
-                  </ion-card>
-            </ion-col>
-        </ion-row>
-      </ion-grid>
+          </ion-row>
+          <ion-row>
+            <p text-wrap style="font-family: Comic Sans MS;color: black;text-align: justify">
+              {{allposts[i].description}} </p>
+          </ion-row>
+        </ion-item>
+      </ion-list>
 
 </ion-content>
 
