@@ -14,7 +14,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { a } from '@angular/core/src/render3';
 import {initializeApp} from 'firebase';
 //import {navCtrl, initializeApp} from firebase;
-
+import { connreq } from '../../models/request';
 
 /**
  * Generated class for the ExplorePage page.
