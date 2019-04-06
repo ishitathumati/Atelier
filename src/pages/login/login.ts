@@ -49,15 +49,17 @@ export class LoginPage {
     }) 
   }
 */
-  signup() {}
 
-  
   async login(user: User){
     this.authservice.login(this.user).then((res: any) => {
       try{
         const result = this.aAuth.auth.signInWithEmailAndPassword(user.email, user.password);
         if(result)
         {
+          this.toast.create({
+            message: `Welcome to Atelier, ${user.email}`,
+            duration: 2000
+          }).present();
           this.navCtrl.push(TabsPage, CommentsPage);
          
         }
@@ -72,16 +74,5 @@ export class LoginPage {
   register(){
     this.navCtrl.push(RegisterPage);
   }
-
-  ionViewDidLeave(){
-  this.aAuth.authState.take(1).subscribe(data => {
-      if(data && data.email && data.uid){
-    this.toast.create({
-      message: `Welcome to Atelier, ${data.email}`,
-      duration: 2000
-    }).present();
-  }
-})
-}
 
 }
