@@ -16,17 +16,37 @@
 <ion-content padding>
 
 <!--sssss-->
+ 
 
+  <ion-searchbar [(ngModel)]="searchstring" (input)="searchuser($event)" placeholder="Search"></ion-searchbar>
+<ion-list no-lines>
+  <ion-list>
+    <ion-item-sliding *ngFor="let key of filteredusers">
+      <ion-item >
+        <ion-avatar item-left>
+          <img src=''>
+        </ion-avatar>
+        <!--<h2>{{key.displayName}}</h2>-->
+      </ion-item>
+      <ion-item-options slide="left">
+        <button ion-button color="primary" (click)="sendreq(key)">
+          <ion-icon name="person-add"></ion-icon>
+          Add
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-list>
 
 
   
-    <ion-searchbar
+    <!--<ion-searchbar
     [(ngModel)]="myInput"
     [showCancelButton]="shouldShowCancel"
     (ionInput)="onInput($event)"
     (ionCancel)="onCancel($event)">
        
-  </ion-searchbar>
+  </ion-searchbar>-->
 
   <div class="tags-input" data-name="tags-input"></div>
   <input class = "main-input" ion-input placeholder="#Hashtags" type = "text" >
