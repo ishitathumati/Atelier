@@ -14,7 +14,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { a } from '@angular/core/src/render3';
 import {initializeApp} from 'firebase';
 //import {navCtrl, initializeApp} from firebase;
-import { connreq } from '../../models/request';
+
 
 /**
  * Generated class for the ExplorePage page.
@@ -42,10 +42,12 @@ export class ExplorePage {
   imageSource1; 
   imageSource2;
   imageSource3;
+  imageSource4;
 
   dbPhoto1;
   dbPhoto2;
   dbPhoto3;
+  dbPhoto4;
 
   newrequest = {} as connreq;
   
@@ -58,6 +60,7 @@ export class ExplorePage {
       this.imageSource1 = 'bluemount';
       this.imageSource2 = 'dusk';
       this.imageSource3 = 'scream';
+      this.imageSource4 = 'starrynight';
 
       this.getPhotoURL();
 
@@ -73,6 +76,7 @@ export class ExplorePage {
   }
   
   ionViewDidLoad() 
+
   {
     console.log('ionViewDidLoad ExplorePage');
   }
@@ -131,6 +135,9 @@ export class ExplorePage {
     })
     firebase.storage().ref().child('explorePics/' + this.imageSource3 + '.png').getDownloadURL().then((url)=>{
       this.dbPhoto3=url;
+    }) 
+    firebase.storage().ref().child('explorePics/' + this.imageSource4 + '.png').getDownloadURL().then((url)=>{
+      this.dbPhoto4=url;
     }) 
 
   /* public userslist : Array<any>;
