@@ -5,6 +5,9 @@ import { FriendsPage } from '../friends/friends';
 //import { threadId } from 'worker_threads';
 import { FriendchatPage } from '../friendchat/friendchat';
 import { ChatProvider } from '../../providers/chat/chat'; 
+import { Profile } from '../../models/profile';
+import { ProfilePage } from '../profile/profile';
+
 
 /**
  * Generated class for the MessagesPage page.
@@ -19,6 +22,9 @@ import { ChatProvider } from '../../providers/chat/chat';
   templateUrl: 'messages.html',
 })
 export class MessagesPage {
+
+  profile = {} as Profile;
+
   myrequests;
   myfriends;
   constructor(public navCtrl: NavController, public navParams: NavParams, public requestservice: RequestsProvider,
@@ -76,7 +82,7 @@ export class MessagesPage {
     friendchat(friend) {
       this.chatservice.initializebuddy(friend);
       this.navCtrl.push('FriendchatPage');
-    }
+    } 
 
     
        

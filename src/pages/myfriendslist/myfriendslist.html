@@ -22,7 +22,8 @@
   <ion-searchbar placeholder="search my friends"(ionInput)="getItems($event)"></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let item of myfriends">
-      <h3>{{item.displayName}}</h3>
+      <h3>{{item.displayName}}</h3> 
+      <img src={{profilePic}}>
     </ion-item>
   </ion-list>
 </ion-content>

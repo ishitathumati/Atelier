@@ -21,7 +21,7 @@ import { LoginPage } from '../pages/login/login';
 })
 export class MyApp {
   @ViewChild(Nav) nav; Nav;
-  rootPage: any = LoginPage;
+  rootPage: any = TabsPage;
 
   pages: Array<{title: string, component: any, icon: string}>;
 
@@ -47,7 +47,7 @@ openPage(page){
 }
 
 LogOut(page: any){
-  this.nav.setRoot(LoginPage);
+  this.nav.setRoot(TabsPage);
   this.menuCtrl.close();
 }
 
