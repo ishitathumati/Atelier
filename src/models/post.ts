@@ -4,4 +4,5 @@ export interface Post{
     title:string;
     description:string;
     posturl:string;
+    hashid: string;
 }
