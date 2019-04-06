@@ -3,10 +3,7 @@ import { NavController } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
 import { CommentsPage } from '../comments/comments';
 import { AngularFireDatabase } from 'angularfire2/database';
-
-
-
-
+import { UserProvider } from '../../providers/user/user';
 
 
 @Component({
@@ -20,9 +17,17 @@ export class HomePage {
   likes: object[] = [];
   username: string = 'sahil\'sLike';
   s;
-  constructor(public navCtrl: NavController, public db: AngularFireDatabase) {
+  allposts;
+
+  constructor(public userservice:UserProvider, public navCtrl: NavController, public db: AngularFireDatabase) {
     this.s = this.db.list('/like').subscribe( data => {
       this.likes = data;
+
+      this.userservice.getpostdetails2().then((list)=>{
+        this.allposts =list;
+        console.log('list of posts', this.allposts)
+      });
+
     });
     
   }

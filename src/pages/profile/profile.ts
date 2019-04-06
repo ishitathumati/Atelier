@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController, AlertController, 
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import { storage } from 'firebase';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from 'angularfire2/auth'; 
 import { Profile } from '../../models/profile';
 import { UserProvider } from '../../providers/user/user';
 import firebase from 'firebase';

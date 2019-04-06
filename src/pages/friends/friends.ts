@@ -30,7 +30,7 @@ export class FriendsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FriendsPage');
+    console.log('ionViewDidLoad FriendsPage'); 
   }
   
   searchuser(searchbar) {

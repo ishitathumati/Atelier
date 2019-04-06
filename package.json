@@ -39,6 +39,7 @@
     "@ionic-native/status-bar": "~4.15.0",
     "@ionic/pro": "2.0.3",
     "@ionic/storage": "2.2.0",
+    "@types/parse": "^2.2.2",
     "angular": "^1.7.8",
     "angularfire2": "^4.0.0-rc0",
     "cordova-android": "7.1.4",
@@ -63,7 +64,8 @@
     "rxjs": "^5.5.12",
     "sw-toolbox": "^3.6.0",
     "threads": "^0.12.1",
-    "typescript": "^3.4.1",
+    "typescript": "^3.4.2",
+    "whatwg-fetch": "^3.0.0",
     "zone.js": "^0.8.29"
   },
   "devDependencies": {

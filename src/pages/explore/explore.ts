@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { storage } from 'firebase';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 //import { User } from '../../models/users';
@@ -9,6 +9,7 @@ import { AngularFireModule } from 'angularfire2';
 //import { FIREBASE_CONFIG } from '../../app/firebase.config';
 //import { UserUploadsPage } from '../user-uploads/user-uploads';
 import * as firebase from 'firebase';
+import { UserProvider } from '../../providers/user/user';
 import { a } from '@angular/core/src/render3';
 //import {storage, initializeApp} from 'firebase';
 //import {navCtrl, initializeApp} from firebase;
@@ -25,7 +26,7 @@ import { a } from '@angular/core/src/render3';
  //hash tag bar accesses post id 
 
 
-
+ 
 
 @IonicPage()
 @Component({
@@ -35,11 +36,12 @@ import { a } from '@angular/core/src/render3';
 
 export class ExplorePage {
 
-  
+  temparr = [];
+  filteredusers = [];
 
-  public userslist : Array<any>;
+  /*public userslist : Array<any>;
   public loadedUserslist: Array<any>;
-  public usersRef: firebase.database.Reference;
+  public usersRef: firebase.database.Reference;*/
 
 
 
@@ -95,7 +97,14 @@ export class ExplorePage {
 
   //private userlist = this.db.list<User>('users-list');
   
-  constructor (public aAuth: AngularFireAuth, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
+  constructor (public aAuth: AngularFireAuth, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams,  public userservice: UserProvider) {
+    this.userservice.getallusers().then((res: any) => {
+      this.filteredusers = res;
+      this.temparr = res;
+    })
+
+    
+
     //initializeApp(FIREBASE_CONFIG);
     //firebase.initializeApp(config);
     /*this.imageSource = ['bluemount',
@@ -142,7 +151,7 @@ export class ExplorePage {
     //this.userslist = db.list('/usernames');
 
     //this willl open a reference to our firebase data under the /users node
-    this. usersRef = firebase.database(). ref('/users');
+    /*this. usersRef = firebase.database(). ref('/users');
     this. usersRef.on('value', userslist=>{
       let users = [];
       userslist.forEach(user=>{
@@ -151,13 +160,34 @@ export class ExplorePage {
       });
       this.userslist = users;
       this.loadedUserslist= users;
-    })
+    })*/
+
+    
 
     
   }
 
+  ionViewDidLoad() 
+  {
+    console.log('ionViewDidLoad ExplorePage');
+  }
 
-  initializeItems() : void{
+  searchuser(searchbar) {
+    this.filteredusers = this.temparr;
+    var q = searchbar.target.value;
+    if (q.trim() == '') {
+      return;
+    }
+ 
+    this.filteredusers = this.filteredusers.filter((v) => {
+      if (v.displayName.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+        return true;
+      }
+      return false;
+    })
+  }
+
+  /*initializeItems() : void{
     this.userslist = this.loadedUserslist;
   }
 
@@ -182,13 +212,10 @@ export class ExplorePage {
   getuserslist() 
   {
     return this.userslist;
-  }
+  }*/
 
 
-  ionViewDidLoad() 
-  {
-    console.log('ionViewDidLoad ExplorePage');
-  }
+  
 
   //getting urls from firebase
   getPhotoURL()

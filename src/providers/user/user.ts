@@ -1,8 +1,13 @@
 //import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { Events } from 'ionic-angular';
+
 import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from 'firebase'; 
+//import Parse from 'parse';
+import{Post} from '../../models/post';
+
 /*
   Generated class for the UserProvider provider.
 
@@ -12,9 +17,9 @@ import firebase from 'firebase';
 @Injectable()
 export class UserProvider {
   firedata = firebase.database().ref('/users');
-  
+  postlist;
 
-  constructor(public afireauth: AngularFireAuth) {
+  constructor(public events: Events, public afireauth: AngularFireAuth) {
     
   }
 
@@ -151,5 +156,31 @@ updatebio(x){
   })
   return promise
 }
+
+
+getpostdetails2() {
+  
+  var prom=new Promise((resolve, reject)=>{
+    let temp;
+    firebase.database().ref(`/users`).child(firebase.auth().currentUser.uid).child('posts').once('value', (snapshot) => {
+      this.postlist = [];
+      temp = snapshot.val();
+      if(temp){
+        let x = Object.values(temp)
+        console.log('x is printed', x)
+        this.postlist=x;
+        console.log('postlist is printed', this.postlist)
+        resolve(this.postlist);
+      }
+    }).catch((e)=>{
+      reject(e);
+    })
+    
+  });
+  return prom
+ 
+ 
+}
+
 
 }

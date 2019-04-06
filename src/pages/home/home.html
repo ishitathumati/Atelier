@@ -1,8 +1,3 @@
-<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Kristi" />
-<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Homemade+Apple" />
-<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Rochester" />
-<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Cookie" />
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
 <link href="https://fonts.googleapis.com/css?family=Sacramento" type="text/css" rel="stylesheet">
 
 <ion-header>
@@ -20,21 +15,21 @@
       </ion-item>
     </ion-list>
     
-    <ion-card>
-
-        <ion-item>
-          <ion-avatar item-start>
-            <img src="assets/jon.jpg">
-          </ion-avatar>
-          
-          <div><button ion-button color ="light" round (click) = "ProfilePageClick()">
-            Jonathan Chestnut
-          </button></div>
-          
-        </ion-item>
-      
-        <img src="assets/imgs/wallpaper.jpg">
-      
+    <ion-list>
+      <ion-item *ngFor="let item of allposts;let i=index" style="width: 100%">
+        <div class="b">
+          <ion-row>
+                <small class="user-name"><div class="a" style="color: #000; font-weight: bold; margin-top: 5px; margin-left: 1px">
+                  {{allposts[i].username}}<br>
+                </div>
+                </small>
+          </ion-row>
+        </div>
+        <ion-row>
+          <div style="width: 100% !important;">
+            <img  src="{{allposts[i].posturl}}"  maxlength="100%"/>
+          </div>
+        </ion-row>
         <ion-row>
           <ion-col>
             <button ion-button icon-start clear small (click)="handleLike()">
@@ -42,8 +37,6 @@
             </button>
           </ion-col>
           <ion-col>
-
-            
             <button ion-button icon-start clear small>
               <ion-icon name="text"></ion-icon>
               <!--</button (click)="goToPage()"></button>-->
@@ -51,17 +44,15 @@
               <div><button ion-button icon-stat clear small (click) = "btnclicked()">
                 Comments
               </button></div> 
-
             </button>
           </ion-col>
-          <ion-col center text-center>
-            <ion-note>
-              11h ago
-            </ion-note>
-          </ion-col>
         </ion-row>
-      
-      </ion-card>
+        <ion-row>
+          <p text-wrap style="font-family: Comic Sans MS;color: black;text-align: justify">
+            {{allposts[i].description}} </p>
+        </ion-row>
+      </ion-item>
+    </ion-list>
 
       <br/>
       <br/>
