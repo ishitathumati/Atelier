@@ -7,10 +7,7 @@ import { storage, initializeApp} from 'firebase';
 import {Post} from '../../models/post';
 import firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { updateDate } from 'ionic-angular/umd/util/datetime-util';
-
-//import { FIREBASE_CONFIG } from '../../app/firebase.config';
-//import { catchError } from 'rxjs/operators';
+import { TabsPage } from '../tabs/tabs';
 
 
 @IonicPage()
@@ -22,11 +19,6 @@ export class AddArtPage {
 
   post = {} as Post; 
   firedata = firebase.database().ref('/posts'); //creates table for posts
-
-  //pictures:any;
-  //userid=this.aAuth.auth.currentUser.uid;
-  //firedata = firebase.database().ref(`/users/${this.userid}/posts`);
-  //photo2:any;
   photo:any; 
   postURL: any;
   rootref:any;
@@ -34,13 +26,15 @@ export class AddArtPage {
   postkey:any;
 
   constructor(public db: AngularFireDatabase, private aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
-    //initializeApp(FIREBASE_CONFIG);
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddArtPage');
   } 
 
+  //this function is taking a picture from the camera and uploading it to firebase 
+  //using a helper function defined below uploadANDgetURL(uid:string)
   async takePic(){
     try{
       const userid = this.aAuth.auth.currentUser.uid;
@@ -51,14 +45,7 @@ export class AddArtPage {
         mediaType: this.camera.MediaType.PICTURE,
         correctOrientation: true
       }
-  
-      const result = await this.camera.getPicture(options);
-  
-      const image =`data:image/jpeg;base64,${result}`;
-      const pictures = storage().ref();
-      pictures.child(`profilePics/${userid}/img`)
-              .putString(image, 'data_url');
-  
+      //getting raw image url and uploading to firebase
       this.camera.getPicture(options).then((imageData)=>{
       this.photo = imageData;
       this.uploadANDgetURL(userid);
@@ -69,6 +56,7 @@ export class AddArtPage {
   }
 }
 
+//choosing pic from gallery
 openGallery()
 {
   const userid = this.aAuth.auth.currentUser.uid;
@@ -78,6 +66,7 @@ openGallery()
     destinationType: this.camera.DestinationType.DATA_URL,
     quality: 70,
   }
+  //getting raw image url and uploading it to firebase
   this.camera.getPicture(options).then((imageData) => 
   {
      this.photo = imageData;
@@ -86,46 +75,40 @@ openGallery()
   });
 }
 
+//passing in userid of current user as parameter to allow that specific user to upload photo.
 private uploadANDgetURL(uid:string): void {
   const pictures = storage().ref();
-  const name = `${new Date().getTime()}-${uid}`;
-  const storageref = pictures.child(`posts/${uid}/${name}`);
+  const name = `${new Date().getTime()}-${uid}`;//generating name for each image uploaded
+  const storageref = pictures.child(`posts/${uid}/${name}`);//storage location path in firebase storage
    //imageData is either a base64 encoded string or a file URI
-  storageref.putString(this.photo, 'base64', {contentType: 'image/jpeg'})
+  storageref.putString(this.photo, 'base64', {contentType: 'image/jpeg'})//putting image in specified location 
   .catch((err) => {
     console.log(err);
     console.log('Cant upload photo');
   }).then(()=>{
-    storageref.getDownloadURL().then((url)=>{this.postURL = url})
+    storageref.getDownloadURL().then((url)=>{this.postURL = url})//once uploaded to firebase, getting firebase url and storing it in post table as postURL
   });
-}
-  
-  //const postid = new Date().toISOString()+uid;
-  //this.post.postid = postid;
-  //this.updatePostURL(postid);
+}  
 
 
 cancel(){
   this.navCtrl.pop();
 }
 
+//updating post table with post id and postURL for newly uploaded image and pushing it to firebase post table.
 updatePosts(){
   this.aAuth.authState.take(1).subscribe(auth=>{ 
     this.rootref = firebase.database().ref(`users/${auth.uid}`);
     this.postref = this.rootref.child('posts').push(this.post);
-    this.postkey = this.postref.key;
+    this.postkey = this.postref.key; //getting the auto generated post id of post firebase using '.key'
+    //using built-in update function to store id that we got from above as postid in post table.
     this.postref.update({
     postid: this.postkey,
     posturl: this.postURL
-  }).then(()=>{this.navCtrl.pop()});
+  }).then(()=>{this.navCtrl.setRoot(TabsPage)});
 })
 }
 
 }
 
-
-  
-  //this.db.list(`users/${auth.uid}/posts`).push(this.post)
-  //let image2 = this.photo;
-  //this.navCtrl.push(UserUploadsPage, {image: image2});
 

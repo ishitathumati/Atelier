@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { User } from '../../models/user';
 import { RegisterPage } from '../register/register';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { ProfilePage } from '../profile/profile';
 //import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
 import { CommentsPage } from '../comments/comments';
 import { AuthProvider } from '../../providers/auth/auth';
-
 
 
 /**
@@ -27,7 +27,7 @@ export class LoginPage {
 
   user = {} as User;
 
-  constructor(private aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public authservice: AuthProvider) {
+  constructor(public db:AngularFireDatabase, public toast:ToastController,private aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public authservice: AuthProvider) {
   }
 
   ionViewDidLoad() {
@@ -49,16 +49,19 @@ export class LoginPage {
     }) 
   }
 */
-  signup() {}
 
-  
   async login(user: User){
     this.authservice.login(this.user).then((res: any) => {
       try{
         const result = this.aAuth.auth.signInWithEmailAndPassword(user.email, user.password);
         if(result)
         {
-          this.navCtrl.push(TabsPage, CommentsPage); 
+          this.toast.create({
+            message: `Welcome to Atelier, ${user.email}`,
+            duration: 2000
+          }).present();
+          this.navCtrl.push(TabsPage, CommentsPage);
+         
         }
       }
       catch(e){

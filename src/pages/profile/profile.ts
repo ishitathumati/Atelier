@@ -7,8 +7,10 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Profile } from '../../models/profile';
 import { UserProvider } from '../../providers/user/user';
 import firebase from 'firebase';
-import { UpdateprofilepicPage } from '../updateprofilepic/updateprofilepic';
 import { PopoverComponent } from '../../components/popover/popover';
+import { MyfriendslistPage } from '../myfriendslist/myfriendslist';
+import { MessagesPage } from '../messages/messages';
+import { UserUploadsPage } from '../user-uploads/user-uploads';
 
 /**
  * Generated class for the ProfilePage page.
@@ -31,13 +33,15 @@ export class ProfilePage {
   item:any;
   personList:any;
   name: string;
+  bio='+ Add bio';
   name1: any;
   //loadImage:any;
   imagesource: any;
   profilepic: any;
   displayName: any;
   firedata = firebase.database().ref(`/users`);
-  param:any;
+  status:any;
+  disabled = false;
 
   constructor(public events:Events, private afAuth: AngularFireAuth, public zone: NgZone, public alertCtrl: AlertController, public db: AngularFireDatabase, public userservice: UserProvider, public navCtrl: NavController, private toast: ToastController, public navParams: NavParams, private camera:Camera, public popoverCtrl: PopoverController) {
     //this.loadImage = this.navParams.get('image');
@@ -46,15 +50,24 @@ export class ProfilePage {
     this.persons.subscribe((items)=>{
        this.personList=items
     } );*/
-    if(this.navParams.get('status'))
-    {
-      this.profilepic = this.navParams.get('profilepic');
-    }
 
     this.getProfilePicture();
-
-    this.loaduserdetails();  
+    this.loaduserdetails(); 
+    this.loadProfiledetails(); 
       
+  }
+
+  loadProfiledetails(){
+    this.userservice.getProfiledetails().then((res:any)=>{
+      if(!res.bio || res.bio == null){
+        this.bio = "+ Add bio";
+      }
+      else{
+        this.bio = res.bio;
+      }
+      console.log('bio', res.bio);
+    })
+    return this.bio;
   }
 
   loaduserdetails() { 
@@ -77,6 +90,68 @@ export class ProfilePage {
   getItem(key: string): FirebaseObjectObservable<Profile> {
     this.item = this.db.object(`users/${this.afAuth.auth.currentUser.uid}/profile/${key}`)
     return this.item
+  }
+
+  gotofriends(){
+    this.navCtrl.push(MyfriendslistPage);
+  }
+
+  gotoposts(){
+    this.navCtrl.push(UserUploadsPage);
+  }
+
+  gotomessages(){
+    this.navCtrl.push(MessagesPage);
+  }
+
+addbio(){
+    let bioalert = this.alertCtrl.create({
+      buttons:[{
+        text:'okay',
+        role:'okay',
+        handler: data=>{
+          //this.updatebio(data)
+        }
+      }]
+    });
+    let bioalert2 = this.alertCtrl.create({
+      title:'Add Bio',
+      inputs: [{name:'name',
+                placeholder:'Tell us something about yourself'
+              }],
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        handler: data => {
+ 
+        }
+      },
+      {
+        text: 'save',
+        handler: data => {
+          if (data.name) {
+            this.userservice.updatebio(data.name).then((res:any) => {
+              if (res) 
+              {
+                console.log('status', res)
+                bioalert.setTitle('Bio Added!');
+                bioalert.present();
+                this.zone.run(() => {
+                this.bio = data.name;
+                })
+              }     
+          })
+        }
+          else {
+            bioalert.setTitle('Failed');
+            bioalert.setSubTitle('Could not add bio!');
+            bioalert.present();
+          }
+        }
+        
+      }]
+    });
+    bioalert2.present();
   }
 
   editname() {
@@ -125,25 +200,6 @@ export class ProfilePage {
     });
     alert.present();
   }
-  
-  /*setName(){
-    //let userid = this.afAuth.auth.currentUser.uid;
-    //firedata = this.firebase.database().ref(`users/${userid}/details/displayName`);
-    if(this.name)
-    {
-      this.name1 = this.loadprofiledetails;
-      console.log('name', this.name1)
-    }
-    else
-    {
-      this.name1 = this.loaduserdetails();
-      console.log('name', this.name1)
-    }
-  }*/
-  updatePic(){
-    let userid = this.afAuth.auth.currentUser.uid;
-    this.profilepic = storage().ref().child(`profilePics/${userid}/img`).getDownloadURL();
-  }
 
   getProfilePicture(){
   try{
@@ -154,8 +210,7 @@ export class ProfilePage {
       .then((url)=>{
         console.log('profile pic url', url);
         this.profilepic = url
-        /*}).then((profilepic)=>{
-          this.db.object(`profile/${userid}/`).update({photo: profilepic})*/
+        
     }).catch(()=>{
       this.profilepic = 'https://firebasestorage.googleapis.com/v0/b/atelier-842ac.appspot.com/o/profilePics%2Fdefault.jpeg?alt=media&token=ba12bc14-ef9a-4893-947a-90b58c9850fb';
     });
@@ -177,6 +232,7 @@ presentPopover(myEvent) {
   ionViewDidLoad() {
     this.getProfilePicture();
     this.loaduserdetails();
+    //this.loadProfiledetails();
     console.log('ionViewDidLoad ProfilePage');
     this.afAuth.authState.take(1).subscribe(data => {
       if(data && data.email && data.uid) {
@@ -202,4 +258,5 @@ ionViewWillEnter(){
 ionViewDidEnter(){
   this.getProfilePicture();
 }
+
 }

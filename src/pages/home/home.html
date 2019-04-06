@@ -1,12 +1,17 @@
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Kristi" />
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Homemade+Apple" />
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Rochester" />
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Cookie" />
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
+<link href="https://fonts.googleapis.com/css?family=Sacramento" type="text/css" rel="stylesheet">
+
 <ion-header>
   <ion-navbar>
-    <ion-title>Feed</ion-title>
+      <ion-title><h2>Atélier</h2></ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
-    
 
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
     <ion-list>
@@ -77,3 +82,15 @@
   };
   firebase.initializeApp(config);
 </script>
+
+<style>
+    h2{
+      font-size: 1.6em;
+      font-weight:bold;
+      text-align: center;
+      font-family: Sacramento;
+      font-style: cursive;
+      color: black;
+      text-shadow: 4px 4px 4px rgba(0,0,0,0.1); 
+    }
+</style>

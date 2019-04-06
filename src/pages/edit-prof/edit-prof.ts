@@ -34,6 +34,7 @@ export class EditProfPage {
   photo2:any;
   profilepic:any
   profile = {} as Profile;
+  changed=false;
 
 
   //peopleList : FirebaseListObservable<any>;
@@ -74,6 +75,7 @@ export class EditProfPage {
     this.camera.getPicture(options).then((imageData)=>{
     this.photo = imageData;
     this.uploadPhoto(userid);
+    this.changed=true;
   }); 
 }
 catch (e){
@@ -105,26 +107,32 @@ openGallery()
   {
      this.photo = imageData;
      this.uploadPhoto(userid);
+     this.changed=true;
   }, (err) => {
   });
 }
 
 goToProfile(){
   this.aAuth.authState.take(1).subscribe(auth=>{
-    this.db.object(`users/${auth.uid}/profile`).set(this.profile)
+    this.db.object(`users/${auth.uid}/profile`).update(this.profile)
       .then(()=>{
-        this.userservice.updateimage(this.profilepic).then((res:any)=>{
-          if(res.success){
-            this.navCtrl.setRoot(TabsPage);
-          }
-          else{
-            alert(res);
-          }
-        })
+        if(this.changed){
+          this.userservice.updateimage(this.profilepic).then((res:any)=>{
+            if(res.success){
+              this.navCtrl.setRoot(TabsPage);
+            }
+            else{
+              alert(res);
+            }
+          })
+        }
+        else{
+          this.navCtrl.setRoot(TabsPage);
+        }
       })
       this.toast.create({
       message: `Successfully updated your Profile!`,
-      duration: 3000
+      duration: 2000
     }).present();
 }) 
 }

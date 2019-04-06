@@ -7,7 +7,7 @@ import { FriendchatPage } from '../friendchat/friendchat';
 import { ChatProvider } from '../../providers/chat/chat'; 
 
 /**
- * Generated class for the NotificationsPage page.
+ * Generated class for the MyfriendslistPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -15,10 +15,10 @@ import { ChatProvider } from '../../providers/chat/chat';
 
 @IonicPage()
 @Component({
-  selector: 'page-notifications',
-  templateUrl: 'notifications.html',
+  selector: 'page-myfriendslist',
+  templateUrl: 'myfriendslist.html',
 })
-export class NotificationsPage {
+export class MyfriendslistPage {
   myrequests;
   myfriends;
   constructor(public navCtrl: NavController, public navParams: NavParams, public requestservice: RequestsProvider,
@@ -72,5 +72,7 @@ export class NotificationsPage {
         alert(err);
       })
     }
+
+    
 
 }

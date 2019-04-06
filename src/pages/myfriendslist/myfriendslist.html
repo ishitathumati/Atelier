@@ -1,0 +1,28 @@
+<!--
+  Generated template for the MessagesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+ 
+  <ion-navbar color="hcolor">
+    <ion-title>My Friends</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addfriend()">
+        <ion-icon name="person-add"></ion-icon>
+      </button>
+    </ion-buttons> 
+  </ion-navbar>
+ 
+</ion-header>
+ 
+ 
+<ion-content padding>
+  <ion-searchbar placeholder="search my friends"(ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let item of myfriends">
+      <h3>{{item.displayName}}</h3>
+    </ion-item>
+  </ion-list>
+</ion-content>

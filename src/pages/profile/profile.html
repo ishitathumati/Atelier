@@ -14,7 +14,7 @@
           </ion-buttons>
       <ion-title>Profile</ion-title>
       <ion-buttons end>
-          <button ion-button icon-only color="dark">
+          <button ion-button icon-only color="dark"(click)="gotomessages()">
             <ion-icon name="mail"></ion-icon>
           </button>
         </ion-buttons>
@@ -41,23 +41,37 @@
       <h4>From City, State: {{(profileData | async)?.fromCity}}</h4>
     </ion-item-->
       <h2 style="font-family: Helvetica, sans-serif;" (click)="editname()">{{displayName}}</h2>
-  
-      <ion-item lines="none">
-          <ion-icon name="school"></ion-icon>
-          Studied {{(profileData | async)?.areaofstudy}} at {{(profileData | async)?.study}}
-      </ion-item> 
-  
-      <ion-item lines="inset">
+      
+      <p  style="font-family: Helvetica, sans-serif;" (click)="addbio()">{{bio}}</p>
+    
+      <div class="align">        
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <button ion-button color="light" round small (click)="gotoposts()">Posts</button>
+            </ion-col>
+            <ion-col>
+              <button ion-button color="light" round small (click)="gotofriends()">Friends</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <div style="display: inline">
+          <ion-item no-lines>
+              <ion-icon name="school"></ion-icon>
+              Studied {{(profileData | async)?.areaofstudy}} at {{(profileData | async)?.study}}
+          </ion-item> 
+      </div>
+      <ion-item no-lines>
           <ion-icon name="briefcase"></ion-icon>
           Works at {{(profileData | async)?.work}}
       </ion-item>
   
-      <ion-item>
+      <ion-item no-lines>
           <ion-icon name="home"></ion-icon>
           Lives in {{(profileData | async)?.lives}} 
       </ion-item>
-  
-      <ion-item>
+      <ion-item no-lines>
         <ion-icon name="pin"></ion-icon>
         From {{(profileData | async)?.fromCity}} 
       </ion-item>

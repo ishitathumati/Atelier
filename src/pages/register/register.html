@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-      <ion-title>Register</ion-title>
+    <ion-navbar transparent>
+      
     </ion-navbar>
   
   </ion-header>
@@ -15,23 +15,41 @@
   
   <ion-content padding>
   
-      <ion-item>
-          <ion-label floating>Email Address</ion-label>
-          <ion-input type="text" [(ngModel)]="newuser.email"></ion-input>
-      </ion-item>
-      
-        <ion-item>
-            <ion-label floating>Password</ion-label>
-            <ion-input type="password" [(ngModel)] = "newuser.password"></ion-input>
-        </ion-item>
+      <div class="align">
+          <h1>Atélier</h1>
+      </div>
+  
+        <ion-card>
+            <ion-card-header>
+             Register
+            </ion-card-header>
+            <ion-card-content>
+               <ion-list >
+                 <ion-item>  
+                     <ion-input type="email" placeholder="Email" [(ngModel)]="newuser.email"></ion-input>
+                 </ion-item>
+                 <ion-item>  
+                     <ion-input type="password" placeholder="Password" [(ngModel)]="newuser.password"></ion-input>
+                 </ion-item>
+                 <ion-item>  
+                    <ion-input type="email" placeholder="Display Name" [(ngModel)]="newuser.displayName"></ion-input>
+                </ion-item>
+                <button ion-button block round outline color="light" (click)="register(user)">Register</button>
+               </ion-list>    
+            </ion-card-content>
+          </ion-card>
 
-        <ion-item>
-            <ion-label floating>Name</ion-label>
-            <ion-input type="text" [(ngModel)] = "newuser.displayName"></ion-input>
-        </ion-item>
-  
-        <button ion-button (click)="register(user)">Register</button>
-  
   </ion-content>
+
+  <style>
+      h1{
+        font-size: 3em;
+        text-align: center;
+        font-family: Sacramento;
+        font-style: cursive;
+        color: white;
+        text-shadow: 4px 4px 4px rgba(0,0,0,0.1); 
+      }
+  </style>
   
   
