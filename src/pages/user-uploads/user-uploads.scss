@@ -1,5 +1,10 @@
 page-user-uploads {
 
+    ion-content{
+        background: rgb(28,25,112);
+        background: linear-gradient(to bottom, rgba(28,25,112,1) 0%, rgba(38,117,166,1) 50%, rgba(173,164,252,1) 100%);
+    }
+
     ion-title{
         text-align: center;
         //font-size: 10em;
