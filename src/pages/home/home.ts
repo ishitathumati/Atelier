@@ -4,6 +4,11 @@ import { ProfilePage } from '../profile/profile';
 import { CommentsPage } from '../comments/comments';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { UserProvider } from '../../providers/user/user';
+import firebase from 'firebase';
+import { AngularFireAuth } from 'angularfire2/auth'; 
+
+
+
 
 
 @Component({
@@ -18,9 +23,14 @@ export class HomePage {
   username: string = 'sahil\'sLike';
   s;
   allposts;
+  postReference;
+  fireref;
 
-  constructor(public userservice:UserProvider, public navCtrl: NavController, public db: AngularFireDatabase) {
-    this.s = this.db.list('/like').subscribe( data => {
+  firedata = firebase.database().ref(`/users`);
+
+  constructor(public userservice:UserProvider, private afAuth: AngularFireAuth, public navCtrl: NavController, public db: AngularFireDatabase) {
+
+    this.s = this.db.list(`users/${this.afAuth.auth.currentUser.uid}/posts/`).subscribe( data => {
       this.likes = data;
 
       this.userservice.getpostdetails2().then((list)=>{
@@ -31,7 +41,47 @@ export class HomePage {
     });
     
   }
+  
+//put this in the img src for profic pic avatar
+  // <img  src="{{allposts[i].userpic}}" 
 
+  // // ngOnInit(){
+
+  // //   this.postReference = this.afs.doc(`posts/${this.allposts}`).valuechanges()
+  // //   .subsucribe(val: any => {
+  // //     this.post = Val
+  // //     this.heartype = val.likes
+  // //   })
+
+
+
+  // }
+  liked(i){
+    console.log(this.allposts[i].likes)
+    if(this.allposts[i].likes==null)
+                this.allposts[i].likes='0'
+    this.allposts[i].likes=(Number(this.allposts[i].likes)+1).toString()
+    console.log(this.allposts[i].likes)
+   this.updatelikes(this.allposts[i]).then(()=>{
+     console.log('like updated');
+   })
+
+
+}
+
+updatelikes(postdetails){
+  var promise = new Promise((resolve, reject)=>{
+    //currently showing undefined on firebase because userid attribute just added
+    //so old users on db dont have that on them. otherwise function works!!
+    this.fireref = firebase.database().ref(`users/${postdetails.userid}`); 
+    let likeref = this.fireref.child(`posts/${postdetails.postid}`)
+      likeref.update({
+      likes: postdetails.likes
+    })
+    console.log('status', true)
+  })
+  return promise
+}
 
   btnclicked(){
     this.navCtrl.push(CommentsPage);

@@ -16,14 +16,21 @@
     </ion-list>
     
     <ion-list>
+
       <ion-item *ngFor="let item of allposts;let i=index" style="width: 100%">
         <div class="b">
-          <ion-row>
+            <ion-avatar item-start>
+                <img src="{{allposts[i].userpic}}">
+            </ion-avatar>
+          <!-- <ion-row> -->
+            <h1>
                 <small class="user-name"><div class="a" style="color: #000; font-weight: bold; margin-top: 5px; margin-left: 1px">
                   {{allposts[i].username}}<br>
                 </div>
                 </small>
-          </ion-row>
+              </h1>
+          <!-- </ion-row> -->
+          
         </div>
         <ion-row>
           <div style="width: 100% !important;">
@@ -31,11 +38,19 @@
           </div>
         </ion-row>
         <ion-row>
+
+          <!-- <ion-item (click)="toggleHeart()">
+            <ion-icon [name]="heartType">
+            </ion-icon>
+          </ion-item> -->
           <ion-col>
-            <button ion-button icon-start clear small (click)="handleLike()">
-              <ion-icon name="thumbs-up"> {{likes.length}}</ion-icon>
-            </button>
-          </ion-col>
+              <button ion-button icon-start clear small (click)="liked(i)">
+                  <ion-icon name="thumbs-up"></ion-icon>
+                  {{allposts[i].likes}} Likes
+                </button>
+          </ion-col> 
+
+
           <ion-col>
             <button ion-button icon-start clear small>
               <ion-icon name="text"></ion-icon>
@@ -50,8 +65,9 @@
         <ion-row>
           <p text-wrap style="font-family: Comic Sans MS;color: black;text-align: justify">
             {{allposts[i].description}} </p>
-        </ion-row>
+        </ion-row> 
       </ion-item>
+
     </ion-list>
 
       <br/>
