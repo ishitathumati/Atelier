@@ -135,24 +135,39 @@ export class ExplorePage {
     });
     return promise;
   }
+
+
   hastagExists(hashtag) {
     firebase.database().ref('hastags').on('value', function(snapshot) {
-      snapshot.forEach(function(cShot) {
-        this.allHashtags.push(cShot.val());
+      snapshot.forEach(function(snap) {
+        this.allHashtags.push(snap.val()); //push the hashtag
         return false;
       });
     });
+     //check if the hashtag entered is in the array of hashtags
     var doesExist: boolean = false;
     for(var i:number = 0; i<this.allHashtags.length; i++) {
       if(this.allHashtags[i] == hashtag) {
         doesExist = true;
       }
     }
+    //if hashtag doesn't exist, push to the table of hashtags in firebase
     if(!doesExist) {
       this.allHashtags.push(hashtag);
-      firebase.database().ref('hashtags').set(this.allHashtags);
+      firebase.database().ref('hashtags').push(this.allHashtags);
+      //firebase.database().ref('hashtags').set(this.allHashtags);
     }
   }
+
+  /*searchOnEnter(e){
+    e = e || window.event;
+    if (e.keyCode == 13)
+    {
+        document.getElementById('btnSearch').click();
+        return false;
+    }
+    return true;
+  }*/
 
 }
 
