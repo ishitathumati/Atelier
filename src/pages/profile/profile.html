@@ -76,11 +76,14 @@
         From {{(profileData | async)?.fromCity}} 
       </ion-item>
 
+      <ion-title>Featured Works</ion-title>
      <ion-slides class ="image-slider" loop="true" effect="coverflow">
-       <ion-slide *ngFor = "let item of allposts">
-          <img src="{{allposts[i].posturl}}">
+       <ion-slide *ngFor = "let item of allposts; let i=index">
+          <img src="{{allposts[i].posturl}}" imageViewer>
        </ion-slide>
      </ion-slides>
+
+
   </ion-content>
   
   

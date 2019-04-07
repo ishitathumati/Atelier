@@ -18,6 +18,7 @@ import { a } from '@angular/core/src/render3';
 import {initializeApp} from 'firebase';
 //import {navCtrl, initializeApp} from firebase;
 import { connreq } from '../../models/request';
+import { ProfilePage } from '../profile/profile';
 
 /**
  * Generated class for the ExplorePage page.
@@ -79,7 +80,7 @@ export class ExplorePage {
       })
   }
   
-
+ 
 
   /* sendreq(recipient) {
     this.newrequest.sender = firebase.auth().currentUser.uid;
@@ -121,8 +122,6 @@ export class ExplorePage {
 
     
   }
-
-
 
   
   getPhotoURL()
