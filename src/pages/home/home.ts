@@ -107,11 +107,6 @@ updatelikes(postdetails){
   }
 
  
-
-
-  
-
-
 /*export class likes{
   likeValue: number;
   dislikeValue: number;
