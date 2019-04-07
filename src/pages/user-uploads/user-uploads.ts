@@ -65,7 +65,7 @@ export class UserUploadsPage {
   }
 
   ionViewDidEnter() {
-    //this.userservice.getpostdetails2();
+    this.userservice.getpostdetails2();
   }
 
   loadName() {
