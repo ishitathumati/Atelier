@@ -7,5 +7,5 @@ export interface Post{
     title:string;
     description:string;
     posturl:string;
-    hashtag: string;
+    hashtag: string[];
 }

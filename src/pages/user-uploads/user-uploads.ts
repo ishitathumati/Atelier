@@ -4,7 +4,7 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 import { AddArtPage } from '../add-art/add-art';
 import { UserProvider } from '../../providers/user/user';
 import * as firebase from 'firebase';
-import {Post} from '../../models/post';
+import { Post } from '../../models/post';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 //import { url } from 'inspector';
@@ -79,7 +79,17 @@ export class UserUploadsPage {
   {
     this.navCtrl.push(AddArtPage);
   }
-  
+
+  getPhotoURL(){
+    this.getpostdetails().then((res:any)=>{
+      this.dbPhoto = res.posturl;
+      console.log(this.dbPhoto); //currently returning undefined
+    }).catch((e)=>{
+      
+    })
+    return this.dbPhoto; 
+    
+  }
   /*getPhotoURL(){
     try{
     const userid = this.afAuth.auth.currentUser.uid;
@@ -94,16 +104,7 @@ export class UserUploadsPage {
     }
   }*/
   
- getPhotoURL(){
-   this.getpostdetails().then((res:any)=>{
-     this.dbPhoto = res.posturl;
-     console.log(this.dbPhoto); //currently returning undefined
-   }).catch((e)=>{
-     
-   })
-   return this.dbPhoto;
-   
- }
+ 
 
  //need to modify this to get list info... like iterate through list of posts and get them all to display
  //need to use *ngFor in html
@@ -114,7 +115,7 @@ export class UserUploadsPage {
   }).catch((err) => {
     reject(err);
     })
-  })
+  });
   return promise;
 }
 
