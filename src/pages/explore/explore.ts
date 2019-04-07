@@ -19,6 +19,8 @@ import {initializeApp} from 'firebase';
 //import {navCtrl, initializeApp} from firebase;
 import { connreq } from '../../models/request';
 import { ProfilePage } from '../profile/profile';
+import { Post } from '../../models/post';
+
 
 /**
  * Generated class for the ExplorePage page.
@@ -55,14 +57,14 @@ export class ExplorePage {
   dbPhoto2;
   dbPhoto3;
   dbPhoto4;
-
+  posts : any [];
   newrequest = {} as connreq;
   
   temparr = [];
   filteredusers = [];
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public userservice: UserProvider, public alertCtrl: AlertController, public requestservice: RequestsProvider) {
-
+      this.posts = [];
       this.search == false;
       this.imageSource1 = 'bluemount';
       this.imageSource2 = 'dusk';
@@ -139,18 +141,40 @@ export class ExplorePage {
   
   getPhotoURL()
   {
-    firebase.storage().ref().child('explorePics/' + this.imageSource1+ '.png').getDownloadURL().then((url)=>{
-      this.dbPhoto1=url;
-    })
-    firebase.storage().ref().child('explorePics/' + this.imageSource2 + '.png').getDownloadURL().then((url)=>{
-      this.dbPhoto2=url;
-    })
-    firebase.storage().ref().child('explorePics/' + this.imageSource3 + '.png').getDownloadURL().then((url)=>{
-      this.dbPhoto3=url;
-    }) 
-    firebase.storage().ref().child('explorePics/' + this.imageSource4 + '.png').getDownloadURL().then((url)=>{
-      this.dbPhoto4=url;
-    }) 
+    
+    
+    var self = this;
+    var promise = new Promise((resolve, reject) => {
+      firebase.database().ref(`/users`).on('value', (snapshot) => {
+        snapshot.forEach(function(userStuff) {
+          var key = userStuff.key;
+          firebase.database().ref('/users/'+key+'/posts').on('value', function(shot) {
+            shot.forEach(function(shotChild) {
+              var keypost = shotChild.key;
+              firebase.database().ref('/users/'+key+'/posts/'+keypost).on('value', function(thePost) {
+                var s = thePost.val();
+                var temp = {
+                  'username': s.username,
+                  'postid' : s.postid,
+                  'price' : s.price,
+                  'title' : s.title,
+                  'description' : s.description,
+                  'posturl' : s.posturl,
+                  'hashtag' : s.hashtag
+                } as Post;
+                self.posts.push(temp);
+              });
+              return false;
+            });
+          });
+          return false;
+        });
+      });
+    });
+    return promise;
+  }
+
+    
 
     
 
@@ -260,4 +284,3 @@ export class ExplorePage {
 
 
 
-}

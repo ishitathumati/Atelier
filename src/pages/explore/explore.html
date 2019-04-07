@@ -51,76 +51,45 @@
   <div class="tags-input" data-name="tags-input"></div>
   <input class = "main-input" ion-input placeholder="#Hashtags" type = "text" >
 
+  <ion-grid>
+      <ion-row>
+        <ion-col *ngFor ="let item of posts" col-6 no-padding>
+          <ion-card>
+          <ion-card-header>
+            {{item.title}}
+          </ion-card-header>
+          <ion-card-content>
+            <img src="{{item.posturl}}" imageViewer>
+            <ion-row>
+              Price: {{item.price}}
+            </ion-row>
+            <ion-row>
+              {{item.description}}
+            </ion-row>
+            <ion-row>
+              {{item.hashtag}}
+              </ion-row>
+          </ion-card-content>
+        </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+   
+
+
+
+
    
        
-       <ion-grid>
-        <ion-row>
-           <ion-col col-4>
-              <ion-card>
-                  <img src = "{{dbPhoto1}}" />
-                  <ion-card-content>
-                    <ion-card-title>
-                      blue mount
-                      </ion-card-title>
-                    <p>
-                      $49 #mount <ion-icon name="bluemount"></ion-icon>
-                    </p>
-                  </ion-card-content>
-                </ion-card>
-          </ion-col> 
-          <ion-col>
-            <ion-card>
-              <img src = "{{dbPhoto2}}" />
-              <ion-card-content>
-                <ion-card-title>
-                  dusk 
-                  </ion-card-title>
-                <p>
-                  $49 #dusk #sun <ion-icon name="dusk"></ion-icon>
-                </p>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-          <ion-col>
-            <ion-card>
-              <img src = "{{dbPhoto3}}"  />
-              <ion-card-content>
-                <ion-card-title>
-                  scream
-                  </ion-card-title>
-                <p>
-                  $49 #scream <ion-icon name="scream"></ion-icon>
-                </p>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-          <ion-col>
-              <ion-card>
-                <img src = "{{dbPhoto4}}"  />
-                <ion-card-content>
-                  <ion-card-title>
-                    starrynight
-                    </ion-card-title>
-                  <p>
-                    $49 #starry <ion-icon name="starrynight"></ion-icon>
-                  </p>
-                </ion-card-content>
-              </ion-card>
-            </ion-col>
+       
           
           
            
           
           
       
-        </ion-row>
-         
-  
-
-
-     
-      </ion-grid>
-       
+        
           
      
 

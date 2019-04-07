@@ -29,7 +29,7 @@ export class HomePage {
       });
 
     });
-    firebase.storage().ref('explorePics').child('img1.png').delete();
+    
   }
 
 
