@@ -4,7 +4,7 @@ import { ProfilePage } from '../profile/profile';
 import { CommentsPage } from '../comments/comments';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { UserProvider } from '../../providers/user/user';
-
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'page-home',
@@ -29,7 +29,7 @@ export class HomePage {
       });
 
     });
-    
+    firebase.storage().ref('explorePics').child('img1.png').delete();
   }
 
 

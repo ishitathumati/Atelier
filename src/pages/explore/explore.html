@@ -18,10 +18,10 @@
 <!--sssss--> 
  
 
-  <ion-searchbar [(ngModel)]="searchstring" (input)="searchuser($event)" placeholder="Search"></ion-searchbar>
-<ion-list no-lines>
-  <ion-list>
-    <ion-item-sliding *ngFor="let key of filteredusers">
+  <ion-searchbar (input)="searchuser($event)" placeholder="Search"></ion-searchbar>
+<ion-list no-lines *ngIf="search">
+  <ion-list >
+    <ion-item-sliding *ngFor="let key of filteredusers" >
       <ion-item >
         <ion-avatar item-left>
           <img src=''>
@@ -54,7 +54,6 @@
    
        
        <ion-grid>
-
         <ion-row>
            <ion-col col-4>
               <ion-card>

@@ -44,6 +44,8 @@ import { ProfilePage } from '../profile/profile';
 export class ExplorePage {
 
 
+  search: boolean;
+
   imageSource1; 
   imageSource2;
   imageSource3;
@@ -61,7 +63,7 @@ export class ExplorePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public userservice: UserProvider, public alertCtrl: AlertController, public requestservice: RequestsProvider) {
 
-
+      this.search == false;
       this.imageSource1 = 'bluemount';
       this.imageSource2 = 'dusk';
       this.imageSource3 = 'scream';
@@ -107,6 +109,7 @@ export class ExplorePage {
   } */
   
   searchuser(searchbar) {
+    this.search = true;
     this.filteredusers = this.temparr;
     var q = searchbar.target.value;
     if (q.trim() == '') {
@@ -120,9 +123,19 @@ export class ExplorePage {
       return false;
     })
 
-    
+    // this.search == false;
+
+    if(q == '') {
+      this.search = false;
+    }
   }
 
+  
+
+  goToProfile()
+  {
+    this.navCtrl.push(ProfilePage);
+  }
   
   getPhotoURL()
   {
@@ -138,6 +151,11 @@ export class ExplorePage {
     firebase.storage().ref().child('explorePics/' + this.imageSource4 + '.png').getDownloadURL().then((url)=>{
       this.dbPhoto4=url;
     }) 
+
+    
+
+
+    
 
   /* public userslist : Array<any>;
   public loadedUserslist: Array<any>;
