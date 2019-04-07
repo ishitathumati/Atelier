@@ -11,6 +11,8 @@ import { TabsPage } from '../tabs/tabs';
 import { UserProvider } from '../../providers/user/user';
 
 
+
+
 @IonicPage()
 @Component({
   selector: 'page-add-art',
