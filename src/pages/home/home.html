@@ -8,7 +8,7 @@
 
 <ion-content padding>
 
-    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <!--<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>-->
     <ion-list>
       <ion-item *ngFor="let item of items">
         {{ item }}
@@ -16,22 +16,19 @@
     </ion-list>
     
     <ion-list>
-
       <ion-item *ngFor="let item of allposts;let i=index" style="width: 100%">
+
         <div class="b">
+          <ion-item-divider>
             <ion-avatar item-start>
                 <img src="{{allposts[i].userpic}}">
-            </ion-avatar>
-          <!-- <ion-row> -->
-            <h1>
-                <small class="user-name"><div class="a" style="color: #000; font-weight: bold; margin-top: 5px; margin-left: 1px">
-                  {{allposts[i].username}}<br>
-                </div>
-                </small>
-              </h1>
+            </ion-avatar> 
+            <ion-title align-title="center">{{allposts[i].username}}<br></ion-title>
+          </ion-item-divider>
+        </div>
           <!-- </ion-row> -->
           
-        </div>
+       
         <ion-row>
           <div style="width: 100% !important;">
             <img  src="{{allposts[i].posturl}}"  maxlength="100%"/>
