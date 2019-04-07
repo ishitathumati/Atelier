@@ -59,13 +59,29 @@ export class UserUploadsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserUploadsPage');
-    //this.userservice.getpostdetails2();
+    this.getPhotoURL();
+    this.loadName(); 
+     this.userservice.getpostdetails2().then((list)=>{
+      //this.allposts = Object.values(list);
+      console.log('temp', list);
+      this.allposts = list;
+      console.log('allposts', this.allposts)
 
-    //this.postData = this.db.object(`posts/${data.pid}/profile`);
+    });
+
   }
 
   ionViewDidEnter() {
-    this.userservice.getpostdetails2();
+    
+    this.getPhotoURL();
+    this.loadName(); 
+     this.userservice.getpostdetails2().then((list)=>{
+      console.log('temp', list);
+      this.allposts = list;
+      console.log('allposts', this.allposts)
+
+    });
+
   }
 
   loadName() {

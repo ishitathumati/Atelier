@@ -67,6 +67,20 @@ updatelikes(postdetails){
   ProfilePageClick(){
     this.navCtrl.push(ProfilePage);
   }
+
+  ionViewDidLoad(){
+    this.userservice.getpostdetails2().then((list)=>{
+      this.allposts =list;
+      console.log('list of posts', this.allposts)
+    });
+  }
+
+  ionViewDidEnter(){
+    this.userservice.getpostdetails2().then((list)=>{
+      this.allposts =list;
+      console.log('list of posts', this.allposts)
+    });
+  }
   
 
   }
