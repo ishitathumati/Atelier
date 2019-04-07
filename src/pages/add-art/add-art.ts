@@ -6,7 +6,7 @@ import { UserUploadsPage } from '../user-uploads/user-uploads';
 import { storage, initializeApp} from 'firebase';
 import { Post } from '../../models/post';
 import firebase from 'firebase';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from 'angularfire2/auth'; 
 import { TabsPage } from '../tabs/tabs';
 import { UserProvider } from '../../providers/user/user';
 

@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { storage } from 'firebase';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 //import { User } from '../../models/users';
-import { AngularFireAuth } from 'angularfire2/auth';
+
 import { HomePage } from '../home/home';
 import { AngularFireModule } from 'angularfire2';
 import { FIREBASE_CONFIG } from '../../app/firebase.config';
@@ -20,6 +20,7 @@ import {initializeApp} from 'firebase';
 import { connreq } from '../../models/request';
 import { ProfilePage } from '../profile/profile';
 import { Post } from '../../models/post';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 
 /**
@@ -40,6 +41,9 @@ export class ExplorePage {
 
 
   search: boolean;
+  rootref:any;
+  hashref:any;
+  haskey:any;
 
   imageSource1; 
   imageSource2;
@@ -56,7 +60,7 @@ export class ExplorePage {
   temparr = [];
   filteredusers = [];
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public userservice: UserProvider, public alertCtrl: AlertController, public requestservice: RequestsProvider) {
+    public userservice: UserProvider, public alertCtrl: AlertController, public requestservice: RequestsProvider,private aAuth: AngularFireAuth) {
       this.posts = [];
       this.search == false;
       this.imageSource1 = 'bluemount';
@@ -153,8 +157,9 @@ export class ExplorePage {
     }
     //if hashtag doesn't exist, push to the table of hashtags in firebase
     if(!doesExist) {
-      this.allHashtags.push(hashtag);
-      firebase.database().ref('hashtags').push(this.allHashtags);
+      this.aAuth.authState.take(1).subscribe(auth=>{
+      this.rootref = firebase.database().ref('hashtags').push(this.allHashtags);
+      })
       //firebase.database().ref('hashtags').set(this.allHashtags);
     }
   }
