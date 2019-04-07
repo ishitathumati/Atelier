@@ -29,13 +29,6 @@ import { Post } from '../../models/post';
  * Ionic pages and navigation.
  */
 
- //hashtag function
- //search bar accesses uid
- //hash tag bar accesses post id 
-
-
- 
-
 
 @IonicPage()
 @Component({
@@ -59,7 +52,7 @@ export class ExplorePage {
   dbPhoto4;
   posts : any [];
   newrequest = {} as connreq;
-  
+  allHashtags = [];
   temparr = [];
   filteredusers = [];
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -78,38 +71,9 @@ export class ExplorePage {
         this.filteredusers = res;
         this.temparr = res;
 
-      
-
-      
-      });
+  });
   }
-  
- 
 
-  /* sendreq(recipient) {
-    this.newrequest.sender = firebase.auth().currentUser.uid;
-    this.newrequest.recipient = recipient.uid;
-    if (this.newrequest.sender === this.newrequest.recipient)
-      alert('You');
-    else {
-      let successalert = this.alertCtrl.create({
-        title: 'Request sent',
-        subTitle: 'Request sent to ' + recipient.displayName,
-        buttons: ['ok']
-      });
-    
-      this.requestservice.sendrequest(this.newrequest).then((res: any) => {
-        if (res.success) {
-          successalert.present();
-          let sentuser = this.filteredusers.indexOf(recipient);
-          this.filteredusers.splice(sentuser, 1);
-        }
-      }).catch((err) => {
-        alert(err);
-      })
-    }
-  } */
-  
   searchuser(searchbar) {
     this.search = true;
     this.filteredusers = this.temparr;
@@ -141,8 +105,6 @@ export class ExplorePage {
   
   getPhotoURL()
   {
-    
-    
     var self = this;
     var promise = new Promise((resolve, reject) => {
       firebase.database().ref(`/users`).on('value', (snapshot) => {
@@ -173,112 +135,24 @@ export class ExplorePage {
     });
     return promise;
   }
-
-    
-
-    
-
-
-    
-
-  /* public userslist : Array<any>;
-  public loadedUserslist: Array<any>;
-  public usersRef: firebase.database.Reference; */
-
-
-
-/*     imageSource; 
-    imageSource2;
-    imageSource3;
-    
-
-
-    dbPhoto1;
-    dbPhoto2;
-    dbPhoto3; */
-    
-  /*
-  usersRef: Is for creating a database reference so we can pull the data from Firebase.
-  userslist: Is to store the list of user names we’re pulling from Firebase.
-  loadedUserslist
-
-
-  */
-
-
-
-  //private userlist = this.db.list<User>('users-list');
-  
- /*  constructor (public aAuth: AngularFireAuth, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
-  
-
-
-      this.imageSource = 'bluemount';
-      this.imageSource2 = 'dusk';
-      this.imageSource3 = 'scream'; */
-      
-      
-
-
-  /*     this.getPhotoURL();
-    //this.userslist = db.list('/usernames');
-
-    //this willl open a reference to our firebase data under the /users node
-    /*this. usersRef = firebase.database(). ref('/users');
-    this. usersRef.on('value', userslist=>{
-      let users = [];
-      userslist.forEach(user=>{
-        users.push(user.val());
+  hastagExists(hashtag) {
+    firebase.database().ref('hastags').on('value', function(snapshot) {
+      snapshot.forEach(function(cShot) {
+        this.allHashtags.push(cShot.val());
         return false;
       });
-      this.userslist = users;
-      this.loadedUserslist= users;
-    })*/
-
-    
-
-    
-  
-
-
-  /*initializeItems() : void{
-    this.userslist = this.loadedUserslist;
-  }
-
-  getItems(searchbar){
-    this.initializeItems();
-    var q = searchbar.srcElement.value;
-    if(!q){
-      return;
-    }
-    this.userslist = this.userslist.filter((v)=> {
-      if(v.name && q) {
-        if(v.name.toLowerCase().indexOf(q.toLowerCase())>-1){
-          return true;
-        }
-        return false;
+    });
+    var doesExist: boolean = false;
+    for(var i:number = 0; i<this.allHashtags.length; i++) {
+      if(this.allHashtags[i] == hashtag) {
+        doesExist = true;
       }
-    })
-  } */
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
+    if(!doesExist) {
+      this.allHashtags.push(hashtag);
+      firebase.database().ref('hashtags').set(this.allHashtags);
+    }
+  }
 
 }
 
