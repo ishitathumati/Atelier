@@ -89,7 +89,7 @@ export class ProfilePage {
         this.profilepic = res.photoURL;
       })
     })
-    return this.displayName
+    return this.displayName;
   }
 
   /*loadprofiledetails(){
