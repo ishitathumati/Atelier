@@ -15,12 +15,7 @@ import { RequestsProvider } from '../../providers/requests/requests';
 import { UserProvider } from '../../providers/user/user';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { a } from '@angular/core/src/render3';
-<<<<<<< HEAD
-import { ProfilePage } from '../profile/profile';
-//import {storage, initializeApp} from 'firebase';
-=======
 import {initializeApp} from 'firebase';
->>>>>>> 9d3e9d8048e737986e99f8c7f461ffadc1a17cfe
 //import {navCtrl, initializeApp} from firebase;
 import { connreq } from '../../models/request';
 
