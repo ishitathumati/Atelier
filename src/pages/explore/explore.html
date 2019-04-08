@@ -26,7 +26,7 @@
         <ion-avatar item-left>
           <img src=''>
         </ion-avatar>
-        <ion-item (click)="goToProfile()"><h2>{{key.displayName}}</h2></ion-item>
+        <ion-item><h2>{{key.displayName}}</h2></ion-item>
       </ion-item>
       
     </ion-item-sliding>
@@ -43,9 +43,11 @@
        
   </ion-searchbar>-->
 
-  <div class="tags-input" data-name="tags-input"></div>
-  <input class = "main-input" ion-input placeholder="#Hashtags" type = "text"> 
-  <button ion-button><ion-icon name="search" (click)="hashtagExists()"></ion-icon> Search</button>
+  <!--<div class="tags-input" data-name="tags-input"></div>
+  <input class = "main-input" ion-input placeholder="#Hashtags" type = "text" [(ngModel)]="hashtag"> 
+  <button ion-button (click)="hashtagSearch()"><ion-icon name="search"></ion-icon> Search</button>-->
+
+  
       
       
     

@@ -58,7 +58,7 @@ export class ExplorePage {
   posts : any [];
   newrequest = {} as connreq;
   allHashtags = []; //array of hashtags
-  hashtag;
+  hashtag; //input
   temparr = [];
   filteredusers = [];
 
@@ -78,7 +78,7 @@ export class ExplorePage {
         this.filteredusers = res;
         this.temparr = res;
 
-      this.fdb.list("/hashtags/").subscribe(_data=>{
+      this.fdb.list("/hashtags").subscribe(_data=>{
         this.allHashtags = _data;
 
         console.log(this.allHashtags);
@@ -150,8 +150,8 @@ export class ExplorePage {
   }
 
 
-  hastagExists() {
-    firebase.database().ref('hastags').on('value', function(snapshot) {
+  /*hastagExists(hashtag) {
+    firebase.database().ref('hashtags').on('value', function(snapshot) {
       snapshot.forEach(function(snap) {
         this.allHashtags.push(snap.val()); //push the hashtag
         return false;
@@ -166,11 +166,22 @@ export class ExplorePage {
     }
     //if hashtag doesn't exist, push to the table of hashtags in firebase
     if(!doesExist) {
-      this.fdb.list("/hashtags/").push(this.allHashtags);
-      /*this.aAuth.authState.take(1).subscribe(auth=>{
+      this.aAuth.authState.take(1).subscribe(auth=>{
       this.rootref = firebase.database().ref('hashtags').push(this.allHashtags);
-      })*/
+      })
       //firebase.database().ref('hashtags').set(this.allHashtags);
+    }
+  }*/
+
+  hashtagSearch(){
+    var doesExist: boolean = false;
+    for(var i:number = 0; i<this.allHashtags.length; i++) {
+      if(this.allHashtags[i] == this.hashtag) {
+        doesExist = true;
+      }
+    }
+    if(!doesExist){
+      this.fdb.list("/hashtags").push(this.hashtag);
     }
   }
 
