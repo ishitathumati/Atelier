@@ -1,6 +1,5 @@
 <!--
   Generated template for the NotificationsPage page.
-
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
@@ -17,8 +16,8 @@
   <ion-card>
     <div padding>
       <ion-segment [(ngModel)]="Notifications">
-        <ion-segment-button value="Messages">
-          Messages
+        <ion-segment-button value="Requests">
+          Requests
         </ion-segment-button>
         <ion-segment-button value="Comments">
           Comments
@@ -52,78 +51,19 @@
       </ion-list>
 
       <ion-list *ngSwitchCase="'Comments'">
-        <ion-item>
-          <ion-thumbnail item-start>
-            <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
-          </ion-thumbnail>
-          <h2>John</h2>
-        </ion-item>
-        <ion-item>
-            <ion-thumbnail item-start>
-              <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
-            </ion-thumbnail>
-            <h2>Jaquan</h2>
-          </ion-item>
-          <ion-item>
-              <ion-thumbnail item-start>
-                <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
-              </ion-thumbnail>
-              <h2>Jaquan</h2>
-            </ion-item>
+        
       </ion-list>
 
       <ion-list *ngSwitchCase="'Likes'">
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
-            </ion-thumbnail>
-            <h2>Jaquan</h2>
-          </ion-item>
-          <ion-item>
-              <ion-thumbnail item-start>
-                <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
-              </ion-thumbnail>
-              <h2>Jaquan</h2>
-            </ion-item>
-            <ion-item>
-                <ion-thumbnail item-start>
-                  <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
-                </ion-thumbnail>
-                <h2>Jaquan</h2>
-              </ion-item>
-              <ion-item>
-                  <ion-thumbnail item-start>
-                    <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
-                  </ion-thumbnail>
-                  <h2>Jaquan</h2>
-                </ion-item>
+          
       </ion-list>
 
     </div>
   </ion-card>
 
   <ion-list>
-      <ion-list-header>
-        Requests
-      </ion-list-header>
-      <ion-item-sliding *ngFor="let item of myrequests">
-        <ion-item>
-        <ion-avatar item-left>
-          <img src="">
-        </ion-avatar>
-        <h4>{{item.displayName}}</h4>
-        </ion-item>
-        <ion-item-options>
-          <button ion-button color="secondary" (click)="accept(item)">
-            <ion-icon name="checkmark"></ion-icon>
-            ADD
-          </button>
-          <button ion-button color="danger" (click)="ignore(item)">
-            <ion-icon name="trash"></ion-icon>
-            NO
-          </button>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list>
+      
+    
+  </ion-list>
 
 </ion-content>

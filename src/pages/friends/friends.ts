@@ -5,7 +5,6 @@ import { RequestsProvider } from '../../providers/requests/requests';
 import { connreq } from '../../models/request';
 import firebase from 'firebase';
 
-
 /**
  * Generated class for the FriendsPage page.
  *
@@ -14,34 +13,21 @@ import firebase from 'firebase';
  */
 
 @IonicPage()
-@Component({ 
+@Component({
   selector: 'page-friends',
   templateUrl: 'friends.html',
 })
 export class FriendsPage {
-
   newrequest = {} as connreq;
   temparr = [];
   filteredusers = [];
-  //dbPhoto = [];
-  //profilepic;
-  //displayName;
-
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public userservice: UserProvider, public alertCtrl: AlertController, public requestservice: RequestsProvider) {
       this.userservice.getallusers().then((res: any) => {
         this.filteredusers = res;
         this.temparr = res;
-      });
-      
-      /*for(var i:number =0; i<this.filteredusers.length; i++) {
-        this.dbPhoto.push(firebase.storage().ref('profilePics/'+this.filteredusers[i].uid).child('img.jpg').getDownloadURL());
-      }*/
+      })
   }
-
-  
-
-
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FriendsPage'); 
@@ -66,7 +52,7 @@ export class FriendsPage {
     this.newrequest.sender = firebase.auth().currentUser.uid;
     this.newrequest.recipient = recipient.uid;
     if (this.newrequest.sender === this.newrequest.recipient)
-      alert('You');
+      alert('You cannot send a request to yourself!');
     else {
       let successalert = this.alertCtrl.create({
         title: 'Request sent',

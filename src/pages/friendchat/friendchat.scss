@@ -1,12 +1,22 @@
 page-friendchat {
     .chat {
-        width: 320px;
+        width: 100%;
     }
     
     .bubble{
         background-color: rgb(38, 117, 166);
         border-radius: 6px;
         box-shadow: 0 0 6px rgb(38, 117, 166);
+        display: inline-block;
+        padding: 13px 18px;
+        position: relative;
+        vertical-align: top;
+    }
+
+    .bubble2{
+        background-color: rgb(130, 157, 238);
+        border-radius: 6px;
+        box-shadow: 0 0 6px rgb(130, 157, 238);
         display: inline-block;
         padding: 13px 18px;
         position: relative;
@@ -28,6 +38,20 @@ page-friendchat {
         width:  20px;
     }
     
+    .bubble2::before {
+        background-color: rgb(130, 157, 238);
+        content: "\00a0";
+        display: block;
+        height: 10px;
+        position: absolute;
+        top: 7px;
+        transform:             rotate( 29deg ) skew( -35deg );
+            -moz-transform:    rotate( 29deg ) skew( -35deg );
+            -ms-transform:     rotate( 29deg ) skew( -35deg );
+            -o-transform:      rotate( 29deg ) skew( -35deg );
+            -webkit-transform: rotate( 29deg ) skew( -35deg );
+        width:  20px;
+    }
  
     .me {
         float: left;   
@@ -39,17 +63,17 @@ page-friendchat {
         left: -7px;           
     }
 
-    .you {
+    .friend {
         float: right;    
         margin: 5px 20px 5px 45px;         
     }
     
-    .you::before {
+    .friend::before {
         box-shadow: 5px 5px 5px 0   rgb(38, 117, 166);
         right: -7px;    
     }
     
-    .chatwindow {
+    .chat {
         padding-bottom: px;
     }
 }
