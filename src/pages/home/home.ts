@@ -6,7 +6,6 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { UserProvider } from '../../providers/user/user';
 import firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth'; 
-import {NotificationProvider} from '../../providers/notification/notification';
 import { tap } from 'rxjs/operators';
 
 
@@ -25,7 +24,7 @@ export class HomePage {
   postReference;
   fireref;
 
-  constructor(public toast:ToastController, public notification:NotificationProvider, public userservice:UserProvider, private afAuth: AngularFireAuth, public navCtrl: NavController, public db: AngularFireDatabase) {
+  constructor(public toast:ToastController, public userservice:UserProvider, private afAuth: AngularFireAuth, public navCtrl: NavController, public db: AngularFireDatabase) {
 
       this.userservice.getpostdetails2().then((list)=>{
         this.allposts =list;
@@ -71,17 +70,6 @@ updatelikes(postdetails){
   }
 
   ionViewDidLoad(){
-    this.notification.getToken()
-
-    this.notification.listentoNotifs().pipe(
-      tap(msg => {
-        const x = this.toast.create({
-          message: msg.body,
-          duration: 3000
-        });
-        x.present();
-      })
-    ).subscribe()
     
     this.userservice.getpostdetails2().then((list)=>{
       this.allposts =list;

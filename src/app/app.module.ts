@@ -38,7 +38,6 @@ import { UpdateprofilepicPage } from '../pages/updateprofilepic/updateprofilepic
 import { PopoverComponent } from '../components/popover/popover';
 import { ImghandlerProvider } from '../providers/imghandler/imghandler';
 import { MyfriendslistPage } from '../pages/myfriendslist/myfriendslist';
-import { NotificationProvider } from '../providers/notification/notification';
 import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 
 /*const firebaseAuth = {
@@ -117,7 +116,6 @@ import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
     RequestsProvider,
     ChatProvider,
     ImghandlerProvider,
-    NotificationProvider,
     LocalNotifications
   ]
 })
