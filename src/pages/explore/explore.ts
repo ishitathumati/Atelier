@@ -173,7 +173,7 @@ export class ExplorePage {
     }
   }*/
 
-  hashtagSearch(){
+ /* hashtagSearch(){
     var doesExist: boolean = false;
     for(var i:number = 0; i<this.allHashtags.length; i++) {
       if(this.allHashtags[i] == this.hashtag) {
@@ -183,7 +183,7 @@ export class ExplorePage {
     if(!doesExist){
       this.fdb.list("/hashtags").push(this.hashtag);
     }
-  }
+  }*/
 
   /*searchOnEnter(e){
     e = e || window.event;
