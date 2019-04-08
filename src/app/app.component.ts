@@ -8,6 +8,7 @@ import { EditProfPage } from '../pages/edit-prof/edit-prof';
 import { ActivityPage } from '../pages/activity/activity';
 import { SavedPage } from '../pages/saved/saved';
 import { LoginPage } from '../pages/login/login';
+import { MessagesPage } from '../pages/messages/messages';
 //import { HomePage } from 'src/pages/home/home';
 //import { TabsPage } from '../pages/tabs/tabs';
 //import { SettingsPage } from '../pages/settings/settings';

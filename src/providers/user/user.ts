@@ -166,9 +166,9 @@ getpostdetails2() {
       this.postlist = [];
       temp = snapshot.val();
       if(temp){
-        let x = Object.values(temp)
-        console.log('x is printed', x)
-        this.postlist=x;
+        //let x = Object.values(temp)
+        //console.log('x is printed', x)
+        //this.postlist=x;
         console.log('postlist is printed', this.postlist)
         resolve(this.postlist);
       }
