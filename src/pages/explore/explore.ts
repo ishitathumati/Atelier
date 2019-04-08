@@ -21,6 +21,7 @@ import { connreq } from '../../models/request';
 import { ProfilePage } from '../profile/profile';
 import { Post } from '../../models/post';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { all } from 'q';
 
 
 /**
@@ -56,11 +57,13 @@ export class ExplorePage {
   dbPhoto4;
   posts : any [];
   newrequest = {} as connreq;
-  allHashtags = [];
+  allHashtags = []; //array of hashtags
+  hashtag;
   temparr = [];
   filteredusers = [];
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public userservice: UserProvider, public alertCtrl: AlertController, public requestservice: RequestsProvider,private aAuth: AngularFireAuth) {
+    public userservice: UserProvider, public alertCtrl: AlertController, public requestservice: RequestsProvider,private aAuth: AngularFireAuth, private fdb: AngularFireDatabase) {
       this.posts = [];
       this.search == false;
       this.imageSource1 = 'bluemount';
@@ -74,6 +77,12 @@ export class ExplorePage {
       this.userservice.getallusers().then((res: any) => {
         this.filteredusers = res;
         this.temparr = res;
+
+      this.fdb.list("/hashtags/").subscribe(_data=>{
+        this.allHashtags = _data;
+
+        console.log(this.allHashtags);
+      })
 
   });
   }
@@ -141,7 +150,7 @@ export class ExplorePage {
   }
 
 
-  hastagExists(hashtag) {
+  hastagExists() {
     firebase.database().ref('hastags').on('value', function(snapshot) {
       snapshot.forEach(function(snap) {
         this.allHashtags.push(snap.val()); //push the hashtag
@@ -151,15 +160,16 @@ export class ExplorePage {
      //check if the hashtag entered is in the array of hashtags
     var doesExist: boolean = false;
     for(var i:number = 0; i<this.allHashtags.length; i++) {
-      if(this.allHashtags[i] == hashtag) {
+      if(this.allHashtags[i] == this.hashtag) {
         doesExist = true;
       }
     }
     //if hashtag doesn't exist, push to the table of hashtags in firebase
     if(!doesExist) {
-      this.aAuth.authState.take(1).subscribe(auth=>{
+      this.fdb.list("/hashtags/").push(this.allHashtags);
+      /*this.aAuth.authState.take(1).subscribe(auth=>{
       this.rootref = firebase.database().ref('hashtags').push(this.allHashtags);
-      })
+      })*/
       //firebase.database().ref('hashtags').set(this.allHashtags);
     }
   }
