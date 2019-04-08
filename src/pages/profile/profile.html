@@ -75,6 +75,16 @@
         <ion-icon name="pin"></ion-icon>
         From {{(profileData | async)?.fromCity}} 
       </ion-item>
+
+      <div class="featured">
+      <ion-title padding>Featured Works</ion-title>
+     <ion-slides class ="image-slider" loop="true" effect="coverflow">
+       <ion-slide *ngFor = "let item of allposts; let i=index">
+          <img src="{{allposts[i].posturl}}" imageViewer>
+       </ion-slide>
+     </ion-slides></div>
+
+
   </ion-content>
   
   

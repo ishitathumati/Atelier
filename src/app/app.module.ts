@@ -24,6 +24,7 @@ import { Camera } from '@ionic-native/camera';
 //import { SMS } from '@ionic-native/sms/ngx';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 
+
 import { AddArtPage } from '../pages/add-art/add-art';
 import { ActivityPage } from '../pages/activity/activity';
 import { SavedPage } from '../pages/saved/saved';
