@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "atelier-842ac"
+    "default": "atelier-842ac",
+    "atelier": "atelier-842ac"
   }
 }

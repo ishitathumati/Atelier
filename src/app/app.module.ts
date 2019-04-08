@@ -38,16 +38,17 @@ import { UpdateprofilepicPage } from '../pages/updateprofilepic/updateprofilepic
 import { PopoverComponent } from '../components/popover/popover';
 import { ImghandlerProvider } from '../providers/imghandler/imghandler';
 import { MyfriendslistPage } from '../pages/myfriendslist/myfriendslist';
+import { NotificationProvider } from '../providers/notification/notification';
+import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 
-
-const firebaseAuth = {
+/*const firebaseAuth = {
   apiKey: "AIzaSyDUn8OuO3b6wtnn1g78EqzRUUZJMPof8tU",
   authDomain: "atelier-842ac.firebaseapp.com",
   databaseURL: "https://atelier-842ac.firebaseio.com",
   projectId: "atelier-842ac",
   storageBucket: "atelier-842ac.appspot.com",
   messagingSenderId: "781691867947"
-};
+};*/
 
 @NgModule({
   declarations: [
@@ -116,6 +117,8 @@ const firebaseAuth = {
     RequestsProvider,
     ChatProvider,
     ImghandlerProvider,
+    NotificationProvider,
+    LocalNotifications
   ]
 })
 export class AppModule {}
