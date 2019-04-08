@@ -13,22 +13,27 @@
       <ion-item *ngFor="let item of items">
         {{ item }}
       </ion-item>
-    </ion-list>
+    </ion-list> 
     
     <ion-list>
       <ion-item *ngFor="let item of allposts;let i=index" style="width: 100%">
 
         <div class="b">
-          <ion-item-divider>
+          <button ion-button icon-start clear large (click)= "ProfilePageClick()"  class = "button.b1 ">
+          <!-- <ion-item-divider> -->
             <ion-avatar item-start>
-                <img src="{{allposts[i].userpic}}">
+                <img  src="{{allposts[i].userpic}}">
             </ion-avatar> 
-            <ion-title align-title="center">{{allposts[i].username}}<br></ion-title>
-          </ion-item-divider>
-        </div>
-          <!-- </ion-row> -->
+            <!-- <ion-title text-left color = "calm"> -->
+                <p text-wrap style="font-family: Arial, Helvetica, sans-serif; color: black ; text-align: justify" >
+                  {{allposts[i].username}}</p><br>
+                <!-- </ion-title> -->
           
-       
+          <!-- </ion-item-divider> -->
+        </button>
+        </div>
+
+          <!-- </ion-row> -->
         <ion-row>
           <div style="width: 100% !important;">
             <img  src="{{allposts[i].posturl}}"  maxlength="100%"/>

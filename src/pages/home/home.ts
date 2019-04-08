@@ -75,6 +75,24 @@ updatelikes(postdetails){
     });
   }
 
+ 
+/*export class likes{
+  likeValue: number;
+  dislikeValue: number;
+
+    constructor(){
+      this.likeValue = 0;
+      this.dislikeValue = 0;
+    }
+
+    handleLike(){
+      this.likeValue++;
+    }
+    handleDislike(){
+      this.dislikeValue++;
+    }*/
+
+   
   ionViewDidEnter(){
     this.userservice.getpostdetails2().then((list)=>{
       this.allposts =list;
