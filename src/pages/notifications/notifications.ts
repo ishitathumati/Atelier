@@ -58,7 +58,7 @@ export class NotificationsPage {
   
         let newalert = this.alertCtrl.create({
           title: 'Friend added',
-          subTitle: 'Tap on friend to chat',
+          subTitle: 'You can now chat with new friend in your messages!',
           buttons: ['ok']
         });
         newalert.present();
@@ -67,7 +67,7 @@ export class NotificationsPage {
   
     ignore(item) {
       this.requestservice.deleterequest(item).then(() => {
-        alert('Request ignored');
+        alert('Request rejected');
       }).catch((err) => {
         alert(err);
       })
