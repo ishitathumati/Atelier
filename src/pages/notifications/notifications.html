@@ -30,28 +30,25 @@
     </div>
 
     <div [ngSwitch]="Notifications">
-      <ion-list *ngSwitchCase="'Messages'">
-        <ion-item>
-          <ion-thumbnail item-start>
-            <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
-          </ion-thumbnail>
-          <h2>Jamaia</h2>
-          <p>Boy that last pic was ugly</p>
-        </ion-item>
-        <ion-item>
-            <ion-thumbnail item-start>
-              <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
-            </ion-thumbnail>
-            <h2>Jaquan</h2>
-            <p>You're trash</p>
-          </ion-item>
-          <ion-item>
-              <ion-thumbnail item-start>
-                <img src="http://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2018/10/the-man-in-the-high-castle-season-3-episode-8-cary-hiroyuki-tagawa-tagomi-amazon.jpg?itok=uUbADoii">
-              </ion-thumbnail>
-              <h2>Jaquan</h2>
-              <p>Aye that's lit</p>
-            </ion-item>
+      <ion-list *ngSwitchCase="'Requests'">
+          <ion-item-sliding *ngFor="let item of myrequests">
+              <ion-item>
+              <ion-avatar item-left>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQznbX_RRa464XPVEEz2UlxBKdu6mt6tgvIkakuNS8OoccPxvN">
+              </ion-avatar>
+              <h4>{{item.displayName}}</h4>
+              </ion-item>
+              <ion-item-options>
+                <button ion-button color="secondary" (click)="accept(item)">
+                  <ion-icon name="checkmark"></ion-icon>
+                  Accept
+                </button>
+                <button ion-button color="danger" (click)="ignore(item)">
+                  <ion-icon name="trash"></ion-icon>
+                  Reject
+                </button>
+              </ion-item-options>
+            </ion-item-sliding>
       </ion-list>
 
       <ion-list *ngSwitchCase="'Comments'">
