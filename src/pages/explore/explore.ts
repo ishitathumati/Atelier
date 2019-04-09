@@ -151,7 +151,7 @@ export class ExplorePage {
   }
 
 
-  hastagExists() {
+  hashtagExists() {
     firebase.database().ref('hashtags').on('value', function(snapshot) {
       snapshot.forEach(function(snap) {
         this.allHashtags.push(snap.val()); //push the hashtag
