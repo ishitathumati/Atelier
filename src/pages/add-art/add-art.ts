@@ -119,7 +119,7 @@ updatePosts(){
     postid: this.postkey,
     posturl: this.postURL
   }).then(()=>{
-    this.navCtrl.push(UserUploadsPage)
+    this.navCtrl.push(UserUploadsPage) 
   });
 })
 }
