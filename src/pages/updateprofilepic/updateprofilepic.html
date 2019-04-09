@@ -18,14 +18,15 @@
   <button ion-button icon color ='primary' clear (click) = "UploadNew()">
     <ion-icon name="camera"></ion-icon>
     Upload new photo
-  </button> 
+  </button><br>
   <button ion-button icon color='primary' clear (click) = "ChooseNew()">
     <ion-icon name="folder-open" (click) = "ChooseNew()"></ion-icon> 
    Choose from library
- </button>
+ </button><br>
 
- <p><img src = "{{photo}}"> </p> 
-
+ <img src = "{{profilepic}}">
+ 
+ <br>
  <button ion-button (click)="goToProfile();" round>Save</button>
  <button ion-button (click)="cancel();" round>Cancel</button>
 

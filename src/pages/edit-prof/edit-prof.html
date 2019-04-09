@@ -24,18 +24,8 @@
      Library
    </button>
 
-   <p><img src = "{{profilepic}}"> </p> 
+   <img src = "{{profilepic}}"> 
     <!--p><img src = "{{photo2}}"> </p--> 
-
-    <p style='font-size: 120%'><ion-icon name="create"></ion-icon><i>Display Name </i></p>
-    <ion-item no-lines>
-      <ion-note>Tap on your name to change it</ion-note>
-    </ion-item>
-
-    <p style='font-size: 125%'><ion-icon name="add"></ion-icon><i>Add Bio</i></p>
-    <ion-item no-lines>
-      <ion-note>Tap on your profile to add or change bio</ion-note>
-    </ion-item>
 
     <p style='font-size: 125%'><ion-icon name="person"></ion-icon><i>About</i></p>
     <ion-list>
@@ -64,6 +54,16 @@
         <ion-input type="text"[(ngModel)]="profile.fromCity"></ion-input>
       </ion-item>
     </ion-list>
+
+    <p style='font-size: 120%'><ion-icon name="create"></ion-icon><i>Display Name </i></p>
+    <ion-item no-lines>
+      <ion-note><h3>Tap on the name on your profile to change it</h3></ion-note>
+    </ion-item>
+
+    <p style='font-size: 120%'><ion-icon name="add"></ion-icon><i>Add Bio</i></p>
+    <ion-item no-lines>
+      <ion-note><h3>Tap on your profile to add or change bio</h3></ion-note>
+    </ion-item><br>
 
     <button ion-button (click)="goToProfile();" round>Save</button>
     <button ion-button (click)="cancel();" round>Cancel</button>
