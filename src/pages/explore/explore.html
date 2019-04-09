@@ -24,7 +24,7 @@
     <ion-item-sliding *ngFor="let key of filteredusers" >
       <ion-item >
         <ion-avatar item-left (click)="goToOther()">
-          <img src=''>
+          <img src="{{allposts[i].posturl}}" >
         </ion-avatar> 
         <ion-item><h2>{{key.displayName}}</h2></ion-item>
       </ion-item>
@@ -45,7 +45,7 @@
 
   <div class="tags-input" data-name="tags-input"></div>
   <input class = "main-input" ion-input placeholder="#Hashtags" type = "text" [(ngModel)]="hashtag"> 
-  <button ion-button (click)="hashtagExists()"><ion-icon name="search"></ion-icon> Search</button>
+  <ion-icon name="search" (click)="hashtagExists()"></ion-icon>
 
   
       
