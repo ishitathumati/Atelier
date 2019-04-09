@@ -23,9 +23,9 @@
   <ion-list >
     <ion-item-sliding *ngFor="let key of filteredusers" >
       <ion-item >
-        <ion-avatar item-left>
+        <ion-avatar item-left (click)="goToOther()">
           <img src=''>
-        </ion-avatar>
+        </ion-avatar> 
         <ion-item><h2>{{key.displayName}}</h2></ion-item>
       </ion-item>
       

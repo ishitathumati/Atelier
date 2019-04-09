@@ -22,6 +22,7 @@ import { ProfilePage } from '../profile/profile';
 import { Post } from '../../models/post';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { all } from 'q';
+import { OtherProfilePage } from '../other-profile/other-profile';
 
 
 /**
@@ -111,9 +112,9 @@ export class ExplorePage {
 
   
 
-  goToProfile()
+  goToOther()
   {
-    this.navCtrl.push(ProfilePage);
+    this.navCtrl.push(OtherProfilePage);
   }
   
   getPhotoURL()

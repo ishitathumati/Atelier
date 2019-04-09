@@ -25,6 +25,7 @@ import { Camera } from '@ionic-native/camera';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 
+
 import { AddArtPage } from '../pages/add-art/add-art';
 import { ActivityPage } from '../pages/activity/activity';
 import { SavedPage } from '../pages/saved/saved';
@@ -39,6 +40,9 @@ import { UpdateprofilepicPage } from '../pages/updateprofilepic/updateprofilepic
 import { PopoverComponent } from '../components/popover/popover';
 import { ImghandlerProvider } from '../providers/imghandler/imghandler';
 import { MyfriendslistPage } from '../pages/myfriendslist/myfriendslist';
+import { OtherProfilePage } from '../pages/other-profile/other-profile';
+
+
 
 
 const firebaseAuth = {
@@ -70,6 +74,7 @@ const firebaseAuth = {
     FriendsPage,
     MyfriendslistPage,
     UpdateprofilepicPage,
+    OtherProfilePage,
     PopoverComponent
   ],
 
@@ -102,6 +107,7 @@ const firebaseAuth = {
     MyfriendslistPage,
     FriendsPage,
     UpdateprofilepicPage,
+    OtherProfilePage,
     PopoverComponent
     
   ],
