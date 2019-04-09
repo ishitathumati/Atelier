@@ -28,12 +28,12 @@ export class UserProvider {
       this.afireauth.auth.createUserWithEmailAndPassword(newuser.email, newuser.password).then(() => {
         this.afireauth.auth.currentUser.updateProfile({
           displayName: newuser.displayName,
-          photoURL: ''
+          photoURL: 'https://firebasestorage.googleapis.com/v0/b/atelier-842ac.appspot.com/o/profilePics%2Fdefault.jpeg?alt=media&token=ba12bc14-ef9a-4893-947a-90b58c9850fb'
       }).then(() => {
           this.firedata.child(this.afireauth.auth.currentUser.uid).set({
             uid: this.afireauth.auth.currentUser.uid,
             displayName: newuser.displayName,
-            photoURL: ''
+            photoURL: 'https://firebasestorage.googleapis.com/v0/b/atelier-842ac.appspot.com/o/profilePics%2Fdefault.jpeg?alt=media&token=ba12bc14-ef9a-4893-947a-90b58c9850fb'
           }).then(() => {
             resolve({ success: true });
             }).catch((err) => {
