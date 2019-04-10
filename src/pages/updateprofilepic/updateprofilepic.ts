@@ -26,6 +26,7 @@ export class UpdateprofilepicPage {
   photo:any;
   status:any;
   profilepic:any;
+  posts;
 
   constructor(public userservice:UserProvider, public imgservice:ImghandlerProvider,public alertCtrl: AlertController, public events: Events, public viewCtrl:ViewController, private aAuth: AngularFireAuth,private toast:ToastController, public db: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
 
@@ -81,32 +82,52 @@ ChooseNew(){
 
 private uploadPhoto(uid: string): void {
   const pictures = storage().ref();
-  pictures.child(`profilePics/${uid}/img`)
+  const storageref = pictures.child(`profilePics/${uid}/img`);
    //imageData is either a base64 encoded string or a file URI
-  .putString(this.photo, 'base64', {contentType: 'image/jpeg'})
-  .catch((err) => {
-    console.log(err);
-    console.log('Cant upload photo');
-  }).then((url)=>{
-    this.profilepic = url;
-  })
+  storageref.putString(this.photo, 'base64', {contentType: 'image/jpeg'})
+    .catch((err) => {
+      console.log(err);
+      console.log('Cant upload photo');
+    }).then(()=>{storageref.getDownloadURL()
+      .then((url)=>{
+        this.profilepic = url;
+        })
+    });
 }
 
+  updateUserPicsPosts(uid: string){
+    this.userservice.getpostdetails2().then((data)=>{
+      if(!data){
+        
+      }
+      else{
+        this.posts=data;
+        for(var i=1; i<=this.posts.length;i++){
+          this.posts[i].userpic = this.profilepic
+          console.log('this.posts[i].userpic', this.posts[i].userpic)
+        }
+      }
+    }).catch((e)=>{
+      console.log('updateUserPicsPosts', e)
+    })
+  }
+
   goToProfile() {
+    const userid = this.aAuth.auth.currentUser.uid;
     this.userservice.updateimage(this.profilepic).then((res: any) => {
       if (res.success) {
+        this.updateUserPicsPosts(userid);
         this.navCtrl.setRoot(TabsPage);
       }
       else {
         alert(res);
       }
-    })
-    this.toast.create({
+    }).then(()=> {this.toast.create({
       message: `Successfully updated profile picture!`,
       duration: 3000
     }).present();
-    //alert.present();
-  }
+  })
+}
 
 cancel(){
   this.navCtrl.pop();

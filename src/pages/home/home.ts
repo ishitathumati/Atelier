@@ -44,8 +44,6 @@ export class HomePage {
    this.updatelikes(this.allposts[i]).then(()=>{
      console.log('like updated');
    })
-
-
 }
 
 updatelikes(postdetails){
@@ -75,22 +73,19 @@ updatelikes(postdetails){
     });
   }
 
- 
-/*export class likes{
-  likeValue: number;
-  dislikeValue: number;
+  doRefresh(event){
+    this.userservice.getpostdetails2().then((data)=>{
 
-    constructor(){
-      this.likeValue = 0;
-      this.dislikeValue = 0;
-    }
+      this.allposts=[]
+      this.allposts=data
 
-    handleLike(){
-      this.likeValue++;
-    }
-    handleDislike(){
-      this.dislikeValue++;
-    }*/
+      setTimeout(() => {
+        console.log('Async operation has ended');
+        event.complete();
+      }, 400);
+    });
+
+  }
 
    
   ionViewDidEnter(){

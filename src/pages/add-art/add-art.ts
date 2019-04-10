@@ -113,7 +113,7 @@ updatePosts(){
     this.postkey = this.postref.key; //getting the auto generated post id of post firebase using '.key'
     //using built-in update function to store id that we got from above as postid in post table.
     this.postref.update({
-    userpic:auth.photoURL,
+    userpic: auth.photoURL,
     userid: auth.uid,
     username: auth.displayName,
     postid: this.postkey,
