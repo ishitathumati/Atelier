@@ -95,16 +95,12 @@ export class ExplorePage {
     if (q.trim() == '') {
       return;
     }
-
     this.filteredusers = this.filteredusers.filter((v) => {
-      if (v.displayName.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+      if (v.displayName && typeof v.displayName === "string" && v.displayName.toLowerCase().indexOf(q.toLowerCase()) > -1) {
         return true;
       }
       return false;
     })
-
-    // this.search == false;
-
     if(q == '') {
       this.search = false;
     }

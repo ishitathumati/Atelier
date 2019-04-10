@@ -18,7 +18,7 @@ import{Post} from '../../models/post';
 export class UserProvider {
   firedata = firebase.database().ref('/users');
   postlist;
-
+  
   constructor(public events: Events, public afireauth: AngularFireAuth) {
     
   }
@@ -92,6 +92,7 @@ export class UserProvider {
         for (var key in userdata) {
           temparr.push(userdata[key]);
         }
+        //console.log('users', temparr)
         resolve(temparr);
       }).catch((err) => {
         reject(err);
@@ -157,9 +158,8 @@ updatebio(x){
   return promise
 }
 
-
+/* Another way of getting post details. 
 getpostdetails2() {
-  
   var prom=new Promise((resolve, reject)=>{
     let temp;
     firebase.database().ref(`/users`).child(firebase.auth().currentUser.uid).child('posts').once('value', (snapshot) => {
@@ -174,13 +174,52 @@ getpostdetails2() {
       }
     }).catch((e)=>{
       reject(e);
-    })
-    
+    })  
   });
   return prom
- 
- 
+}*/
+
+getpostdetails2(){
+  var prom=new Promise((resolve, reject)=>{
+    let temp;
+    firebase.database().ref(`/users`).child(firebase.auth().currentUser.uid).child('posts').once('value', (snapshot) => {
+      this.postlist = [];
+      temp = snapshot.val();
+      if(temp){
+        for (var key in temp) {
+          this.postlist.push(temp[key]);
+        }
+      }
+      console.log('posts', this.postlist)
+      resolve(this.postlist);
+    }).catch((err) => {
+      reject(err);
+    })
+  })
+  return prom;
 }
 
+/*updateUserPicsPosts(img){
+  var prom = new Promise((resolve,reject)=>{
+    this.getpostdetails2().then((data)=>{
+      if(!data){
+        
+      }
+      else{
+        let posts;
+        posts = data;
+        for(var i=1; i<=posts.length;i++){
+          posts[i].userpic = img;
+          //console.log('this.posts[i].userpic', posts[i].userpic)
+        }
+      }
+      resolve({status : true})
+    }).catch((e)=>{
+      reject(e)
+      console.log('updateUserPicsPosts', e)
+    })
+  })
+  return prom
+}*/
 
 }
