@@ -12,7 +12,6 @@ import { UserProvider } from '../../providers/user/user';
 
 
 
-
 @IonicPage()
 @Component({
   selector: 'page-add-art',
@@ -21,6 +20,9 @@ import { UserProvider } from '../../providers/user/user';
 export class AddArtPage {
 
   post = {} as Post; 
+  comments = { userid: '',
+              username:'',
+              comment:''};
   firedata = firebase.database().ref('/posts'); //creates table for posts
   photo:any; 
   postURL: any;
@@ -28,6 +30,7 @@ export class AddArtPage {
   rootref:any;
   postref:any;
   postkey:any;
+  commentref:any;
 
   constructor(public userservice:UserProvider ,public db: AngularFireDatabase, private aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, private camera:Camera) {
   }
@@ -110,7 +113,8 @@ updatePosts(){
   this.aAuth.authState.take(1).subscribe(auth=>{ 
     this.rootref = firebase.database().ref(`users/${auth.uid}`);
     this.postref = this.rootref.child('posts').push(this.post);
-    this.postkey = this.postref.key; //getting the auto generated post id of post firebase using '.key'
+    this.postkey = this.postref.key;
+     this.commentref = this.postref.child(`${this.postkey}`)//getting the auto generated post id of post firebase using '.key'
     //using built-in update function to store id that we got from above as postid in post table.
     this.postref.update({
     userpic: auth.photoURL,

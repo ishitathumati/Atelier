@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular'; 
+import { Component, NgZone } from '@angular/core';
+import { NavController, AlertController } from 'ionic-angular'; 
 import { ProfilePage } from '../profile/profile';
 import { CommentsPage } from '../comments/comments';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -23,7 +23,7 @@ export class HomePage {
   postReference;
   fireref;
 
-  constructor(public userservice:UserProvider, private afAuth: AngularFireAuth, public navCtrl: NavController, public db: AngularFireDatabase) {
+  constructor(public zone: NgZone, public alertCtrl: AlertController, public userservice:UserProvider, private afAuth: AngularFireAuth, public navCtrl: NavController, public db: AngularFireDatabase) {
 
       this.userservice.getpostdetails2().then((list)=>{
         this.allposts =list;
@@ -46,6 +46,65 @@ export class HomePage {
    })
 }
 
+/*addcomment(i){
+  let statusalert = this.alertCtrl.create({
+    buttons: ['okay']
+  });
+  let alert = this.alertCtrl.create({
+    title: 'Add Comment',
+    inputs: [{
+      name: 'name',
+      placeholder: 'comment'
+    }],
+    buttons: [{
+      text: 'Cancel',
+      role: 'cancel',
+      handler: data => {
+
+      }
+    },
+    {
+      text: 'send',
+      handler: data => {
+        if (data.name) {
+          this.addCommenttodb(data.name, this.allposts[i]).then((res: any) => {
+            if (res.success) 
+            {
+              console.log('status', res.success)
+              statusalert.setTitle('comment added!');
+              statusalert.present();
+              this.zone.run(() => {
+                this.displayName = data.name;
+              })
+            }
+            else {
+              statusalert.setTitle('Failed');
+              statusalert.setSubTitle('Your name was not changed');
+              statusalert.present();
+            }
+                           
+          })
+        }
+      }
+      
+    }]
+  });
+  alert.present();
+}
+
+addCommenttodb(comment, x){
+  var promise = new Promise((resolve, reject)=>{
+  this.db.list(`/users/${x.userid}/posts/${x.postid}/comments`).push({
+    comment: comment,
+    userid: this.afAuth.auth.currentUser.uid,
+    username: this.afAuth.auth.currentUser.displayName
+  })
+  resolve({success: true})
+})
+return promise;
+}
+*/
+
 updatelikes(postdetails){
   var promise = new Promise((resolve, reject)=>{
     this.fireref = firebase.database().ref(`users/${postdetails.userid}`); 
@@ -58,8 +117,8 @@ updatelikes(postdetails){
   return promise
 }
 
-  btnclicked(){
-    this.navCtrl.push(CommentsPage);
+  btnclicked(postdetails){
+    this.navCtrl.push(CommentsPage, {postinfo: postdetails});
   }
 
   ProfilePageClick(){

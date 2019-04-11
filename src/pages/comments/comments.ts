@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { User } from '../../models/user';
 
 
 //import { User } from '../../models/user';
@@ -19,29 +20,36 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class CommentsPage {
 
+  
+  user = {} as User;
+value;
   username: string = '';
 
   comment: string ='';
   s;
   comments: object[] = [];
 
+  //firebase.auth().currentUser.uid
 
   constructor
   ( public db: AngularFireDatabase,
     public navCtrl: NavController, public navParams: NavParams) {
 
-    this.username = this.navParams.get('User'); // user is the parameter name that the person will send
+      this.value = this.navParams.get('postinfo'); // user is the parameter name that the person will send
 
       // this will log when ever there is a change in the firebase
       this.s = this.db.list('/comment').subscribe( data => {
-       this.comments = data;
+      this.comments = data;
      });
   }
 
+  
 
-  sendComment(){
+
+  sendCommenttodb(){
+
     this.db.list('/comment').push({
-      //username: this.username,
+      username: this.user,
       comment: this.comment
     }).then(() => {
 
