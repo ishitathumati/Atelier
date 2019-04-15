@@ -223,6 +223,9 @@ getpostdetails3(){
               return false;
           });
           }
+          else{
+            reject('no posts');
+          }
         });
         return false;
         });
