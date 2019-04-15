@@ -71,21 +71,19 @@
           </ion-col>
         </ion-row>
         <ion-row *ngIf="seeComments[i]">
-          <ion-content style="height: 50px;">
-            <ion-list *ngFor="let com of item.comments">
-              <ion-item lines="none">
-                <ion-title>{{getUserDetails(com.uid)}}: {{com.comment}}</ion-title>
-              </ion-item>
+          <ion-content style="height: 70px;">
+            <ion-list *ngFor="let com of getComments(i)">
+              <p style="padding: 0;">{{getUserDetails(com.uid)}}: {{com.comment}}</p>
             </ion-list>
           </ion-content>
           <ion-item>
             <ion-label position="floating">Add a Comment</ion-label>
-            <ion-input type="text" [(ngModel)]="newComment"></ion-input>
-            <button ion-button icon-only (click)="sendComment(i)" slot="end"><ion-icon name="send"></ion-icon></button>
+            <ion-input type="text" [(ngModel)]="newComment[i]"></ion-input>
+            <button item-end ion-button icon-only (click)="sendComment(i)" fill="clear"><ion-icon name="send"></ion-icon></button>
           </ion-item>
         </ion-row>
         <ion-row>
-          <p style="font-family: Helvetica, sans-serif; font-weight: normal; color: black; text-align: justify">
+          <p style="font-family: Helvetica, sans-serif; font-upweight: normal; color: black; text-align: justify">
             {{allposts[i].description}} </p>
         </ion-row> 
       </ion-item>

@@ -23,19 +23,20 @@ export class HomePage {
   postReference;
   fireref;
   seeComments: boolean[];
-  newComment: string;
+  newComment: string[];
   constructor(public zone: NgZone, public alertCtrl: AlertController, public userservice:UserProvider, private afAuth: AngularFireAuth, public navCtrl: NavController, public db: AngularFireDatabase) {
       this.seeComments = [];
-      this.newComment = "";
+      this.newComment = [];
       this.userservice.getpostdetails2().then((list)=>{
         this.allposts =list;
-        console.log(this.allposts)
+        // console.log(this.allposts)
       });
       for(var i = 0; i<this.allposts; i++) {
         this.seeComments.push(false);
+        this.newComment.push("");
       }
-      console.log(this.newComment);
-      console.log(this.seeComments);
+      // console.log(this.newComment);
+      // console.log(this.seeComments);
   }
   
 //put this in the img src for profic pic avatar
@@ -169,11 +170,28 @@ updatelikes(postdetails){
     return ret;
   }
   sendComment(i) {
+    console.log(this.allposts[i].comments[0]);
+    console.log(this.newComment);
     var temp = {
       uid: firebase.auth().currentUser.uid,
-      comment: this.newComment
+      comment: this.newComment[i]
     }
-    firebase.database().ref('users/'+this.allposts[i].uid+'/posts'+this.allposts[i].postid+'/comments').push(temp);
-    this.newComment = "";
+    this.db.list('users/'+this.allposts[i].userid+'/posts/'+this.allposts[i].postid+'/comments').push(temp);
+    this.newComment[i] = "";
+    console.log(this.newComment);
+  }
+  getComments(i) {
+    var comm: any [];
+    comm = [];
+    firebase.database().ref('users/'+this.allposts[i].userid+'/posts/'+this.allposts[i].postid+'/comments').on('value', (snap) => {
+      snap.forEach((snapshot) => {
+        firebase.database().ref('users/'+this.allposts[i].userid+'/posts/'+this.allposts[i].postid+'/comments/'+snapshot.key).on('value', (comment) => {
+          comm.push(comment.val());
+        });
+        return false;
+      });
+    });
+    // console.log(comm);
+    return comm;
   }
   }
