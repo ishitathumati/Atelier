@@ -39,7 +39,7 @@ export class FriendsPage {
     if (q.trim() == '') {
       return;
     }
- 
+
     this.filteredusers = this.filteredusers.filter((v) => {
       if (v.displayName.toLowerCase().indexOf(q.toLowerCase()) > -1) {
         return true;
@@ -48,6 +48,7 @@ export class FriendsPage {
     })
   }
 
+
   sendreq(recipient) {
     this.newrequest.sender = firebase.auth().currentUser.uid;
     this.newrequest.recipient = recipient.uid;
@@ -55,9 +56,9 @@ export class FriendsPage {
       alert('You cannot send a request to yourself!');
     else {
       let successalert = this.alertCtrl.create({
-        title: 'Request sent',
+        title: 'Request was sent!',
         subTitle: 'Request sent to ' + recipient.displayName,
-        buttons: ['ok']
+        buttons: ['OK']
       });
     
       this.requestservice.sendrequest(this.newrequest).then((res: any) => {
