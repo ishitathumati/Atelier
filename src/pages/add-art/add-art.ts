@@ -121,7 +121,11 @@ updatePosts(){
     userid: auth.uid,
     username: auth.displayName,
     postid: this.postkey,
-    posturl: this.postURL
+    posturl: this.postURL,
+    comments:[{
+      uid: auth.uid,
+      comment: ""
+    }]
   }).then(()=>{
     this.navCtrl.push(UserUploadsPage) 
   });

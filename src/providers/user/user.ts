@@ -198,7 +198,39 @@ getpostdetails2(){
   })
   return prom;
 }
-
+getpostdetails3(){
+  var self = this;
+  var prom=new Promise((resolve, reject)=>{
+    let temp;
+    self.postlist = [];
+    firebase.database().ref(`/users`).once('value', (snapshot) => {
+      snapshot.forEach(function(cSnap) {
+        var k = cSnap.key;
+        firebase.database().ref('/users/'+k+'/posts').on('value', function(cShot) {
+          if(cShot != null){
+            cShot.forEach(function(thepost) {
+              var tempk = thepost.key;
+              firebase.database().ref('/users/'+k+'/posts/'+tempk).on('value', function(the) {
+                temp = the.val();
+                if(temp){
+                  for (var key in temp) {
+                    self.postlist.push(temp[key]);
+                  }
+                }
+                console.log('posts', self.postlist)
+                resolve(self.postlist);
+              });
+              return false;
+          });
+          }
+        });
+        return false;
+        });
+        return false;
+      });
+    });
+  return prom;
+}
 /*updateUserPicsPosts(img){
   var prom = new Promise((resolve,reject)=>{
     this.getpostdetails2().then((data)=>{

@@ -64,11 +64,25 @@
               <ion-icon name="text"></ion-icon>
               <!--</button (click)="goToPage()"></button>-->
               <!--<button ion-button (click)="btnclicked()">Comments</button> -->
-              <div><button ion-button icon-stat clear small (click) = "btnclicked(allposts[i])">
+              <div><button ion-button icon-stat clear small (click) = "btnclicked(i)">
                 Comments
               </button></div> 
             </button>
           </ion-col>
+        </ion-row>
+        <ion-row *ngIf="seeComments[i]">
+          <ion-content style="height: 50px;">
+            <ion-list *ngFor="let com of item.comments">
+              <ion-item lines="none">
+                <ion-title>{{getUserDetails(com.uid)}}: {{com.comment}}</ion-title>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+          <ion-item>
+            <ion-label position="floating">Add a Comment</ion-label>
+            <ion-input type="text" [(ngModel)]="newComment"></ion-input>
+            <button ion-button icon-only (click)="sendComment(i)" slot="end"><ion-icon name="send"></ion-icon></button>
+          </ion-item>
         </ion-row>
         <ion-row>
           <p style="font-family: Helvetica, sans-serif; font-weight: normal; color: black; text-align: justify">

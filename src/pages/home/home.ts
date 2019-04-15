@@ -22,27 +22,33 @@ export class HomePage {
   allposts;
   postReference;
   fireref;
-
+  seeComments: boolean[];
+  newComment: string;
   constructor(public zone: NgZone, public alertCtrl: AlertController, public userservice:UserProvider, private afAuth: AngularFireAuth, public navCtrl: NavController, public db: AngularFireDatabase) {
-
+      this.seeComments = [];
+      this.newComment = "";
       this.userservice.getpostdetails2().then((list)=>{
         this.allposts =list;
-        console.log('list of posts', this.allposts)
+        console.log(this.allposts)
       });
-    
+      for(var i = 0; i<this.allposts; i++) {
+        this.seeComments.push(false);
+      }
+      console.log(this.newComment);
+      console.log(this.seeComments);
   }
   
 //put this in the img src for profic pic avatar
   // <img  src="{{allposts[i].userpic}}" 
 
   liked(i){
-    console.log(this.allposts[i].likes)
+    // console.log(this.allposts[i].likes)
     if(this.allposts[i].likes==null)
                 this.allposts[i].likes='0'
     this.allposts[i].likes=(Number(this.allposts[i].likes)+1).toString()
-    console.log(this.allposts[i].likes)
+    // console.log(this.allposts[i].likes)
    this.updatelikes(this.allposts[i]).then(()=>{
-     console.log('like updated');
+    //  console.log('like updated');
    })
 }
 
@@ -117,8 +123,9 @@ updatelikes(postdetails){
   return promise
 }
 
-  btnclicked(postdetails){
-    this.navCtrl.push(CommentsPage, {postinfo: postdetails});
+  btnclicked(ind){
+    this.seeComments[ind] = true;
+    //this.navCtrl.push(CommentsPage, {postinfo: postdetails});
   }
 
   ProfilePageClick(){
@@ -128,8 +135,9 @@ updatelikes(postdetails){
   ionViewDidLoad(){
     this.userservice.getpostdetails2().then((list)=>{
       this.allposts =list;
-      console.log('list of posts', this.allposts)
+      // console.log('list of posts', this.allposts)
     });
+
   }
 
   doRefresh(event){
@@ -139,7 +147,7 @@ updatelikes(postdetails){
       this.allposts=data
 
       setTimeout(() => {
-        console.log('Async operation has ended');
+        // console.log('Async operation has ended');
         event.complete();
       }, 400);
     });
@@ -150,9 +158,22 @@ updatelikes(postdetails){
   ionViewDidEnter(){
     this.userservice.getpostdetails2().then((list)=>{
       this.allposts =list;
-      console.log('list of posts', this.allposts)
+      // console.log('list of posts', this.allposts)
     });
   }
-  
-
+  getUserDetails(uid) {
+    var ret = "";
+    firebase.database().ref('users/'+uid).on('value', function(snap) {
+      ret = snap.val().displayName;
+    });
+    return ret;
+  }
+  sendComment(i) {
+    var temp = {
+      uid: firebase.auth().currentUser.uid,
+      comment: this.newComment
+    }
+    firebase.database().ref('users/'+this.allposts[i].uid+'/posts'+this.allposts[i].postid+'/comments').push(temp);
+    this.newComment = "";
+  }
   }
