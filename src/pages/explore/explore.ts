@@ -112,12 +112,30 @@ export class ExplorePage {
   {
     this.navCtrl.push(OtherProfilePage);
   }
+
+ /*  maxPosts()
+  {
+    if(localStorage.length < 20)
+    {
+      this.getPhotoURL();
+    }
+    else{
+
+    }
+
+  } */
+
+  
+  
+
+  
   
   getPhotoURL()
   {
+    //var maxPosts = 20;
     var self = this;
     var promise = new Promise((resolve, reject) => {
-      firebase.database().ref(`/users`).on('value', (snapshot) => {
+      firebase.database().ref(`/users`).limitToLast(5).on('value', (snapshot) => {
         snapshot.forEach(function(userStuff) {
           var key = userStuff.key;
           firebase.database().ref('/users/'+key+'/posts').on('value', function(shot) {
