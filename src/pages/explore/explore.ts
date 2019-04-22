@@ -165,6 +165,10 @@ export class ExplorePage {
   }
 
 
+
+  
+
+
   hashtagExists() {
     firebase.database().ref('hashtags').on('value', function(snapshot) {
       snapshot.forEach(function(snap) {
