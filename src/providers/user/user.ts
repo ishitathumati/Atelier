@@ -219,18 +219,17 @@ getpostdetails3(userID: string){
       snapshot.forEach(function(cSnap) {
         var k = cSnap.key;
         if(friends.indexOf(k) != -1) {
-          firebase.database().ref('/users/'+k+'/posts').on('value', function(cShot) {
+          self.postlist = [];
+          firebase.database().ref('/users/'+k+'/posts').once('value', function(cShot) {
             if(cShot != null) {
-              // console.log(cShot.val());
-              cShot.forEach(function(thepost) {
                 // console.log(thepost.val());
-                var temp = thepost.val();
-                self.postlist.push(temp);
-                  // console.log(temp);
-                resolve(self.postlist);
-                console.log(self.postlist);
-                return false;
-            });
+                for(var key in cShot.val()){
+                  var temp = cShot.val()[key];
+                  self.postlist.push(temp);
+                    // console.log(temp);
+                  resolve(self.postlist);
+                  console.log(self.postlist);
+                }
             }
             else{
               reject('no posts');
