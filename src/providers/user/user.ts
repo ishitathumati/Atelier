@@ -199,7 +199,7 @@ getpostdetails2(){
   return prom;
 }
 getpostdetails3(userID: string){
-  
+  console.log("3");
   var self = this;
   var friends: string[] = [];
   firebase.database().ref('friends/'+userID).on('value', (snap) => {
@@ -208,14 +208,14 @@ getpostdetails3(userID: string){
       return false;
     });
   });
+  // console.log(friends);
 
-  console.log(friends);
   var prom=new Promise((resolve, reject)=>{
 
     let temp;
     self.postlist = [];
     firebase.database().ref(`/users`).once('value', (snapshot) => {
-      console.log(snapshot.val());
+      // console.log(snapshot.val());
       snapshot.forEach(function(cSnap) {
         var k = cSnap.key;
         if(friends.indexOf(k) != -1) {
@@ -223,13 +223,15 @@ getpostdetails3(userID: string){
             if(cShot != null) {
               // console.log(cShot.val());
               cShot.forEach(function(thepost) {
-                console.log(thepost.val());
+                // console.log(thepost.val());
                 var tempk = thepost.key;
                 firebase.database().ref('/users/'+k+'/posts/'+tempk).on('value', function(the) {
                   temp = the.val();
+                  // self.postlist = [];
                   self.postlist.push(temp);
                   // console.log(temp);
                   resolve(self.postlist);
+                  console.log(self.postlist);
                 });
                 return false;
             });
@@ -245,7 +247,6 @@ getpostdetails3(userID: string){
       });
 
     });
-    console.log(this.postlist);
   return prom;
 }
 /*updateUserPicsPosts(img){

@@ -22,31 +22,21 @@ export class HomePage {
   allposts;
   postReference;
   fireref;
-  isLiked: boolean[];
   seeComments: boolean[];
   newComment: string[];
   constructor(public zone: NgZone, public alertCtrl: AlertController, public userservice:UserProvider, private afAuth: AngularFireAuth, public navCtrl: NavController, public db: AngularFireDatabase) {
       this.seeComments = [];
       this.newComment = [];
       this.allposts = [];
-      this.isLiked = [];
       this.userservice.getpostdetails3(firebase.auth().currentUser.uid).then((list)=>{
         this.allposts =list;
-        // console.log(this.allposts)
+        console.log(this.allposts)
       });
-      for(var i = 0; i<this.allposts; i++) {
+      for(var i = 0; i<this.allposts.length; i++) {
         this.seeComments.push(false);
         this.newComment.push("");
-        this.isLiked.push(false);
       }
-      for(var i=0; i<this.allposts; i++) {
-        for(var j=0; j<this.allposts[i].likes; j++) {
-          if(this.allposts[i].likes[j] == firebase.auth().currentUser.uid) {
-            this.isLiked[i] = true;
-          }
-        }
-      }
-      console.log(this.isLiked);
+      // console.log(this.isLiked);
       // console.log(this.newComment);
       // console.log(this.seeComments);
   }
@@ -63,6 +53,17 @@ export class HomePage {
    this.updatelikes(this.allposts[i]).then(()=>{
     //  console.log('like updated');
    })
+}
+
+isLiked(i) {
+  var likedUsers = this.allposts[i].likes;
+  var ret = false;
+  for(var j=0; j<likedUsers.length; j++) {
+    if(likedUsers[j] == firebase.auth().currentUser.uid) {
+      ret = true;
+    }
+  }
+  return ret;
 }
 
 /*addcomment(i){
@@ -123,6 +124,14 @@ addCommenttodb(comment, x){
 return promise;
 }
 */
+
+unlike(i) {
+  var ind = this.allposts[i].likes.indexOf(firebase.auth().currentUser.uid);
+  this.allposts[i].likes.splice(ind, 1);
+  this.updatelikes(this.allposts[i]).then(()=>{
+    //  console.log('like updated');
+   })
+}
 
 updatelikes(postdetails){
   var promise = new Promise((resolve, reject)=>{
