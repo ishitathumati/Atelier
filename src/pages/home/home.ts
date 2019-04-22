@@ -22,19 +22,31 @@ export class HomePage {
   allposts;
   postReference;
   fireref;
+  isLiked: boolean[];
   seeComments: boolean[];
   newComment: string[];
   constructor(public zone: NgZone, public alertCtrl: AlertController, public userservice:UserProvider, private afAuth: AngularFireAuth, public navCtrl: NavController, public db: AngularFireDatabase) {
       this.seeComments = [];
       this.newComment = [];
-      this.userservice.getpostdetails2().then((list)=>{
+      this.allposts = [];
+      this.isLiked = [];
+      this.userservice.getpostdetails3(firebase.auth().currentUser.uid).then((list)=>{
         this.allposts =list;
         // console.log(this.allposts)
       });
       for(var i = 0; i<this.allposts; i++) {
         this.seeComments.push(false);
         this.newComment.push("");
+        this.isLiked.push(false);
       }
+      for(var i=0; i<this.allposts; i++) {
+        for(var j=0; j<this.allposts[i].likes; j++) {
+          if(this.allposts[i].likes[j] == firebase.auth().currentUser.uid) {
+            this.isLiked[i] = true;
+          }
+        }
+      }
+      console.log(this.isLiked);
       // console.log(this.newComment);
       // console.log(this.seeComments);
   }
@@ -45,8 +57,8 @@ export class HomePage {
   liked(i){
     // console.log(this.allposts[i].likes)
     if(this.allposts[i].likes==null)
-                this.allposts[i].likes='0'
-    this.allposts[i].likes=(Number(this.allposts[i].likes)+1).toString()
+                this.allposts[i].likes=[];
+    this.allposts[i].likes.push(firebase.auth().currentUser.uid);
     // console.log(this.allposts[i].likes)
    this.updatelikes(this.allposts[i]).then(()=>{
     //  console.log('like updated');
@@ -133,20 +145,21 @@ updatelikes(postdetails){
     this.navCtrl.push(ProfilePage);
   }
 
-  ionViewDidLoad(){
-    this.userservice.getpostdetails2().then((list)=>{
-      this.allposts =list;
-      // console.log('list of posts', this.allposts)
-    });
+  // ionViewDidLoad(){
+  //   this.allposts = [];
+  //   this.userservice.getpostdetails3(firebase.auth().currentUser.uid).then((list)=>{
+  //     this.allposts =list;
+  //     // console.log('list of posts', this.allposts)
+  //   });
 
-  }
+  // }
 
   doRefresh(event){
-    this.userservice.getpostdetails2().then((data)=>{
+    this.userservice.getpostdetails3(firebase.auth().currentUser.uid).then((data)=>{
 
-      this.allposts=[]
-      this.allposts=data
-
+      this.allposts=[];
+      this.allposts=data;
+      console.log('list of posts', this.allposts);
       setTimeout(() => {
         // console.log('Async operation has ended');
         event.complete();
@@ -156,33 +169,39 @@ updatelikes(postdetails){
   }
 
    
-  ionViewDidEnter(){
-    this.userservice.getpostdetails2().then((list)=>{
-      this.allposts =list;
-      // console.log('list of posts', this.allposts)
-    });
-  }
+  // ionViewDidEnter(){
+  //   this.allposts=[];
+  //   this.userservice.getpostdetails3(firebase.auth().currentUser.uid).then((list)=>{
+  //     this.allposts =list;
+  //     // console.log('list of posts', this.allposts)
+  //   });
+  // }
   getUserDetails(uid) {
     var ret = "";
     firebase.database().ref('users/'+uid).on('value', function(snap) {
       ret = snap.val().displayName;
     });
+    // console.log('list of posts', this.allposts);
     return ret;
   }
   sendComment(i) {
-    console.log(this.allposts[i].comments[0]);
-    console.log(this.newComment);
+    // console.log('list of posts', this.allposts);
+    // console.log(this.allposts[i].comments[0]);
+    // console.log(this.newComment);
     var temp = {
       uid: firebase.auth().currentUser.uid,
       comment: this.newComment[i]
     }
+    // console.log('list of posts', this.allposts);
     this.db.list('users/'+this.allposts[i].userid+'/posts/'+this.allposts[i].postid+'/comments').push(temp);
     this.newComment[i] = "";
-    console.log(this.newComment);
+    // console.log('list of posts', this.allposts);
+    // console.log(this.newComment);
   }
   getComments(i) {
     var comm: any [];
     comm = [];
+    // console.log('list of posts', this.allposts);
     firebase.database().ref('users/'+this.allposts[i].userid+'/posts/'+this.allposts[i].postid+'/comments').on('value', (snap) => {
       snap.forEach((snapshot) => {
         firebase.database().ref('users/'+this.allposts[i].userid+'/posts/'+this.allposts[i].postid+'/comments/'+snapshot.key).on('value', (comment) => {
@@ -191,7 +210,10 @@ updatelikes(postdetails){
         return false;
       });
     });
+    // comm = this.allposts[i].comments;
     // console.log(comm);
+    // console.log(this.allposts[i].comments);
+    // console.log('list of posts', this.allposts);
     return comm;
   }
   }
