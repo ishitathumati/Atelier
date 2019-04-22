@@ -54,11 +54,11 @@
           <ion-col>
               <button ion-button icon-start clear small (click)="liked(i)" *ngIf="!isLiked(i)">
                 <ion-icon name="thumbs-up"></ion-icon>
-                {{allposts[i].likes.length}} Likes
+                {{allposts[i].likes.length-1}} Likes
               </button>
               <button ion-button icon-start clear small *ngIf="isLiked(i)" (click)="unlike(i)">
                   <ion-icon name="thumbs-up" color="danger"></ion-icon>
-                  {{allposts[i].likes.length}} Likes
+                  {{allposts[i].likes.length-1}} Likes
               </button>
           </ion-col> 
 
