@@ -17,10 +17,10 @@ import{Post} from '../../models/post';
 @Injectable()
 export class UserProvider {
   firedata = firebase.database().ref('/users');
-  postlist;
+  postlist: any [];
   
   constructor(public events: Events, public afireauth: AngularFireAuth) {
-    
+    this.postlist = [];
   }
 
   adduser(newuser) {
@@ -198,39 +198,49 @@ getpostdetails2(){
   })
   return prom;
 }
-getpostdetails3(){
+getpostdetails3(userID: string){
+  console.log("3");
   var self = this;
+  var friends: string[] = [];
+  firebase.database().ref('friends/'+userID).on('value', (snap) => {
+    snap.forEach((snapshot) => {
+      friends.push(snapshot.val().uid);
+      return false;
+    });
+  });
+  // console.log(friends);
+
   var prom=new Promise((resolve, reject)=>{
+
     let temp;
     self.postlist = [];
     firebase.database().ref(`/users`).once('value', (snapshot) => {
+      console.log(snapshot.val());
       snapshot.forEach(function(cSnap) {
         var k = cSnap.key;
-        firebase.database().ref('/users/'+k+'/posts').on('value', function(cShot) {
-          if(cShot != null){
-            cShot.forEach(function(thepost) {
-              var tempk = thepost.key;
-              firebase.database().ref('/users/'+k+'/posts/'+tempk).on('value', function(the) {
-                temp = the.val();
-                if(temp){
-                  for (var key in temp) {
-                    self.postlist.push(temp[key]);
-                  }
+        if(friends.indexOf(k) != -1) {
+          self.postlist = [];
+          firebase.database().ref('/users/'+k+'/posts').once('value', function(cShot) {
+            if(cShot != null) {
+                // console.log(thepost.val());
+                for(var key in cShot.val()){
+                  var temp = cShot.val()[key];
+                  self.postlist.push(temp);
+                    // console.log(temp);
+                  resolve(self.postlist);
+                  console.log(self.postlist);
                 }
-                console.log('posts', self.postlist)
-                resolve(self.postlist);
-              });
-              return false;
+            }
+            else{
+              reject('no posts');
+            }
           });
-          }
-          else{
-            reject('no posts');
-          }
-        });
+        }
         return false;
         });
         return false;
       });
+
     });
   return prom;
 }

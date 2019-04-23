@@ -52,10 +52,14 @@
             </ion-icon>
           </ion-item> -->
           <ion-col>
-              <button ion-button icon-start clear small (click)="liked(i)">
-                  <ion-icon name="thumbs-up"></ion-icon>
-                  {{allposts[i].likes}} Likes
-                </button>
+              <button ion-button icon-start clear small (click)="liked(i)" *ngIf="!isLiked(i)">
+                <ion-icon name="thumbs-up"></ion-icon>
+                {{allposts[i].likes.length-1}} Likes
+              </button>
+              <button ion-button icon-start clear small *ngIf="isLiked(i)" (click)="unlike(i)">
+                  <ion-icon name="thumbs-up" color="danger"></ion-icon>
+                  {{allposts[i].likes.length-1}} Likes
+              </button>
           </ion-col> 
 
 
@@ -74,6 +78,7 @@
           <ion-content style="height: 70px;">
             <ion-list *ngFor="let com of getComments(i)">
               <p style="padding: 0;">{{getUserDetails(com.uid)}}: {{com.comment}}</p>
+              <!-- <script>console.log(this.allposts)</script> -->
             </ion-list>
           </ion-content>
           <ion-item>
