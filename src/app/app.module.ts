@@ -41,6 +41,7 @@ import { PopoverComponent } from '../components/popover/popover';
 import { ImghandlerProvider } from '../providers/imghandler/imghandler';
 import { MyfriendslistPage } from '../pages/myfriendslist/myfriendslist';
 import { OtherProfilePage } from '../pages/other-profile/other-profile';
+import {PhotoPage} from '../pages/photo/photo';
 
 
 
@@ -75,7 +76,8 @@ const firebaseAuth = {
     MyfriendslistPage,
     UpdateprofilepicPage,
     OtherProfilePage,
-    PopoverComponent
+    PopoverComponent,
+    PhotoPage
   ],
 
   imports: [
@@ -108,7 +110,8 @@ const firebaseAuth = {
     FriendsPage,
     UpdateprofilepicPage,
     OtherProfilePage,
-    PopoverComponent
+    PopoverComponent,
+    PhotoPage
     
   ],
   providers: [

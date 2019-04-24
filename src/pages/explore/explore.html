@@ -60,12 +60,15 @@
         <ion-col *ngFor ="let item of posts" col-6 no-padding>
           <ion-card>
           <ion-card-header>
-            {{item.title}}
+            {{item.username}}
           </ion-card-header>
           <ion-card-content>
-            <img src="{{item.posturl}}" imageViewer>
+            <img src="{{item.posturl}}"  (click)="goToPhotos(item)">
             <ion-row>
-              Price: {{item.price}}
+              {{item.title}}
+            </ion-row>
+            <ion-row>
+             {{item.price}}
             </ion-row>
             <ion-row>
               {{item.description}}

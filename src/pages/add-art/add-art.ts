@@ -125,7 +125,8 @@ updatePosts(){
     comments:[{
       uid: auth.uid,
       comment: ""
-    }]
+    }],
+    likes: ["theboss"],
   }).then(()=>{
     this.navCtrl.push(UserUploadsPage) 
   });
