@@ -1,4 +1,4 @@
-# Atelier (Sahil)
+# Atelier
 
 This is an app project which is a social media art app. It is being implemented through ionic.  
 
