@@ -85,6 +85,31 @@ export class PhotoPage {
 
   });
   }
+
+
+  sendreq(recipient) {
+    this.newrequest.sender = firebase.auth().currentUser.uid;
+    this.newrequest.recipient = recipient.uid;
+    if (this.newrequest.sender === this.newrequest.recipient)
+      alert('You cannot send a request to yourself!');
+    else {
+      let successalert = this.alertCtrl.create({
+        title: 'Request sent',
+        subTitle: 'Request sent to ' + recipient.displayName,
+        buttons: ['ok']
+      });
+    
+      this.requestservice.sendrequest(this.newrequest).then((res: any) => {
+        if (res.success) {
+          successalert.present();
+          let sentuser = this.filteredusers.indexOf(recipient);
+          this.filteredusers.splice(sentuser, 1);
+        }
+      }).catch((err) => {
+        alert(err);
+      })
+    }
+  }
 }
 
 
