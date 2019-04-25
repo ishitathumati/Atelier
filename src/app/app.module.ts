@@ -40,6 +40,10 @@ import { PopoverComponent } from '../components/popover/popover';
 import { ImghandlerProvider } from '../providers/imghandler/imghandler';
 import { MyfriendslistPage } from '../pages/myfriendslist/myfriendslist';
 
+import { RouterModule, RouteReuseStrategy } from '@angular/router';
+import { IonicRouteStrategy } from '@ionic/angular';
+import { AppRoutingModule } from './app-routing.module';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 const firebaseAuth = {
   apiKey: "AIzaSyDUn8OuO3b6wtnn1g78EqzRUUZJMPof8tU",
@@ -80,7 +84,9 @@ const firebaseAuth = {
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    IonicImageViewerModule
+    IonicImageViewerModule,
+    AppRoutingModule,
+    AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -108,7 +114,6 @@ const firebaseAuth = {
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
     AuthProvider,
     AngularFireAuthModule,
@@ -117,6 +122,8 @@ const firebaseAuth = {
     RequestsProvider,
     ChatProvider,
     ImghandlerProvider,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ]
 })
 export class AppModule {}
