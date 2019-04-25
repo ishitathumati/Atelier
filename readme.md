@@ -10,7 +10,7 @@ Our app lets users post just their art, find and become friends with other artis
 
 Watch this video to learn about the functionality of our app!
 
-[![Video](https://user-images.githubusercontent.com/32079112/56720122-1884ba00-6710-11e9-8fe1-e3486aa5c6f5.png=200px)](https://youtu.be/JWK90c-0sls)
+![Video](https://youtu.be/JWK90c-0sls)
 
 
 # More Cool Features Coming Soon
