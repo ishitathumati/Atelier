@@ -1,39 +1,30 @@
 # Welcome to Atelier
 
-abc
+A prevalent issue artists face is the struggle to make a consistent and stable living from their work. There are many excellent artists out there yet a sparse number of consumers who will buy their art. Only certain top-tier artists gain widespread popularity and a solid income. This app is a means for aspiring artists to upload their art and gain a following. Many social media apps allow people to share their art, but this is masked by all the other things one can do on social media. 
 
-This is an app project which is a social media art app. It is being implemented through ionic.  
+#### Here Comes Our Idea
 
-# Setup
-1. Create an account on ionic by going to the following link
-https://ionicframework.com/getting-started
-2. Install Node.js on your computer https://nodejs.org/en/
-3. Install the latest ionic CLi tools in the terminal using the following command
-    
-       
-       npm install -g ionic
+Our app lets users post just their art, find and become friends with other artists, explore other beautiful artwork, and chat with fellow creatives! Atelier doesn't just let you connect and explore the amazing world of art, but it also lets aspiring creatives list a price for their work and connect with interested buyers, collectors and collaborators through our chat feature so that passionate artists can turn their heart-felt work into a product. The opportunity to get recognized in their community and truly experience appreciation for their work in multiple ways is just another cherry on the top.
 
-# Developing Environment
-Visual Code Studio https://code.visualstudio.com/
+# Explore Our Features
 
-# Running the App
-1. Clone the project in the terminal
-2. run the app using the following commands
+Video
 
-       $ cd Atelier 
-       $ ionic serve
-       
-       
-# Unit Testing the App
-1. Clone the project in the terminal
-2. run the app using the following commands
+Add screenshots and important navigation swipes
 
-       $ cd Atelier
-       $ npm run test
-       
 
-# Behavior Testing the App
-1. Clone the project in the terminal
-2. run the app using the following commands
+# More Cool Features Coming Soon
 
-       $ cucumber test/e2e/home/sample.feature
+future goals
+
+get em hyped
+
+# Our Technology
+
+implemented through ionic. Node.js AngularJS, Firebase . How cool it all is
+
+# Meet the Team
+
+###### We'd love to connect
+
+issues comments concerns , reach out here --someemail-- we'd love feedback!
