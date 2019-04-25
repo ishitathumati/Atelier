@@ -16,7 +16,7 @@ Watch this video to learn about the functionality of our app!
 
 Once you login or register, you can view a home page to see what your friends posted recently, and like or comment<br>
 <p float="left" align="middle">
-    ![photo]<a href="url"><img src="https://user-images.githubusercontent.com/32079112/56707061-69cb8400-66e5-11e9-9c46-9b0973fb98e0.PNG" width=130px></a>
+    [photo]<a href="url"><img src="https://user-images.githubusercontent.com/32079112/56707061-69cb8400-66e5-11e9-9c46-9b0973fb98e0.PNG" width=130px></a>
  <a href="url"> <img src="https://user-images.githubusercontent.com/32079112/56707572-6df8a100-66e7-11e9-888a-fadaec260e32.jpeg" width=115px></a>
   <a href="url"><img src="https://user-images.githubusercontent.com/32079112/56707576-751faf00-66e7-11e9-8f1e-5c2aa4410cdf.jpeg" width=115px></a>
 </p>
