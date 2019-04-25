@@ -31,30 +31,30 @@ Ionic Framework - Node.js - Firebase
 # Meet the Team
 
 - **Ishita Thumati** <br> Team lead. Ishita’s a senior majoring in Computer Science. She delegated our tasks and led meetings as well as worked heavily on core functionality.<br>
-    LinkedIn: https://www.linkedin.com/in/ishita-thumati-8b0a2a172/ <br>
-    GitHub: https://github.com/ishitathumati
+    [LinkedIn](https://www.linkedin.com/in/ishita-thumati-8b0a2a172/) <br>
+    [github](https://github.com/ishitathumati)
 
 
 - **Mercy Barigala** <br>
 Mercy is senior majoring in Computer Science. She was in charge of implementing the Explore Page.<br>
-LinkedIn: https://www.linkedin.com/in/mercy-barigala-368140175/ <br>
-GitHub: https://github.com/mbarigala
+[LinkedIn](https://www.linkedin.com/in/mercy-barigala-368140175/) <br>
+[github](https://github.com/mbarigala)
 
 
 - **Saipriya Sairam** <br>
 Saipriya is senior majoring in Computer Science. She developed the User Uploads Page. <br>
-LinkedIn: https://www.linkedin.com/in/saipriya-s-b33656a5/ <br>
-GitHub: https://github.com/saipriyas
+[LinkedIn](https://www.linkedin.com/in/saipriya-s-b33656a5/) <br>
+[github](https://github.com/saipriyas)
 
 
 - **Sahil bahra** <br>
 Developer. Sahil is senior majoring in Computer Engineering. He designed and implemented the Home Page and all user interactivity on posts. <br>
-GitHub: https://github.com/gbahra16
+[github](https://github.com/gbahra16)
 
 - **Adiv Sivakumar** <br>
 Developer. Adiv’s a senior majoring in Computer Science. He designed the icon, and implemented user interaction with friends. <br>
-LinkedIn: https://www.linkedin.com/in/adiv-sivakumar-a5a56b155/ <br>
-GitHub: https://github.com/adivsiv
+[LinkedIn](https://www.linkedin.com/in/adiv-sivakumar-a5a56b155/) <br>
+[github](https://github.com/adivsiv)
 
 
 
