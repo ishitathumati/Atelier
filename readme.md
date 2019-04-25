@@ -15,15 +15,35 @@ Add screenshots and important navigation swipes
 
 # More Cool Features Coming Soon
 
-future goals
+In the future we hope to implement three major changes. The first feature we would like to implement is integrating a secure paying system so users can directly sell and buy art. We believe this will simplify making a transaction and also enhance the user experience. Our next goal is to tailor the explore page for each individual user, based on the accounts they follow or the posts they like. We want to identify these patterns, so we cater to the specific interests of each individual within broad spectrum, that is art. The final feature we plan on implementing is Stories. Stories within Atelier will allow users to capture and post related images and video content in a slideshow format. The content of the Story will be available for only a certain amount of time, approximately 24 hours. We believe this feature will make it possible for users to showcase their art without creating an excess amount of posts on their page. We hope we can implement these changes to give artists a unique platform while enhancing their experience on our app
 
-get em hyped
+
 
 # Our Technology
 
 implemented through ionic. Node.js AngularJS, Firebase . How cool it all is
 
 # Meet the Team
+
+1.	Ishita: team lead. Ishita’s a senior majoring in Computer Science. She delegated our tasks and worked heavily on the Profile page 
+https://www.linkedin.com/in/ishita-thumati-8b0a2a172/
+
+
+2.	Mercy Barigala: Mercy is senior majoring in Computer Science. She was in charge of implementing the Explore Page.
+https://www.linkedin.com/in/mercy-barigala-368140175/
+
+
+3.	Saipriya Sairam: saipriya is senior majoring in Computer Science. She designed the User Uploads Page. 
+https://www.linkedin.com/in/saipriya-s-b33656a5/
+
+
+4.	Sahil bahra: developer. Sahil is senior majoring in Computer Engineering. He implemented the Home Page of Atelier. 
+
+
+5.	Adiv Sivakumar: developer. Adiv’s a senior majoring in Computer Science. He worked on the Friends Page.
+https://www.linkedin.com/in/adiv-sivakumar-a5a56b155/
+
+
 
 ###### We'd love to connect
 
