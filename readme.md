@@ -26,22 +26,22 @@ implemented through ionic. Node.js AngularJS, Firebase . How cool it all is
 # Meet the Team
 
 1.	Ishita: team lead. Ishita’s a senior majoring in Computer Science. She delegated our tasks and worked heavily on the Profile page 
-https://www.linkedin.com/in/ishita-thumati-8b0a2a172/
+Connect with Ishita: https://www.linkedin.com/in/ishita-thumati-8b0a2a172/
 
 
 2.	Mercy Barigala: Mercy is senior majoring in Computer Science. She was in charge of implementing the Explore Page.
-https://www.linkedin.com/in/mercy-barigala-368140175/
+Connect with Mercy:https://www.linkedin.com/in/mercy-barigala-368140175/
 
 
 3.	Saipriya Sairam: saipriya is senior majoring in Computer Science. She designed the User Uploads Page. 
-https://www.linkedin.com/in/saipriya-s-b33656a5/
+Connect with Saipriya:https://www.linkedin.com/in/saipriya-s-b33656a5/
 
 
 4.	Sahil bahra: developer. Sahil is senior majoring in Computer Engineering. He implemented the Home Page of Atelier. 
 
 
 5.	Adiv Sivakumar: developer. Adiv’s a senior majoring in Computer Science. He worked on the Friends Page.
-https://www.linkedin.com/in/adiv-sivakumar-a5a56b155/
+Connect with Sahil:https://www.linkedin.com/in/adiv-sivakumar-a5a56b155/
 
 
 
