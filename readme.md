@@ -12,7 +12,7 @@ Watch this video to learn about the functionality of our app!
 
 [<img width="1280" alt="Screen Shot 2019-04-25 at 4 09 12 AM" src="https://user-images.githubusercontent.com/32079112/56751761-cd40ca80-6754-11e9-8e7f-024c7c966b27.png">](https://youtu.be/JWK90c-0sls)
 
-##### Snapshots of different screens
+#### Snapshots of different screens
 
 Once you login or register, you can view a home page to see what your friends posted recently, and like or comment<br>
 
@@ -49,7 +49,7 @@ Ionic Framework - Node.js - Firebase
 
 # Meet the Team
 
-- **Ishita Thumati** <br> Team lead. Ishita’s a senior majoring in Computer Science. She delegated our tasks and led meetings as well as worked heavily on core functionality.<br>
+- **Ishita Thumati** <br> Team lead. Ishita’s a senior majoring in Computer Engineering. She delegated our tasks and led meetings as well as worked heavily on core functionality.<br>
     [LinkedIn](https://www.linkedin.com/in/ishita-thumati-8b0a2a172/) <br>
     [github](https://github.com/ishitathumati)
 
