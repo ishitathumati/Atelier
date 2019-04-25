@@ -25,7 +25,7 @@ implemented through ionic. Node.js AngularJS, Firebase . How cool it all is
 
 # Meet the Team
 
-1.	Ishita: team lead. Ishita’s a senior majoring in Computer Science. She delegated our tasks and worked heavily on the Profile page 
+1.	Ishita: team lead. Ishita’s a senior majoring in Computer Science. She delegated our tasks and worked heavily on the Profile page. 
 Connect with Ishita: https://www.linkedin.com/in/ishita-thumati-8b0a2a172/
 
 
