@@ -58,6 +58,6 @@ Developer. Adiv’s a senior majoring in Computer Science. He designed the icon,
 
 
 
-###### If you love our work and want to let us know, connect with us! 
+##### If you love our work and want to let us know, connect with us! 
 
-##### In case of any issues, comments or concerns regarding our app, please reach out to __***ithumati@email.sc.edu.***__ We'd love your feedback!
+##### In case of any issues, comments or concerns regarding our app, please reach out to __*ithumati@email.sc.edu.*__ We'd love your feedback!
