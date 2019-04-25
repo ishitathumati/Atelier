@@ -15,31 +15,31 @@ Video
 
 Once you login or register, you can view a home page to see what your friends posted recently, and like or comment<br>
 <p float="left" align="middle">
-    <img src="https://user-images.githubusercontent.com/32079112/56707061-69cb8400-66e5-11e9-9c46-9b0973fb98e0.PNG" width=130px>
-  <img src="https://user-images.githubusercontent.com/32079112/56707572-6df8a100-66e7-11e9-888a-fadaec260e32.jpeg" width=115px>
-  <img src="https://user-images.githubusercontent.com/32079112/56707576-751faf00-66e7-11e9-8f1e-5c2aa4410cdf.jpeg" width=115px>
+    <a href="url"><img src="https://user-images.githubusercontent.com/32079112/56707061-69cb8400-66e5-11e9-9c46-9b0973fb98e0.PNG" width=130px></a>
+ <a href="url"> <img src="https://user-images.githubusercontent.com/32079112/56707572-6df8a100-66e7-11e9-888a-fadaec260e32.jpeg" width=115px></a>
+  <a href="url"><img src="https://user-images.githubusercontent.com/32079112/56707576-751faf00-66e7-11e9-8f1e-5c2aa4410cdf.jpeg" width=115px></a>
 </p>
 
 Edit your profile, and add some featured posts from your uploads!
 <p float="left" align="middle">
-<img src="https://user-images.githubusercontent.com/32079112/56708030-3c80d500-66e9-11e9-8c37-6bf97fc075de.PNG" width=130px>
-<img src="https://user-images.githubusercontent.com/32079112/56707707-eeb79d00-66e7-11e9-9bdb-7896033fedeb.PNG" width=130px>
-<img src="https://user-images.githubusercontent.com/32079112/56707711-f5461480-66e7-11e9-9915-2c7bc53fffc8.PNG" width=130px>
+<a href="url"><img src="https://user-images.githubusercontent.com/32079112/56708030-3c80d500-66e9-11e9-8c37-6bf97fc075de.PNG" width=130px></a>
+<a href="url"><img src="https://user-images.githubusercontent.com/32079112/56707707-eeb79d00-66e7-11e9-9bdb-7896033fedeb.PNG" width=130px></a>
+<a href="url"><img src="https://user-images.githubusercontent.com/32079112/56707711-f5461480-66e7-11e9-9915-2c7bc53fffc8.PNG" width=130px></a>
 </p>
 
 Find artists and request to be friends. Pending requests appear on notifications tab
 <p float="left" align="middle">
-<img src="https://user-images.githubusercontent.com/32079112/56708137-a600e380-66e9-11e9-80f1-e9c6ea0dd4d3.PNG" width=130px>
-<img src="https://user-images.githubusercontent.com/32079112/56708157-b3b66900-66e9-11e9-8ea1-80efa17d0408.PNG" width=130px>
-<img src="https://user-images.githubusercontent.com/32079112/56708168-bd3fd100-66e9-11e9-8c97-aa2798f71364.PNG" width=130px>
+<a href="url"><img src="https://user-images.githubusercontent.com/32079112/56708137-a600e380-66e9-11e9-80f1-e9c6ea0dd4d3.PNG" width=130px></a>
+<a href="url"><img src="https://user-images.githubusercontent.com/32079112/56708157-b3b66900-66e9-11e9-8ea1-80efa17d0408.PNG" width=130px></a>
+<a href="url"><img src="https://user-images.githubusercontent.com/32079112/56708168-bd3fd100-66e9-11e9-8c97-aa2798f71364.PNG" width=130px></a>
 </p>
 
 Add your own art, Explore the app, Search for new public content
 <p float="left" align="middle">
-<img src="https://user-images.githubusercontent.com/32079112/56708380-79010080-66ea-11e9-9726-ffea675762b0.PNG" width=130px>
-<img src="https://user-images.githubusercontent.com/32079112/56708382-7dc5b480-66ea-11e9-8001-afd720828766.PNG" width=130px>
-<img src="https://user-images.githubusercontent.com/32079112/56708389-81f1d200-66ea-11e9-9dc8-f19aa2480a1d.PNG" width=130px>
-<img src="https://user-images.githubusercontent.com/32079112/56708392-84542c00-66ea-11e9-9c9d-4792b4c967f7.PNG" width=130px>
+<a href="url"><img src="https://user-images.githubusercontent.com/32079112/56708380-79010080-66ea-11e9-9726-ffea675762b0.PNG" width=130px></a>
+<a href="url"><img src="https://user-images.githubusercontent.com/32079112/56708382-7dc5b480-66ea-11e9-8001-afd720828766.PNG" width=130px></a>
+<a href="url"><img src="https://user-images.githubusercontent.com/32079112/56708389-81f1d200-66ea-11e9-9dc8-f19aa2480a1d.PNG" width=130px></a>
+<a href="url"><img src="https://user-images.githubusercontent.com/32079112/56708392-84542c00-66ea-11e9-9c9d-4792b4c967f7.PNG" width=130px></a>
 </p>
 
 
