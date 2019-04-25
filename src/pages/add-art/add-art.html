@@ -33,23 +33,23 @@
 
         <ion-item>
           <ion-label inline>Title</ion-label>
-          <ion-input type="text"[(ngModel)]="post.title"></ion-input>
+          <ion-input maxlength="20" type="text"[(ngModel)]="post.title"></ion-input>
         </ion-item>
       
         <ion-item>
           <ion-label inline>Description</ion-label>
-          <ion-input type="text"[(ngModel)]="post.description"></ion-input>
+          <ion-input maxlength="20" type="text"[(ngModel)]="post.description"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label inline>Add a Hashtag</ion-label>
-          <ion-input type="text"[(ngModel)]="post.hashtag"></ion-input>
+          <ion-input maxlength="20" type="text"[(ngModel)]="post.hashtag"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label inline>Price</ion-label>
             <!-- gbahra edited it so only take number -->
-            <ion-input type="number"[(ngModel)]="post.price"></ion-input>
+            <ion-input maxlength="10" type="number"[(ngModel)]="post.price"></ion-input>
           </ion-item>
       
       </ion-list>
