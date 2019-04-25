@@ -15,36 +15,50 @@ Add screenshots and important navigation swipes
 
 # More Cool Features Coming Soon
 
-In the future we hope to implement three major changes. The first feature we would like to implement is integrating a secure paying system so users can directly sell and buy art. We believe this will simplify making a transaction and also enhance the user experience. Our next goal is to tailor the explore page for each individual user, based on the accounts they follow or the posts they like. We want to identify these patterns, so we cater to the specific interests of each individual within broad spectrum, that is art. The final feature we plan on implementing is Stories. Stories within Atelier will allow users to capture and post related images and video content in a slideshow format. The content of the Story will be available for only a certain amount of time, approximately 24 hours. We believe this feature will make it possible for users to showcase their art without creating an excess amount of posts on their page. We hope we can implement these changes to give artists a unique platform while enhancing their experience on our app
+In the future we hope to implement three major changes<br>
+
+* The first feature we would like to implement is integrating a secure paying system so users can directly sell and buy art. We believe this will simplify making a transaction and also enhance the user experience. 
+* Our next goal is to tailor the explore page for each individual user, based on the accounts they follow or the posts they like. We want to identify these patterns, so we cater to the specific interests of each individual within broad spectrum, that is art. 
+* The final feature we plan on implementing is Hahtag searching and Stories. Stories within Atelier will allow users to capture and post related images in a slideshow format. The content of the Story will be available for only a certain amount of time, approximately 24 hours. We believe this feature will make it possible for users to showcase their art without creating an excess amount of posts on their page. <br>
+
+We hope we can implement these changes to give artists a unique platform while enhancing their experience on our app
 
 
 
 # Our Technology
 
-implemented through ionic. Node.js AngularJS, Firebase . How cool it all is
+Ionic Framework - Node.js - Firebase
 
 # Meet the Team
 
-1.	Ishita: team lead. Ishita’s a senior majoring in Computer Science. She delegated our tasks and worked heavily on the Profile page. 
-Connect with Ishita: https://www.linkedin.com/in/ishita-thumati-8b0a2a172/
+- **Ishita Thumati** <br> Team lead. Ishita’s a senior majoring in Computer Science. She delegated our tasks and led meetings as well as worked heavily on core functionality.<br>
+    LinkedIn: https://www.linkedin.com/in/ishita-thumati-8b0a2a172/ <br>
+    GitHub: https://github.com/ishitathumati
 
 
-2.	Mercy Barigala: Mercy is senior majoring in Computer Science. She was in charge of implementing the Explore Page.
-Connect with Mercy:https://www.linkedin.com/in/mercy-barigala-368140175/
+- **Mercy Barigala** <br>
+Mercy is senior majoring in Computer Science. She was in charge of implementing the Explore Page.<br>
+LinkedIn: https://www.linkedin.com/in/mercy-barigala-368140175/ <br>
+GitHub: https://github.com/mbarigala
 
 
-3.	Saipriya Sairam: saipriya is senior majoring in Computer Science. She designed the User Uploads Page. 
-Connect with Saipriya:https://www.linkedin.com/in/saipriya-s-b33656a5/
+- **Saipriya Sairam** <br>
+Saipriya is senior majoring in Computer Science. She developed the User Uploads Page. <br>
+LinkedIn: https://www.linkedin.com/in/saipriya-s-b33656a5/ <br>
+GitHub: https://github.com/saipriyas
 
 
-4.	Sahil bahra: developer. Sahil is senior majoring in Computer Engineering. He implemented the Home Page of Atelier. 
+- **Sahil bahra** <br>
+Developer. Sahil is senior majoring in Computer Engineering. He designed and implemented the Home Page and all user interactivity on posts. <br>
+GitHub: https://github.com/gbahra16
+
+- **Adiv Sivakumar** <br>
+Developer. Adiv’s a senior majoring in Computer Science. He designed the icon, and implemented user interaction with friends. <br>
+LinkedIn: https://www.linkedin.com/in/adiv-sivakumar-a5a56b155/ <br>
+GitHub: https://github.com/adivsiv
 
 
-5.	Adiv Sivakumar: developer. Adiv’s a senior majoring in Computer Science. He worked on the Friends Page.
-Connect with Sahil:https://www.linkedin.com/in/adiv-sivakumar-a5a56b155/
 
+###### If you love our work and want to let us know, connect with us! 
 
-
-###### We'd love to connect
-
-issues comments concerns , reach out here --someemail-- we'd love feedback!
+##### In case of any issues, comments or concerns regarding our app, please reach out to ithumati@email.sc.edu. We'd love your feedback!
