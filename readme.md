@@ -10,7 +10,25 @@ Our app lets users post just their art, find and become friends with other artis
 
 Watch this video to learn about the functionality of our app!
 
-[Video](https://youtu.be/JWK90c-0sls)
+[<img width="1280" alt="Screen Shot 2019-04-25 at 4 09 12 AM" src="https://user-images.githubusercontent.com/32079112/56751761-cd40ca80-6754-11e9-8e7f-024c7c966b27.png" width=150>](https://youtu.be/JWK90c-0sls)
+
+###### Snapshots of different screens
+
+Once you login or register, you can view a home page to see what your friends posted recently, and like or comment<br>
+
+<img width="366" alt="Screen Shot 2019-04-25 at 12 20 28 PM" src="https://user-images.githubusercontent.com/32079112/56751723-bbf7be00-6754-11e9-875e-d1bba28b2016.png" width=200px>
+
+Edit your profile, and add some featured posts from your uploads!
+
+<img width="391" alt="Screen Shot 2019-04-25 at 12 20 47 PM" src="https://user-images.githubusercontent.com/32079112/56751730-c023db80-6754-11e9-9b0b-7687ff26c667.png" width=200>
+
+Find artists and request to be friends. Pending requests appear on notifications tab
+
+<img width="393" alt="Screen Shot 2019-04-25 at 12 21 02 PM" src="https://user-images.githubusercontent.com/32079112/56751741-c619bc80-6754-11e9-9f6f-85ea250eeeac.png" width=200>
+
+Add your own art, Explore the app, Search for new public content
+
+<img width="523" alt="Screen Shot 2019-04-25 at 12 21 19 PM" src="https://user-images.githubusercontent.com/32079112/56751754-c914ad00-6754-11e9-8762-68336bf667d8.png" width=200>
 
 
 # More Cool Features Coming Soon
