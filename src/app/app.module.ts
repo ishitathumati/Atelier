@@ -45,10 +45,10 @@ import {PhotoPage} from '../pages/photo/photo';
 
 
 
-import { RouterModule, RouteReuseStrategy } from '@angular/router';
-import { IonicRouteStrategy } from '@ionic/angular';
-import { AppRoutingModule } from './app-routing.module';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+//import { RouterModule, RouteReuseStrategy } from '@angular/router';
+//import { IonicRouteStrategy } from '@ionic/angular';
+//import { AppRoutingModule } from './app-routing.module';
+//import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 const firebaseAuth = {
   apiKey: "AIzaSyDUn8OuO3b6wtnn1g78EqzRUUZJMPof8tU",
@@ -92,8 +92,8 @@ const firebaseAuth = {
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     IonicImageViewerModule,
-    AppRoutingModule,
-    AngularFirestoreModule
+    //AppRoutingModule,
+    //AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -131,8 +131,8 @@ const firebaseAuth = {
     RequestsProvider,
     ChatProvider,
     ImghandlerProvider,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    //{provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ]
 })
 export class AppModule {}
