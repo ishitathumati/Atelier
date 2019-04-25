@@ -26,7 +26,10 @@
           <ion-card>
           <ion-card-header>
             {{specificpost.username}} 
-      
+             <button ion-button color="primary" (click)="sendreq(key)">
+                  <ion-icon name="person-add"></ion-icon>
+                  Send Request
+                </button>
           </ion-card-header>
           <ion-card-content>
             <img src="{{specificpost.posturl}}" imageViewer >

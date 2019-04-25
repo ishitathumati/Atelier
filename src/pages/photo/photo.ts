@@ -8,13 +8,11 @@ import { AngularFireModule } from 'angularfire2';
 import { FIREBASE_CONFIG } from '../../app/firebase.config';
 import { UserUploadsPage } from '../user-uploads/user-uploads';
 import * as firebase from 'firebase';
-
 import { RequestsProvider } from '../../providers/requests/requests';
 import { UserProvider } from '../../providers/user/user';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { a } from '@angular/core/src/render3';
 import {initializeApp} from 'firebase';
-//import {navCtrl, initializeApp} from firebase;
 import { connreq } from '../../models/request';
 import { ProfilePage } from '../profile/profile';
 import { Post } from '../../models/post';
@@ -22,6 +20,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { all } from 'q';
 import { OtherProfilePage } from '../other-profile/other-profile';
 import { ExplorePage} from '../explore/explore';
+
+
+
 
 /**
  * Generated class for the PhotoPage page.
@@ -36,6 +37,7 @@ import { ExplorePage} from '../explore/explore';
   templateUrl: 'photo.html',
 })
 export class PhotoPage {
+  
   search: boolean;
   rootref:any;
   hashref:any;
@@ -51,6 +53,7 @@ export class PhotoPage {
   dbPhoto3;
   dbPhoto4;
   posts : any [];
+
   newrequest = {} as connreq;
   allHashtags = []; //array of hashtags
   hashtag; //input
@@ -68,9 +71,10 @@ export class PhotoPage {
       this.imageSource3 = 'scream';
       this.imageSource4 = 'starrynight';
 
-      
+      //this.userid =firebase.auth().currentUser.uid;
 
       this.specificpost = this.navParams.get('post')
+      //this.userId = firebase.auth(). currentUser.uid;
 
 
       this.userservice.getallusers().then((res: any) => {
@@ -86,6 +90,7 @@ export class PhotoPage {
   });
   }
 
+  
 
   sendreq(recipient) {
     this.newrequest.sender = firebase.auth().currentUser.uid;
@@ -110,6 +115,8 @@ export class PhotoPage {
       })
     }
   }
+
+  
 }
 
 
