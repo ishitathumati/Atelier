@@ -8,6 +8,7 @@ Our app lets users post just their art, find and become friends with other artis
 
 # Explore Our Features
 
+Watch this video to learn about the functionality of our app!
 [Video](https://youtu.be/JWK90c-0sls)
 
 ###### Snapshots of different screens
