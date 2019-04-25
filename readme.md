@@ -10,7 +10,7 @@ Our app lets users post just their art, find and become friends with other artis
 
 Watch this video to learn about the functionality of our app!
 
-![Video](https://youtu.be/JWK90c-0sls)
+[Video](https://youtu.be/JWK90c-0sls)
 
 
 # More Cool Features Coming Soon
