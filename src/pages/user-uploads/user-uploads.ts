@@ -6,6 +6,7 @@ import { UserProvider } from '../../providers/user/user';
 import * as firebase from 'firebase';
 import { Post } from '../../models/post';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { PostPage } from '../post/post';
 
 //import { url } from 'inspector';
 //import { storage } from 'firebase';
@@ -106,6 +107,23 @@ export class UserUploadsPage {
     return this.dbPhoto; 
     
   }
+
+   //need to modify this to get list info... like iterate through list of posts and get them all to display
+ //need to use *ngFor in html
+ getpostdetails() {
+  var promise = new Promise((resolve, reject) => {
+  firebase.database().ref(`/users`).child(firebase.auth().currentUser.uid).child('posts').once('value', (snapshot) => {
+    resolve(snapshot.val());
+  }).catch((err) => {
+    reject(err);
+    })
+  });
+  return promise;
+}
+
+goToPost(item){
+  this.navCtrl.push(PostPage,{post:item});
+}
   /*getPhotoURL(){
     try{
     const userid = this.afAuth.auth.currentUser.uid;
@@ -122,57 +140,11 @@ export class UserUploadsPage {
   
  
 
- //need to modify this to get list info... like iterate through list of posts and get them all to display
- //need to use *ngFor in html
- getpostdetails() {
-  var promise = new Promise((resolve, reject) => {
-  firebase.database().ref(`/users`).child(firebase.auth().currentUser.uid).child('posts').once('value', (snapshot) => {
-    resolve(snapshot.val());
-  }).catch((err) => {
-    reject(err);
-    })
-  });
-  return promise;
-}
+
+ 
 
 
-/*getpostdetails2(){
-  this.userservice.getPostDetailsFromDB().then((data)=>{
-    this.postlist
-  })
-}
 
-  /*async takePic(){
-    try{
-  	const options: CameraOptions = {
-  		quality: 70,
-	  	destinationType: this.camera.DestinationType.DATA_URL,
-	  	encodingType: this.camera.EncodingType.JPEG,
-  		mediaType: this.camera.MediaType.PICTURE
-  }
-
-  const result = await this.camera.getPicture(options);
-
-  const image =`data:image/jpeg;base64,${result}`;
-
-  const pictures = storage().ref('pictures');
-
-  pictures.putString(image, 'data_url');
-
-  this.camera.getPicture(options).then((imageData) => 
-	{
- //imageData is either a base64 encoded string or a file URI
- //If it's base64:
- 		this.photo = 'data:image/jpeg;base64,' + imageData;
-	}, (err) => {
- //Handle error
-	}); 
-
-}
-catch (e){
-  console.error(e);
-}	
-  }*/
 
 
   

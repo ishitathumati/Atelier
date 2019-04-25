@@ -42,6 +42,7 @@ import { ImghandlerProvider } from '../providers/imghandler/imghandler';
 import { MyfriendslistPage } from '../pages/myfriendslist/myfriendslist';
 import { OtherProfilePage } from '../pages/other-profile/other-profile';
 import {PhotoPage} from '../pages/photo/photo';
+import { PostPage } from '../pages/post/post';
 
 
 
@@ -81,7 +82,8 @@ const firebaseAuth = {
     UpdateprofilepicPage,
     OtherProfilePage,
     PopoverComponent,
-    PhotoPage
+    PhotoPage,
+    PostPage
   ],
 
   imports: [
@@ -117,8 +119,8 @@ const firebaseAuth = {
     UpdateprofilepicPage,
     OtherProfilePage,
     PopoverComponent,
-    PhotoPage
-    
+    PhotoPage,
+    PostPage
   ],
   providers: [
     StatusBar,

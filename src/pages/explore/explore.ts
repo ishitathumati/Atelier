@@ -109,7 +109,7 @@ export class ExplorePage {
   {
     this.navCtrl.push(PhotoPage,{post:item});
   }
-
+ 
   
  
 
