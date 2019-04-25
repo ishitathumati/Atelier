@@ -47,8 +47,8 @@ Saipriya is senior majoring in Computer Science. She developed the User Uploads 
 [github](https://github.com/saipriyas)
 
 
-- **Sahil bahra** <br>
-Developer. Sahil is senior majoring in Computer Engineering. He designed and implemented the Home Page and all user interactivity on posts. <br>
+- **Gurinder Bahra** <br>
+Developer. Gurinder is senior majoring in Computer Engineering. He designed and implemented the Home Page and all user interactivity on posts. <br>
 [github](https://github.com/gbahra16)
 
 - **Adiv Sivakumar** <br>
