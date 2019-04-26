@@ -127,18 +127,12 @@ export class UserUploadsPage {
   return promise;
 }
 
-deletePost(){
+deletePost(postid){
   this.afAuth.authState.take(1).subscribe(auth=>{ 
     this.rootref = firebase.database().ref(`users/${auth.uid}`);
-    this.postref = this.rootref.child('posts').push(this.post);
-    this.postkey = this.postref.key;
-     this.commentref = this.postref.child(`${this.postkey}`)//getting the auto generated post id of post firebase using '.key'
-    //using built-in update function to store id that we got from above as postid in post table.
-    this.postref.update(null).then(()=>{
-    this.navCtrl.push(UserUploadsPage) 
-  });
+    let postref = this.rootref.child('posts/' + postid);
+    postref.remove();
 })
-  //this.fdb.list(`/users/posts`).remove(this.allposts[i]);
 }
 
 goToPost(item){
@@ -158,15 +152,5 @@ goToPost(item){
     console.error(e);
     }
   }*/
-  
- 
-
-
- 
-
-
-
-
-
   
 }
