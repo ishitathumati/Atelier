@@ -244,6 +244,7 @@ presentPopover(myEvent) {
     this.afAuth.authState.take(1).subscribe(data => {
       if (data && data.email && data.uid) {
         this.profileData = this.db.object(`users/${data.uid}/profile`)
+        console.log('profile.ts page', this.profileData )
       }
       else {
         this.toast.create({

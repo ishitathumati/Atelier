@@ -1,0 +1,71 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <!--ion-card-->
+      
+      <div class="container">
+        <img class="border" src = "{{userpic}}"/>
+      </div>
+    <!--/ion-card-->
+ <!--<img width="100" height="150" src="assets/imgs/user-downloadfemale-user-icon.png" alt="Sarah Knight">-->
+  <!--ion-item>
+  <h2>{{(profileData | async)?.name}}</h2>
+    <h4>Studied at: {{(profileData | async)?.study}}</h4>
+    <h4>Worked at: {{(profileData | async)?.work}}</h4>
+    <h4>Lives in: {{(profileData | async)?.lives}}</h4>
+    <h4>From City, State: {{(profileData | async)?.fromCity}}</h4>
+  </ion-item-->
+    <h2 style="font-family: Helvetica, sans-serif;">{{username}}</h2>
+    
+    <p  style="font-family: Helvetica, sans-serif;">{{bio}}</p>
+  
+    <ion-segment>
+      <ion-segment-button value="Posts">
+        Posts
+      </ion-segment-button>
+      <ion-segment-button value="Friends">
+        Friends
+      </ion-segment-button>
+      <ion-segment-button value="Add">
+        + Add Friend
+      </ion-segment-button>
+    </ion-segment>
+
+    <div style="display: inline">
+        <ion-item no-lines>
+            <ion-icon name="school"></ion-icon>
+            Studied {{(profileData | async)?.areaofstudy}} at {{(profileData | async)?.study}}
+        </ion-item> 
+    </div>
+    <ion-item no-lines>
+        <ion-icon name="briefcase"></ion-icon>
+        Works at {{(profileData | async)?.work}}
+    </ion-item>
+
+    <ion-item no-lines>
+        <ion-icon name="home"></ion-icon>
+        Lives in {{(profileData | async)?.lives}} 
+    </ion-item>
+    <ion-item no-lines>
+      <ion-icon name="pin"></ion-icon>
+      From {{(profileData | async)?.fromCity}} 
+    </ion-item>
+
+    <div class="featured">
+    <ion-title>Featured Works</ion-title>
+   <ion-slides class ="image-slider" loop="true" effect="coverflow">
+     <ion-slide *ngFor = "let item of allposts; let i=index">
+        <img src="{{allposts[i].posturl}}" imageViewer>
+     </ion-slide>
+   </ion-slides></div>
+
+
+</ion-content>
+
+

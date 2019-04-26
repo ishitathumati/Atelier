@@ -44,6 +44,7 @@ import { OtherProfilePage } from '../pages/other-profile/other-profile';
 import {PhotoPage} from '../pages/photo/photo';
 import { PostPage } from '../pages/post/post';
 import { EditArtPage } from '../pages/edit-art/edit-art';
+import { OtheruserprofilePage } from '../pages/otheruserprofile/otheruserprofile';
 
 
 
@@ -83,6 +84,7 @@ const firebaseAuth = {
     MyfriendslistPage,
     UpdateprofilepicPage,
     OtherProfilePage,
+    OtheruserprofilePage,
     PopoverComponent,
     PhotoPage,
     PostPage
@@ -123,6 +125,7 @@ const firebaseAuth = {
     OtherProfilePage,
     PopoverComponent,
     PhotoPage,
+    OtheruserprofilePage,
     PostPage
   ],
   providers: [

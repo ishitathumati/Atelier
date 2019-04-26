@@ -20,6 +20,7 @@ import { UserProvider } from '../../providers/user/user';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { connreq } from '../../models/request';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { OtheruserprofilePage } from '../otheruserprofile/otheruserprofile';
 
 /**
  * Generated class for the PhotoPage page.
@@ -62,6 +63,7 @@ export class PhotoPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public userservice: UserProvider, public alertCtrl: AlertController, public requestservice: RequestsProvider, private aAuth: AngularFireAuth) {
       this.specificpost = this.navParams.get('post');
+      console.log('post',this.specificpost)
       this.userservice.getallusers().then((res: any) => {
         this.filteredusers = res;
         this.temparr = res;
@@ -76,7 +78,9 @@ export class PhotoPage {
       //this.userid =firebase.auth().currentUser.uid;
   }
 
-  
+  gotoOther(){
+    this.navCtrl.push(OtheruserprofilePage, {userid:this.specificpost.userid, username:this.specificpost.username, userpic:this.specificpost.userpic})
+  }
 
   sendreq(recipient) {
     this.newrequest.sender = firebase.auth().currentUser.uid;

@@ -130,6 +130,8 @@ export class ExplorePage {
                 var s = thePost.val();
                 var temp = {
                   'username': s.username,
+                  'userid' : s.userid,
+                  'userpic':s.userpic,
                   'postid' : s.postid,
                   'price' : s.price,
                   'title' : s.title,
