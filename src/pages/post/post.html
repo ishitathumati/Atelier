@@ -18,8 +18,7 @@
         <ion-card>
         <ion-card-header>
           {{specificpost.title}} 
-          <ion-icon style="float: right;" name="trash" (click)="deletePost()"></ion-icon>
-          <ion-icon style="float: right;" name="create" (click)="editPost()"></ion-icon>
+          <ion-icon style="float: right;" name="create" (click)="goToEditPost(item)"></ion-icon>
         </ion-card-header>
         <ion-card-content>
           <img src="{{specificpost.posturl}}" imageViewer>

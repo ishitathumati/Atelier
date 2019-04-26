@@ -43,6 +43,7 @@ import { MyfriendslistPage } from '../pages/myfriendslist/myfriendslist';
 import { OtherProfilePage } from '../pages/other-profile/other-profile';
 import {PhotoPage} from '../pages/photo/photo';
 import { PostPage } from '../pages/post/post';
+import { EditArtPage } from '../pages/edit-art/edit-art';
 
 
 
@@ -69,6 +70,7 @@ const firebaseAuth = {
     TabsPage,
     ExplorePage,
     EditProfPage,
+    EditArtPage,
     NotificationsPage,
     CommentsPage,
     LoginPage,
@@ -103,6 +105,7 @@ const firebaseAuth = {
     HomePage,
     ProfilePage,
     UserUploadsPage,
+    EditArtPage,
     EditProfPage,
     TabsPage,
     ExplorePage,

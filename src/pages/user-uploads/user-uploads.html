@@ -53,8 +53,9 @@
       <ion-grid>
         <ion-row>
           <ion-col *ngFor ="let item of allposts; let i=index" col-6 no-padding>
-            <ion-card (click)="goToPost(item)">
-            <ion-card-header>
+            <ion-card>
+            <ion-icon style="float: right;" name="trash" (click)="deletePost()"></ion-icon>
+            <ion-card-header (click)="goToPost(item)">
               {{allposts[i].title}}
             </ion-card-header>
             <ion-card-content>
@@ -67,7 +68,7 @@
               </ion-row>
               <ion-row>
                 {{allposts[i].hashtag}}
-                </ion-row>
+              </ion-row>
             </ion-card-content>
           </ion-card>
           </ion-col>

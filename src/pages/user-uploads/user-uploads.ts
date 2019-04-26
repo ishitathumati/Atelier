@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { AddArtPage } from '../add-art/add-art';
 import { UserProvider } from '../../providers/user/user';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import { Post } from '../../models/post';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { PostPage } from '../post/post';
@@ -38,8 +38,15 @@ export class UserUploadsPage {
   dbPhoto;
   allposts;
   postData: FirebaseObjectObservable<Post>;
+  rootref:any;
+  postref:any;
+  postkey:any;
+  commentref:any;
+  postURL:any;
 
-  constructor(public zone: NgZone, public events: Events, private afAuth: AngularFireAuth, public userservice: UserProvider, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public zone: NgZone, public events: Events, private afAuth: AngularFireAuth, 
+    public userservice: UserProvider, public navCtrl: NavController, public navParams: NavParams
+  ,private fdb: AngularFireDatabase) {
     //initializeApp(FIREBASE_CONFIG);
     this.galleryimage = this.navParams.get('image');
     this.photoimage = this.navParams.get('image2');
@@ -67,7 +74,6 @@ export class UserUploadsPage {
       console.log('temp', list);
       this.allposts = list;
       console.log('allposts', this.allposts)
-
     });
 
   }
@@ -121,9 +127,24 @@ export class UserUploadsPage {
   return promise;
 }
 
-goToPost(item){
-  this.navCtrl.push(PostPage,{post:item});
+deletePost(){
+  this.afAuth.authState.take(1).subscribe(auth=>{ 
+    this.rootref = firebase.database().ref(`users/${auth.uid}`);
+    this.postref = this.rootref.child('posts').push(this.post);
+    this.postkey = this.postref.key;
+     this.commentref = this.postref.child(`${this.postkey}`)//getting the auto generated post id of post firebase using '.key'
+    //using built-in update function to store id that we got from above as postid in post table.
+    this.postref.update(null).then(()=>{
+    this.navCtrl.push(UserUploadsPage) 
+  });
+})
+  //this.fdb.list(`/users/posts`).remove(this.allposts[i]);
 }
+
+goToPost(item){
+  this.navCtrl.push(PostPage,{post:item}); //pushing post to userupload page as well as navigating to the page
+}
+
   /*getPhotoURL(){
     try{
     const userid = this.afAuth.auth.currentUser.uid;
