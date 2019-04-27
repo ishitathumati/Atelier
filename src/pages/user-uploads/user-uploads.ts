@@ -1,15 +1,18 @@
 import { Component, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, ToastController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { AddArtPage } from '../add-art/add-art';
 import { UserProvider } from '../../providers/user/user';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import { Post } from '../../models/post';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { PostPage } from '../post/post';
+
 
 //import { url } from 'inspector';
 //import { storage } from 'firebase';
 import { storage, initializeApp} from 'firebase';
+import { HomePage } from '../home/home';
 //import { FIREBASE_CONFIG } from '../../app/firebase.config';
 
 /**
@@ -37,8 +40,15 @@ export class UserUploadsPage {
   dbPhoto;
   allposts;
   postData: FirebaseObjectObservable<Post>;
+  rootref:any;
+  postref:any;
+  postkey:any;
+  commentref:any;
+  postURL:any;
 
-  constructor(public zone: NgZone, public events: Events, private afAuth: AngularFireAuth, public userservice: UserProvider, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public zone: NgZone, public events: Events, private afAuth: AngularFireAuth, 
+    public userservice: UserProvider, public navCtrl: NavController, public navParams: NavParams
+  ,private fdb: AngularFireDatabase,  private toast: ToastController) {
     //initializeApp(FIREBASE_CONFIG);
     this.galleryimage = this.navParams.get('image');
     this.photoimage = this.navParams.get('image2');
@@ -66,7 +76,6 @@ export class UserUploadsPage {
       console.log('temp', list);
       this.allposts = list;
       console.log('allposts', this.allposts)
-
     });
 
   }
@@ -106,6 +115,40 @@ export class UserUploadsPage {
     return this.dbPhoto; 
     
   }
+
+   //need to modify this to get list info... like iterate through list of posts and get them all to display
+ //need to use *ngFor in html
+ getpostdetails() {
+  var promise = new Promise((resolve, reject) => {
+  firebase.database().ref(`/users`).child(firebase.auth().currentUser.uid).child('posts').once('value', (snapshot) => {
+    resolve(snapshot.val());
+  }).catch((err) => {
+    reject(err);
+    })
+  });
+  return promise;
+}
+
+deletePost(postid){
+  this.afAuth.authState.take(1).subscribe(auth=>{ 
+    this.rootref = firebase.database().ref(`users/${auth.uid}`);
+    let postref = this.rootref.child('posts/' + postid);
+    postref.remove().then((data) => {
+      this.allposts[postid] = [];
+      this.allposts[postid] = data;
+    })
+    this.toast.create({
+      message: `Post deleted!`,
+      duration: 2000
+    }).present();
+    this.navCtrl.setRoot(UserUploadsPage);
+})
+}
+
+goToPost(item){
+  this.navCtrl.push(PostPage,{post:item}); //pushing post to userupload page as well as navigating to the page
+}
+
   /*getPhotoURL(){
     try{
     const userid = this.afAuth.auth.currentUser.uid;
@@ -119,61 +162,5 @@ export class UserUploadsPage {
     console.error(e);
     }
   }*/
-  
- 
-
- //need to modify this to get list info... like iterate through list of posts and get them all to display
- //need to use *ngFor in html
- getpostdetails() {
-  var promise = new Promise((resolve, reject) => {
-  firebase.database().ref(`/users`).child(firebase.auth().currentUser.uid).child('posts').once('value', (snapshot) => {
-    resolve(snapshot.val());
-  }).catch((err) => {
-    reject(err);
-    })
-  });
-  return promise;
-}
-
-
-/*getpostdetails2(){
-  this.userservice.getPostDetailsFromDB().then((data)=>{
-    this.postlist
-  })
-}
-
-  /*async takePic(){
-    try{
-  	const options: CameraOptions = {
-  		quality: 70,
-	  	destinationType: this.camera.DestinationType.DATA_URL,
-	  	encodingType: this.camera.EncodingType.JPEG,
-  		mediaType: this.camera.MediaType.PICTURE
-  }
-
-  const result = await this.camera.getPicture(options);
-
-  const image =`data:image/jpeg;base64,${result}`;
-
-  const pictures = storage().ref('pictures');
-
-  pictures.putString(image, 'data_url');
-
-  this.camera.getPicture(options).then((imageData) => 
-	{
- //imageData is either a base64 encoded string or a file URI
- //If it's base64:
- 		this.photo = 'data:image/jpeg;base64,' + imageData;
-	}, (err) => {
- //Handle error
-	}); 
-
-}
-catch (e){
-  console.error(e);
-}	
-  }*/
-
-
   
 }

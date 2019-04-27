@@ -112,7 +112,7 @@ openGallery()
   });
 }
 
-goToProfile(){
+goToProfile(){ 
   this.aAuth.authState.take(1).subscribe(auth=>{
     this.db.object(`users/${auth.uid}/profile`).update(this.profile)
       .then(()=>{

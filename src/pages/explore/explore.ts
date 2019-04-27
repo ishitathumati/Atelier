@@ -110,30 +110,7 @@ export class ExplorePage {
   {
     this.navCtrl.push(PhotoPage,{post:item});
   }
-
-  //opens up specific profile
-  /* goToOther(profile)
-  {
-    this.navCtrl.push(OtherProfilePage,{ info:profile})
-  }
- */
-
-  
-
-
  
-  doRefresh(event)
-  {
-    console.log('Begin async operation');
-
-    setTimeout( () => {
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 2000);
-    }
-  
-
-
   
  
 

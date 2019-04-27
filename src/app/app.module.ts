@@ -41,6 +41,8 @@ import { PopoverComponent } from '../components/popover/popover';
 import { ImghandlerProvider } from '../providers/imghandler/imghandler';
 import { MyfriendslistPage } from '../pages/myfriendslist/myfriendslist';
 import {PhotoPage} from '../pages/photo/photo';
+import { PostPage } from '../pages/post/post';
+import { EditArtPage } from '../pages/edit-art/edit-art';
 
 
 
@@ -67,6 +69,7 @@ const firebaseAuth = {
     TabsPage,
     ExplorePage,
     EditProfPage,
+    EditArtPage,
     NotificationsPage,
     CommentsPage,
     LoginPage,
@@ -79,7 +82,8 @@ const firebaseAuth = {
     MyfriendslistPage,
     UpdateprofilepicPage,
     PopoverComponent,
-    PhotoPage
+    PhotoPage,
+    PostPage
   ],
 
   imports: [
@@ -99,6 +103,7 @@ const firebaseAuth = {
     HomePage,
     ProfilePage,
     UserUploadsPage,
+    EditArtPage,
     EditProfPage,
     TabsPage,
     ExplorePage,
@@ -114,8 +119,8 @@ const firebaseAuth = {
     FriendsPage,
     UpdateprofilepicPage,
     PopoverComponent,
-    PhotoPage
-    
+    PhotoPage,
+    PostPage
   ],
   providers: [
     StatusBar,
