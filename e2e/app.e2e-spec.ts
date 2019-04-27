@@ -18,6 +18,8 @@ describe('Register Page test works!', () => {
 
   
     browser.driver.findElement(By.xpath("//page-register/ion-content/div[2]/ion-card/ion-card-content/ion-list/button/span")).click();
+
+
 });
 });
 
@@ -33,8 +35,14 @@ describe('login Page test works! ', () => {
   browser.driver.findElement(By.css("#password > .text-input")).click();
   browser.driver.findElement(By.css("#password > .text-input")).sendKeys("123456");
   browser.driver.findElement(By.css(".button-full > .button-inner")).click();
+
+  browser.driver.sleep(4000)
+
+ 
   });
 });
+
+
 
 describe('Home Page test works!', () => {
 
@@ -43,6 +51,9 @@ describe('Home Page test works!', () => {
     browser.driver.get("http://localhost:8100/");
 
     browser.driver.findElement(By.css(".button-full > .button-inner")).click();
+    
+    
+    //*[@id="tab-t0-1"]
 
   });
 });
@@ -51,13 +62,16 @@ describe('Home Page test works!', () => {
 describe('profile page test works!' , () => {
   browser.driver.get("http://localhost:8100/");
 
-  it('Go to profile pafe', function() {
+  it('Go to user pafe', function() {
+
+    // browser.driver.findElement(By.css("#tab-t0-1 > .tab-button-text")).click();
+   
 
     // browser.driver.findElement(By.css("h2:nth-child(2)"))
     // // browser.driver.findElement(By.id("alert-input-0-0")).sendKeys("Nick Singh!");
     // // browser.driver.findElement(By.css(".activated > .button-inner")).click();
     // // browser.driver.findElement(By.css(".alert-button")).click();
-
+    
   });
 
 });
