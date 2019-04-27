@@ -40,7 +40,6 @@ import { UpdateprofilepicPage } from '../pages/updateprofilepic/updateprofilepic
 import { PopoverComponent } from '../components/popover/popover';
 import { ImghandlerProvider } from '../providers/imghandler/imghandler';
 import { MyfriendslistPage } from '../pages/myfriendslist/myfriendslist';
-import { OtherProfilePage } from '../pages/other-profile/other-profile';
 import {PhotoPage} from '../pages/photo/photo';
 
 
@@ -79,7 +78,6 @@ const firebaseAuth = {
     FriendsPage,
     MyfriendslistPage,
     UpdateprofilepicPage,
-    OtherProfilePage,
     PopoverComponent,
     PhotoPage
   ],
@@ -115,7 +113,6 @@ const firebaseAuth = {
     MyfriendslistPage,
     FriendsPage,
     UpdateprofilepicPage,
-    OtherProfilePage,
     PopoverComponent,
     PhotoPage
     

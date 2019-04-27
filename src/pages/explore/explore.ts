@@ -18,7 +18,7 @@ import { ProfilePage } from '../profile/profile';
 import { Post } from '../../models/post';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { all } from 'q';
-import { OtherProfilePage } from '../other-profile/other-profile';
+//import { OtherProfilePage } from '../other-profile/other-profile';
 import { PhotoPage } from '../photo/photo';
 
 
@@ -105,10 +105,34 @@ export class ExplorePage {
 
   
 
+  //opens up the specific post
   goToPhotos(item)
   {
     this.navCtrl.push(PhotoPage,{post:item});
   }
+
+  //opens up specific profile
+  /* goToOther(profile)
+  {
+    this.navCtrl.push(OtherProfilePage,{ info:profile})
+  }
+ */
+
+  
+
+
+ 
+  doRefresh(event)
+  {
+    console.log('Begin async operation');
+
+    setTimeout( () => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+    }
+  
+
 
   
  
@@ -150,10 +174,15 @@ export class ExplorePage {
   }
 
 
+
+
+
+  
+
   
 
 
-  hashtagExists() {
+  /* hashtagExists() {
     firebase.database().ref('hashtags').on('value', function(snapshot) {
       snapshot.forEach(function(snap) {
         this.allHashtags.push(snap.val()); //push the hashtag
@@ -173,9 +202,8 @@ export class ExplorePage {
       /*this.aAuth.authState.take(1).subscribe(auth=>{
       this.rootref = firebase.database().ref('hashtags').push(this.allHashtags);
       })*/
-    }
-  }
-
+   
+ 
  /* hashtagSearch(){
     var doesExist: boolean = false;
     for(var i:number = 0; i<this.allHashtags.length; i++) {

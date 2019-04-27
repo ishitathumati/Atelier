@@ -1,91 +1,99 @@
 <!--
   Generated template for the ProfilePage page.
-
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 
 <ion-header>
-    <ion-navbar hideBackButton="true">
-        <ion-buttons start>
-            <button ion-button icon-only color="dark" menuToggle> 
-              <ion-icon name="menu"></ion-icon>
-            </button>
-          </ion-buttons>
-      <ion-title>Profile</ion-title>
-      <ion-buttons end>
-          <button ion-button icon-only color="dark"(click)="gotomessages()">
-            <ion-icon name="mail"></ion-icon>
+  <ion-navbar hideBackButton="true">
+      <ion-buttons start>
+          <button ion-button icon-only color="dark" menuToggle> 
+            <ion-icon name="menu"></ion-icon>
           </button>
         </ion-buttons>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
-  
-      <!--ion-card-->
-        
-        <div class="container">
-          <img class="border" src = "{{profilepic}}"/>
-          <button ion-button class="buttonPos" icon-only clear small (click)="presentPopover($event)">
-              <ion-icon name="brush"></ion-icon>
-          </button>
-        </div>
-      <!--/ion-card-->
-   <!--<img width="100" height="150" src="assets/imgs/user-downloadfemale-user-icon.png" alt="Sarah Knight">-->
-    <!--ion-item>
-    <h2>{{(profileData | async)?.name}}</h2>
-      <h4>Studied at: {{(profileData | async)?.study}}</h4>
-      <h4>Worked at: {{(profileData | async)?.work}}</h4>
-      <h4>Lives in: {{(profileData | async)?.lives}}</h4>
-      <h4>From City, State: {{(profileData | async)?.fromCity}}</h4>
-    </ion-item-->
-      <h2 style="font-family: Helvetica, sans-serif;" (click)="editname()">{{displayName}}</h2>
+    <ion-title>Profile</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only color="dark"(click)="gotomessages()">
+          <ion-icon name="mail"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <!--ion-card-->
       
-      <p  style="font-family: Helvetica, sans-serif;" (click)="addbio()">{{bio}}</p>
+      <div class="container">
+        <img class="border" src = "{{profilepic}}"/>
+        <button ion-button class="buttonPos" icon-only clear small (click)="presentPopover($event)">
+            <ion-icon name="brush"></ion-icon>
+        </button>
+      </div>
+    <!--/ion-card-->
+ <!--<img width="100" height="150" src="assets/imgs/user-downloadfemale-user-icon.png" alt="Sarah Knight">-->
+  <!--ion-item>
+  <h2>{{(profileData | async)?.name}}</h2>
+    <h4>Studied at: {{(profileData | async)?.study}}</h4>
+    <h4>Worked at: {{(profileData | async)?.work}}</h4>
+    <h4>Lives in: {{(profileData | async)?.lives}}</h4>
+    <h4>From City, State: {{(profileData | async)?.fromCity}}</h4>
+  </ion-item-->
+    <h2 style="font-family: Helvetica, sans-serif;" (click)="editname()">{{displayName}}</h2>
     
-      <div class="align">        
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <button ion-button color="light" round small (click)="gotoposts()">Posts</button>
-            </ion-col>
-            <ion-col>
-              <button ion-button color="light" round small (click)="gotofriends()">Friends</button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
-      <div style="display: inline">
-          <ion-item no-lines>
-              <ion-icon name="school"></ion-icon>
-              Studied {{(profileData | async)?.areaofstudy}} at {{(profileData | async)?.study}}
-          </ion-item> 
-      </div>
-      <ion-item no-lines>
-          <ion-icon name="briefcase"></ion-icon>
-          Works at {{(profileData | async)?.work}}
-      </ion-item>
+    <p  style="font-family: Helvetica, sans-serif;" (click)="addbio()">{{bio}}</p>
   
-      <ion-item no-lines>
-          <ion-icon name="home"></ion-icon>
-          Lives in {{(profileData | async)?.lives}} 
-      </ion-item>
-      <ion-item no-lines>
-        <ion-icon name="pin"></ion-icon>
-        From {{(profileData | async)?.fromCity}} 
-      </ion-item>
+    <ion-segment>
+      <ion-segment-button value="Posts" (click)="gotoposts()">
+        Posts
+      </ion-segment-button>
+      <ion-segment-button value="Friends" (click)="gotofriends()">
+        Friends
+      </ion-segment-button>
+    </ion-segment>
 
-      <div class="featured">
-      <ion-title>Featured Works</ion-title>
-     <ion-slides class ="image-slider" loop="true" effect="coverflow">
-       <ion-slide *ngFor = "let item of allposts; let i=index">
-          <img src="{{allposts[i].posturl}}" imageViewer>
-       </ion-slide>
-     </ion-slides></div>
+    <!--div class="align">        
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <button ion-button color="light" round small (click)="gotoposts()">Posts</button>
+          </ion-col>
+          <ion-col>
+            <button ion-button color="light" round small (click)="gotofriends()">Friends</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div-->
+    <div style="display: inline">
+        <ion-item no-lines>
+            <ion-icon name="school"></ion-icon>
+            Studied {{(profileData | async)?.areaofstudy}} at {{(profileData | async)?.study}}
+        </ion-item> 
+    </div>
+    <ion-item no-lines>
+        <ion-icon name="briefcase"></ion-icon>
+        Works at {{(profileData | async)?.work}}
+    </ion-item>
+
+    <ion-item no-lines>
+        <ion-icon name="home"></ion-icon>
+        Lives in {{(profileData | async)?.lives}} 
+    </ion-item>
+    <ion-item no-lines>
+      <ion-icon name="pin"></ion-icon>
+      From {{(profileData | async)?.fromCity}} 
+    </ion-item>
+
+    <div class="featured">
+    <ion-title>Featured Works</ion-title>
+   <ion-slides class ="image-slider" loop="true" effect="coverflow">
+     <ion-slide *ngFor = "let item of allposts; let i=index">
+        <img src="{{allposts[i].posturl}}" imageViewer>
+     </ion-slide>
+   </ion-slides></div>
 
 
-  </ion-content>
-  
-  
+</ion-content>
+
+
   
