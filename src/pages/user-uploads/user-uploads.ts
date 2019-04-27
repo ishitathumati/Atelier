@@ -141,7 +141,7 @@ deletePost(postid){
       message: `Post deleted!`,
       duration: 2000
     }).present();
-    this.navCtrl.push(HomePage);
+    this.navCtrl.setRoot(UserUploadsPage);
 })
 }
 
