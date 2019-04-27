@@ -57,10 +57,13 @@ export class PhotoPage {
   hashtag; //input
   specificpost;
   specificprofile;
+  
+ 
 
   username;
   user;
 
+  likes: object[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public userservice: UserProvider, public alertCtrl: AlertController, public requestservice: RequestsProvider, private aAuth: AngularFireAuth) {
@@ -68,6 +71,7 @@ export class PhotoPage {
       this.userservice.getallusers().then((res: any) => {
         this.filteredusers = res;
         this.temparr = res;
+     
       })
       this.posts = [];
       this.search == false;
@@ -80,16 +84,6 @@ export class PhotoPage {
   }
   
 
-  getTotalLike()
-  {
-
-  }
-
-
-  getTotalComments()
-  {
-    
-  }
 
 
   /* sendreq(recipient) {
@@ -120,10 +114,82 @@ export class PhotoPage {
 
 
 
+/* 
+liked(i){
+  // console.log(this.allposts[i].likes)
+  if(this.specificpost[i].likes==null)
+              this.specificpost[i].likes=[];
+  this.specificpost[i].likes.push(firebase.auth().currentUser.uid);
+  // console.log(this.allposts[i].likes)
+ this.updatelikes(this.specificpost[i]).then(()=>{
+  //  console.log('like updated');
+ })
+} */
 
+ totalLike()
+ {
+
+ }
+ 
+ totalComments()
+ {
+   
+ }
+
+ getComments(i) {
+  var comm: any [];
+  comm = [];
+  // console.log('list of posts', this.allposts);
+  firebase.database().ref('users/'+this.specificpost.userid+'/posts/'+this.specificpost[i].postid+'/comments').on('value', (snap) => {
+    snap.forEach((snapshot) => {
+      firebase.database().ref('users/'+this.specificpost.userid+'/posts/'+this.specificpost[i].postid+'/comments/'+snapshot.key).on('value', (comment) => {
+        comm.push(comment.val());
+      });
+      return false;
+    });
+  });
+  // comm = this.allposts[i].comments;
+  // console.log(comm);
+  // console.log(this.allposts[i].comments);
+  // console.log('list of posts', this.allposts);
+  return comm;
+}
+
+
+/* gives uid of undefined error
+sendreq(recipient) {
+  this.newrequest.sender = firebase.auth().currentUser.uid;
+  this.newrequest.recipient = recipient.uid;
+  if (this.newrequest.sender == this.newrequest.recipient)
+    alert('You cannot send a request to yourself!');
+  else{
+    let successalert = this.alertCtrl.create({
+      title: 'Request was sent!',
+      subTitle: 'Request sent to ' + recipient.displayName,
+      buttons: ['OK']
+    });
+  
+    this.requestservice.sendrequest(this.newrequest).then((res: any) => {
+      if (res.success) {
+        successalert.present();
+        let sentuser = this.filteredusers.indexOf(recipient);
+        this.filteredusers.splice(sentuser, 1);
+      }
+    }).catch((err) => {
+      alert(err);
+    })
+  }
+} */
+
+
+
+
+
+//error: Firebase.child failed: First argument was an invalid path: "undefined". Paths must be non-empty strings and can't contain ".
   sendreq() {
     this.newrequest.sender = firebase.auth().currentUser.uid;
-    this.newrequest.recipient = this.user;
+    console.log(this.specificpost);
+    this.newrequest.recipient = this.specificpost.userid;
     if (this.newrequest.sender == this.newrequest.recipient)
       alert('You cannot send a request to yourself!');
     else{
@@ -142,6 +208,8 @@ export class PhotoPage {
       })
     }
   }
+
+
   
   ionViewWillEnter(){
   }

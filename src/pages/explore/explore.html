@@ -13,6 +13,15 @@
   
   
   <ion-content padding>
+      
+          <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+            <ion-refresher-content
+              pullingIcon="refreshingSpinner"
+              refreshingSpinner="circles"
+              refreshingText="Refreshing...">
+            </ion-refresher-content>
+          </ion-refresher>
+        
    
   
     <ion-searchbar (input)="searchuser($event)" placeholder="Search"></ion-searchbar>
@@ -28,31 +37,7 @@
       </ion-item-sliding>
     </ion-list>
   </ion-list>
-<<<<<<< HEAD
-  
-  
-  
-  
-    <!--<div class="tags-input" data-name="tags-input"></div>
-    <input class = "main-input" ion-input placeholder="#Hashtags" type = "text" [(ngModel)]="hashtag"> 
-    <ion-icon name="search" (click)="hashtagExists()"></ion-icon>-->
-  
-    
-        
-  
-    <ion-grid>
-        <ion-row>
-          <ion-col *ngFor ="let item of posts" col-6 no-padding>
-            <ion-card>
-            <ion-card-header (click)="goToOther(userProfileStuff)" >
-              {{item.username}} 
-            </ion-card-header>
-            <ion-card-content>
-              <img src="{{item.posturl}}"  (click)="goToPhotos(item)"> 
-              <ion-row>
-                {{item.title}}
-=======
-</ion-list>
+
 
 
 
@@ -65,6 +50,7 @@
       
 
   <ion-grid>
+
       <ion-row>
         <ion-col *ngFor ="let item of posts" col-6 no-padding>
           <ion-card>
@@ -84,17 +70,7 @@
             </ion-row>
             <ion-row>
               {{item.hashtag}}
->>>>>>> 891a2d692bdf5b1443b94c18f8cdb6fadb73166c
               </ion-row>
-              <ion-row>
-               {{item.price}}
-              </ion-row>
-              <ion-row>
-                {{item.description}}
-              </ion-row>
-              <ion-row>
-                {{item.hashtag}}
-                </ion-row>
             </ion-card-content>
           </ion-card>
           </ion-col>
