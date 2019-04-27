@@ -44,7 +44,16 @@
       
       <p  style="font-family: Helvetica, sans-serif;" (click)="addbio()">{{bio}}</p>
     
-      <div class="align">        
+      <ion-segment>
+        <ion-segment-button value="Posts" (click)="gotoposts()">
+          Posts
+        </ion-segment-button>
+        <ion-segment-button value="Friends" (click)="gotofriends()">
+          Friends
+        </ion-segment-button>
+      </ion-segment>
+
+      <!--div class="align">        
         <ion-grid>
           <ion-row>
             <ion-col>
@@ -55,7 +64,7 @@
             </ion-col>
           </ion-row>
         </ion-grid>
-      </div>
+      </div-->
       <div style="display: inline">
           <ion-item no-lines>
               <ion-icon name="school"></ion-icon>

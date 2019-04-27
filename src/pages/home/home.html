@@ -25,13 +25,13 @@
       <ion-item *ngFor="let item of allposts;let i=index" style="width: 100%">
 
         <div class="b">
-          <button ion-button icon-start clear large (click)= "ProfilePageClick()"  class = "button.b1 ">
+          <button ion-button icon-start clear large  class="button.b1 ">
           <!-- <ion-item-divider> -->
             <ion-avatar item-start>
                 <img  src="{{allposts[i].userpic}}">
             </ion-avatar> 
             <!-- <ion-title text-left color = "calm"> -->
-                <p text-wrap style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; color: black ; text-align: justify" >
+                <p text-wrap style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; color: black ; text-align: justify" (click)="gotoOther(allposts[i])">
                   {{allposts[i].username}}</p><br>
                 <!-- </ion-title> -->
           

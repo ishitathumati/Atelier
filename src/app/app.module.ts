@@ -45,6 +45,8 @@ import {PhotoPage} from '../pages/photo/photo';
 import { PostPage } from '../pages/post/post';
 import { EditArtPage } from '../pages/edit-art/edit-art';
 import { OtheruserprofilePage } from '../pages/otheruserprofile/otheruserprofile';
+import { OtheruserfriendsPage } from '../pages/otheruserfriends/otheruserfriends';
+import { OtheruseruploadsPage } from '../pages/otheruseruploads/otheruseruploads';
 
 
 
@@ -87,7 +89,9 @@ const firebaseAuth = {
     OtheruserprofilePage,
     PopoverComponent,
     PhotoPage,
-    PostPage
+    PostPage,
+    OtheruserfriendsPage,
+    OtheruseruploadsPage
   ],
 
   imports: [
@@ -126,7 +130,9 @@ const firebaseAuth = {
     PopoverComponent,
     PhotoPage,
     OtheruserprofilePage,
-    PostPage
+    PostPage,
+    OtheruserfriendsPage,
+    OtheruseruploadsPage
   ],
   providers: [
     StatusBar,
@@ -139,6 +145,7 @@ const firebaseAuth = {
     RequestsProvider,
     ChatProvider,
     ImghandlerProvider,
+    
     {provide: ErrorHandler, useClass: IonicErrorHandler}
     //{provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ]

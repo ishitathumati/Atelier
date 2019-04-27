@@ -7,18 +7,12 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Profile } from '../../models/profile';
 import { UserProvider } from '../../providers/user/user';
 import firebase from 'firebase';
-import { PopoverComponent } from '../../components/popover/popover';
-import { MyfriendslistPage } from '../myfriendslist/myfriendslist';
-import { MessagesPage } from '../messages/messages';
-import { UserUploadsPage } from '../user-uploads/user-uploads';
 import { Post } from '../../models/post';
+import { RequestsProvider } from '../../providers/requests/requests';
+import { connreq } from '../../models/request';
+import { OtheruserfriendsPage } from '../otheruserfriends/otheruserfriends';
+import { OtheruseruploadsPage } from '../otheruseruploads/otheruseruploads';
 
-/** 
- * Generated class for the ProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -29,30 +23,27 @@ export class OtheruserprofilePage {
   
   post = {} as Post; 
   profile = {} as Profile;
-  persons: FirebaseListObservable <any>;
   user;
   username;
   userpic;
   profileData: FirebaseObjectObservable <Profile>;
-  item:any;
-  personList:any;
-  name: string;
   bio='+ Add bio';
   name1: any;
   postlist;
-  //loadImage:any;
-  imagesource: any;
-  profilepic: any;
-  displayName: any;
   firedata = firebase.database().ref(`/users`);
-  status:any;
-  disabled = false;
   allposts;
   postData: FirebaseObjectObservable<Post>;
+  newrequest = {} as connreq;
+  temparr = [];
+  filteredusers = [];
 
-  constructor(public events:Events, private afAuth: AngularFireAuth, public zone: NgZone, public alertCtrl: AlertController, public db: AngularFireDatabase, public userservice: UserProvider, public navCtrl: NavController, private toast: ToastController, public navParams: NavParams, private camera:Camera, public popoverCtrl: PopoverController) {
+  constructor(public events:Events, private afAuth: AngularFireAuth, public zone: NgZone, public alertCtrl: AlertController, public db: AngularFireDatabase, public userservice: UserProvider, public navCtrl: NavController, private toast: ToastController, public navParams: NavParams, private camera:Camera, public popoverCtrl: PopoverController, public requestservice: RequestsProvider) {
 
     //this.loadProfiledetails(); 
+    this.userservice.getallusers().then((res: any) => {
+      this.filteredusers = res;
+      this.temparr = res;
+    })
 
     this.user=this.navParams.get('userid');
     console.log('user', this.user)
@@ -95,11 +86,11 @@ export class OtheruserprofilePage {
   }
 
   gotofriends(){
-    this.navCtrl.push(MyfriendslistPage);
+    this.navCtrl.push(OtheruserfriendsPage);
   }
 
   gotoposts(){
-    this.navCtrl.push(UserUploadsPage);
+    this.navCtrl.push(OtheruseruploadsPage);
   }
 
   goback(){
@@ -129,6 +120,28 @@ export class OtheruserprofilePage {
   ionViewDidLoad() {
     this.profileData = this.db.object(`users/${this.user}/profile`)
     console.log('ionViewDidLoad ProfilePage', this.profileData, this.user);
+}
+
+sendreq() {
+  this.newrequest.sender = firebase.auth().currentUser.uid;
+  this.newrequest.recipient = this.user;
+  if (this.newrequest.sender == this.newrequest.recipient)
+    alert('You cannot send a request to yourself!');
+  else{
+    let successalert = this.alertCtrl.create({
+      title: 'Request was sent!',
+      subTitle: 'Request sent to ' + this.username,
+      buttons: ['OK']
+    });
+  
+    this.requestservice.sendrequest(this.newrequest).then((res: any) => {
+      if (res.success) {
+        successalert.present();
+      }
+    }).catch((err) => {
+      alert(err);
+    })
+  }
 }
 
 ionViewWillEnter(){

@@ -6,6 +6,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { UserProvider } from '../../providers/user/user';
 import firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth'; 
+import { OtheruserprofilePage } from '../otheruserprofile/otheruserprofile';
 
 
 @Component({
@@ -124,6 +125,9 @@ addCommenttodb(comment, x){
 return promise;
 }
 */
+gotoOther(post){
+  this.navCtrl.push(OtheruserprofilePage, {userid: post.userid, username:post.username, userpic:post.userpic})
+}
 
 unlike(i) {
   var ind = this.allposts[i].likes.indexOf(firebase.auth().currentUser.uid);
@@ -150,9 +154,6 @@ updatelikes(postdetails){
     //this.navCtrl.push(CommentsPage, {postinfo: postdetails});
   }
 
-  ProfilePageClick(){
-    this.navCtrl.push(ProfilePage);
-  }
 
   // ionViewDidLoad(){
   //   this.allposts = [];
