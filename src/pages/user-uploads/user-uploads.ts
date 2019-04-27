@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, ToastController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { AddArtPage } from '../add-art/add-art';
 import { UserProvider } from '../../providers/user/user';
@@ -8,9 +8,11 @@ import { Post } from '../../models/post';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { PostPage } from '../post/post';
 
+
 //import { url } from 'inspector';
 //import { storage } from 'firebase';
 import { storage, initializeApp} from 'firebase';
+import { HomePage } from '../home/home';
 //import { FIREBASE_CONFIG } from '../../app/firebase.config';
 
 /**
@@ -46,7 +48,7 @@ export class UserUploadsPage {
 
   constructor(public zone: NgZone, public events: Events, private afAuth: AngularFireAuth, 
     public userservice: UserProvider, public navCtrl: NavController, public navParams: NavParams
-  ,private fdb: AngularFireDatabase) {
+  ,private fdb: AngularFireDatabase,  private toast: ToastController) {
     //initializeApp(FIREBASE_CONFIG);
     this.galleryimage = this.navParams.get('image');
     this.photoimage = this.navParams.get('image2');
@@ -131,7 +133,15 @@ deletePost(postid){
   this.afAuth.authState.take(1).subscribe(auth=>{ 
     this.rootref = firebase.database().ref(`users/${auth.uid}`);
     let postref = this.rootref.child('posts/' + postid);
-    postref.remove();
+    postref.remove().then((data) => {
+      this.allposts[postid] = [];
+      this.allposts[postid] = data;
+    })
+    this.toast.create({
+      message: `Post deleted!`,
+      duration: 2000
+    }).present();
+    this.navCtrl.push(HomePage);
 })
 }
 

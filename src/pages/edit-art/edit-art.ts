@@ -23,7 +23,7 @@ export class EditArtPage {
 
   post = {} as Post; 
   changed = false;
-  allposts;
+  allposts; 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private aAuth: AngularFireAuth,
   private toast: ToastController, public db: AngularFireDatabase, public userservice:UserProvider) {
@@ -65,7 +65,7 @@ export class EditArtPage {
         this.toast.create({
         message: `Successfully updated your post!`,
         duration: 2000
-      }).present();
+      }).present(); 
   }) 
   }
 
