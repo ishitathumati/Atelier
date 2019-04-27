@@ -47,16 +47,17 @@ export class FriendsPage {
     })
   }
 
+
   sendreq(recipient) {
     this.newrequest.sender = firebase.auth().currentUser.uid;
     this.newrequest.recipient = recipient.uid;
-    if (this.newrequest.sender === this.newrequest.recipient)
+    if (this.newrequest.sender == this.newrequest.recipient)
       alert('You cannot send a request to yourself!');
-    else {
+    else{
       let successalert = this.alertCtrl.create({
-        title: 'Request sent',
+        title: 'Request was sent!',
         subTitle: 'Request sent to ' + recipient.displayName,
-        buttons: ['ok']
+        buttons: ['OK']
       });
     
       this.requestservice.sendrequest(this.newrequest).then((res: any) => {

@@ -1,5 +1,5 @@
 <!--
-  Generated template for the AddArtPage page.
+  Generated template for the EditArtPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Add Art</ion-title>
+    <ion-title>EditArtPage</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,22 +15,7 @@
 
 <ion-content padding>
 
-  <p>Upload from</p>
-
-    <button ion-button icon color ='primary' clear (click) = "takePic()">
-      <ion-icon name="camera"></ion-icon>
-      Take Photo
-    </button> 
-    <button ion-button icon color='primary' clear (click) = "openGallery()">
-      <ion-icon name="folder-open" (click) = "openGallery()"></ion-icon> 
-     Choose from Library
-   </button>
-
-    <img src = "{{postURL}}">
-
     <ion-list>
-      
-
         <ion-item>
           <ion-label inline>Title</ion-label>
           <ion-input maxlength="20" type="text"[(ngModel)]="post.title"></ion-input>
@@ -54,6 +39,5 @@
       
       </ion-list>
 
-      <button ion-button (click)="updatePosts()" round>Submit</button>
-
+      <button ion-button (click)="editPost()" round>Save</button>
 </ion-content>

@@ -173,8 +173,7 @@ updatelikes(postdetails){
         // console.log('Async operation has ended');
         event.complete();
       }, 400);
-    });
-
+    }); 
   }
 
    

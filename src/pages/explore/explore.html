@@ -1,105 +1,125 @@
 <!--
   Generated template for the ExplorePage page.
-
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Explore</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
-<!--sssss--> 
- 
-
-  <ion-searchbar (input)="searchuser($event)" placeholder="Search"></ion-searchbar>
-<ion-list no-lines *ngIf="search">
-  <ion-list >
-    <ion-item-sliding *ngFor="let key of filteredusers" >
-      <ion-item >
-        <ion-avatar item-left (click)="goToOther()">
-          <img src='' >
-        </ion-avatar> 
-        <ion-item><h2>{{key.displayName}}</h2></ion-item>
-      </ion-item>
-      
-    </ion-item-sliding>
+    <ion-navbar>
+      <ion-title>Explore</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+   
+  
+    <ion-searchbar (input)="searchuser($event)" placeholder="Search"></ion-searchbar>
+  <ion-list no-lines *ngIf="search">
+    <ion-list >
+      <ion-item-sliding *ngFor="let key of filteredusers" >
+        <ion-item >
+          <ion-header item-left (click)="goToOther()">
+          </ion-header> 
+          <ion-item><h2>{{key.displayName}}</h2></ion-item>
+        </ion-item>
+        
+      </ion-item-sliding>
+    </ion-list>
   </ion-list>
+<<<<<<< HEAD
+  
+  
+  
+  
+    <!--<div class="tags-input" data-name="tags-input"></div>
+    <input class = "main-input" ion-input placeholder="#Hashtags" type = "text" [(ngModel)]="hashtag"> 
+    <ion-icon name="search" (click)="hashtagExists()"></ion-icon>-->
+  
+    
+        
+  
+    <ion-grid>
+        <ion-row>
+          <ion-col *ngFor ="let item of posts" col-6 no-padding>
+            <ion-card>
+            <ion-card-header (click)="goToOther(userProfileStuff)" >
+              {{item.username}} 
+            </ion-card-header>
+            <ion-card-content>
+              <img src="{{item.posturl}}"  (click)="goToPhotos(item)"> 
+              <ion-row>
+                {{item.title}}
+=======
 </ion-list>
 
 
-  
-    <!--<ion-searchbar
-    [(ngModel)]="myInput"
-    [showCancelButton]="shouldShowCancel"
-    (ionInput)="onInput($event)"
-    (ionCancel)="onCancel($event)">
-       
-  </ion-searchbar>-->
 
-  <div class="tags-input" data-name="tags-input"></div>
+
+  <!--<div class="tags-input" data-name="tags-input"></div>
   <input class = "main-input" ion-input placeholder="#Hashtags" type = "text" [(ngModel)]="hashtag"> 
-  <ion-icon name="search" (click)="hashtagExists()"></ion-icon>
+  <ion-icon name="search" (click)="hashtagExists()"></ion-icon>-->
 
   
       
-      
-    
-
-<!--<input type="text" ion-input placeholder="#Hashtags" id="txtSearch" onkeypress="return searchOnEnter(event);" />
-<input type="button" id="btnSearch" Value="Search" onclick="searchOnEnter();" /> -->
 
   <ion-grid>
       <ion-row>
         <ion-col *ngFor ="let item of posts" col-6 no-padding>
           <ion-card>
           <ion-card-header>
-            {{item.title}}
+            {{item.username}}
           </ion-card-header>
           <ion-card-content>
-            <img src="{{item.posturl}}" imageViewer>
+            <img src="{{item.posturl}}"  (click)="goToPhotos(item)"> 
             <ion-row>
-              Price: {{item.price}}
+              {{item.title}}
+            </ion-row>
+            <ion-row>
+             {{item.price}}
             </ion-row>
             <ion-row>
               {{item.description}}
             </ion-row>
             <ion-row>
               {{item.hashtag}}
+>>>>>>> 891a2d692bdf5b1443b94c18f8cdb6fadb73166c
               </ion-row>
-          </ion-card-content>
-        </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-   
-
-
-
-
-   
-       
-       
-          
-          
-           
-          
-          
-      
+              <ion-row>
+               {{item.price}}
+              </ion-row>
+              <ion-row>
+                {{item.description}}
+              </ion-row>
+              <ion-row>
+                {{item.hashtag}}
+                </ion-row>
+            </ion-card-content>
+          </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  
+     
+  
+  
+  
+  
+     
+         
+         
+            
+            
+             
+            
+            
         
           
-     
-
-  </ion-content>
+            
+       
   
-
+    </ion-content>
 
 
 

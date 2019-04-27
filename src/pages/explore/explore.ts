@@ -3,26 +3,23 @@ import { Component, Input } from '@angular/core';
 import { storage } from 'firebase';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 //import { User } from '../../models/users';
-
 import { HomePage } from '../home/home';
 import { AngularFireModule } from 'angularfire2';
 import { FIREBASE_CONFIG } from '../../app/firebase.config';
 import { UserUploadsPage } from '../user-uploads/user-uploads';
 import * as firebase from 'firebase';
-//import { a } from '@angular/core/src/render3';
-//import {storage, initializeApp} from 'firebase';
 import { RequestsProvider } from '../../providers/requests/requests';
 import { UserProvider } from '../../providers/user/user';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { a } from '@angular/core/src/render3';
 import {initializeApp} from 'firebase';
-//import {navCtrl, initializeApp} from firebase;
 import { connreq } from '../../models/request';
 import { ProfilePage } from '../profile/profile';
 import { Post } from '../../models/post';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { all } from 'q';
-import { OtherProfilePage } from '../other-profile/other-profile';
+//import { OtherProfilePage } from '../other-profile/other-profile';
+import { PhotoPage } from '../photo/photo';
 
 
 /**
@@ -108,25 +105,14 @@ export class ExplorePage {
 
   
 
-  goToOther()
+  //opens up the specific post
+  goToPhotos(item)
   {
-    this.navCtrl.push(OtherProfilePage);
+    this.navCtrl.push(PhotoPage,{post:item});
   }
-
- /*  maxPosts()
-  {
-    if(localStorage.length < 20)
-    {
-      this.getPhotoURL();
-    }
-    else{
-
-    }
-
-  } */
-
+ 
   
-  
+ 
 
   
   
@@ -165,7 +151,15 @@ export class ExplorePage {
   }
 
 
-  hashtagExists() {
+
+
+
+  
+
+  
+
+
+  /* hashtagExists() {
     firebase.database().ref('hashtags').on('value', function(snapshot) {
       snapshot.forEach(function(snap) {
         this.allHashtags.push(snap.val()); //push the hashtag
@@ -185,9 +179,8 @@ export class ExplorePage {
       /*this.aAuth.authState.take(1).subscribe(auth=>{
       this.rootref = firebase.database().ref('hashtags').push(this.allHashtags);
       })*/
-    }
-  }
-
+   
+ 
  /* hashtagSearch(){
     var doesExist: boolean = false;
     for(var i:number = 0; i<this.allHashtags.length; i++) {

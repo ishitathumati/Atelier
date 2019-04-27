@@ -44,8 +44,11 @@
       Friends
     </ion-list-header-->
     <ion-item *ngFor="let item of myfriends" (click)="friendchat(item)">
-      <button style="width:100%; background-color: rgb(38, 117, 166); display:inline-block; border-radius:10px; border:2px;">
-      <div style="font-size:16px; font:bold; position:relative; height:30px; color:white; background-color:rebeccapurple; padding:10px; border:1px;"><h3>{{item.displayName}}</h3></div></button>
+      
+        <button style="text-align: left; opacity: .95; font-size: 14pt; color:whitesmoke; width:100%; height:55px; background-color: rgb(38, 117, 166); border-radius:15px; border: 2px solid goldenrod; padding-left: 20px">
+          {{item.displayName}}
+        </button>
+    
     </ion-item>
   </ion-list>
 </ion-content>
