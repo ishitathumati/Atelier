@@ -12,6 +12,7 @@ import { RequestsProvider } from '../../providers/requests/requests';
 import { connreq } from '../../models/request';
 import { OtheruserfriendsPage } from '../otheruserfriends/otheruserfriends';
 import { OtheruseruploadsPage } from '../otheruseruploads/otheruseruploads';
+import { ChatProvider } from '../../providers/chat/chat'; 
 
 /**
  * Generated class for the OtherProfilePage page.
@@ -43,7 +44,11 @@ export class OtherProfilePage {
   temparr = [];
   filteredusers = [];
 
-  constructor(public events:Events, private afAuth: AngularFireAuth, public zone: NgZone, public alertCtrl: AlertController, public db: AngularFireDatabase, public userservice: UserProvider, public navCtrl: NavController, private toast: ToastController, public navParams: NavParams, private camera:Camera, public popoverCtrl: PopoverController, public requestservice: RequestsProvider) {
+  constructor(public events:Events, private afAuth: AngularFireAuth, public zone: NgZone, 
+    public alertCtrl: AlertController, public db: AngularFireDatabase, public userservice: UserProvider, 
+    public navCtrl: NavController, private toast: ToastController, public navParams: NavParams, 
+    private camera:Camera, public popoverCtrl: PopoverController, public requestservice: RequestsProvider, 
+    public chatservice: ChatProvider) {
 
   
     this.user=this.navParams.get('userid');
@@ -87,11 +92,11 @@ export class OtherProfilePage {
   }
 
   gotofriends(){
-    this.navCtrl.push(OtheruserfriendsPage);
+    this.navCtrl.push(OtheruserfriendsPage, {uid: this.user, name: this.username});
   }
 
   gotoposts(){
-    this.navCtrl.push(OtheruseruploadsPage);
+    this.navCtrl.push(OtheruseruploadsPage, {uid:this.user, name:this.username});
   }
 
   goback(){
@@ -117,6 +122,7 @@ export class OtherProfilePage {
     })
     return prom;
   }
+
 
   ionViewDidLoad() {
     this.profileData = this.db.object(`users/${this.user}/profile`)

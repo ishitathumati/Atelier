@@ -7,12 +7,36 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>otheruseruploads</ion-title>
+    <ion-title>{{username}}'s Posts</ion-title> 
   </ion-navbar>
+  
 
 </ion-header>
 
+<ion-content padding> 
 
-<ion-content padding>
+      <ion-grid>
+        <ion-row>
+          <ion-col *ngFor ="let item of allposts; let i=index" col-6 no-padding>
+            <ion-card>
+            <ion-card-header (click)="goToPost(item)">
+              {{allposts[i].title}}
+            </ion-card-header>
+            <ion-card-content>
+              <img src="{{allposts[i].posturl}}" imageViewer>
+              <ion-row>
+                Price: {{allposts[i].price}}
+              </ion-row>
+              <ion-row>
+                {{allposts[i].description}}
+              </ion-row>
+              <ion-row>
+                {{allposts[i].hashtag}}
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
 </ion-content>

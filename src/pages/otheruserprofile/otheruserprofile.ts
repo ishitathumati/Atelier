@@ -86,11 +86,11 @@ export class OtheruserprofilePage {
   }
 
   gotofriends(){
-    this.navCtrl.push(OtheruserfriendsPage);
+    this.navCtrl.push(OtheruserfriendsPage, {uid: this.user, name: this.username});
   }
 
   gotoposts(){
-    this.navCtrl.push(OtheruseruploadsPage);
+    this.navCtrl.push(OtheruseruploadsPage, {uid: this.user, name: this.username});
   }
 
   goback(){

@@ -60,6 +60,17 @@ export class UserProvider {
     return promise;
   }
 
+  getuserdetails2(uid) {
+    var promise = new Promise((resolve, reject) => {
+    this.firedata.child(`${uid}`).once('value', (snapshot) => {
+      resolve(snapshot.val());
+    }).catch((err) => {
+      reject(err);
+      })
+    })
+    return promise;
+  }
+
   getProfiledetails(){
     var promise = new Promise((resolve, reject) => {
       this.firedata.child(firebase.auth().currentUser.uid).child('profile').once('value', (snapshot) => {
@@ -198,6 +209,7 @@ getpostdetails2(){
   })
   return prom;
 }
+
 getpostdetails3(userID: string){
   console.log("3");
   var self = this;

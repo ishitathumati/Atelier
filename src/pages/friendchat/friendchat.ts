@@ -2,6 +2,8 @@ import { Component, ViewChild, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events, Content } from 'ionic-angular';
 import { ChatProvider } from '../../providers/chat/chat';
 import  firebase from 'firebase';
+import { UserProvider } from '../../providers/user/user';
+import { AngularFireAuth } from 'angularfire2/auth'; 
 
 
 /**
@@ -20,17 +22,21 @@ export class FriendchatPage {
   @ViewChild('content') content: Content;
   friend: any;
   newmessage;
-  allmessages = [];
-  photoURL;
+  allmessages;
+  friendimg;
+  userimg;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public chatservice: ChatProvider, public events: Events, public zone: NgZone) {
+  constructor(public aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public chatservice: ChatProvider, public events: Events, public zone: NgZone, public userservice: UserProvider) {
     this.friend = this.chatservice.friend;
-    this.photoURL = " ";
+    this.getfriendimg(this.friend.uid);
+    this.getuserimg(this.aAuth.auth.currentUser.uid);
+    console.log('friend', this.friend)
+    
     this.scrollto();
     this.events.subscribe('newmessage', () => {
-      this.allmessages = [];
       this.zone.run(() => {
         this.allmessages = this.chatservice.friendmessages;
+        console.log('messages', this.allmessages)
       })
     })
   }
@@ -56,4 +62,17 @@ export class FriendchatPage {
     }, 1000);
   }
 
+  getfriendimg(uid){
+    this.userservice.getuserdetails2(uid).then((res:any)=>{
+      this.friendimg = res.photoURL;
+      console.log('friend image', this.friendimg)
+    })
+  }
+
+  getuserimg(uid){
+    this.userservice.getuserdetails2(uid).then((res:any)=>{
+      this.userimg = res.photoURL;
+      console.log('user image', this.userimg)
+    })
+  }
 }

@@ -18,13 +18,13 @@
   <ion-list no-lines>
     <ion-item *ngFor = "let item of allmessages; let i = index" text-wrap>
       <ion-avatar item-left *ngIf="item.sentby === friend.uid">
-        <img src="http://ostermancron.com/wp-content/uploads/2016/02/blank-profile-picture-973460_640-300x300.png">
+        <img src="{{friendimg}}">
       </ion-avatar>
       <div class="bubble2 me" *ngIf="item.sentby === friend.uid">
-        <h3 style="color:white">{{item.message}}</h3>
+        <h3 style="color:black">{{item.message}}</h3>
       </div>
       <ion-avatar item-right *ngIf="item.sentby != friend.uid">
-        <img src="http://ostermancron.com/wp-content/uploads/2016/02/blank-profile-picture-973460_640-300x300.png">
+        <img src="{{userimg}}">
       </ion-avatar>
       <div class="bubble friend" *ngIf="item.sentby != friend.uid">
         <h3 style="color:white">{{item.message}}</h3>

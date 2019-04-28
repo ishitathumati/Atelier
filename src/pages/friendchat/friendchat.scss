@@ -14,9 +14,9 @@ page-friendchat {
     }
 
     .bubble2{
-        background-color: rgb(130, 157, 238);
+        background-color: rgb(219, 220, 224);
         border-radius: 6px;
-        box-shadow: 0 0 6px rgb(130, 157, 238);
+        box-shadow: 0 0 6px rgb(219, 220, 224);
         display: inline-block;
         padding: 13px 18px;
         position: relative;
@@ -39,7 +39,7 @@ page-friendchat {
     }
     
     .bubble2::before {
-        background-color: rgb(130, 157, 238);
+        background-color: rgb(219, 220, 224);
         content: "\00a0";
         display: block;
         height: 10px;

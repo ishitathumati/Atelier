@@ -51,13 +51,44 @@ export class LoginPage {
   }
 */
 
+  /*async login(user: User){
+    this.authservice.login(this.user).then((res: any) => {
+      try{
+        const result = this.aAuth.auth.signInWithEmailAndPassword(user.email, user.password);
+        if(result)
+        {
+          this.toast.create({
+            message: `Welcome to Atelier, ${user.email}`,
+            duration: 2000
+          }).present();
+          this.navCtrl.push(TabsPage, CommentsPage);
+         
+        }
+        else{
+          this.toast.create({
+            message: `Invalid email or password, please try again`,
+            duration: 2000
+          }).present();
+        }
+      }
+      catch(e){
+        console.log(e);
+        this.toast.create({
+          message: `Invalid email or password, please try again`,
+          duration: 2000
+        }).present();
+      }
+    })
+    
+  }*/
+
   async login(user:User){
     this.aAuth.auth.signInWithEmailAndPassword(user.email,user.password)
     .then((res: any) => {
       this.navCtrl.push(TabsPage, CommentsPage);
     }, err => {
       let msg;
-      switch (err['code']) { 
+      switch (err['code']) {
         case "auth/wrong-password":
           msg= "Invalid email or password, please try again";
           break;
