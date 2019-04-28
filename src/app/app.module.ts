@@ -130,6 +130,7 @@ const firebaseAuth = {
     PhotoPage,
     OtheruserprofilePage,
     PostPage,
+    OtherProfilePage,
     OtheruserfriendsPage,
     OtheruseruploadsPage
   ],
