@@ -21,35 +21,6 @@
         <ion-title>{{displayName}}</ion-title> 
       </div>
 
-      <!--<ion-list>
-        <ion-item *ngFor="let item of allposts;let i=index" style="width: 100%">
-          <div class="b">
-            <ion-row>
-                  <small class="user-name"><div class="a" style="color: #000; font-weight: bold; margin-top: 5px; margin-left: 1px">
-                    {{allposts[i].title}}<br>
-                  </div>
-                  </small>
-            </ion-row>
-          </div>
-          <ion-row>
-            <div style="width: 100% !important;"> 
-              <img  src="{{allposts[i].posturl}}"  maxlength="100%"/>
-            </div>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <button style="text-transform: none;" ion-button clear small >
-                <div> {{allposts[i].price}} </div>
-              </button>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <p text-wrap style="font-family: Comic Sans MS;color: black;text-align: justify">
-              {{allposts[i].description}} </p>
-          </ion-row>
-        </ion-item>
-      </ion-list>--> 
-
       <ion-grid>
         <ion-row>
           <ion-col *ngFor ="let item of allposts; let i=index" col-6 no-padding>
@@ -65,9 +36,6 @@
               </ion-row>
               <ion-row>
                 {{allposts[i].description}}
-              </ion-row>
-              <ion-row>
-                {{allposts[i].hashtag}}
               </ion-row>
             </ion-card-content>
           </ion-card>
