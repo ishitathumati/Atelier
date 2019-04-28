@@ -6,7 +6,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { UserProvider } from '../../providers/user/user';
 import firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth'; 
-import { OtheruserprofilePage } from '../otheruserprofile/otheruserprofile';
+import { OtherProfilePage } from '../other-profile/other-profile';
 
 
 @Component({
@@ -67,66 +67,9 @@ isLiked(i) {
   return ret;
 }
 
-/*addcomment(i){
-  let statusalert = this.alertCtrl.create({
-    buttons: ['okay']
-  });
-  let alert = this.alertCtrl.create({
-    title: 'Add Comment',
-    inputs: [{
-      name: 'name',
-      placeholder: 'comment'
-    }],
-    buttons: [{
-      text: 'Cancel',
-      role: 'cancel',
-      handler: data => {
 
-      }
-    },
-    {
-      text: 'send',
-      handler: data => {
-        if (data.name) {
-          this.addCommenttodb(data.name, this.allposts[i]).then((res: any) => {
-            if (res.success) 
-            {
-              console.log('status', res.success)
-              statusalert.setTitle('comment added!');
-              statusalert.present();
-              this.zone.run(() => {
-                this.displayName = data.name;
-              })
-            }
-            else {
-              statusalert.setTitle('Failed');
-              statusalert.setSubTitle('Your name was not changed');
-              statusalert.present();
-            }
-                           
-          })
-        }
-      }
-      
-    }]
-  });
-  alert.present();
-}
-
-addCommenttodb(comment, x){
-  var promise = new Promise((resolve, reject)=>{
-  this.db.list(`/users/${x.userid}/posts/${x.postid}/comments`).push({
-    comment: comment,
-    userid: this.afAuth.auth.currentUser.uid,
-    username: this.afAuth.auth.currentUser.displayName
-  })
-  resolve({success: true})
-})
-return promise;
-}
-*/
 gotoOther(post){
-  this.navCtrl.push(OtheruserprofilePage, {userid: post.userid, username:post.username, userpic:post.userpic})
+  this.navCtrl.push(OtherProfilePage, {userid: post.userid, username:post.username, userpic:post.userpic})
 }
 
 unlike(i) {
@@ -171,7 +114,7 @@ updatelikes(postdetails){
       this.allposts=data;
       console.log('list of posts', this.allposts);
       setTimeout(() => {
-        // console.log('Async operation has ended');
+        console.log('Async operation has ended');
         event.complete();
       }, 400);
     });

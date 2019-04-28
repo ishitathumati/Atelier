@@ -25,7 +25,8 @@ import { AuthProvider } from '../../providers/auth/auth';
 })
 export class LoginPage {
 
-  user = {} as User;
+  user = {email: 'nick@email.com',
+          password: '123456'} as User;
 
   constructor(public db:AngularFireDatabase, public toast:ToastController,private aAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public authservice: AuthProvider) {
   }
@@ -50,25 +51,31 @@ export class LoginPage {
   }
 */
 
-  async login(user: User){
-    this.authservice.login(this.user).then((res: any) => {
-      try{
-        const result = this.aAuth.auth.signInWithEmailAndPassword(user.email, user.password);
-        if(result)
-        {
-          this.toast.create({
-            message: `Welcome to Atelier, ${user.email}`,
-            duration: 2000
-          }).present();
-          this.navCtrl.push(TabsPage, CommentsPage);
-         
-        }
+  async login(user:User){
+    this.aAuth.auth.signInWithEmailAndPassword(user.email,user.password)
+    .then((res: any) => {
+      this.navCtrl.push(TabsPage, CommentsPage);
+    }, err => {
+      let msg;
+      switch (err['code']) { 
+        case "auth/wrong-password":
+          msg= "Invalid email or password, please try again";
+          break;
+  
+        case "auth/user-not-found":
+          msg= 'User not found.'
+          break;
+  
+        case "auth/invalid-email":
+          msg= 'Invalid email or password, please try again';
+          break;
       }
-      catch(e){
-        console.error(e);
-      }
-    })
-    
+      this.toast.create({
+        message: msg,
+        duration: 3000
+      }).present();
+      //alert(msg);
+    });
   }
 
   register(){
