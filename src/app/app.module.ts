@@ -40,7 +40,7 @@ import { UpdateprofilepicPage } from '../pages/updateprofilepic/updateprofilepic
 import { PopoverComponent } from '../components/popover/popover';
 import { ImghandlerProvider } from '../providers/imghandler/imghandler';
 import { MyfriendslistPage } from '../pages/myfriendslist/myfriendslist';
-import {PhotoPage} from '../pages/photo/photo';
+import { PhotoPage } from '../pages/photo/photo';
 import { PostPage } from '../pages/post/post';
 import { EditArtPage } from '../pages/edit-art/edit-art';
 
