@@ -21,20 +21,26 @@ import { ChatProvider } from '../../providers/chat/chat';
 export class MyfriendslistPage {
   myrequests;
   myfriends;
+  search;
+  friendsarr;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public requestservice: RequestsProvider,
     public events: Events, public alertCtrl: AlertController, public chatservice: ChatProvider) {
+
+      this.requestservice.getmyfriends();
+  
+      this.events.subscribe('friends', () => {
+      this.friendsarr=this.requestservice.myfriends;
+      this.myfriends = this.requestservice.myfriends;
+      console.log(this.myfriends)
+    })
   }
 
   ionViewWillEnter() {
-    this.requestservice.getmyrequests();
+    
     this.requestservice.getmyfriends();
-    this.myfriends = [];
-    this.events.subscribe('gotrequests', () => {
-      this.myrequests = [];
-      this.myrequests = this.requestservice.userdetails;
-    })
+  
     this.events.subscribe('friends', () => {
-      this.myfriends = [];
       this.myfriends = this.requestservice.myfriends;
     })
   }
@@ -42,6 +48,20 @@ export class MyfriendslistPage {
   ionViewDidLeave() {
     this.events.unsubscribe('gotrequests');
     this.events.unsubscribe('friend');
+  }
+
+  searchfriends(param:any) {
+    this.search = true;
+    let val: string = param;
+    this.friendsarr = this.myfriends;
+      if (val.trim() != '') {
+        this.friendsarr = this.friendsarr.filter((v) => {
+          v.displayName.toLowerCase().indexOf(val.toLowerCase()) > -1;
+        })
+      }
+      else{
+        this.search =false;
+      }
   }
  
   addfriend() {
@@ -52,26 +72,6 @@ export class MyfriendslistPage {
     console.log('ionViewDidLoad MessagesPage');
   }
   
- 
-  accept(item) {
-      this.requestservice.acceptrequest(item).then(() => {
-  
-        let newalert = this.alertCtrl.create({
-          title: 'Friend added',
-          subTitle: 'Tap on friend to chat',
-          buttons: ['ok']
-        });
-        newalert.present();
-      })
-    }
-  
-    ignore(item) {
-      this.requestservice.deleterequest(item).then(() => {
-        alert('Request ignored');
-      }).catch((err) => {
-        alert(err);
-      })
-    }
 
     
 

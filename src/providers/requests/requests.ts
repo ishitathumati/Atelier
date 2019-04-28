@@ -16,6 +16,9 @@ export class RequestsProvider {
   firefriends = firebase.database().ref('/friends');
   userdetails;
   myfriends;
+  otherfriends;
+  firedata = firebase.database().ref('/friends');
+
   constructor(public userservice: UserProvider, public events: Events) {
     
   }
@@ -121,5 +124,46 @@ getmyfriends() {
   
   })
 } 
+
+getfilteredfriends(uid) {
+  var promise = new Promise((resolve, reject) => {
+    this.firedata.child(`${uid}`).once('value', (snapshot) => {
+      let userdata = snapshot.val();
+      let temparr = [];
+      for (var key in userdata) {
+        temparr.push(userdata[key]);
+      }
+      //console.log('users', temparr)
+      resolve(temparr);
+    }).catch((err) => {
+      reject(err);
+    })
+  })
+  return promise;
+}
+
+getotherfriends(userid) {
+  let friendsuid = [];
+  this.firefriends.child(`${userid}`).on('value', (snapshot) => {
+    let allfriends = snapshot.val();
+    this.otherfriends=[];
+    for (var i in allfriends)
+      friendsuid.push(allfriends[i].uid);
+      
+    this.userservice.getallusers().then((users) => {
+      for (var j in friendsuid)
+        for (var key in users) {
+          if (friendsuid[j] === users[key].uid) {
+            this.otherfriends.push(users[key]);
+          }
+        }
+      this.events.publish('otherfriends');
+    }).catch((err) => {
+      alert(err);
+    })
+  
+  })
+} 
+
 
 }

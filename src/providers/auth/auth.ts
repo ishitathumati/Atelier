@@ -1,5 +1,6 @@
 //import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from '../../models/user'
 /*
@@ -11,7 +12,7 @@ import { User } from '../../models/user'
 @Injectable()                                       
 export class AuthProvider {
 
-  constructor(public afireauth: AngularFireAuth) {
+  constructor(public afireauth: AngularFireAuth, public toast: ToastController) {
     console.log('Hello AuthProvider Provider');
   }
 
@@ -21,7 +22,11 @@ export class AuthProvider {
         resolve(true);
        }).catch((err) => {
          reject(err);
-
+         console.log(err);
+         this.toast.create({
+           message: `Invalid email or password, please try again`,
+           duration: 2000
+         }).present();
        })
   })
 

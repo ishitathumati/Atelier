@@ -43,6 +43,10 @@ import { MyfriendslistPage } from '../pages/myfriendslist/myfriendslist';
 import { PhotoPage } from '../pages/photo/photo';
 import { PostPage } from '../pages/post/post';
 import { EditArtPage } from '../pages/edit-art/edit-art';
+import { OtheruserprofilePage } from '../pages/otheruserprofile/otheruserprofile';
+import { OtheruserfriendsPage } from '../pages/otheruserfriends/otheruserfriends';
+import { OtheruseruploadsPage } from '../pages/otheruseruploads/otheruseruploads';
+import { OtherProfilePage } from '../pages/other-profile/other-profile';
 
 
 
@@ -81,9 +85,13 @@ const firebaseAuth = {
     FriendsPage,
     MyfriendslistPage,
     UpdateprofilepicPage,
+    OtherProfilePage,
+    OtheruserprofilePage,
     PopoverComponent,
     PhotoPage,
-    PostPage
+    PostPage,
+    OtheruserfriendsPage,
+    OtheruseruploadsPage
   ],
 
   imports: [
@@ -120,7 +128,10 @@ const firebaseAuth = {
     UpdateprofilepicPage,
     PopoverComponent,
     PhotoPage,
-    PostPage
+    OtheruserprofilePage,
+    PostPage,
+    OtheruserfriendsPage,
+    OtheruseruploadsPage
   ],
   providers: [
     StatusBar,
@@ -133,6 +144,7 @@ const firebaseAuth = {
     RequestsProvider,
     ChatProvider,
     ImghandlerProvider,
+    
     {provide: ErrorHandler, useClass: IonicErrorHandler}
     //{provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ]

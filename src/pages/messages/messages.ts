@@ -58,18 +58,6 @@ export class MessagesPage {
     console.log('ionViewDidLoad MessagesPage');
   }
   
- 
-  accept(item) {
-      this.requestservice.acceptrequest(item).then(() => {
-  
-        let newalert = this.alertCtrl.create({
-          title: 'Friend added',
-          subTitle: 'Tap on friend to chat',
-          buttons: ['ok']
-        });
-        newalert.present();
-      })
-    }
   
     ignore(item) {
       this.requestservice.deleterequest(item).then(() => {

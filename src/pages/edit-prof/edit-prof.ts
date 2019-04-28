@@ -50,17 +50,6 @@ export class EditProfPage {
     console.log('ionViewDidLoad EditProfPage');
   }
 
-  /*takePic(){
-    this.imgservice.takePic().then((url:any)=>{
-      this.profilepic = url;
-    })
-  }
-
-  openGallery(){
-    this.imgservice.choosefromGallery().then((url:any)=>{
-      this.profilepic = url;
-    })
-  }*/
 
   async takePic(){
     try{
@@ -82,17 +71,7 @@ catch (e){
   console.error(e);
   }
 }
-/*createProfile(name, study, work, lives, fromCity){
-this.peopleList.push({
-  name: name,
-  study: study,
-  work: work,
-  lives: lives,
-  fromCity: fromCity,
-}).then(newProfile => {
-  this.navCtrl.push(ProfilePage);
-}, error=>{console.log(error);});
-}*/
+
 
 openGallery()
 {

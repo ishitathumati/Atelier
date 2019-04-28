@@ -50,7 +50,7 @@ export class LoginPage {
   }
 */
 
-  async login(user: User){
+  /*async login(user: User){
     this.authservice.login(this.user).then((res: any) => {
       try{
         const result = this.aAuth.auth.signInWithEmailAndPassword(user.email, user.password);
@@ -63,12 +63,49 @@ export class LoginPage {
           this.navCtrl.push(TabsPage, CommentsPage);
          
         }
+        else{
+          this.toast.create({
+            message: `Invalid email or password, please try again`,
+            duration: 2000
+          }).present();
+        }
       }
       catch(e){
-        console.error(e);
+        console.log(e);
+        this.toast.create({
+          message: `Invalid email or password, please try again`,
+          duration: 2000
+        }).present();
       }
     })
     
+  }*/
+
+  async login(user:User){
+    this.aAuth.auth.signInWithEmailAndPassword(user.email,user.password)
+    .then((res: any) => {
+      this.navCtrl.push(TabsPage, CommentsPage);
+    }, err => {
+      let msg;
+      switch (err['code']) {
+        case "auth/wrong-password":
+          msg= "Invalid email or password, please try again";
+          break;
+  
+        case "auth/user-not-found":
+          msg= 'User not found.'
+          break;
+  
+        case "auth/invalid-email":
+          msg= 'Invalid email or password, please try again';
+          break;
+      }
+      this.toast.create({
+        message: msg,
+        duration: 3000
+      }).present();
+      //alert(msg);
+    });
   }
 
   register(){
