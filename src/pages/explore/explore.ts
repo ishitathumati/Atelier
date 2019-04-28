@@ -75,6 +75,7 @@ export class ExplorePage {
       this.userservice.getallusers().then((res: any) => {
         this.filteredusers = res;
         this.temparr = res;
+        
 
       this.fdb.list("/hashtags").subscribe(_data=>{
         this.allHashtags = _data;
@@ -111,11 +112,30 @@ export class ExplorePage {
     this.navCtrl.push(PhotoPage,{post:item});
   }
  
-  
+  goToOtherProfile(thing)
+  {
+    this.navCtrl.push
+  }
  
 
   
+  /* doRefresh(event) {
+
+    this.userservice. getPhotoURL (firebase.auth().currentUser.uid).then((data)=>{
+
   
+    this.posts = [];
+    this.posts = data;
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.complete();
+    }, 2000);
+  });
+} */
+
+
   getPhotoURL()
   {
     //var maxPosts = 20;
@@ -130,13 +150,16 @@ export class ExplorePage {
               firebase.database().ref('/users/'+key+'/posts/'+keypost).on('value', function(thePost) {
                 var s = thePost.val();
                 var temp = {
+                  'userid': s.userid,
                   'username': s.username,
                   'postid' : s.postid,
                   'price' : s.price,
                   'title' : s.title,
                   'description' : s.description,
                   'posturl' : s.posturl,
-                  'hashtag' : s.hashtag
+                  'hashtag' : s.hashtag,
+                  // 'likes': s.likes,
+                  // 'comments': s.comments
                 } as Post;
                 self.posts.push(temp);
               });

@@ -8,4 +8,6 @@ export interface Post{
     description:string;
     posturl:string;
     hashtag: string[];
+    likes: any[];
+    comments: any[];
 }
