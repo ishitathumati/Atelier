@@ -20,6 +20,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { all } from 'q';
 //import { OtherProfilePage } from '../other-profile/other-profile';
 import { PhotoPage } from '../photo/photo';
+import { OtheruserprofilePage } from '../otheruserprofile/otheruserprofile';
+
 
 
 /**
@@ -38,7 +40,8 @@ import { PhotoPage } from '../photo/photo';
 
 export class ExplorePage {
 
-
+  top = 0;
+  bottom = 5;
   search: boolean;
   rootref:any;
   hashref:any;
@@ -69,22 +72,26 @@ export class ExplorePage {
       this.imageSource3 = 'scream';
       this.imageSource4 = 'starrynight';
 
-      this.getPhotoURL();
+      this.getPhotoURL().then((data)=>{
+
+        this.posts=this.shuffle(data);
+
+        this.userservice.getallusers().then((res: any) => {
+          this.filteredusers = res;
+          this.temparr = res;
+          
+  
+        this.fdb.list("/hashtags").subscribe(_data=>{
+          this.allHashtags = _data;
+  
+          console.log(this.allHashtags);
+        })
+  
+    });
+  })
+}
 
 
-      this.userservice.getallusers().then((res: any) => {
-        this.filteredusers = res;
-        this.temparr = res;
-        
-
-      this.fdb.list("/hashtags").subscribe(_data=>{
-        this.allHashtags = _data;
-
-        console.log(this.allHashtags);
-      })
-
-  });
-  }
 
   searchuser(searchbar) {
     this.search = true;
@@ -106,26 +113,95 @@ export class ExplorePage {
 
   
 
-  //opens up the specific post
-  goToPhotos(item)
-  {
-    this.navCtrl.push(PhotoPage,{post:item});
+ 
+  doRefresh(event){
+    this.getPhotoURL().then((data)=>{
+      this.posts=this.shuffle(data);
+      console.log('list of posts');
+      setTimeout(() => {
+        console.log('Async operation has ended');
+        event.complete();
+      }, 400);
+    }); 
   }
+ 
+
 
   
+  /* doRefresh(event) {
+
+    this.userservice.getPhotoURL (firebase.auth().currentUser.uid).then((data)=>{
+
+    this.posts = [];
+    this.posts = data;
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.complete();
+    }, 2000);
+  });
+} 
+ */
+
+
+
+
+
+ //opens up the specific post
+ goToPhotos(item)
+ {
+   this.navCtrl.push(PhotoPage,{post:item});
+ }
+
+ //opens up user profile from explore page grid
+gotoOther(post){
+  this.navCtrl.push(OtheruserprofilePage, {userid: post.userid, username:post.username, userpic:post.userpic});
+}
+
+//opens up user profile from the search bar
+gotoOther2(userProf)
+{
+  this.navCtrl.push(OtheruserprofilePage, {userid: userProf.uid, username: userProf.displayName, userpic: userProf.photoURL});
+} 
+ 
+
+
+
+
+ /* goToPhotos(item)
+{
+  this.navCtrl.push(PhotoPage,{post:item});
+} */
+
+//opens up user profile from explore page grid
+/* gotoOther(post){
+ this.navCtrl.push(ShaluPage, {userid: post.userid, username:post.username, userpic:post.userpic});
+}
+
+//opens up user profile from the search bar
+gotoOther2(userProf)
+{
+ this.navCtrl.push(ShaluPage, {userid: userProf.uid, username: userProf.displayName, userpic: userProf.photoURL});
+}  */
+
+
+
+
   getPhotoURL()
   {
-    //var maxPosts = 20;
     var self = this;
     var promise = new Promise((resolve, reject) => {
-      firebase.database().ref(`/users`).limitToLast(5).on('value', (snapshot) => {
+      firebase.database().ref(`/users`)  .on('value', (snapshot) => {
         snapshot.forEach(function(userStuff) {
           var key = userStuff.key;
           firebase.database().ref('/users/'+key+'/posts').on('value', function(shot) {
             shot.forEach(function(shotChild) {
+              
               var keypost = shotChild.key;
               firebase.database().ref('/users/'+key+'/posts/'+keypost).on('value', function(thePost) {
                 var s = thePost.val();
+                console.log(s);
                 var temp = {
                   'username': s.username,
                   'userid' : s.userid,
@@ -136,20 +212,48 @@ export class ExplorePage {
                   'description' : s.description,
                   'posturl' : s.posturl,
                   'hashtag' : s.hashtag,
-                  // 'likes': s.likes,
-                  // 'comments': s.comments
+                  'likes': s.likes,
+                  'comments': s.comments
                 } as Post;
-                self.posts.push(temp);
+                if(temp.userid != null && temp.username != null && temp.postid != null && temp.price != null && 
+                  temp.title != null && temp.description != null && temp.posturl != null)
+                  {
+                    console.log(temp);
+                    self.posts.push(temp);
+                    
+                  }
+            
               });
               return false;
             });
+
           });
           return false;
         });
+
+        resolve(this.posts)
       });
     });
     return promise;
   }
+
+   shuffle(arra1) {
+     console.log('shufflr csalled')
+    var ctr = arra1.length, temp, index;
+
+// While there are elements in the array
+    while (ctr > 0) {
+// Pick a random index
+        index = Math.floor(Math.random() * ctr);
+// Decrease ctr by 1
+        ctr--;
+// And swap the last element with it
+        temp = arra1[ctr];
+        arra1[ctr] = arra1[index];
+        arra1[index] = temp;
+    }
+    return arra1;
+}
 
 
 
@@ -195,6 +299,10 @@ export class ExplorePage {
   }*/
 
 }
+
+
+
+
 
 
 

@@ -13,25 +13,32 @@
   
   
   <ion-content padding>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        refreshingSpinner="circles"
+        refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher>
+
+
+<!-- 
+      <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+          <ion-infinite-scroll-content> -->
       
-          <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-            <ion-refresher-content
-              pullingIcon="refreshingSpinner"
-              refreshingSpinner="circles"
-              refreshingText="Refreshing...">
-            </ion-refresher-content>
-          </ion-refresher>
-        
+         
    
   
     <ion-searchbar (input)="searchuser($event)" placeholder="Search"></ion-searchbar>
+
+  
+
   <ion-list no-lines *ngIf="search">
     <ion-list >
       <ion-item-sliding *ngFor="let key of filteredusers" >
         <ion-item >
-          <ion-header item-left (click)="goToOther()">
+          <ion-header item-left>
           </ion-header> 
-          <ion-item><h2>{{key.displayName}}</h2></ion-item>
+          <ion-item (click)="gotoOther2(key)"><h2>{{key.displayName}}</h2></ion-item>
         </ion-item>
         
       </ion-item-sliding>
@@ -55,7 +62,8 @@
         <ion-col *ngFor ="let item of posts" col-6 no-padding>
           <ion-card>
           <ion-card-header>
-            {{item.username}}
+            <button ion-button (click)="gotoOther(item)">{{item.username}}</button>
+
           </ion-card-header>
           <ion-card-content>
             <img src="{{item.posturl}}"  (click)="goToPhotos(item)"> 
@@ -63,8 +71,8 @@
               {{item.title}}
             </ion-row>
             <ion-row>
-             ${{item.price}}
-            </ion-row>
+                <p>$ {{item.price | number: '1.2-2'}}</p>
+              </ion-row>
             <ion-row>
               {{item.description}}
             </ion-row>
@@ -93,7 +101,8 @@
         
           
             
-       
+    <!-- </ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
   
     </ion-content>
 
