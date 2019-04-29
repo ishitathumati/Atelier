@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "781691867947",
+    "firebase_url": "https://atelier-842ac.firebaseio.com",
+    "project_id": "atelier-842ac",
+    "storage_bucket": "atelier-842ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:781691867947:android:764d2cb7da3280eb",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "781691867947-n21lf8mvvletlivn6qo35m43crrr762e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDX5jcT3qDrxm4kYGW2IDb9iOfBPpDOn_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "781691867947-n21lf8mvvletlivn6qo35m43crrr762e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
