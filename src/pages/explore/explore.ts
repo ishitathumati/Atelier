@@ -13,7 +13,7 @@ import { UserProvider } from '../../providers/user/user';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { a } from '@angular/core/src/render3';
 import {initializeApp} from 'firebase';
-import { connreq } from '../../models/request';
+import { connection } from '../../models/request';
 import { ProfilePage } from '../profile/profile';
 import { Post } from '../../models/post';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -57,7 +57,7 @@ export class ExplorePage {
   dbPhoto3;
   dbPhoto4;
   posts : any [];
-  newrequest = {} as connreq;
+  newrequest = {} as connection;
   allHashtags = []; //array of hashtags
   hashtag; //input
   temparr = [];

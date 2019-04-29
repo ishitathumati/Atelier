@@ -1,3 +1,8 @@
+/**
+ * Some of the code in this page is modeled from that in https://tphangout.com/chat-app-with-ionic-3-firebase-ep-7-accepting-and-ignoring-requests/
+ * The author of the code in the above link: Raja Yogan
+ */
+
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events, AlertController } from 'ionic-angular';
 import { RequestsProvider } from '../../providers/requests/requests';
@@ -57,7 +62,7 @@ export class NotificationsPage {
       this.requestservice.acceptrequest(item).then(() => {
   
         let newalert = this.alertCtrl.create({
-          title: 'Friend added',
+          title: 'Added friend',
           subTitle: 'You can now chat with new friend in your messages!',
           buttons: ['ok']
         });
@@ -67,7 +72,7 @@ export class NotificationsPage {
   
     ignore(item) {
       this.requestservice.deleterequest(item).then(() => {
-        alert('Request rejected');
+        alert('Rejected request');
       }).catch((err) => {
         alert(err);
       })
