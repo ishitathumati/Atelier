@@ -64,24 +64,30 @@
         </ion-row>
       </ion-grid>
     </div-->
-    <div style="display: inline">
-        <ion-item no-lines>
-            <ion-icon name="school"></ion-icon>
-            Studied {{(profileData | async)?.areaofstudy}} at {{(profileData | async)?.study}}
-        </ion-item> 
-    </div>
-    <ion-item no-lines>
+    
+        <ion-item no-lines text-wrap>
+            <p style="float: left; color: black; font-weight: normal; justify-content: left">
+              <ion-icon name="school"></ion-icon>
+              Studied {{(profileData | async)?.areaofstudy}} at {{(profileData | async)?.study}}</p>
+          </ion-item> 
+   
+    
+    <ion-item no-lines text-wrap>
+        <p style="float: left; color: black; font-weight: normal;">
         <ion-icon name="briefcase"></ion-icon>
-        Works at {{(profileData | async)?.work}}
+        Works at {{(profileData | async)?.work}}</p>
     </ion-item>
 
-    <ion-item no-lines>
+    <ion-item no-lines text-wrap>
+        <p style="float: left; color: black; font-weight: normal;">
         <ion-icon name="home"></ion-icon>
-        Lives in {{(profileData | async)?.lives}} 
+        Lives in {{(profileData | async)?.lives}}</p>
     </ion-item>
-    <ion-item no-lines>
+
+    <ion-item no-lines text-wrap>
+      <p style="float: left; color: black; font-weight: normal;">
       <ion-icon name="pin"></ion-icon>
-      From {{(profileData | async)?.fromCity}} 
+      From {{(profileData | async)?.fromCity}}</p>
     </ion-item>
 
     <div class="featured">
