@@ -61,11 +61,9 @@ page-profile {
         color: #f17300;
     }
 
-    .segment-button {
-        border-color: black !important;
-        $segment-button-ios-text-color: black;
-    }
+   
 
+    $segment-button-ios-background-color-activated: gray !important;
 
     }
     
