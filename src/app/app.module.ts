@@ -140,7 +140,6 @@ const firebaseAuth = {
   providers: [
     StatusBar,
     SplashScreen,
-    Firebase,
     Camera,
     AuthProvider,
     AngularFireAuthModule,
@@ -148,6 +147,7 @@ const firebaseAuth = {
     UserProvider,
     RequestsProvider,
     ChatProvider,
+    Firebase,
     ImghandlerProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
     //{provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

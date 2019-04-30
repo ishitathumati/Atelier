@@ -5,6 +5,7 @@ import { Post } from '../../models/post';
 import firebase from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { EditArtPage } from '../edit-art/edit-art';
+import { UserUploadsPage } from '../user-uploads/user-uploads';
 
 
 /**
@@ -48,50 +49,11 @@ export class PostPage {
       this.rootref = firebase.database().ref(`users/${auth.uid}`);
       let postref = this.rootref.child('posts/' + postid);
       this.changed = true;
-      // console.log('this is the post price' + this.post.price,'this is the post title' + this.post.title, 'this is the post description' + this.post.description);
-    
-      // console.log('username'+this.post.username);
-      console.log('this is the post test xx' + postid);
-      console.log('this.post inspec' + this.specificpost.title);
-
-
       postref.update(this.specificpost);
-
-
-
-
-
-
-
-
-
-     /*postref.update(this.post).then(()=>{
-          if(this.changed){
-            console.log('post changed');
-            console.log('this is the post' + this.post);
-
-
-            /*this.userservice.updateimage(this.allposts.posturl).then((res:any)=>{
-              if(res.success){
-                this.navCtrl.setRoot(UserUploadsPage);
-                console.log('post data changed');
-              }
-              else{
-                alert(res);
-              }
-            }
-          
-          
-          )
-          }
-          else{
-            this.navCtrl.setRoot(UserUploadsPage);
-            console.log('data wasnt changed');
-          }
-        })*/
-        this.toast.create({
-        message: `Successfully updated your post!`,
-        duration: 2000
+      this.navCtrl.setRoot(UserUploadsPage);
+      this.toast.create({
+      message: `Successfully updated your post!`,
+      duration: 2000
       }).present(); 
   }) 
   }
