@@ -7,7 +7,7 @@ import firebase from 'firebase';
 import { Post } from '../../models/post';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { PostPage } from '../post/post';
-import { EditArtPage } from '../edit-art/edit-art';
+
 
 
 //import { url } from 'inspector';
@@ -148,41 +148,14 @@ deletePost(postid){
 })
 }
 
-editPost(postid){
-  this.afAuth.authState.take(1).subscribe(auth=>{
-    this.fdb.object(`users/${auth.uid}/posts/` + postid).update(this.post)
-      .then(()=>{
-        if(this.changed){
-          this.userservice.updateimage(this.allposts.posturl).then((res:any)=>{
-            if(res.success){
-              this.navCtrl.setRoot(UserUploadsPage);
-              console.log('post data changed');
-            }
-            else{
-              alert(res);
-            }
-          })
-        }
-        else{
-          this.navCtrl.setRoot(UserUploadsPage);
-          console.log('data wasnt changed');
-        }
-      })
-      this.toast.create({
-      message: `Successfully updated your post!`,
-      duration: 2000
-    }).present(); 
-}) 
-}
-
-goToEditPost(item){
+/*goToEditPost(item){
   var data1 = {post: item};
   data1["test"] = "test";
   this.navCtrl.push(EditArtPage, data1);
   if(item.postid){
     console.log('this is the post id' + item.postid, item.title, item.price);
   }
-}
+}*/
 
 goToPost(item){
   this.navCtrl.push(PostPage,{post:item}); //pushing post to userupload page as well as navigating to the page

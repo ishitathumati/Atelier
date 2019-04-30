@@ -4,7 +4,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Post } from '../../models/post';
 import firebase from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { EditArtPage } from '../edit-art/edit-art';
 import { UserUploadsPage } from '../user-uploads/user-uploads';
 
 

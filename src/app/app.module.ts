@@ -46,7 +46,6 @@ import { ImghandlerProvider } from '../providers/imghandler/imghandler';
 import { MyfriendslistPage } from '../pages/myfriendslist/myfriendslist';
 import { PhotoPage } from '../pages/photo/photo';
 import { PostPage } from '../pages/post/post';
-import { EditArtPage } from '../pages/edit-art/edit-art';
 import { OtheruserprofilePage } from '../pages/otheruserprofile/otheruserprofile';
 import { OtheruserfriendsPage } from '../pages/otheruserfriends/otheruserfriends';
 import { OtheruseruploadsPage } from '../pages/otheruseruploads/otheruseruploads';
@@ -76,7 +75,6 @@ const firebaseAuth = {
     TabsPage,
     ExplorePage,
     EditProfPage,
-    EditArtPage,
     NotificationsPage,
     CommentsPage,
     LoginPage,
@@ -114,7 +112,6 @@ const firebaseAuth = {
     HomePage,
     ProfilePage,
     UserUploadsPage,
-    EditArtPage,
     EditProfPage,
     TabsPage,
     ExplorePage,
