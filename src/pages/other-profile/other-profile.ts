@@ -9,7 +9,7 @@ import { UserProvider } from '../../providers/user/user';
 import firebase from 'firebase';
 import { Post } from '../../models/post';
 import { RequestsProvider } from '../../providers/requests/requests';
-import { connection } from '../../models/request';
+import { connreq } from '../../models/request';
 import { OtheruserfriendsPage } from '../otheruserfriends/otheruserfriends';
 import { OtheruseruploadsPage } from '../otheruseruploads/otheruseruploads';
 import { ChatProvider } from '../../providers/chat/chat'; 
@@ -40,7 +40,7 @@ export class OtherProfilePage {
   firedata = firebase.database().ref(`/users`);
   allposts;
   postData: FirebaseObjectObservable<Post>;
-  newrequest = {} as connection;
+  newrequest = {} as connreq;
   temparr = [];
   filteredusers = [];
 

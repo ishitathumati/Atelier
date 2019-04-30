@@ -14,17 +14,18 @@
             </ion-list>
             <ion-footer>
                 <ion-toolbar>
-                   <ion-list>
+                   <!--ion-list>
                     <button ion-item>
-                      <!--FIX LATER: openPage nonfunctional for settings and help/support-->
+                      <!-FIX LATER: openPage nonfunctional for settings and help/support>
                     <ion-icon name="settings"></ion-icon>
                       Settings
                     </button>
-                    <button ion-item>
+                    </ion-list-->
+
+                    <button ion-item (click)="gotohelp()">
                     <ion-icon name="help-circle"></ion-icon>
                        Help and Support
                     </button>
-                   </ion-list>
                     <button ion-button icon color="dark" clear (click)="LogOut()">
                     <ion-icon name="exit"></ion-icon>
                        Log Out
