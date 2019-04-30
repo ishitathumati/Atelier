@@ -4,11 +4,9 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
     <ion-navbar>
       <ion-title>Explore</ion-title>
     </ion-navbar>
-  
   </ion-header>
   
   
@@ -20,14 +18,9 @@
       </ion-refresher-content>
     </ion-refresher>
 
-
-<!-- 
-      <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+<!--<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
           <ion-infinite-scroll-content> -->
       
-         
-   
-  
     <ion-searchbar (input)="searchuser($event)" placeholder="Search"></ion-searchbar>
 
   
@@ -45,25 +38,22 @@
     </ion-list>
   </ion-list>
 
-
-
-
-
   <!--<div class="tags-input" data-name="tags-input"></div>
   <input class = "main-input" ion-input placeholder="#Hashtags" type = "text" [(ngModel)]="hashtag"> 
   <ion-icon name="search" (click)="hashtagExists()"></ion-icon>-->
 
-  
-      
-
   <ion-grid>
-
       <ion-row>
         <ion-col *ngFor ="let item of posts" col-6 no-padding>
           <ion-card>
           <ion-card-header>
-            <button ion-button (click)="gotoOther(item)">{{item.username}}</button>
-
+            <ion-item>
+              <p text-wrap
+                style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; color: black ; text-align: justify"
+                (click)="gotoOther(item)">
+                {{item.username}}</p>
+            </ion-item>
+          
           </ion-card-header>
           <ion-card-content>
             <img src="{{item.posturl}}"  (click)="goToPhotos(item)"> 
@@ -83,6 +73,7 @@
           </ion-card>
           </ion-col>
         </ion-row>
+        
       </ion-grid>
   
      

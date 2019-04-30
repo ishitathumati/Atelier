@@ -20,16 +20,27 @@
   
   
   
-  <ion-card>
+  
       <ion-row>
         <ion-col>
           <ion-card>
           <ion-card-header (click)="gotoOther()">
-            {{specificpost.username}} 
-             <button ion-button color="primary" (click)="sendreq()">
-                  <ion-icon name="person-add"></ion-icon>
-                  Send Request
-                </button>
+            <ion-row>
+              <ion-col>
+                  {{specificpost.username}} 
+              </ion-col>
+              <ion-col></ion-col>
+              <ion-col>
+                  <ion-buttons clear end>
+                      <button ion-icon size= "large" color="dark" (click)="sendreq()">
+                        <ion-icon name="person-add"></ion-icon>
+                        Add 
+                      </button>
+                  </ion-buttons>
+              </ion-col>
+            </ion-row>
+              
+            
           </ion-card-header>
           <ion-card-content>
             <img src="{{specificpost.posturl}}" imageViewer>
@@ -46,15 +57,21 @@
               {{specificpost.hashtag}}
               </ion-row>
               <ion-row>
-                Likes: {{likes}}
-                Comments: {{comments}}
+                <ion-col>
+                  <ion-icon size= "large" name="thumbs-up" color= "primary" ></ion-icon> 
+                   {{likes}} Likes
+                  </ion-col>
+                  <ion-col>
+                      <ion-icon size= "large" name="text" color = "primary"></ion-icon> 
+                    {{comments}} Comments
+                  </ion-col>
               </ion-row>
             </ion-card-content>
 
       </ion-card>
         </ion-col>
       </ion-row>
-    </ion-card>
+  
 
 
 
