@@ -38,7 +38,11 @@
         <ion-item >
           <ion-header item-left>
           </ion-header> 
-          <ion-item (click)="gotoOther2(key)"><h2>{{key.displayName}}</h2></ion-item>
+          <ion-item (click)="gotoOther2(key)">
+              <ion-avatar item-left>
+                  <img src="{{key.photoURL}}">
+              </ion-avatar>
+            <h2>{{key.displayName}}</h2></ion-item>
         </ion-item>
         
       </ion-item-sliding>
