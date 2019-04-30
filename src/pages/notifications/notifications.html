@@ -22,21 +22,13 @@
 <ion-content padding>
   <ion-card>
     <div padding>
-      <ion-segment [(ngModel)]="Notifications">
-        <ion-segment-button value="Requests">
-          Requests
-        </ion-segment-button>
-        <ion-segment-button value="Comments">
-          Comments
-        </ion-segment-button>
-        <ion-segment-button value="Likes">
-          Likes
-        </ion-segment-button>
-      </ion-segment>
+        <ion-segment ion-text color="primary">
+          <h2 style="color:cornflowerblue">Friend Requests</h2>
+        </ion-segment>
     </div>
 
-    <div [ngSwitch]="Notifications">
-      <ion-list *ngSwitchCase="'Requests'">
+    <div>
+      <ion-list>
           <ion-item-sliding *ngFor="let item of myrequests">
               <ion-item>
               <ion-avatar item-left>
@@ -56,15 +48,6 @@
               </ion-item-options>
             </ion-item-sliding>
       </ion-list>
-
-      <ion-list *ngSwitchCase="'Comments'">
-        
-      </ion-list>
-
-      <ion-list *ngSwitchCase="'Likes'">
-          
-      </ion-list>
-
     </div>
   </ion-card>
 
