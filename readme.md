@@ -76,6 +76,21 @@ Developer. Adiv’s a senior majoring in Computer Science. He designed the icon,
 [github](https://github.com/adivsiv)
 
 
+# Testing
+
+**E2E**
+
+The purpose of End to end testing is to simulate the real user scenario and validate the system under test and its components for integration and data integrity.
+
+**Instruction:**
+
+run the command: **npm run e2e.**
+
+
+
+
+
+
 
 ##### If you love our work and want to let us know, connect with us! 
 

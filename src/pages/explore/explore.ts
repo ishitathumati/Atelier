@@ -222,7 +222,8 @@ gotoOther2(userProf)
                     self.posts.push(temp);
                     
                   }
-            
+                 
+               
               });
               return false;
             });

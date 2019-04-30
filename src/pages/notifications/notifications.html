@@ -23,7 +23,7 @@
   <ion-card>
     <div padding>
         <ion-segment ion-text color="primary">
-          <h2 style="color:cornflowerblue">Friend Requests</h2>
+          <h3 style="color:cornflowerblue">FRIEND REQUESTS</h3>
         </ion-segment>
     </div>
 
@@ -37,12 +37,12 @@
               <h4>{{item.displayName}}</h4>
               </ion-item>
               <ion-item-options>
-                <button ion-button color="secondary" (click)="accept(item)">
-                  <ion-icon name="checkmark"></ion-icon>
+                <button ion-button color="primary" (click)="accept(item)">
+                  <ion-icon name="add-circle"></ion-icon>
                   Accept
                 </button>
                 <button ion-button color="danger" (click)="ignore(item)">
-                  <ion-icon name="trash"></ion-icon>
+                  <ion-icon name="remove-circle"></ion-icon>
                   Reject
                 </button>
               </ion-item-options>

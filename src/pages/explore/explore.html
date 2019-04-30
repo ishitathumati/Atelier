@@ -62,8 +62,7 @@
         <ion-col *ngFor ="let item of posts" col-6 no-padding>
           <ion-card>
           <ion-card-header>
-            <button ion-button (click)="gotoOther(item)">{{item.username}}</button>
-
+            <button (click)="gotoOther(item)">{{item.username}}</button>
           </ion-card-header>
           <ion-card-content>
             <img src="{{item.posturl}}"  (click)="goToPhotos(item)"> 

@@ -6,9 +6,10 @@
 page-friendchat {
     .chat {
         width: 100%;
+        padding-bottom: 20 px;
     }
     
-    .bubble{
+    .text{
         background-color: rgb(38, 117, 166);
         border-radius: 6px;
         box-shadow: 0 0 6px rgb(38, 117, 166);
@@ -18,7 +19,7 @@ page-friendchat {
         vertical-align: top;
     }
 
-    .bubble2{
+    .text2{
         background-color: rgb(219, 220, 224);
         border-radius: 6px;
         box-shadow: 0 0 6px rgb(219, 220, 224);
@@ -28,7 +29,7 @@ page-friendchat {
         vertical-align: top;
     }
     
-    .bubble::before {
+    .text::before {
         background-color: rgb(38, 117, 166);
         content: "\00a0";
         display: block;
@@ -43,7 +44,7 @@ page-friendchat {
         width:  20px;
     }
     
-    .bubble2::before {
+    .text2::before {
         background-color: rgb(219, 220, 224);
         content: "\00a0";
         display: block;
@@ -77,8 +78,5 @@ page-friendchat {
         box-shadow: 5px 5px 5px 0   rgb(38, 117, 166);
         right: -7px;    
     }
-    
-    .chat {
-        padding-bottom: px;
-    }
+
 }
