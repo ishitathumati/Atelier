@@ -1,3 +1,8 @@
+/**
+ * Some of the code in this page is modeled after that found in https://tphangout.com/chat-app-with-ionic-3-firebase-ep-2-sign-up/
+ * Author of code found in above link: Raja Yogan
+ */
+
 //import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuthModule } from 'angularfire2/auth';

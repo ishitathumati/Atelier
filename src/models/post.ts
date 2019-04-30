@@ -6,6 +6,7 @@ export interface Post{
     price:number;
     title:string;
     description:string;
+    medium:string;
     posturl:string;
     hashtag: string[];
     likes: any[];

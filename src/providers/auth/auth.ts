@@ -1,4 +1,8 @@
 //import { HttpClient } from '@angular/common/http';
+/**
+ * The following code is modeled after that found in https://tphangout.com/chat-app-with-ionic-3-and-firebase-ep-1-sign-in-tabs/
+ * Author of the code/content in the above link: Raja Yogan
+ */
 import { Injectable } from '@angular/core';
 import { ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';

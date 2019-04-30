@@ -1,3 +1,9 @@
+/**
+ * The code in this page is modeled after that found in https://tphangout.com/chat-app-with-ionic-3-firebase-ep-4-adding-friends/
+ * https://tphangout.com/chat-app-with-ionic-3-firebase-ep-6-sending-requests/ and https://tphangout.com/chat-app-with-ionic-3-firebase-ep-7-accepting-and-ignoring-requests/
+ * The author of the code in the above link: Raja Yogan
+ */
+
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events, AlertController } from 'ionic-angular';
 import { RequestsProvider } from '../../providers/requests/requests';

@@ -1,3 +1,8 @@
+/**
+ * The code in this page is modeled from that of https://tphangout.com/chat-app-with-ionic-3-firebase-ep-8-one2one-chat/
+ * Author of code from above link: Raja Yogan
+ */
+
 //import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import firebase from 'firebase';

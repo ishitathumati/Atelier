@@ -1,8 +1,13 @@
+/**
+ * The code in this page is modeled after that found in https://tphangout.com/chat-app-with-ionic-3-firebase-ep-6-sending-requests/
+ * The author of the code in the above link: Raja Yogan
+ */
+
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
 import { RequestsProvider } from '../../providers/requests/requests';
-import { connreq } from '../../models/request';
+import { connection } from '../../models/request';
 import firebase from 'firebase';
 
 /**
@@ -18,7 +23,7 @@ import firebase from 'firebase';
   templateUrl: 'friends.html',
 })
 export class FriendsPage {
-  newrequest = {} as connreq;
+  newrequest = {} as connection;
   temparr = [];
   filteredusers = [];
   constructor(public navCtrl: NavController, public navParams: NavParams,

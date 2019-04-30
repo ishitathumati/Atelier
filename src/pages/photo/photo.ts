@@ -17,7 +17,7 @@ import firebase from 'firebase';
 import { RequestsProvider } from '../../providers/requests/requests';
 import { UserProvider } from '../../providers/user/user';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { connreq } from '../../models/request';
+import { connection } from '../../models/request';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { OtheruserprofilePage } from '../otheruserprofile/otheruserprofile';
 
@@ -51,7 +51,7 @@ export class PhotoPage {
   dbPhoto4;
 
   posts : any [];
-  newrequest = {} as connreq;
+  newrequest = {} as connection;
   temparr = [];
   filteredusers = [];
   allHashtags = []; //array of hashtags
