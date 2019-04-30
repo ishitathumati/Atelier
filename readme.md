@@ -84,7 +84,7 @@ The purpose of End to end testing is to simulate the real user scenario and vali
 
 **Instruction:**
 
-run the command: npm run e2e.
+run the command: **npm run e2e.**
 
 
 
