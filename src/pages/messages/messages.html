@@ -14,7 +14,7 @@
     <ion-title>Messages</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="addfriend()">
-        <ion-icon name="person-add"></ion-icon>
+        <ion-icon name="people" color="primary"></ion-icon>
       </button>
     </ion-buttons> 
   </ion-navbar>
@@ -24,12 +24,16 @@
  
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let item of myfriends" (click)="friendchat(item)">
-      
-        <button style="text-align: left; opacity: .95; font-size: 14pt; color:whitesmoke; width:100%; height:55px; background-color: rgb(38, 117, 166); border-radius:15px; border: 2px solid goldenrod; padding-left: 20px">
-          {{item.displayName}}
-        </button>
+
     
-    </ion-item>
+      <ion-item *ngFor="let item of myfriends" (click)="friendchat(item)">
+          <ion-avatar item-left>
+              <img src="{{item.photoURL}}">
+            </ion-avatar>
+        <button style="text-align: left; background-color: white; font-size: 14pt; width:100%; height:55px; border-radius:5px; border: 1px solid cornflowerblue; padding-left: 15px">
+          <h4 style="color: cornflowerblue">{{item.displayName}}</h4>
+        </button>
+      </ion-item>
+    
   </ion-list>
 </ion-content>
