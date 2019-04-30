@@ -18,7 +18,6 @@
   <ion-list>
     <ion-item>
       <ion-label inline>Title</ion-label>
-      <ion-label inline>{{specificpost.title}}</ion-label>
       
       <ion-input maxlength="20" type="text"[(ngModel)]="specificpost.title"></ion-input>
     </ion-item>
@@ -29,8 +28,12 @@
     </ion-item>
 
     <ion-item>
+      <ion-label inline>Medium</ion-label>
+      <ion-input maxlength="20" type="text"[(ngModel)]="specificpost.medium"></ion-input>
+    </ion-item>
+
+    <ion-item>
         <ion-label inline>Price</ion-label>
-        <ion-label inline>xxxxx{{post.price}}</ion-label>
         <!-- gbahra edited it so only take number -->
         <ion-input maxlength="10" type="number"[(ngModel)]="specificpost.price"></ion-input>
       </ion-item>
