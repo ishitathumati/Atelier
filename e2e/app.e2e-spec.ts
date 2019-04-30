@@ -31,7 +31,7 @@ describe('login Page test works! ', () => {
   browser.driver.get("http://localhost:8100/");
 
   browser.driver.findElement(By.css("#username > .text-input")).click();
-  browser.driver.findElement(By.css("#username > .text-input")).sendKeys("nick@email.com");
+  browser.driver.findElement(By.css("#username > .text-input")).sendKeys("gurinder@email.com");
   browser.driver.findElement(By.css("#password > .text-input")).click();
   browser.driver.findElement(By.css("#password > .text-input")).sendKeys("123456");
   browser.driver.findElement(By.css(".button-full > .button-inner")).click();

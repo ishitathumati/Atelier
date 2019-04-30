@@ -58,6 +58,7 @@ export class HomePage {
 
 isLiked(i) {
   var likedUsers = this.allposts[i].likes;
+  console.log('likedUsers'), likedUsers;
   var ret = false;
   for(var j=0; j<likedUsers.length; j++) {
     if(likedUsers[j] == firebase.auth().currentUser.uid) {
