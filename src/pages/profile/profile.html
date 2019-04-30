@@ -8,12 +8,12 @@
   <ion-navbar hideBackButton="true">
       <ion-buttons start>
           <button ion-button icon-only color="dark" menuToggle> 
-            <ion-icon name="menu"></ion-icon>
+            <ion-icon name="menu" color="primary"></ion-icon>
           </button>
         </ion-buttons>
     <ion-title>Profile</ion-title>
     <ion-buttons end>
-        <button ion-button icon-only color="dark"(click)="gotomessages()">
+        <button ion-button icon-only color="primary"(click)="gotomessages()">
           <ion-icon name="mail"></ion-icon>
         </button>
       </ion-buttons>
@@ -43,7 +43,7 @@
     
     <p  style="font-family: Helvetica, sans-serif;" (click)="addbio()">{{bio}}</p>
   
-    <ion-segment color="dark">
+    <ion-segment color="primary">
       <ion-segment-button value="Posts" (click)="gotoposts()" >
         Posts
       </ion-segment-button>

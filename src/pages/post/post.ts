@@ -39,9 +39,9 @@ export class PostPage {
   }
 
 
-  goToEditPost(item){
+  /*goToEditPost(item){
     this.navCtrl.push(EditArtPage,{specificpost:item});
-  }
+  }*/
 
   editPost(postid){
     this.aAuth.authState.take(1).subscribe(auth=>{
