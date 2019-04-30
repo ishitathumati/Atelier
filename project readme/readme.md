@@ -34,5 +34,6 @@ $ npm run test
 
 The purpose of End to end testing is to simulate the real user scenario and validate the system under test and its components for integration and data integrity.
 
+Make sure the app is served.
 
 $ npm run e2e
