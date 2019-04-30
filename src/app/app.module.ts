@@ -51,6 +51,7 @@ import { OtheruserprofilePage } from '../pages/otheruserprofile/otheruserprofile
 import { OtheruserfriendsPage } from '../pages/otheruserfriends/otheruserfriends';
 import { OtheruseruploadsPage } from '../pages/otheruseruploads/otheruseruploads';
 import { OtherProfilePage } from '../pages/other-profile/other-profile';
+import { HelpandSuppPage } from '../pages/helpand-supp/helpand-supp';
 
 
 //import { RouterModule, RouteReuseStrategy } from '@angular/router';
@@ -83,6 +84,7 @@ const firebaseAuth = {
     RegisterPage,
     AddArtPage,
     ActivityPage,
+    HelpandSuppPage,
     SavedPage,
     MessagesPage,
     FriendsPage,
@@ -124,6 +126,7 @@ const firebaseAuth = {
     RegisterPage,
     AddArtPage,
     ActivityPage,
+    HelpandSuppPage,
     SavedPage,
     MessagesPage,
     MyfriendslistPage,

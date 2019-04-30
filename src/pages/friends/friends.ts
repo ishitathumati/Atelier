@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
 import { RequestsProvider } from '../../providers/requests/requests';
-import { connection } from '../../models/request';
+import { connreq } from '../../models/request';
 import firebase from 'firebase';
 
 /**
@@ -23,13 +23,14 @@ import firebase from 'firebase';
   templateUrl: 'friends.html',
 })
 export class FriendsPage {
-  newrequest = {} as connection;
+  newrequest = {} as connreq;
   temparr = [];
   filteredusers = [];
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public userservice: UserProvider, public alertCtrl: AlertController, public requestservice: RequestsProvider) {
       this.userservice.getallusers().then((res: any) => {
         this.filteredusers = res;
+        console.log('users', this.filteredusers);
         this.temparr = res;
       })
   }

@@ -35,12 +35,12 @@
   <ion-list no-lines *ngIf="search">
     <ion-list >
       <ion-item-sliding *ngFor="let key of filteredusers" >
-        <ion-item >
-          <ion-header item-left>
-          </ion-header> 
-          <ion-item (click)="gotoOther2(key)"><h2>{{key.displayName}}</h2></ion-item>
-        </ion-item>
-        
+          <ion-item (click)="gotoOther2(key)">
+            <ion-avatar item-start>
+                <img  src="{{key.photoURL}}">
+            </ion-avatar> 
+            <h2>{{key.displayName}}</h2>
+          </ion-item>
       </ion-item-sliding>
     </ion-list>
   </ion-list>

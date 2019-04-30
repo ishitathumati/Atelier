@@ -14,20 +14,20 @@
 <ion-header>
 
   <ion-navbar color="hcolor">
-    <ion-title>Friends</ion-title>
+    <ion-title>Add Friends</ion-title>
   </ion-navbar>
  
 </ion-header>
   
  
 <ion-content>
-  <ion-searchbar [(ngModel)]="searchstring" (input)="searchuser($event)" placeholder="Search"></ion-searchbar>
-<ion-list no-lines>
+  <ion-searchbar [(ngModel)]="searchstring" (input)="searchuser($event)" placeholder="Search and swipe to add"></ion-searchbar>
+<ion-list>
   <ion-list>
     <ion-item-sliding *ngFor="let key of filteredusers">
       <ion-item >
         <ion-avatar item-left>
-          <img src=''>
+          <img src='{{key.photoURL}}'>
         </ion-avatar>
         <h2>{{key.displayName}}</h2>
       </ion-item>
