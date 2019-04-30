@@ -22,16 +22,17 @@
  
 <ion-content>
   <ion-searchbar [(ngModel)]="searchstring" (input)="searchuser($event)" placeholder="Search"></ion-searchbar>
-  <ion-card>
   
+  <ion-card>
   <ion-list>
-    <ion-item-sliding *ngFor="let key of filteredusers">
+    <ion-item padding-bottom>
+    <ion-item-sliding padding-top *ngFor="let key of filteredusers">
       
-      <ion-item style="padding-bottom:5px; background-color: white; border-radius:5px; border: .5px solid cornflowerblue">
+      <ion-item style="border-radius:5px; border: .5px solid gray">
       <ion-avatar item-left>
           <img src="{{key.photoURL}}">
       </ion-avatar>
-      <h4 style="color: cornflowerblue">{{key.displayName}}</h4>
+      <h3>{{key.displayName}}</h3>
       </ion-item>
      
       <ion-item-options slide="left">
@@ -40,8 +41,9 @@
           Send Request
         </button>
       </ion-item-options>
-      
-    </ion-item-sliding>
+  
+  </ion-item-sliding>
+  </ion-item>
   </ion-list>
 
 </ion-card>
