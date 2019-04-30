@@ -1,3 +1,8 @@
+/**
+ * Some of the code in this page is modeled after that found in https://tphangout.com/chat-app-with-ionic-3-and-firebase-ep-1-sign-in-tabs/
+ * Author of code found in above link: Raja Yogan
+ */
+
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { User } from '../../models/user';
@@ -16,6 +21,7 @@ import { AuthProvider } from '../../providers/auth/auth';
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
+ * 
  */
 
 @IonicPage()

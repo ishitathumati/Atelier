@@ -13,7 +13,7 @@
   </ion-header>
   
   
-  <ion-content padding>
+  <ion-content  padding>
   
   <!--sssss--> 
    
@@ -37,7 +37,7 @@
               {{specificpost.title}}
             </ion-row>
             <ion-row>
-             ${{specificpost.price}}
+             <p>$ {{specificpost.price | number: '1.2-2'}}</p>
             </ion-row>
             <ion-row>
               {{specificpost.description}}
@@ -45,9 +45,13 @@
             <ion-row>
               {{specificpost.hashtag}}
               </ion-row>
-          </ion-card-content>
+              <ion-row>
+                Likes: {{likes}}
+                Comments: {{comments}}
+              </ion-row>
+            </ion-card-content>
 
-        </ion-card>
+      </ion-card>
         </ion-col>
       </ion-row>
     </ion-card>

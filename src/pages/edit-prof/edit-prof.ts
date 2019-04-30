@@ -32,7 +32,7 @@ export class EditProfPage {
   photo:any;
   uid: string;
   photo2:any;
-  profilepic:any
+  profilepic:any;
   profile = {} as Profile;
   changed=false;
 
@@ -94,7 +94,7 @@ openGallery()
 goToProfile(){ 
   this.aAuth.authState.take(1).subscribe(auth=>{
     this.db.object(`users/${auth.uid}/profile`).update(this.profile)
-      .then(()=>{
+      .then(()=>{ 
         if(this.changed){
           this.userservice.updateimage(this.profilepic).then((res:any)=>{
             if(res.success){
@@ -107,7 +107,7 @@ goToProfile(){
         }
         else{
           this.navCtrl.setRoot(TabsPage);
-        }
+        } 
       })
       this.toast.create({
       message: `Successfully updated your Profile!`,

@@ -17,7 +17,7 @@ import firebase from 'firebase';
 import { RequestsProvider } from '../../providers/requests/requests';
 import { UserProvider } from '../../providers/user/user';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { connreq } from '../../models/request';
+import { connection } from '../../models/request';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { OtheruserprofilePage } from '../otheruserprofile/otheruserprofile';
 
@@ -51,20 +51,20 @@ export class PhotoPage {
   dbPhoto4;
 
   posts : any [];
-  newrequest = {} as connreq;
+  newrequest = {} as connection;
   temparr = [];
   filteredusers = [];
   allHashtags = []; //array of hashtags
   hashtag; //input
   specificpost;
   specificprofile;
-  
+  likes: number;
+  comments: number;
  
 
   username;
   user;
 
-  likes: object[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public userservice: UserProvider, public alertCtrl: AlertController, public requestservice: RequestsProvider, private aAuth: AngularFireAuth) {
@@ -81,7 +81,14 @@ export class PhotoPage {
       this.imageSource2 = 'dusk';
       this.imageSource3 = 'scream';
       this.imageSource4 = 'starrynight';
+      this.likes = 0;
+      this.comments = 0;
+      try {
+        this.likes = this.specificpost.likes.length;
+        this.comments = this.specificpost.comments.length;
+      } catch {
 
+      }
       //this.userid =firebase.auth().currentUser.uid;
   }
 
@@ -131,15 +138,14 @@ liked(i){
  })
 } */
 
- totalLike()
- {
-
- }
  
- totalComments()
- {
-   
- }
+
+/* gotoOther3(specificpost){
+  this.navCtrl.push(TestPage, {userid: specificpost.userid, username:specificpost.username, userpic:specificpost.posturl});
+}  */
+
+
+
 
  getComments(i) {
   var comm: any [];
@@ -200,7 +206,7 @@ sendreq(recipient) {
     else{
       let successalert = this.alertCtrl.create({
         title: 'Request was sent!',
-        subTitle: 'Request sent to ' + this.username,
+        subTitle: 'Request sent to ' + this.specificpost.username,
         buttons: ['OK']
       });
     

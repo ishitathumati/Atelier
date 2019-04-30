@@ -1,6 +1,12 @@
+/**
+ * The code in this page is modeled from that in https://tphangout.com/chat-app-with-ionic-3-firebase-ep-6-sending-requests/
+ * and https://tphangout.com/chat-app-with-ionic-3-firebase-ep-7-accepting-and-ignoring-requests/
+ * The author of the code in the above link: Raja Yogan
+ */
+
 import { Injectable } from '@angular/core';
 import { Events } from 'ionic-angular';
-import { connreq } from '../../models/request';
+import { connection } from '../../models/request';
 import { UserProvider } from '../user/user';
 import firebase from 'firebase';
  
@@ -23,7 +29,7 @@ export class RequestsProvider {
     
   }
  
-  sendrequest(req: connreq) {
+  sendrequest(req: connection) {
     var promise = new Promise((resolve, reject) => {
       this.firereq.child(req.recipient).push({
       sender: req.sender

@@ -18,6 +18,8 @@
     <ion-list>
         <ion-item>
           <ion-label inline>Title</ion-label>
+          <ion-label inline>{{post.test}}</ion-label>
+          
           <ion-input maxlength="20" type="text"[(ngModel)]="post.title"></ion-input>
         </ion-item>
       
@@ -27,17 +29,18 @@
         </ion-item>
 
         <ion-item>
-          <ion-label inline>Add a Hashtag</ion-label>
-          <ion-input maxlength="20" type="text"[(ngModel)]="post.hashtag"></ion-input>
+          <ion-label inline>Medium</ion-label>
+          <ion-input maxlength="20" type="text"[(ngModel)]="post.medium"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label inline>Price</ion-label>
+            <ion-label inline>{{post.price}}</ion-label>
             <!-- gbahra edited it so only take number -->
             <ion-input maxlength="10" type="number"[(ngModel)]="post.price"></ion-input>
           </ion-item>
       
       </ion-list>
 
-      <button ion-button (click)="editPost()" round>Save</button>
+      <button ion-button (click)="editPost(post.test)" round>Save</button>
 </ion-content>

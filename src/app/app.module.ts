@@ -11,14 +11,18 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Firebase } from '@ionic-native/firebase/';
 import { EditProfPage } from '../pages/edit-prof/edit-prof';
 import { CommentsPage } from '../pages/comments/comments';
 import { LoginPage} from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+
+
 //import { MyApp } from '../app/app.component'; 
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, FirebaseAppConfigToken } from 'angularfire2';
 import { AngularFireAuthModule} from 'angularfire2/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
+
 
 import { Camera } from '@ionic-native/camera';
 //import { SMS } from '@ionic-native/sms/ngx';
@@ -47,7 +51,6 @@ import { OtheruserprofilePage } from '../pages/otheruserprofile/otheruserprofile
 import { OtheruserfriendsPage } from '../pages/otheruserfriends/otheruserfriends';
 import { OtheruseruploadsPage } from '../pages/otheruseruploads/otheruseruploads';
 import { OtherProfilePage } from '../pages/other-profile/other-profile';
-
 
 
 //import { RouterModule, RouteReuseStrategy } from '@angular/router';
@@ -137,6 +140,7 @@ const firebaseAuth = {
   providers: [
     StatusBar,
     SplashScreen,
+    Firebase,
     Camera,
     AuthProvider,
     AngularFireAuthModule,
@@ -145,7 +149,6 @@ const firebaseAuth = {
     RequestsProvider,
     ChatProvider,
     ImghandlerProvider,
-    
     {provide: ErrorHandler, useClass: IonicErrorHandler}
     //{provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ]

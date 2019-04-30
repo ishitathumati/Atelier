@@ -1,4 +1,4 @@
-export interface connreq {
+export interface connection {
     sender: string;
     recipient: string;
 }

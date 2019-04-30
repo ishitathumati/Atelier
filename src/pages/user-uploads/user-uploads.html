@@ -26,7 +26,8 @@
           <ion-col *ngFor ="let item of allposts; let i=index" col-6 no-padding>
             <ion-card>
             <ion-icon style="float: right;" name="trash" (click)="deletePost(allposts[i].postid)"></ion-icon>
-            <ion-card-header (click)="goToPost(item)">
+            <ion-icon style="float: right;" name="create" (click)="goToPost(item)"></ion-icon>
+            <ion-card-header style = "float: center;">
               {{allposts[i].title}}
             </ion-card-header>
             <ion-card-content>
@@ -36,6 +37,9 @@
               </ion-row>
               <ion-row>
                 {{allposts[i].description}}
+              </ion-row>
+              <ion-row>
+                {{allposts[i].medium}}
               </ion-row>
             </ion-card-content>
           </ion-card>

@@ -1,3 +1,8 @@
+/**
+  Some of the code in this page is modeled from that of https://tphangout.com/chat-app-with-ionic-3-firebase-ep-8-one2one-chat/
+  Author of code from above link: Raja Yogan
+ */
+
 import { Component, ViewChild, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events, Content } from 'ionic-angular';
 import { ChatProvider } from '../../providers/chat/chat';
