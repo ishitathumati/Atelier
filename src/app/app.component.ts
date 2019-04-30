@@ -9,6 +9,7 @@ import { ActivityPage } from '../pages/activity/activity';
 import { SavedPage } from '../pages/saved/saved';
 import { LoginPage } from '../pages/login/login';
 import { FirebaseApp } from 'angularfire2';
+import { HelpandSuppPage } from '../pages/helpand-supp/helpand-supp';
 //import { HomePage } from 'src/pages/home/home';
 //import { TabsPage } from '../pages/tabs/tabs';
 //import { SettingsPage } from '../pages/settings/settings';
@@ -42,14 +43,19 @@ export class MyApp {
       splashScreen.hide();
     });
     this.pages = [
-      {title: 'Edit Profile', component: EditProfPage, icon: 'create'},
-      {title: 'Activity', component: ActivityPage, icon: 'clock'},
-      {title: 'Saved', component: SavedPage, icon: 'archive'},
+      {title: 'Edit Profile', component: EditProfPage, icon: 'create'}
+      //{title: 'Activity', component: ActivityPage, icon: 'clock'},
+      //{title: 'Saved', component: SavedPage, icon: 'archive'},
       //{title: 'Settings', component: SettingsPage, icon: 'settings'},
       //{title: 'Help and Support', component: HelpandSuppPage, icon: 'help=circle'},
     ];
     
   }
+
+gotohelp(){
+  this.nav.push(HelpandSuppPage);
+}
+
 openPage(page){
     this.nav.push(page.component);
 }

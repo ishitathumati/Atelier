@@ -57,13 +57,13 @@ export class HomePage {
 }
 
 isLiked(i) {
-  var likedUsers = this.allposts[i].likes;
-  console.log('likedUsers'), likedUsers;
-  var ret = false;
-  for(var j=0; j<likedUsers.length; j++) {
-    if(likedUsers[j] == firebase.auth().currentUser.uid) {
-      ret = true;
-    }
+    var likedUsers = this.allposts[i].likes;
+    //console.log('likedusers', likedUsers)
+    var ret = false;
+      for(var j=0; j<likedUsers.length; j++) {
+        if(likedUsers[j] == firebase.auth().currentUser.uid) {
+          ret = true;
+        }
   }
   return ret;
 }
@@ -121,14 +121,6 @@ updatelikes(postdetails){
     }); 
   }
 
-   
-  // ionViewDidEnter(){
-  //   this.allposts=[];
-  //   this.userservice.getpostdetails3(firebase.auth().currentUser.uid).then((list)=>{
-  //     this.allposts =list;
-  //     // console.log('list of posts', this.allposts)
-  //   });
-  // }
   getUserDetails(uid) {
     var ret = "";
     firebase.database().ref('users/'+uid).on('value', function(snap) {
@@ -137,10 +129,8 @@ updatelikes(postdetails){
     // console.log('list of posts', this.allposts);
     return ret;
   }
+
   sendComment(i) {
-    // console.log('list of posts', this.allposts);
-    // console.log(this.allposts[i].comments[0]);
-    // console.log(this.newComment);
     var temp = {
       uid: firebase.auth().currentUser.uid,
       comment: this.newComment[i]
@@ -148,9 +138,8 @@ updatelikes(postdetails){
     // console.log('list of posts', this.allposts);
     this.db.list('users/'+this.allposts[i].userid+'/posts/'+this.allposts[i].postid+'/comments').push(temp);
     this.newComment[i] = "";
-    // console.log('list of posts', this.allposts);
-    // console.log(this.newComment);
   }
+
   getComments(i) {
     var comm: any [];
     comm = [];
@@ -163,10 +152,6 @@ updatelikes(postdetails){
         return false;
       });
     });
-    // comm = this.allposts[i].comments;
-    // console.log(comm);
-    // console.log(this.allposts[i].comments);
-    // console.log('list of posts', this.allposts);
     return comm;
   }
   }

@@ -6,7 +6,7 @@
 
 import { Injectable } from '@angular/core';
 import { Events } from 'ionic-angular';
-import { connection } from '../../models/request';
+import { connreq } from '../../models/request';
 import { UserProvider } from '../user/user';
 import firebase from 'firebase';
  
@@ -29,7 +29,7 @@ export class RequestsProvider {
     
   }
  
-  sendrequest(req: connection) {
+  sendrequest(req: connreq) {
     var promise = new Promise((resolve, reject) => {
       this.firereq.child(req.recipient).push({
       sender: req.sender

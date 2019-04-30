@@ -25,7 +25,7 @@
     
     <p  style="font-family: Helvetica, sans-serif; margin-top:3%; margin-bottom:3%">{{(profileData | async)?.bio}}</p>
   
-    <ion-segment>
+    <ion-segment color="dark">
       <ion-segment-button value="Posts" (click)="gotoposts()">
         Posts
       </ion-segment-button>
@@ -38,23 +38,27 @@
     </ion-segment>
 
     <div style="display: inline">
-        <ion-item no-lines>
+        <ion-item no-lines text-wrap>
+            <p style="float: left; color: black; font-weight: normal;">
             <ion-icon name="school"></ion-icon>
-            Studied {{(profileData | async)?.areaofstudy}} at {{(profileData | async)?.study}}
+            Studied {{(profileData | async)?.areaofstudy}} at {{(profileData | async)?.study}}</p>
         </ion-item> 
     </div>
     <ion-item no-lines>
+        <p style="float: left; color: black; font-weight: normal;">
         <ion-icon name="briefcase"></ion-icon>
-        Works at {{(profileData | async)?.work}}
+        Works at {{(profileData | async)?.work}}</p>
     </ion-item>
 
     <ion-item no-lines>
+        <p style="float: left; color: black; font-weight: normal;">
         <ion-icon name="home"></ion-icon>
-        Lives in {{(profileData | async)?.lives}} 
+        Lives in {{(profileData | async)?.lives}} </p>
     </ion-item>
     <ion-item no-lines>
+        <p style="float: left; color: black; font-weight: normal;">
       <ion-icon name="pin"></ion-icon>
-      From {{(profileData | async)?.fromCity}} 
+      From {{(profileData | async)?.fromCity}} </p>
     </ion-item>
 
     <div class="featured">
