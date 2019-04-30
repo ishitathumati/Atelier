@@ -50,18 +50,18 @@ export class MyfriendslistPage {
     this.events.unsubscribe('friend');
   }
 
-  searchfriends(param:any) {
-    this.search = true;
-    let val: string = param;
+  searchfriends(searchbar) {
     this.friendsarr = this.myfriends;
-      if (val.trim() != '') {
-        this.friendsarr = this.friendsarr.filter((v) => {
-          v.displayName.toLowerCase().indexOf(val.toLowerCase()) > -1;
-        })
+    var val = searchbar.target.value;
+    if (val.trim() == '') {
+      return;
+    }
+     this.friendsarr = this.friendsarr.filter((v) => {
+      if (v.displayName && typeof v.displayName === "string" && v.displayName.toLowerCase().indexOf(val.toLowerCase()) > -1) {
+        return true;
       }
-      else{
-        this.search =false;
-      }
+      return false;
+    })
   }
  
   addfriend() {
