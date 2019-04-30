@@ -25,6 +25,7 @@ export class FriendsPage {
     public userservice: UserProvider, public alertCtrl: AlertController, public requestservice: RequestsProvider) {
       this.userservice.getallusers().then((res: any) => {
         this.filteredusers = res;
+        console.log('users', this.filteredusers);
         this.temparr = res;
       })
   }

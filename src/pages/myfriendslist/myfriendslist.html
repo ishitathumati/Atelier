@@ -19,11 +19,11 @@
  
  
 <ion-content padding>
-  <ion-searchbar placeholder="search my friends" (ionInput)="searchfriends($event.target.value)"></ion-searchbar>
-  <ion-list no-lines *ngIf="search">
-      <ion-list >
-        <ion-item-sliding *ngFor="let key of filteredusers" >
-          <ion-item >
+  <ion-searchbar [(ngModel)]="searchstring" placeholder="search my friends" (input)="searchfriends($event)"></ion-searchbar>
+  <ion-list no-lines>
+    <ion-list>
+        <ion-item-sliding *ngFor="let key of friendsarr" >
+          <ion-item>
             <ion-avatar item-left>
               <img src='{{key.photoURL}}' >
             </ion-avatar> 
@@ -32,12 +32,4 @@
         </ion-item-sliding>
       </ion-list>
     </ion-list>
-  <ion-list>
-    <ion-item *ngFor="let item of myfriends">
-        <ion-avatar item-start>
-            <img src={{item.photoURL}}>
-          </ion-avatar> 
-      <h3>{{item.displayName}}</h3> 
-    </ion-item>
-  </ion-list>
 </ion-content>
